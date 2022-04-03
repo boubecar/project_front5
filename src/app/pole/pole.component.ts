@@ -72,15 +72,24 @@ export class PoleComponent implements OnInit {
     if (!this.service.formCum.valid) {
       alert("veuillez remplir tous les champs")
     }
-    /*this.cumulative = {
-      poleId: this.cumulative.poleId,
-      poleName: this.service.formCum.controls['poleName'].value,
-      image: this.service.formCum.controls['path'].value
-    }*/
+    if (this.service.formCum.controls['poleId'].value=='00000000-0000-0000-0000-000000000000')
+    {
     this.service.postPole(this.service.formCum.value).subscribe(res => {
       alert(res.toString())
-      this.cumulative = {}
+      //this.cumulative = {}
+      this.refreshPoleList()
     })
+  }
+  else 
+  {
+    
+    console.log("put")
+    console.log(this.service.formCum.value);
+    this.service.updatePole(this.service.formCum.value).subscribe(res => {
+      alert(res.toString())
+      this.refreshPoleList()
+    })
+  }
 
 
     console.log('hello');
@@ -107,6 +116,16 @@ export class PoleComponent implements OnInit {
     })
     console.log("photo")
     console.log(this.PhotoFilePath)
+  }
+
+  ChangeData(pole: Pole) {
+
+    this.service.formCum.reset({
+      poleId: pole.poleId,
+      poleName: pole.poleName,
+      image:pole.image
+    });
+    
   }
 
 }
