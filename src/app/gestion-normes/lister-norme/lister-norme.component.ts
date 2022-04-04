@@ -12,7 +12,7 @@ export class ListerNormeComponent implements OnInit {
   NormeList: any = []
 
 
-
+ 
   ModalTitle: string = "ajouter un nouveau norme";
   constructor(public normeService: NormeServiceService, private fb: FormBuilder) { }
 

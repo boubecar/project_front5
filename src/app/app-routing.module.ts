@@ -7,6 +7,7 @@ import { FilialeComponent } from './filiale/filiale.component';
 import { GestionNormesComponent } from './gestion-normes/gestion-normes.component';
 import { HomeComponent } from './home/home.component';
 import { NormesComponent } from './normes/normes.component';
+import { NoteComponent } from './note/note.component';
 import { PoleComponent } from './pole/pole.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
    {path:'critere',component:CritereComponent},
    {path:'test',component:TestComponent},
    {path:'filiale',component:FilialeComponent},
+   {path:'note',component:NoteComponent},
 ];
 
 @NgModule({

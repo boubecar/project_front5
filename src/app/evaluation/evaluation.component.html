@@ -14,66 +14,18 @@
             <div class="col-lg-offset-1 col-sm-12 col-md-12 col-lg-10">
                 <div class="features-list">
                     <div class="row">
-                        <div class="col-sm-6 col-md-4 col-lg-4">
+                        <div class="col-sm-6 col-md-4 col-lg-4" *ngFor="let dataItem of NormeList" >
                             <div class="feature-block bootdey" style="visibility: visible;">
-                                <div class="ico fa fa-balance-scale"></div>
+                                <div class="ico fa {{dataItem.path}}"></div>
                                 <div class="name">
-                                    Etre rigoureux
+                                    {{dataItem.designation}}
                                 </div>
-                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
                                 <div class="more">
                                     <a href="#" class="btn btn-default btn-sm">Evaluer</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-4 col-lg-4">
-                            <div class="feature-block bootdey" style="visibility: visible;">
-                                <div class="ico fa fa-trash"></div>
-                                <div class="name">
-                                    Débarrasser
-                                </div>
-                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
-                                <div class="more">
-                                    <a href="#" class="btn btn-default btn-sm">Evaluer</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 col-lg-4">
-                            <div class="feature-block bootdey" style="visibility: visible;">
-                                <div class="ico fa fa-cubes"></div>
-                                <div class="name">
-                                    Ranger
-                                </div>
-                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
-                                <div class="more">
-                                    <a href="#" class="btn btn-default btn-sm">Evaluer</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 col-lg-4">
-                            <div class="feature-block bootdey" style="visibility: visible;">
-                                <div class="ico fa-solid fa-broom"></div>
-                                <div class="name">
-                                    Nettoyer
-                                </div>
-                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
-                                <div class="more">
-                                    <a href="#" class="btn btn-default btn-sm">Evaluer</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 col-lg-4">
-                            <div class="feature-block bootdey" style="visibility: visible;">
-                                <div class="ico fa fa-flag"></div>
-                                <div class="name">
-                                    Maintenir l&#39;ordre
-                                </div>
-                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
-                                <div class="more">
-                                    <a href="#" class="btn btn-default btn-sm">Evaluer</a>
-                                </div>
-                            </div>
-                        </div>
+
                         
                     </div>
                 </div>

@@ -45,8 +45,5 @@ export class ListerComponent implements OnInit {
       image:fil.image
     });
     this.refreshfilList();
-
-    
-
   }
 }

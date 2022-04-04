@@ -10,7 +10,7 @@ import { NormeServiceService } from '../services/norme-service.service';
   styleUrls: ['./gestion-normes.component.css']
 })
 export class GestionNormesComponent implements OnInit {
-
+ 
   // constructor() { }
   /*NormeList: Array<{NormeId: number, designation: string}> = [
     {NormeId: 1, designation: "Nettoyer"},

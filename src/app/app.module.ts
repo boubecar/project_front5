@@ -23,6 +23,7 @@ import { ListerNormeComponent } from './gestion-normes/lister-norme/lister-norme
 import { AddEditNormeComponent } from './gestion-normes/add-edit-norme/add-edit-norme.component';
 import { ListerComponent } from './filiale/lister/lister.component';
 import { AddEditComponent } from './filiale/add-edit/add-edit.component';
+import { NoteComponent } from './note/note.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AddEditComponent } from './filiale/add-edit/add-edit.component';
     ListerNormeComponent,
     AddEditNormeComponent,
     ListerComponent,
-    AddEditComponent
+    AddEditComponent,
+    NoteComponent
   ],
   imports: [
     BrowserModule,
