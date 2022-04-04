@@ -1,0 +1,25 @@
+<form (ngSubmit)='saveData()' [formGroup]="filService.formCum">
+
+
+	<input type="hidden" formControlName="filialeId">
+	<div class="form-row">
+		<div class="col-md-6 mb-3">
+			<label>enter le nom de filiale
+			</label>
+			<input type="text" class="form-control" class="form-control input-sm" placeholder="Nom" formControlName="filialeName" required>
+		</div>
+        
+	</div>
+	<label class="col-sm-2 col-form-label">Pole</label>
+        <div class="col-sm-10">
+            <select class="form-control" formControlName="pole">
+                <option>--Select--</option>
+                <option *ngFor="let depName of PoleList ">
+                    {{depName.PoleName}}
+                </option>
+            </select>
+        </div>
+	<button type="button" class="btn btn-primary float-right" type="submit">Enregister 
+	</button>
+</form>
+

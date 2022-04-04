@@ -22,6 +22,7 @@ import { FilialeComponent } from './filiale/filiale.component';
 import { ListerNormeComponent } from './gestion-normes/lister-norme/lister-norme.component';
 import { AddEditNormeComponent } from './gestion-normes/add-edit-norme/add-edit-norme.component';
 import { ListerComponent } from './filiale/lister/lister.component';
+import { AddEditComponent } from './filiale/add-edit/add-edit.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ListerComponent } from './filiale/lister/lister.component';
     FilialeComponent,
     ListerNormeComponent,
     AddEditNormeComponent,
-    ListerComponent
+    ListerComponent,
+    AddEditComponent
   ],
   imports: [
     BrowserModule,

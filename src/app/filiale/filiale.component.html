@@ -16,30 +16,34 @@
                        
                        <div class="col-md-12">
                          <div class="page_title">
-                            <h2>Plan d'action</h2>
+                            <h2>Les filiales de polina </h2>
                          </div>
                       </div>
                     </div>
                     <!-- row -->
-                    <div class="row column1" >
-                       <div class="col-md-6 col-lg-4" *ngFor="let dataItem of filList">
-                          <div class="full white_shd margin_bottom_30">
-                             <div class="info_people">
-                                <div class="p_info_img">
-                                   <img src="{{dataItem.image}}" alt="#" />
-                                </div>
-                                <div class="user_info_cont">
-                                   <h4>{{dataItem.filialeName}}</h4>
-                                   <p>Pole :</p>
-                                   <p class="p_status">{{dataItem.filialeId}}</p>
-                                </div>
-                             </div>
-                          </div>
-                       </div>
-                       
-                    </div>
+                    <app-lister></app-lister>
                     <!-- end row -->
-                    
+                    <button type="button" class="fa fa-plus-circle btn btn-light float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+                     Ajouter 
+                  </button>
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">filiale</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                              </button>
+                           </div>
+                           <div class="modal-body">
+                              <div class="card">
+                                 <app-add-edit></app-add-edit>
+                                 <div class="card-body"></div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                  <!-- footer -->
                  <div class="container-fluid">
                     <div class="footer">
