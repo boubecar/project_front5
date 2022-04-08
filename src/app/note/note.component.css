@@ -61,3 +61,7 @@ background:#eee;
             right: auto;
         }
 }
+.progress {
+    margin-left: 100px;
+    width: 500px;
+  }
