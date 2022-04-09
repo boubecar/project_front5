@@ -61,7 +61,8 @@ background:#eee;
             right: auto;
         }
 }
-.progress {
+
+  .progress_bar  {
     margin-left: 100px;
     width: 500px;
   }

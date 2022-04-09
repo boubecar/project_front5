@@ -28,6 +28,7 @@ export class NoteComponent implements OnInit {
     if (this.currentQuiz<this.List.length)
     {
       this.currentQuiz++;
+      
     }
     else 
     {
@@ -36,5 +37,14 @@ export class NoteComponent implements OnInit {
       this.router.navigateByUrl('/evaluation');
     }
   }
+  Pres ()
+  {
+    if (this.currentQuiz>=0)
+    {
+      this.currentQuiz--;
+      
+    }
+  }
+  
   
 }
