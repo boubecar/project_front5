@@ -15,7 +15,8 @@
                   <h1>
                       {{List[currentQuiz].critere}}
                   </h1>
-                  
+                  <form  [formGroup]="formCum">
+
                       
                     <div class="timeline-badge primary"><i class="glyphicon glyphicon-arrow-right"></i></div>
                     <div class="timeline-panel">
@@ -25,20 +26,21 @@
                       </div>
                       <div class="timeline-body">
                         
-                        <input class="form-control input-md" id="myInput" placeholder="?/20" type="text">
+                        <input class="form-control input-md" formControlName="note" id="myInput" placeholder="?/20" type="text">
                      </div>
                      <div class="timeline-heading">
                       <label class="text-muted">ecrire  un comentaire  </label> 
                     </div>
                     <div class="timeline-body">
                       
-                      <input class="form-control input-md" id="myInput" placeholder="comentaire" type="text">
+                      <input class="form-control input-md" id="myInput" formControlName="comment" placeholder="comentaire" type="text">
                    </div>
                      </div>
                     <br>
-                    
+
                  <button  class="btn  btn-secondary"  *ngIf="currentQuiz!=0"  (click)="Pres()"  >Precedant  </button>
                  <button  class="btn  btn-secondary  " (click)="Suiv()"  >Suivant  </button>
+                </form>
                     </div>
                     </div>
                     
