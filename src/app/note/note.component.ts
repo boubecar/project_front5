@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,8 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./note.component.css']
 })
 export class NoteComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  formCum = this.fb.group({
+    note: [''],
+    comment: [''],
+  });
+  constructor(private router: Router ,private fb: FormBuilder) { }
   /*public counts = ["Recieved","In Progress","Ready for Billing",
   "Billed","Order Closed"];
   public orderStatus = "In Progress"*/
@@ -29,11 +33,11 @@ export class NoteComponent implements OnInit {
     {
       this.currentQuiz++;
       
+      console.log(this.formCum.controls['note'].value);
+      console.log(this.formCum.controls['comment'].value);
     }
     else 
     {
-      /*this._service.updatePatient(this.patient).subscribe(
-        data => {*/
       this.router.navigateByUrl('/evaluation');
     }
   }
