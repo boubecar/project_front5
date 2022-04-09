@@ -4,13 +4,14 @@ import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 import { FormControl, Validators } from '@angular/forms';
 import { NormeServiceService } from '../services/norme-service.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-gestion-normes',
   templateUrl: './gestion-normes.component.html',
   styleUrls: ['./gestion-normes.component.css']
 })
 export class GestionNormesComponent implements OnInit {
- 
+
   // constructor() { }
   /*NormeList: Array<{NormeId: number, designation: string}> = [
     {NormeId: 1, designation: "Nettoyer"},
@@ -34,13 +35,15 @@ export class GestionNormesComponent implements OnInit {
   NormeList: any = []
   //filterForm: FormGroup
   //formCum: FormGroup
-  constructor(private normeService: NormeServiceService, private fb: FormBuilder) { }
+  constructor(private normeService: NormeServiceService, private fb: FormBuilder, private router: Router) { }
 
   //public norme: Norme = new Norme();
   ngOnInit(): void {
     this.refreshnormList()
   }
-
+  normes() {
+    this.router.navigate(['/gnorme']);
+  }
 
 
   public saveData() {
