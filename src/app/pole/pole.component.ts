@@ -105,7 +105,7 @@ export class PoleComponent implements OnInit {
     });
   }
   uploadPhoto(event: any) {
-    var file = event.target.files[0];
+   /* var file = event.target.files[0];
     const formData: FormData = new FormData();
     formData.append('uploadedFile', file, file.name);
     alert(file.name)
@@ -116,6 +116,19 @@ export class PoleComponent implements OnInit {
     })
     console.log("photo")
     console.log(this.PhotoFilePath)
+    */
+    var file=event.target.files[0];
+    const formData:FormData=new FormData();
+    formData.append('uploadedFile',file,file.name);
+    alert(file.name)
+    this.PhotoFilePath=this.service.formCum.controls['image'].value;
+    this.service.UploadPhoto(formData).subscribe((data:any)=>{
+      this.PhotoFileName=data.toString();
+      this.PhotoFilePath=this.service.formCum.controls['image'].value;
+    })
+    console.log("photo")
+    console.log(this.PhotoFilePath)
+ 
   }
 
   ChangeData(pole: Pole) {
