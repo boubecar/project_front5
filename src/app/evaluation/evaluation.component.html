@@ -1,36 +1,137 @@
 <div class="full_container">
     <div class="inner_container">
 <app-nav></app-nav>
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-<div class="container bootstrap snippets bootdey">
-<section id="content" class="current">
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-                <h3>Les Normes chinoises</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-offset-1 col-sm-12 col-md-12 col-lg-10">
-                <div class="features-list">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4 col-lg-4" *ngFor="let dataItem of NormeList" >
-                            <div class="feature-block bootdey" style="visibility: visible;">
-                                <div class="ico fa {{dataItem.path}}"></div>
-                                <div class="name">
-                                    {{dataItem.designation}}
-                                </div>
-                                <div class="more">
-                                    <a routerLink="/note" class="btn btn-default btn-sm">Evaluer</a>
-                                </div>
-                            </div>
-                        </div>
+        
+        <div class="">
+            <div class="white_shd full margin_bottom_30">
+               <div class="full graph_head">
+                  <div class="heading1 ">
+                     <h2> Evaluation des filiales : </h2>
+                  </div>
+               </div>
+               <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                          <div class="d-flex flex-row">
+                            <input  class="form-control"
+                             placeholder="filiale">
+            
+                            <button type="button" class="btn btn-light"
+                            >
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
+                            </svg>
+                          </button>
+                          <button type="button" class="btn btn-light"
+                            >
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
+                            </svg>
+                          </button>
+            
+                          </div>
+                          
+                          </th>
+                        <th>
+                          <div class="d-flex flex-row">
+                            <input  class="form-control"
+                             placeholder="locaux">
+            
+                            <button type="button" class="btn btn-light"
+                            >
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
+                            </svg>
+                          </button>
+                          <button type="button" class="btn btn-light"
+                            >
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
+                            </svg>
+                          </button>
+            
+                          </div>
+                           </th>
+                        <th><div class="d-flex flex-row">
+                            <input  class="form-control"
+                             placeholder="date">
+            
+                            <button type="button" class="btn btn-light"
+                            >
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
+                            </svg>
+                          </button>
+                          <button type="button" class="btn btn-light"
+                            >
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
+                            </svg>
+                          </button>
+            
+                          </div>
+                          </th>
+                    </tr>
+                </thead>
+    </table>
+            
+               <div class="full inner_elements">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="tab_style2">
+                           <div class="tabbar padding_infor_info">
+                              <nav>
+                                 <div class="nav nav-tabs" id="nav-tab1" role="tablist" >
+                                    <a class="nav-item nav-link active" id="nav-home-tab2" data-toggle="tab" href="#nav-home_s2" role="tab" aria-controls="nav-home_s2" aria-selected="true" >Netoyer</a>
+                                    <a class="nav-item nav-link" id="nav-profile-tab2" data-toggle="tab" href="#nav-home_s2" role="tab" aria-controls="nav-profile_s2" aria-selected="false" *ngFor="let dataItem of NormeList">{{dataItem.designation}}</a>
+                                 </div>
+                              </nav>
+                              <div class="tab-content" id="nav-tabContent_2"  >
+                                 <div class="tab-pane fade show active" id="nav-home_s2" role="tabpanel" aria-labelledby="nav-home-tab" >
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>criteres</th>
+                                            <th>Note</th>
+                                            <th><i class="fa fa-star-half-o" aria-hidden="true"></i></th>
+                                            <th>comentaire</th>
+                                            <th>Ratachement</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngFor="let i of CritereList">
+                                        <td>{{i.criterelabel}}</td>
+                                        <td><div class="timeline-panel">
+                
+                                           <div class="timeline-body">
+                                             
+                                             <input class="form-control input-md" formControlName="note" id="myInput" placeholder="?/20" type="text">
+                                          </div>
+                                        </div>
+                                        </td>
+                                        <td></td>
+                                        <td><div class="timeline-panel">
+                
+                                            <div class="timeline-body">
+                                              
+                                              <input class="form-control input-md" formControlName="note" id="myInput" placeholder="Commentaire" type="text">
+                                           </div>
+                                         </div></td>
 
-                        
-                    </div>
-                </div>
+                                        <td> <input type="file">
+                                            <i class="fa fa-camera" aria-hidden="true"></i></td>
+                                        
+                                    </tbody>
+                                    </table>
+                                 </div>
+                                 
+                                 
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
-</section>
-</div>                                        
+         </div>
+        

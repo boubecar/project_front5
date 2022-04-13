@@ -1,76 +1,62 @@
+.heading1{
+    margin-top: 5em;
+}
 
-                        
-h2 {
-    font-size: 50px;
-    font-weight: 300;
-    margin-bottom: 10px;
-    line-height: 50px;
+
+/* expanding input CSS only */
+#myInput    	{width:120px}
+
+body{
+background:#eee;
 }
-.highlight {
-    color: #2ac5ed;
+
+
+
+
+.timeline > li.timeline-inverted > .timeline-panel:after {
+  border-left-width: 0;
+  border-right-width: 14px;
+  left: -14px;
+  right: auto;
 }
-#content {
-    padding: 70px 0;
+.timeline-title {
+    margin-top: 0;
+    color: inherit;
 }
-#content .features-list {
-    padding-top: 35px;
+
+
+@media (max-width: 767px) {
+    ul.timeline:before {
+        left: 40px;
+    }
+
+    ul.timeline > li > .timeline-panel {
+        width: calc(100% - 90px);
+        width: -moz-calc(100% - 90px);
+        width: -webkit-calc(100% - 90px);
+    }
+
+    ul.timeline > li > .timeline-badge {
+        left: 15px;
+        margin-left: 0;
+        top: 16px;
+    }
+
+    ul.timeline > li > .timeline-panel {
+        float: right;
+    }
+
+        ul.timeline > li > .timeline-panel:before {
+            border-left-width: 0;
+            border-right-width: 15px;
+            left: -15px;
+            right: auto;
+        }
+
+        ul.timeline > li > .timeline-panel:after {
+            border-left-width: 0;
+            border-right-width: 14px;
+            left: -14px;
+            right: auto;
+        }
 }
-.features-list .feature-block {
-    margin-bottom: 18px;
-}
-.features-list .feature-block .ico {
-    font-size: 37px;
-    line-height: 70px;
-    width:70px;
-    height: 70px;
-    background: #5accff;
-    display: inline-block;
-    border-radius: 50%;
-    color: #FFFFFF;
-    margin-bottom: 10px;
-}
-.features-list .feature-block.bottom-line .ico {
-    width: auto;
-    height: auto;
-	background: transparent;
-	color: #5accff;
-	text-align: center;
-	font-size: 41px;
-	vertical-align: top;
-	margin-top: -10px;
-}
-.features-list .feature-block.bottom-line .fa-github {
-	font-size: 50px;
-}
-.features-list .feature-block.bottom-line .fa-dashboard {
-	font-size: 45px;
-	margin-top: -15px;
-}
-.features-list .feature-block.bottom-line .ico {
-	float: left;
-	margin-right: 15px;
-	margin-left: 21px;
-}
-.features-list .feature-block.bottom-line .features-content {
-	padding-right: 15px;
-	display: table;
-}
-.features-list .feature-block.bottom-line .features-content .name {
-	margin-bottom: 5px;
-}
-.features-list .feature-block.bottom-line .features-content .subname {
-	font-size: 16px;
-	margin-bottom: 12px;
-}
-.features-list .feature-block .name {
-    font-size: 20px;
-    line-height: 1.25em;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-.features-list .feature-block .text {
-    font-size: 12px;
-    line-height: normal;
-    margin-bottom: 15px;
-}
-                                        

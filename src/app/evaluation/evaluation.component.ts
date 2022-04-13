@@ -16,12 +16,17 @@ export class EvaluationComponent implements OnInit {
     {NormeId: 5, designation: "Débarrasser",path: 'fa-trash'},
 ]
 
- 
+CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
+  { critereId: 1, criterelabel: "Nettoyer", normes: "" },
+  { critereId: 2, criterelabel: 'Ranger', normes: "" },
+  { critereId: 3, criterelabel: 'Etre rigoureux', normes: "" },
+  { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
+  { critereId: 5, criterelabel: "Débarrasser", normes: "" },
+];
   constructor(public normeService: NormeServiceService) { }
 
   ngOnInit(): void {
   }
-
 
   refreshnormList() {
     this.normeService.getListNormes().subscribe(data => {

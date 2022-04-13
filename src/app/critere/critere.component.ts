@@ -12,7 +12,7 @@ import { NormeServiceService } from '../services/norme-service.service';
 export class CritereComponent implements OnInit {
    CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
      { critereId: 1, criterelabel: "Nettoyer", normes: "" },
-     { critereId: 2, criterelabel: 'Ranger', normes: "" },
+     { critereId: 2, criterelabel: 'Degré d’engagement de la direction et d’implication du personnel pour les 5S.', normes: "" },
      { critereId: 3, criterelabel: 'Etre rigoureux', normes: "" },
      { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
      { critereId: 5, criterelabel: "Débarrasser", normes: "" },
