@@ -33,14 +33,14 @@ CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> 
   refreshnormList() {
     this.normeService.getListNormes().subscribe(data => {
       this.NormeList = data;
-    });
+    }); 
   }
   refreshcriList(e:any) {
     this.CritereService.getCritereByNorme(e.NormeId).subscribe(data => {
       this.CritereList = data;
       console.log(this.CritereList)
     });
-
+ 
 
   }
 }
