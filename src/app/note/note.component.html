@@ -1,8 +1,8 @@
-<div class="full_container">
+<!--<div class="full_container">
     <div class="inner_container">
         <app-nav></app-nav>
         <div class="container">
-           <!-- Skill Bars  <div class="progress_bar">
+            Skill Bars  <div class="progress_bar">
                  Skill Bars 
                 <span class="skill" style="width:50%;" > <span class="info_valume">{{currentQuiz}}%</span></span>                  
                 <div class="progress skill-bar ">
@@ -48,12 +48,46 @@
                  
                 </div>
                   
-              -->
+              
               </div> 
                
           </div>
 
-
+-->
 
  <!--expanding input field -->	
-    
+ <table class="table table-bordered">
+  <thead>
+  <tr>
+      <th>criteres</th>
+      <th>Note</th>
+      <th><i class="fa fa-star-half-o" aria-hidden="true"></i></th>
+      <th>comentaire</th>
+      <th>Ratachement</th>
+  </tr>
+</thead>
+<tbody *ngFor="let i of CritereList">
+  <td>{{i.criterelabel}}</td>
+  <td><div class="timeline-panel">
+
+     <div class="timeline-body">
+       
+      <input class="form-control input-md"  id="myInput" placeholder="?/20" type="text"><button><i class="fa fa-check-circle" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  </td>
+  <td>{{eval}}</td>
+  <td><div class="timeline-panel">
+
+      <div class="timeline-body">
+        <input class="form-control input-md" id="myInput" placeholder="comentaire" type="text">
+                   
+        
+     </div>
+   </div></td>
+
+  <td> <input type="file">
+      <i class="fa fa-camera" aria-hidden="true"></i></td>
+  
+</tbody>
+</table>

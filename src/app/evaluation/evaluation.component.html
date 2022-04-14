@@ -83,48 +83,14 @@
                            <div class="tabbar padding_infor_info">
                               <nav>
                                  <div class="nav nav-tabs" id="nav-tab1" role="tablist" >
-                                    <a class="nav-item nav-link active" id="nav-home-tab2" data-toggle="tab" href="#nav-home_s2" role="tab" aria-controls="nav-home_s2" aria-selected="true" >Netoyer</a>
-                                    <a class="nav-item nav-link" id="nav-profile-tab2" data-toggle="tab" href="#nav-home_s2" role="tab" aria-controls="nav-profile_s2" aria-selected="false" *ngFor="let dataItem of NormeList">{{dataItem.designation}}</a>
+                                    <a class="nav-item nav-link" id="nav-profile-tab2" data-toggle="tab" href="#nav-home_s2" role="tab" aria-controls="nav-profile_s2" aria-selected="false" *ngFor="let dataItem of NormeList ;"  >{{dataItem.designation}} </a>
+      
                                  </div>
                               </nav>
-                              <div class="tab-content" id="nav-tabContent_2"  >
+                              <div class="tab-content" id="nav-tabContent_2">
                                  <div class="tab-pane fade show active" id="nav-home_s2" role="tabpanel" aria-labelledby="nav-home-tab" >
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th>criteres</th>
-                                            <th>Note</th>
-                                            <th><i class="fa fa-star-half-o" aria-hidden="true"></i></th>
-                                            <th>comentaire</th>
-                                            <th>Ratachement</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody *ngFor="let i of CritereList">
-                                        <td>{{i.criterelabel}}</td>
-                                        <td><div class="timeline-panel">
-                
-                                           <div class="timeline-body">
-                                             
-                                             <input class="form-control input-md" formControlName="note" id="myInput" placeholder="?/20" type="text">
-                                          </div>
-                                        </div>
-                                        </td>
-                                        <td></td>
-                                        <td><div class="timeline-panel">
-                
-                                            <div class="timeline-body">
-                                              
-                                              <input class="form-control input-md" formControlName="note" id="myInput" placeholder="Commentaire" type="text">
-                                           </div>
-                                         </div></td>
-
-                                        <td> <input type="file">
-                                            <i class="fa fa-camera" aria-hidden="true"></i></td>
-                                        
-                                    </tbody>
-                                    </table>
-                                 </div>
-                                 
+                                   <app-note></app-note>
+                                    </div>
                                  
                               </div>
                            </div>
