@@ -10,14 +10,14 @@ import { NormeServiceService } from '../services/norme-service.service';
   styleUrls: ['./critere.component.css']
 })
 export class CritereComponent implements OnInit {
-  /* CritereList: Array<{ CritereId: number, CritereName: string, norme: string }> = [
-     { CritereId: 1, CritereName: "Nettoyer", norme: "" },
-     { CritereId: 2, CritereName: 'Ranger', norme: "" },
-     { CritereId: 3, CritereName: 'Etre rigoureux', norme: "" },
-     { CritereId: 4, CritereName: "Maintenir l'ordre", norme: "" },
-     { CritereId: 5, CritereName: "Débarrasser", norme: "" },
+   CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
+     { critereId: 1, criterelabel: "Nettoyer", normes: "" },
+     { critereId: 2, criterelabel: 'Degré d’engagement de la direction et d’implication du personnel pour les 5S.', normes: "" },
+     { critereId: 3, criterelabel: 'Etre rigoureux', normes: "" },
+     { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
+     { critereId: 5, criterelabel: "Débarrasser", normes: "" },
    ];
- 
+ /*
   NormeList: Array<{ NormeId: number, designation: string }> = [
     { NormeId: 1, designation: "Nettoyer" },
     { NormeId: 2, designation: 'Ranger' },
@@ -29,7 +29,7 @@ export class CritereComponent implements OnInit {
   NormeList: any = []
   
   cumulative: Critere = {}
-  CritereList: any = []
+  //CritereList: any = []
   //filterForm: FormGroup
   //formCum: FormGroup
   constructor(public CritereService: CritereService, private service: NormeServiceService, private fb: FormBuilder) { }
@@ -92,7 +92,7 @@ export class CritereComponent implements OnInit {
 
   refreshcriList() {
     this.CritereService.getListCriteres().subscribe(data => {
-      this.CritereList = data;
+     // this.CritereList = data;
       console.log(this.CritereList)
     });
 

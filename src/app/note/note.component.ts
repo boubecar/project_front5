@@ -12,6 +12,9 @@ export class NoteComponent implements OnInit {
     note: [''],
     comment: [''],
   });
+  eval:string=''
+
+
   constructor(private router: Router ,private fb: FormBuilder) { }
   /*public counts = ["Recieved","In Progress","Ready for Billing",
   "Billed","Order Closed"];
@@ -25,6 +28,14 @@ export class NoteComponent implements OnInit {
     { Norme: "Nettoyer", critere: "État et propreté du mobilier, des armoires et des casiers personnels" },
   ];
 
+  
+CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
+  { critereId: 1, criterelabel: "Nettoyer", normes: "" },
+  { critereId: 2, criterelabel: 'Ranger', normes: "" },
+  { critereId: 3, criterelabel: 'Etre rigoureux', normes: "" },
+  { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
+  { critereId: 5, criterelabel: "Débarrasser", normes: "" },
+];
   ngOnInit(): void {
   }
   Suiv ()
