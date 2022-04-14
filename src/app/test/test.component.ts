@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Norme } from '../norme';
 import { NormeServiceService } from '../services/norme-service.service';
 
@@ -10,53 +11,41 @@ import { NormeServiceService } from '../services/norme-service.service';
 })
 export class TestComponent implements OnInit {
   formCum = this.fb.group({
-    designation: [""]
+    note: [''],
+    comment: [''],
   });
-  // cumulative: Norme = {}
-  listRubriques: Norme[] = []
-  filterForm: FormGroup | undefined
-
-  constructor(private rubriqueCumulativeService: NormeServiceService, private fb: FormBuilder) { }
+  constructor(private router: Router, private fb: FormBuilder) { }
+  /*public counts = ["Recieved","In Progress","Ready for Billing",
+  "Billed","Order Closed"];
+  public orderStatus = "In Progress"*/
+  currentQuiz = 0;
+  List: Array<{ Norme: string, critere: string }> = [
+    { Norme: "Nettoyer", critere: "État et propreté du poste de travail" },
+    { Norme: "Nettoyer", critere: 'État et propreté des installations' },
+    { Norme: "Nettoyer", critere: 'État et propreté des sols (papiers, chiffons éparpillés, stagnation d’eau, poussières)' },
+    { Norme: "Nettoyer", critere: "État et propreté des abords /vitres, murs, fenêtres..." },
+    { Norme: "Nettoyer", critere: "État et propreté du mobilier, des armoires et des casiers personnels" },
+  ];
 
   ngOnInit(): void {
   }
-  createFormCumul(cumulative: Norme) {
-    // this.formCum = new FormGroup({
-    //   id: new FormControl(cumulative.id ? cumulative.id : undefined),
-    //   date: new FormControl(cumulative.date, Validators.required),
-    //   comment: new FormControl(cumulative.comment, Validators.required),
+  Suiv() {
+    if (this.currentQuiz < this.List.length) {
+      this.currentQuiz++;
 
-
-    // })
-  }
-
-  submitFormCum() {
-    if (!this.formCum.valid) {
-      alert("veuillez remplir tous les champs")
+      console.log(this.formCum.controls['note'].value);
+      console.log(this.formCum.controls['comment'].value);
     }
-    /* this.cumulative = {
-       normeId:this.cumulative.normeId,
-       designation: this.formCum.controls['designation'].value,
-      
-     }*/
-    //alert(this.cumulative.name);
-
-    //this.formCum.reset()
-    //   if(this.cumulative.normeId==undefined){
-    /*  this.rubriqueCumulativeService.postNorme(this.cumulative).subscribe((res) => {
-        
-      //  this.cumulative={}
-       // this.createFormCumul(this.cumulative)
-       
-      })
+    else {
+      this.router.navigateByUrl('/evaluation');
     }
-    
-  console.log('hi');
-  console.log(this.cumulative);
-  alert(this.cumulative.designation); 
-    
-   
   }
-  */
+  Pres() {
+    if (this.currentQuiz >= 0) {
+      this.currentQuiz--;
+
+    }
   }
+
+
 }
