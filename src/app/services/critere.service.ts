@@ -29,8 +29,8 @@ export class CritereService {
   editCritere(cumulative: any) {
     return this.http.put(this.backEndUrl + "/edit", cumulative, { responseType: "text" })
   }
-  
+
   getCritereByNorme(cumulative: any) {
-    return this.http.put(this.backEndUrl + "/edit", cumulative, { responseType: "text" })
+    return this.http.put(this.backEndUrl + "/GetAllcritersByNormes?id=", cumulative, { responseType: "text" })
   }
 }
