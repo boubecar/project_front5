@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Norme } from '../norme';
 import { NormeServiceService } from '../services/norme-service.service';
@@ -18,34 +18,29 @@ export class TestComponent implements OnInit {
   /*public counts = ["Recieved","In Progress","Ready for Billing",
   "Billed","Order Closed"];
   public orderStatus = "In Progress"*/
-  currentQuiz = 0;
-  List: Array<{ Norme: string, critere: string }> = [
-    { Norme: "Nettoyer", critere: "État et propreté du poste de travail" },
-    { Norme: "Nettoyer", critere: 'État et propreté des installations' },
-    { Norme: "Nettoyer", critere: 'État et propreté des sols (papiers, chiffons éparpillés, stagnation d’eau, poussières)' },
-    { Norme: "Nettoyer", critere: "État et propreté des abords /vitres, murs, fenêtres..." },
-    { Norme: "Nettoyer", critere: "État et propreté du mobilier, des armoires et des casiers personnels" },
-  ];
-
+  filList: Array<{filialeId: string, filialeName: string,image:string}> = [
+    {filialeId: "1", filialeName: "Mazraa",image:"assets/images/mazraa.jpg"},
+    {filialeId: "1", filialeName: 'Jadida ',image:"assets/images/download.jpg"},
+    {filialeId: "1", filialeName: ' Gan',image:"assets/images/alimentation-animale.png"},
+    {filialeId: "1", filialeName: "Med oil",image:"assets/images/alimentation-animale.png"},
+    {filialeId: "1", filialeName: "oasis",image:"assets/images/oasis.jpg"},
+];
+LocalList: Array<{filialeId: string, LocalName: string,image:string}> = [
+  {filialeId: "1", LocalName: "Zahra",image:"assets/images/mazraa.jpg"},
+  {filialeId: "1", LocalName: 'Mouroug ',image:"assets/images/download.jpg"},
+  {filialeId: "1", LocalName: ' Rades',image:"assets/images/alimentation-animale.png"},
+  {filialeId: "1", LocalName: "Tunis",image:"assets/images/alimentation-animale.png"},
+  {filialeId: "1", LocalName: "wardia",image:"assets/images/oasis.jpg"},
+];
   ngOnInit(): void {
   }
-  Suiv() {
-    if (this.currentQuiz < this.List.length) {
-      this.currentQuiz++;
-
-      console.log(this.formCum.controls['note'].value);
-      console.log(this.formCum.controls['comment'].value);
-    }
-    else {
-      this.router.navigateByUrl('/evaluation');
-    }
+  isShown: boolean = false ;
+  
+  refreshcriList() {
+    this.isShown = true;
+   // this.CritereService.getCritereByNorme(e.NormeId).subscribe(data => {
+      //this.CritereList = data;
+     // console.log(this.CritereList)
+    //});
   }
-  Pres() {
-    if (this.currentQuiz >= 0) {
-      this.currentQuiz--;
-
-    }
-  }
-
-
 }

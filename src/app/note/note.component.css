@@ -4,8 +4,7 @@
     margin-top: 5em;
 }
 /* expanding input CSS only */
-#myInput    	{width:130px}
-#myInput:focus	{width:50%;}
+#myInput    	{width:170px}
 
 body{
 background:#eee;
