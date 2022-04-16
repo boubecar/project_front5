@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CritereService } from '../services/critere.service';
+import { NormeServiceService } from '../services/norme-service.service';
 
 @Component({
   selector: 'app-note',
@@ -13,12 +15,10 @@ export class NoteComponent implements OnInit {
     comment: [''],
   });
   eval:string=''
-
-
-  constructor(private router: Router ,private fb: FormBuilder) { }
-  /*public counts = ["Recieved","In Progress","Ready for Billing",
-  "Billed","Order Closed"];
-  public orderStatus = "In Progress"*/
+  isShown: boolean = false ;
+ // CritereList:any
+  constructor(private router: Router ,private fb: FormBuilder,public CritereService: CritereService) { }
+  
   currentQuiz =0;
   List: Array<{ Norme: string, critere: string }> = [
     { Norme: "Nettoyer", critere: "État et propreté du poste de travail" },
@@ -28,7 +28,13 @@ export class NoteComponent implements OnInit {
     { Norme: "Nettoyer", critere: "État et propreté du mobilier, des armoires et des casiers personnels" },
   ];
 
-  
+  NormeList: Array<{NormeId: number, designation: string,path:string}> = [
+    {NormeId: 1, designation: "Nettoyer",path: 'fa-paint-brush'},
+    {NormeId: 2, designation: 'Ranger',path: 'fa-cubes'},
+    {NormeId: 3, designation: 'Etre rigoureux',path: 'fa-balance-scale'},
+    {NormeId: 4, designation: "Maintenir l'ordre",path: "fa-cubes"},
+    {NormeId: 5, designation: "Débarrasser",path: 'fa-trash'},
+]
 CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
   { critereId: 1, criterelabel: "Nettoyer", normes: "" },
   { critereId: 2, criterelabel: 'Ranger', normes: "" },
@@ -38,27 +44,14 @@ CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> 
 ];
   ngOnInit(): void {
   }
-  Suiv ()
-  {
-    if (this.currentQuiz<this.List.length)
-    {
-      this.currentQuiz++;
-      
-      console.log(this.formCum.controls['note'].value);
-      console.log(this.formCum.controls['comment'].value);
-    }
-    else 
-    {
-      this.router.navigateByUrl('/evaluation');
-    }
-  }
-  Pres ()
-  {
-    if (this.currentQuiz>=0)
-    {
-      this.currentQuiz--;
-      
-    }
+  refreshcriList(e:any) {
+    this.isShown = true;
+    this.CritereService.getCritereByNorme(e.NormeId).subscribe(data => {
+      //this.CritereList = data;
+      console.log(this.CritereList)
+    });
+ 
+
   }
   
   
