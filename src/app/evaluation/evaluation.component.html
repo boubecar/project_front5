@@ -14,62 +14,36 @@
                     <tr>
                         <th>
                           <div class="d-flex flex-row">
-                            <input  class="form-control"
-                             placeholder="filiale">
+                            <select class="form-control" [(ngModel)]="selectedObject" (ngModelChange)="refreshLocList(selectedObject)">
+								
+                              <option *ngFor="let fil of filList " [ngValue]="fil">
+                                {{fil.filialName}}
+                              </option>
+                            </select>
             
-                            <button type="button" class="btn btn-light"
-                            >
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
-                            </svg>
-                          </button>
-                          <button type="button" class="btn btn-light"
-                            >
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
-                            </svg>
-                          </button>
             
                           </div>
                           
                           </th>
                         <th>
                           <div class="d-flex flex-row">
-                            <input  class="form-control"
-                             placeholder="locaux">
-            
-                            <button type="button" class="btn btn-light"
-                            >
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
-                            </svg>
-                          </button>
-                          <button type="button" class="btn btn-light"
-                            >
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
-                            </svg>
-                          </button>
+                            <select class="form-control" [(ngModel)]="selectedObject1"  *ngIf="isShown">
+
+                              <option value="" disabled selected hidden>Local </option>
+                              <option *ngFor="let loc of LocalList " [ngValue]="loc">
+                                {{loc.localdescription}}
+                              </option>
+                            </select>
+        
             
                           </div>
                            </th>
-                        <th><div class="d-flex flex-row">
+                        <th>
+                          <div class="d-flex flex-row">
                             <input  class="form-control"
-                             placeholder="date">
-            
-                            <button type="button" class="btn btn-light"
-                            >
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
-                            </svg>
-                          </button>
-                          <button type="button" class="btn btn-light"
-                            >
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
-                            </svg>
-                          </button>
-            
+                            type="date" id="start" name="trip-start"
+							
+                            min="2022-01-01" max="2023-12-31">
                           </div>
                           </th>
                     </tr>
@@ -87,12 +61,54 @@
       
                                  </div> 
                               </nav>
-                              <div class="tab-content" id="nav-tabContent_2">
+                              <div class="tab-content" id="nav-tabContent_2" *ngIf="isShown1">
                                  <div class="tab-pane fade show active" id="nav-home_s2" role="tabpanel" aria-labelledby="nav-home-tab" >
-                                   <app-note></app-note>
+
+                                   <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>criteres</th>
+                                        <th>Note</th>
+                                        <th><i class="fa fa-star-half-o" aria-hidden="true"></i></th>
+                                        <th>comentaire</th>
+                                        <th colspan="2">Ratachement</th>
+                                    </tr>
+                                  </thead>
+                                  
+                                  <tbody>
+                                    <tr *ngFor="let i of CritereList">
+                                      
+                                    <td>{{i.criterelabel}}</td>
+                                    <td>
+                                        <div class="input-group mb-3" [(ngModel)]="note">
+                                          <input type="text" class="form-control" style="width: 50px;" placeholder="?/20"  aria-describedby="basic-addon2"   ((keyup))="mention()">
+                                          <div class="input-group-append">
+                                            <button class="btn cur-p btn-light fa fa-check-circle" type="button"></button>
+                                          </div>
+                                  
                                     </div>
-                                 
-                              </div>
+                                    </td>
+                                    <td>{{eval}}
+                                  
+                                    </td>
+                                    <td><div class="timeline-panel">
+                                  
+                                        <div class="timeline-body">
+                                          <input class="form-control input-md" id="myInput" placeholder="comentaire" type="text">
+                                       </div>
+                                     </div></td>
+                                  
+                                    <td> <input type="file">
+                                        <i class="fa fa-camera" aria-hidden="true"></i></td>
+                                        
+                                        <td>    
+                                          <button class="fa fa-check-circle cur-p btn-light" ></button></td>
+                                        
+                                        </tr>
+                                  </tbody>
+                                  
+                                  </table>
+                                    
                            </div>
                         </div>
                      </div>

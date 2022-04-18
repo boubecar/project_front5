@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Filiale } from '../filiale';
 import { CritereService } from '../services/critere.service';
+import { FilialeService } from '../services/filiale.service';
+import { LocalService } from '../services/local.service';
 import { NormeServiceService } from '../services/norme-service.service';
 
 @Component({
@@ -8,9 +11,9 @@ import { NormeServiceService } from '../services/norme-service.service';
   styleUrls: ['./evaluation.component.css']
 })
 export class EvaluationComponent implements OnInit {
-  NormeList: any = []
-  CritereList: any = []
-  /* NormeList: Array<{NormeId: number, designation: string,path:string}> = [
+  //NormeList: any = []
+  //CritereList: any = []
+   NormeList: Array<{NormeId: number, designation: string,path:string}> = [
      {NormeId: 1, designation: "Nettoyer",path: 'fa-paint-brush'},
      {NormeId: 2, designation: 'Ranger',path: 'fa-cubes'},
      {NormeId: 3, designation: 'Etre rigoureux',path: 'fa-balance-scale'},
@@ -24,27 +27,82 @@ export class EvaluationComponent implements OnInit {
    { critereId: 3, criterelabel: 'Etre rigoureux', normes: "" },
    { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
    { critereId: 5, criterelabel: "Débarrasser", normes: "" },
- ];*/
-  constructor(public normeService: NormeServiceService, public CritereService: CritereService) { }
-  eval: String = ''
+ ];
+ isShown: boolean = false;
+ note: number =0;
+ isShown1: boolean = false;
+ eval: String = ''
+ selectedObject1 : any;
+ selectedObject : any;
+ filList: Array<{filialeId: string, filialName: string,image:string}> = [
+  {filialeId: "1", filialName: "Mazraa",image:"assets/images/mazraa.jpg"},
+  {filialeId: "1", filialName: 'Jadida ',image:"assets/images/download.jpg"},
+  {filialeId: "1", filialName: ' Gan',image:"assets/images/alimentation-animale.png"},
+  {filialeId: "1", filialName: "Med oil",image:"assets/images/alimentation-animale.png"},
+  {filialeId: "1", filialName: "oasis",image:"assets/images/oasis.jpg"},
+];
+LocalList: Array<{filialeId: string, localdescription: string,image:string}> = [
+  {filialeId: "1", localdescription: "Zahra",image:"assets/images/mazraa.jpg"},
+  {filialeId: "1", localdescription: 'Mouroug ',image:"assets/images/download.jpg"},
+  {filialeId: "1", localdescription: ' Rades',image:"assets/images/alimentation-animale.png"},
+  {filialeId: "1", localdescription: "Tunis",image:"assets/images/alimentation-animale.png"},
+  {filialeId: "1", localdescription: "wardia",image:"assets/images/oasis.jpg"},
+];
+//filList:any
+//LocalList:any
+  constructor(public normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService) { }
+  
   ngOnInit(): void {
     this.refreshnormList()
+    this.refreshfilList();
   }
-
   refreshnormList() {
     this.normeService.getListNormes().subscribe(data => {
-      this.NormeList = data;
+      //this.NormeList = data;
       console.log(this.NormeList)
     });
   }
   refreshcriList(e: any) {
+    this.isShown1 = true;
     this.CritereService.getCritereByNorme(e.NormeId).subscribe(data => {
-      this.CritereList = data;
-      console.log("dd")
+      //this.CritereList = data;
+      
       console.log(this.CritereList)
     });
+    console.log("dd")
+  }
+  refreshfilList() {
+    this.filialeService.getFilialeList().subscribe(data => {
+      //this.filList = data;
+    });
+  }
+  refreshLocList(selectedObject:Filiale) {
+    this.isShown = true;
+    this.LocService.getLocalList(selectedObject.filialeId).subscribe(data => {
+      this.LocalList = data;
+    });
+    console.log("hello");
+    console.log(this.selectedObject) 
+    console.log('lll')
+    console.log(this.selectedObject1) 
+  }
 
-
+  mention ()
+  {
+    switch(this.note)
+    {
+      case 0:
+        {this.eval="CR"; break}
+      case 10:
+        {this.eval="MA"; break}
+      case 15:
+        {this.eval="MI";break}
+      case 18:
+        {this.eval="CO";break}
+      default :
+        {this.eval="NA";break}
+    }
+    console.log(this.note) 
   }
 
 }
