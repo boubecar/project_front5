@@ -16,7 +16,7 @@ export class TestComponent implements OnInit {
     note: [''],
     comment: [''],
   });
-  constructor(private router: Router, private fb: FormBuilder,public filialeService: FilialeService,public LocService: LocalService) { }
+  constructor(private router: Router, private fb: FormBuilder, public filialeService: FilialeService, public LocService: LocalService) { }
   /*public counts = ["Recieved","In Progress","Ready for Billing",
   "Billed","Order Closed"];
   public orderStatus = "In Progress"*/
@@ -37,9 +37,12 @@ export class TestComponent implements OnInit {
 //filList:any
 LocalList:any
   ngOnInit(): void {
+    this.refreshfilList();
+    // this.refreshcriList()
   }
-  isShown: boolean = false ;
-  
+
+  isShown: boolean = false;
+
   refreshfilList() {
     this.filialeService.getFilialeList().subscribe(data => {
       //this.filList = data;

@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 export class LocalService {
 
   constructor(private http: HttpClient) { }
-  
-  backEndUrl: string = "https://localhost:44388/api/Pole";
+
+  backEndUrl: string = "https://localhost:44388/api/FiLocal";
   getLocalList(): Observable<any[]> {
-    
-    return this.http.get<any>(this.backEndUrl + '/GetAllPole');
+
+    return this.http.get<any>(this.backEndUrl + '/GetAllFiLocal');
   }
 }

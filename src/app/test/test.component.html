@@ -1,126 +1,122 @@
 <div class="full_container">
-	<div class="inner_container">
-		
+	<div
+		class="inner_container">
+
 		<!-- Skill Bars <div class="container">
-			<div
-				class="progress_bar">
+							<div
+								class="progress_bar">
+								
+								<span class="skill" style="width:50%;">
+									<span class="info_valume">{{currentQuiz}}%</span>
+								</span>
+								<div class="progress skill-bar ">
+									<div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-4 col-md-3 margin_bottom_30" *ngFor="let dataItem of List">
+									<div class="col-sm-8 offset-2">
 				
-				<span class="skill" style="width:50%;">
-					<span class="info_valume">{{currentQuiz}}%</span>
-				</span>
-				<div class="progress skill-bar ">
-					<div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 col-md-3 margin_bottom_30" *ngFor="let dataItem of List">
-					<div class="col-sm-8 offset-2">
-
-						<h4>
-							{{dataItem.critere}}
-						</h4>
-						<form [formGroup]="formCum">
-
-
-							<div class="timeline-badge primary">
-								<i class="glyphicon glyphicon-arrow-right"></i>
+										<h4>
+											{{dataItem.critere}}
+										</h4>
+										<form [formGroup]="formCum">
+				
+				
+											<div class="timeline-badge primary">
+												<i class="glyphicon glyphicon-arrow-right"></i>
+											</div>
+											<div class="timeline-panel">
+				
+												<div class="timeline-heading">
+													<label class="label_field" class="text-muted">Note :
+													</label>
+												</div>
+												<div class="timeline-body">
+				
+													<input class="form-control input-md" FormControlName="note" id="myInput" placeholder="?/20" type="text">
+												</div>
+												<div class="timeline-heading">
+													<label class="text-muted">ecrire  un comentaire
+													</label>
+												</div>
+												<div class="timeline-body">
+				
+													<input class="form-control input-md" id="myInput" formcontrolname="comment" placeholder="comentaire" type="text">
+												</div>
+											</div>
+											<br>
+				
+				
+										</form>
+									</div>
+								</div>
+				
+				
 							</div>
-							<div class="timeline-panel">
+							<button class="main_bt " (click)="Suiv()">Terminer
+							</button>
+						</div>
+				
+				
+				<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+					<input name="first" ngModel required #first="ngModel">
+					<input name="last" ngModel>
+					<button>Submit</button>
+				  </form>
+				
+				  <p>First name value: {{ first.value }}</p>
+				  <p>First name valid: {{ first.valid }}</p>
+				  <p>Form value: {{ f.value | json }}</p>
+				  <p>Form valid: {{ f.valid }}</p>
+				-->
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>
+						<div class="d-flex flex-row">
 
-								<div class="timeline-heading">
-									<label class="label_field" class="text-muted">Note :
-									</label>
-								</div>
-								<div class="timeline-body">
+							<select class="form-control" formcontrolname="filiale">
+								<option>--Select--</option>
+								<option *ngFor="let depName of filList ">
+									{{depName.filialName}}
+								</option>
+							</select>
 
-									<input class="form-control input-md" formcontrolname="note" id="myInput" placeholder="?/20" type="text">
-								</div>
-								<div class="timeline-heading">
-									<label class="text-muted">ecrire  un comentaire
-									</label>
-								</div>
-								<div class="timeline-body">
+							<button type="button" class="btn btn-light fa fa-check-square-o" (click)="refreshcriList()"></button>
+						</div>
+					</th>
+					<th>
+						<select class="form-control" formcontrolname="local" *ngIf="isShown">
 
-									<input class="form-control input-md" id="myInput" formcontrolname="comment" placeholder="comentaire" type="text">
-								</div>
-							</div>
-							<br>
+							<option *ngFor="let depName of LocalList ">
+								{{depName.localdescription}}
+							</option>
+						</select>
+					</th>
+					<th>
+						<div class="d-flex flex-row">
+							<input class="form-control" placeholder="date">
 
+							<button type="button" class="btn btn-light">
+								<svg width="1em" height="1em" viewbox="0 0 16 16" class="bi bi-arrow-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
+								</svg>
+							</button>
+							<button type="button" class="btn btn-light">
+								<svg width="1em" height="1em" viewbox="0 0 16 16" class="bi bi-arrow-up-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
+								</svg>
+							</button>
 
-						</form>
-					</div>
-				</div>
+						</div>
+					</th>
+				</tr>
+			</thead>
+		</table>
 
-
-			</div>
-			<button class="main_bt " (click)="Suiv()">Terminer
-			</button>
-		</div>
-
-
-<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-	<input name="first" ngModel required #first="ngModel">
-	<input name="last" ngModel>
-	<button>Submit</button>
-  </form>
-
-  <p>First name value: {{ first.value }}</p>
-  <p>First name valid: {{ first.valid }}</p>
-  <p>Form value: {{ f.value | json }}</p>
-  <p>Form valid: {{ f.valid }}</p>
--->
-  <table class="table table-striped">
-	<thead>
-		<tr>
-			<th>
-			  <div class="d-flex flex-row">
-
-				 <select class="form-control" formcontrolname="filiale">
-					
-					<option *ngFor="let depName of filList " >
-						{{depName.filialeName}}
-					</option>
-				</select>
-
-				<button type="button" class="btn btn-light fa fa-check-square-o"(click)="refreshcriList()"
-				></button>
-			  </div> 
-			  </th>
-			<th>
-				<select class="form-control" formcontrolname="local" *ngIf="isShown">
-					
-					<option *ngFor="let depName of LocalList ">
-						{{depName.LocalName}}
-					</option>
-				</select>
-			   </th>
-			<th><div class="d-flex flex-row">
-				<input  class="form-control"
-				 placeholder="date">
-
-				<button type="button" class="btn btn-light"
-				>
-				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-				  <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
-				</svg>
-			  </button>
-			  <button type="button" class="btn btn-light"
-				>
-				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-				  <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
-				</svg>
-			  </button>
-
-			  </div>
-			  </th>
-		</tr>
-	</thead>
-</table>
-  
 	</div>
 </div>
 
 
-
 <!--expanding input field -->
-
