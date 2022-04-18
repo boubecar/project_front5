@@ -28,10 +28,12 @@ export class EvaluationComponent implements OnInit {
    { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
    { critereId: 5, criterelabel: "Débarrasser", normes: "" },
  ];
+ PhotoFilePath: string = 'assets/images/industrielle.png'
  isShown: boolean = false;
  note: number =0;
+ commentaire:string=''
  isShown1: boolean = false;
- eval: String = ''
+ eval: string = ''
  selectedObject1 : any;
  selectedObject : any;
  filList: Array<{filialeId: string, filialName: string,image:string}> = [
@@ -102,7 +104,23 @@ LocalList: Array<{filialeId: string, localdescription: string,image:string}> = [
       default :
         {this.eval="NA";break}
     }
+    
+    console.log("this") 
     console.log(this.note) 
+  }
+cumulative:any
+image:string=''
+critere:string=''
+  notation ()
+  {
+    this.cumulative = {
+       note:this.note,
+       commentaire: this.commentaire,
+       elavuer:this.eval,
+       critere:this.critere,
+       image :this.PhotoFilePath
+     }
+     console.log(this.cumulative)
   }
 
 }

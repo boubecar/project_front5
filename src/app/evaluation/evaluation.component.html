@@ -78,12 +78,12 @@
                                   <tbody>
                                     <tr *ngFor="let i of CritereList">
                                       
-                                    <td>{{i.criterelabel}}</td>
+                                    <td [(ngModel)]="critere">{{i.criterelabel}}</td>
                                     <td>
                                         <div class="input-group mb-3" [(ngModel)]="note">
-                                          <input type="text" class="form-control" style="width: 50px;" placeholder="?/20"  aria-describedby="basic-addon2"   ((keyup))="mention()">
+                                          <input type="text" class="form-control" style="width: 50px;" placeholder="?/20"  aria-describedby="basic-addon2"   (keyup)="mention()">
                                           <div class="input-group-append">
-                                            <button class="btn cur-p btn-light fa fa-check-circle" type="button"></button>
+                                            <button class="btn cur-p btn-light fa fa-check-circle" type="button" ></button>
                                           </div>
                                   
                                     </div>
@@ -94,21 +94,21 @@
                                     <td><div class="timeline-panel">
                                   
                                         <div class="timeline-body">
-                                          <input class="form-control input-md" id="myInput" placeholder="comentaire" type="text">
+                                          <input class="form-control input-md" id="myInput" placeholder="comentaire" [(ngModel)]="commentaire" type="text">
                                        </div>
                                      </div></td>
                                   
-                                    <td> <input type="file">
+                                    <td> <input type="file" [(ngModel)]="image">
                                         <i class="fa fa-camera" aria-hidden="true"></i></td>
                                         
                                         <td>    
-                                          <button class="fa fa-check-circle cur-p btn-light" ></button></td>
+                                          <button class="fa fa-check-circle cur-p btn-light"  (click)="notation()"> </button></td>
                                         
                                         </tr>
                                   </tbody>
                                   
                                   </table>
-                                    
+                                  <button class="btn-light float-right" > VALIDER </button>
                            </div>
                         </div>
                      </div>
