@@ -16,7 +16,7 @@ export class TestComponent implements OnInit {
     note: [''],
     comment: [''],
   });
-  constructor(private router: Router, private fb: FormBuilder,public filialeService: FilialeService,public LocService: LocalService) { }
+  constructor(private router: Router, private fb: FormBuilder, public filialeService: FilialeService, public LocService: LocalService) { }
   /*public counts = ["Recieved","In Progress","Ready for Billing",
   "Billed","Order Closed"];
   public orderStatus = "In Progress"*/
@@ -27,29 +27,33 @@ export class TestComponent implements OnInit {
     {filialeId: "1", filialeName: "Med oil",image:"assets/images/alimentation-animale.png"},
     {filialeId: "1", filialeName: "oasis",image:"assets/images/oasis.jpg"},
 ];*/
-/*LocalList: Array<{filialeId: string, LocalName: string,image:string}> = [
-  {filialeId: "1", LocalName: "Zahra",image:"assets/images/mazraa.jpg"},
-  {filialeId: "1", LocalName: 'Mouroug ',image:"assets/images/download.jpg"},
-  {filialeId: "1", LocalName: ' Rades',image:"assets/images/alimentation-animale.png"},
-  {filialeId: "1", LocalName: "Tunis",image:"assets/images/alimentation-animale.png"},
-  {filialeId: "1", LocalName: "wardia",image:"assets/images/oasis.jpg"},
-];*/
-filList:any
-LocalList:any
+  /*LocalList: Array<{filialeId: string, LocalName: string,image:string}> = [
+    {filialeId: "1", LocalName: "Zahra",image:"assets/images/mazraa.jpg"},
+    {filialeId: "1", LocalName: 'Mouroug ',image:"assets/images/download.jpg"},
+    {filialeId: "1", LocalName: ' Rades',image:"assets/images/alimentation-animale.png"},
+    {filialeId: "1", LocalName: "Tunis",image:"assets/images/alimentation-animale.png"},
+    {filialeId: "1", LocalName: "wardia",image:"assets/images/oasis.jpg"},
+  ];*/
+  filList: any
+  LocalList: any
   ngOnInit(): void {
+    this.refreshfilList();
+    // this.refreshcriList()
   }
-  isShown: boolean = false ;
-  
+
+  isShown: boolean = false;
+
   refreshfilList() {
     this.filialeService.getFilialeList().subscribe(data => {
       this.filList = data;
+      console.log(this.filList);
     });
   }
   refreshcriList() {
     this.isShown = true;
     this.LocService.getLocalList().subscribe(data => {
       this.LocalList = data;
-     console.log(this.LocalList)
+      console.log(this.LocalList)
     });
   }
 }

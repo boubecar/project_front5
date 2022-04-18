@@ -9,22 +9,22 @@ import { Filiale } from '../filiale';
 })
 export class FilialeService {
 
-  constructor(private http: HttpClient,private fb: FormBuilder) { }
+  constructor(private http: HttpClient, private fb: FormBuilder) { }
   formCum = this.fb.group({
     filialeId: ['00000000-0000-0000-0000-000000000000', Validators.required],
     filialeName: ['', Validators.required],
     pole: [''],
   });
   listFiliale: Filiale[] = []
-  backEndUrl: string = "https://localhost:44388/api/Pole";
+  backEndUrl: string = "https://localhost:44388/api/Filiale";
 
   postFiliale(cumulative: any) {
     return this.http.post(this.backEndUrl + "/PostPole", cumulative, { responseType: "text" })
   }
   getFilialeList(): Observable<any[]> {
-    return this.http.get<any>(this.backEndUrl + '/GetAllPole');
+    return this.http.get<any>(this.backEndUrl + '/GetAllFiliale');
   }
-  
+
   updateFiliale(val: any) {
     return this.http.put(this.backEndUrl + '/PutPole', val);
   }
