@@ -20,13 +20,13 @@ export class TestComponent implements OnInit {
   /*public counts = ["Recieved","In Progress","Ready for Billing",
   "Billed","Order Closed"];
   public orderStatus = "In Progress"*/
-  /*filList: Array<{filialeId: string, filialeName: string,image:string}> = [
+  filList: Array<{filialeId: string, filialeName: string,image:string}> = [
     {filialeId: "1", filialeName: "Mazraa",image:"assets/images/mazraa.jpg"},
     {filialeId: "1", filialeName: 'Jadida ',image:"assets/images/download.jpg"},
     {filialeId: "1", filialeName: ' Gan',image:"assets/images/alimentation-animale.png"},
     {filialeId: "1", filialeName: "Med oil",image:"assets/images/alimentation-animale.png"},
     {filialeId: "1", filialeName: "oasis",image:"assets/images/oasis.jpg"},
-];*/
+];
 /*LocalList: Array<{filialeId: string, LocalName: string,image:string}> = [
   {filialeId: "1", LocalName: "Zahra",image:"assets/images/mazraa.jpg"},
   {filialeId: "1", LocalName: 'Mouroug ',image:"assets/images/download.jpg"},
@@ -34,7 +34,7 @@ export class TestComponent implements OnInit {
   {filialeId: "1", LocalName: "Tunis",image:"assets/images/alimentation-animale.png"},
   {filialeId: "1", LocalName: "wardia",image:"assets/images/oasis.jpg"},
 ];*/
-filList:any
+//filList:any
 LocalList:any
   ngOnInit(): void {
   }
@@ -42,14 +42,18 @@ LocalList:any
   
   refreshfilList() {
     this.filialeService.getFilialeList().subscribe(data => {
-      this.filList = data;
+      //this.filList = data;
     });
+
   }
   refreshcriList() {
     this.isShown = true;
     this.LocService.getLocalList().subscribe(data => {
       this.LocalList = data;
-     console.log(this.LocalList)
+ 
     });
+    console.log('lll')
+    console.log(this.formCum.controls['filiale'].value)
+     console.log(this.LocalList)
   }
 }
