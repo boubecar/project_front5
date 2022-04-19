@@ -1,13 +1,17 @@
+import { DatePipe, formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Note } from '../note';
 import { CritereService } from '../services/critere.service';
 import { NormeServiceService } from '../services/norme-service.service';
+import { NoteService } from '../services/note.service';
 
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
-  styleUrls: ['./note.component.css']
+  styleUrls: ['./note.component.css'],
+  providers: [DatePipe]
 })
 export class NoteComponent implements OnInit {
   
@@ -29,11 +33,24 @@ CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> 
 { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
 { critereId: 5, criterelabel: "Débarrasser", normes: "" },
 ];
-  constructor(private router: Router ,private fb: FormBuilder,public CritereService: CritereService) { }
+NoteList: Array<{ Id: string, note: number, image: string,critereId: string,userId:string,FilLocallId:string ,commentaire:string,criterelabel: string,}> = [
+  { Id: "1", note: 20, image: "assets/images/mazraa.jpg" ,critereId:'',userId:'',FilLocallId:'',commentaire:'blablabla', criterelabel: "Nettoyer",},
+  { Id: "2", note: 18, image: "assets/images/download.jpg" ,critereId:'',userId:'',FilLocallId:'',commentaire:'blablabla', criterelabel: "Nettoyer",},
+  { Id: "3", note: 15, image: "assets/images/mazraa.jpg",critereId:'',userId:'',FilLocallId:'' ,commentaire:'blablabla', criterelabel: "Nettoyer",},
+  { Id: "4", note: 13, image: "assets/images/download.jpg",critereId:'',userId:'',FilLocallId:'' ,commentaire:'blablabla', criterelabel: "Nettoyer",},
+  { Id: "5", note: 5, image: "assets/images/oasis.jpg",critereId:'',userId:'',FilLocallId:'' ,commentaire:'blablabla', criterelabel: "Nettoyer",},
+  ];
+  maintenant:string=''
+maDate = new Date(2019,0o1,0o2);
+
+  constructor(public noteService: NoteService,private router: Router ,private fb: FormBuilder,public CritereService: CritereService,private datePipe: DatePipe) { 
+    
+  }
   
 
   
   ngOnInit(): void {
+    this.maintenant = this.maDate.getDate() + '-' + ((this.maDate.getMonth() + 1)) + '-' + this.maDate.getFullYear();
   }
   refreshcriList(e:any) {
     this.isShown = true;
@@ -42,8 +59,28 @@ CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> 
       console.log(this.CritereList)
     });
  
-
   }
   
   
+  ChangeData(note: Note) {
+
+    this.noteService.formCum.controls['note'].disable();
+    this.noteService.formCum.controls['Commentaire'].disable();
+    this.noteService.formCum.controls['criterelabel'].disable();
+
+    this.noteService.formCum.reset({
+      Id: note.Id,
+      note: note.note,
+      image:note.image,
+      criterelabel:note.criterelabel,
+      Commentaire:note.commentaire
+    });
+    //this.refreshnormList();
+
+    
+
+  }
+  saveData(){
+
+  }
 }

@@ -9,6 +9,9 @@
 body{
 background:#eee;
 }
+.heading1 margin_0{
+    margin-top: 15em;
+}
 
 
 
@@ -64,4 +67,7 @@ background:#eee;
   .progress_bar  {
     margin-left: 100px;
     width: 500px;
+  }
+  .fa-exclamation-circle{
+    color: rgb(255, 187, 0);
   }

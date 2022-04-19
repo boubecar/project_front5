@@ -4,6 +4,7 @@ import { CritereService } from '../services/critere.service';
 import { FilialeService } from '../services/filiale.service';
 import { LocalService } from '../services/local.service';
 import { NormeServiceService } from '../services/norme-service.service';
+import { NoteService } from '../services/note.service';
 
 @Component({
   selector: 'app-evaluation',
@@ -52,7 +53,7 @@ LocalList: Array<{filialeId: string, localdescription: string,image:string}> = [
 ];
 //filList:any
 //LocalList:any
-  constructor(public normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService) { }
+  constructor(public normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService, public noteService: NoteService) { }
   
   ngOnInit(): void {
     this.refreshnormList()
@@ -120,6 +121,10 @@ critere:string=''
        critere:this.critere,
        image :this.PhotoFilePath
      }
+     this.noteService.postNote(this.cumulative).subscribe(res=>{
+        alert(res.toString())
+         this.cumulative={}
+      })
      console.log(this.cumulative)
   }
 
