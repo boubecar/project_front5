@@ -11,7 +11,7 @@ import { FilialeService } from 'src/app/services/filiale.service';
 export class ListerComponent implements OnInit {
 
   constructor(public filialeService: FilialeService, private fb: FormBuilder) { }
- filList: any = []
+  filList: any = []
   /*filList: Array<{filialeId: string, filialeName: string,image:string}> = [
     {filialeId: "1", filialeName: "Mazraa",image:"assets/images/mazraa.jpg"},
     {filialeId: "1", filialeName: 'Jadida ',image:"assets/images/download.jpg"},
@@ -40,9 +40,9 @@ export class ListerComponent implements OnInit {
   ChangeData(fil: Filiale) {
 
     this.filialeService.formCum.reset({
-      filialeId: fil.filialeId,
+      filialeId: fil.filialId,
       filialeName: fil.filialeName,
-      image:fil.image
+      image: fil.image
     });
     this.refreshfilList();
   }

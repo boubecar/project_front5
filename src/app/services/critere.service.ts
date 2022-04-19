@@ -31,6 +31,6 @@ export class CritereService {
   }
 
   getCritereByNorme(cumulative: any) {
-    return this.http.put(this.backEndUrl + "/GetAllcritersByNormes?id=", cumulative, { responseType: "text" })
+    return this.http.get(this.backEndUrl + "/GetAllcritersByNormes?id=" + cumulative,)
   }
 }

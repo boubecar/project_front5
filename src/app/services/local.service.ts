@@ -14,4 +14,7 @@ export class LocalService {
 
     return this.http.get<any>(this.backEndUrl + '/GetAllFiLocal');
   }
+  GetLocalByfilialeId(cumulative: any) {
+    return this.http.get(this.backEndUrl + '/GetLocalByfilialeId?id=' + cumulative)
+  }
 }
