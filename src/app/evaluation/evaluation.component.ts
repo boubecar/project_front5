@@ -31,6 +31,8 @@ export class EvaluationComponent implements OnInit {
   isShown: boolean = false;
   note: number = 0;
   isShown1: boolean = false;
+  PhotoFilePath: String = ''
+  commentaire: String = ''
   eval: String = ''
   selectedObject1: any;
   data: any;
@@ -112,6 +114,19 @@ export class EvaluationComponent implements OnInit {
         { this.eval = "NA"; break }
     }
     console.log(this.note)
+  }
+  cumulative: any
+  image: string = ''
+  critere: string = ''
+  notation() {
+    this.cumulative = {
+      note: this.note,
+      commentaire: this.commentaire,
+      elavuer: this.eval,
+      critere: this.critere,
+      image: this.PhotoFilePath
+    }
+    console.log(this.cumulative)
   }
 
 }
