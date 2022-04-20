@@ -11,52 +11,54 @@ import { PoleServiceService } from '../services/pole-service.service';
 export class NormesComponent implements OnInit {
 
   constructor() { }
-  NormeList: Array<{identifiant: number, libelle: string}> = [
-    {identifiant: 1, libelle: "Nettoyer"},
-    {identifiant: 2, libelle: 'Ranger'},
-    {identifiant: 3, libelle: 'Etre rigoureux'},
-    {identifiant: 4, libelle: "Maintenir l'ordre"},
-    {identifiant: 5, libelle: "Débarrasser"},
-];
-//constructor(private normeService: PoleServiceService ) { }
+  NormeList: Array<{ identifiant: number, libelle: string }> = [
+    { identifiant: 1, libelle: "Nettoyer" },
+    { identifiant: 2, libelle: 'Ranger' },
+    { identifiant: 3, libelle: 'Etre rigoureux' },
+    { identifiant: 4, libelle: "Maintenir l'ordre" },
+    { identifiant: 5, libelle: "Débarrasser" },
+  ];
+  //constructor(private normeService: PoleServiceService ) { }
 
   //constructor(private service:SharedService) { }
 
+
+
+  ModalTitle: string = "ajouter un nouveau norme";
+  /* cumulative: Norme = {}
+   listNormes: Norme[] = []
+   /*ActivateAddEditDepComp:boolean=false;
+   norme:any;
  
+   PhotoFileName:string="";
+   PhotoFilePath:string="";
+   DepartmentIdFilter:string="";
+   DepartmentNameFilter:string="";
+   DepartmentListWithoutFilter:any=[];*/
 
-  ModalTitle:string="ajouter un nouveau norme";
- /* cumulative: Norme = {}
-  listNormes: Norme[] = []
-  /*ActivateAddEditDepComp:boolean=false;
-  norme:any;
-
-  PhotoFileName:string="";
-  PhotoFilePath:string="";
-  DepartmentIdFilter:string="";
-  DepartmentNameFilter:string="";
-  DepartmentListWithoutFilter:any=[];*/
-
- /* ngOnInit(): void {
-    
-  }*/
-   nor:any;
-  NormId:string="";
-  NormeName:string="";
+  /* ngOnInit(): void {
+     
+   }*/
+  nor: any;
+  NormId: string = "";
+  NormeName: string = "";
 
   ngOnInit(): void {
-   // this.NormId=this.nor.NormId;
+    // this.NormId=this.nor.NormId;
     //this.NormeName=this.nor.NormeName;
   }
 
-  addDepartment(){
-    var val = {NormId:this.NormId,
-                NormeName:this.NormeName};
-   /* this.normeService.postCumulative(val).subscribe(res=>{
-      alert(res.toString());
-    });*/
+  addDepartment() {
+    var val = {
+      NormId: this.NormId,
+      NormeName: this.NormeName
+    };
+    /* this.normeService.postCumulative(val).subscribe(res=>{
+       alert(res.toString());
+     });*/
   }
 
-  
+
 
 
 
