@@ -4,8 +4,9 @@
 		<!-- Sidebar  -->
 
 		<app-nav></app-nav>
-		<div class="midde_cont">
- 
+		<div
+			class="midde_cont">
+
 			<!-- row -->
 			<div
 				class="row column4 graph">
@@ -18,7 +19,7 @@
 								</h2>
 							</div>
 
- 
+
 						</div>
 						<div class="full gallery_section_inner padding_infor_info">
 
@@ -44,13 +45,19 @@
 
 											</svg>
 										</button>
+										<button type="button" class="btn btn-light mr-1 margin_bottom_30 float-right" (click)="DeleteClick(dataItem)">
+											<svg width="1em" height="1em" viewbox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+
+											</svg>
+										</button>
 
 									</div>
 								</div>
 							</div>
 
 							<button type="button" class="fa fa-plus-circle btn btn-light float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
-								Ajouter 
+								Ajouter
 							</button>
 
 							<!-- Modal -->
@@ -72,12 +79,12 @@
 															<div class="col-md-6 mb-3">
 																<label>enter le nom de nouveau  norme
 																</label>
-																<input type="text" class="form-control" placeholder="Nom" formControlName="poleName" required>
+																<input type="text" class="form-control" placeholder="Nom" formcontrolname="poleName" required>
 															</div>
 														</div>
 														<div class="ml-3 bd-highlight" style="width: 40%;">
 															<img [src]="PhotoFilePath" height="250px;" width="200px;">
-															<input type="file" class="mt-2" (change)="uploadPhoto($event)" formControlName="image"/>
+															<input type="file" class="mt-2" (change)="uploadPhoto($event)" formcontrolname="image"/>
 														</div>
 														<button type="button" class="btn btn-primary float-right" type="submit">ajouter
 														</button>
