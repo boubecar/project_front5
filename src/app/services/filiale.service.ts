@@ -19,7 +19,7 @@ export class FilialeService {
   backEndUrl: string = "https://localhost:44388/api/Filiale";
 
   postFiliale(cumulative: any) {
-    return this.http.post(this.backEndUrl + "/PostPole", cumulative, { responseType: "text" })
+    return this.http.post(this.backEndUrl + "/PostFilale", cumulative, { responseType: "text" })
   }
   getFilialeList(): Observable<any[]> {
     return this.http.get<any>(this.backEndUrl + '/GetAllFiliale');
@@ -29,7 +29,7 @@ export class FilialeService {
     return this.http.put(this.backEndUrl + '/PutPole', val);
   }
   deleteFiliale(val: any) {
-    return this.http.delete(this.backEndUrl + '/DeletePole?SaisieCommentId=' + val, { responseType: "text" });
+    return this.http.delete(this.backEndUrl + '/DeleteFiliale?SaisieCommentId=' + val, { responseType: "text" });
   }
   UploadPhoto(val: any) {
     return this.http.post(this.backEndUrl + '/SaveFile', val);
