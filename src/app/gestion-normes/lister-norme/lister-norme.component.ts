@@ -10,9 +10,16 @@ import { NormeServiceService } from 'src/app/services/norme-service.service';
   styleUrls: ['./lister-norme.component.css']
 })
 export class ListerNormeComponent implements OnInit {
-  NormeList: any = []
+  //NormeList: any = []
+  List: any = []
 
-
+  NormeList: Array<{normeId: string, designation: string}> = [
+    {normeId: "1", designation: "Nettoyer"},
+    {normeId: "2", designation: 'Ranger'},
+    {normeId: "3", designation: 'Etre rigoureux'},
+    {normeId: "4", designation: "Maintenir l'ordre"},
+    {normeId: "5", designation: "Débarrasser"},
+];
 
   ModalTitle: string = "ajouter un nouveau norme";
   constructor(public normeService: NormeServiceService, private fb: FormBuilder, private router: Router) { }
@@ -20,8 +27,8 @@ export class ListerNormeComponent implements OnInit {
   ngOnInit(): void {
     this.refreshnormList()
   }
-  detnorme() {
-    this.router.navigate(['/critere']);
+  detnorme(item: any) {
+    this.router.navigate(['/cri',item.normeId]);
   }
   norme() {
     this.router.navigate(['/gnorme']);
@@ -49,7 +56,7 @@ export class ListerNormeComponent implements OnInit {
   }
   refreshnormList() {
     this.normeService.getListNormes().subscribe(data => {
-      this.NormeList = data;
+      //this.NormeList = data;
     });
   }
 }

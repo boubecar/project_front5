@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Critere } from '../critere';
 import { CritereService } from '../services/critere.service';
 import { NormeServiceService } from '../services/norme-service.service';
@@ -27,17 +28,28 @@ export class CritereComponent implements OnInit {
   ];
   */
   NormeList: any = []
-  
+  idnorm:string=''
   cumulative: Critere = {}
   //CritereList: any = []
   //filterForm: FormGroup
   //formCum: FormGroup
-  constructor(public CritereService: CritereService, private service: NormeServiceService, private fb: FormBuilder) { }
+  constructor(private route: ActivatedRoute,private router: Router,public CritereService: CritereService, private service: NormeServiceService, private fb: FormBuilder) 
+  {
+    this.route.params.subscribe( params => console.log(params) );
+    
+   }
 
   //public norme: Norme = new Norme();
   ngOnInit(): void {
     this.refreshcriList()
     this.refreshDepList();
+    this.route.params.subscribe(params => {
+      this.idnorm = params['id']; 
+
+
+   });
+
+   console.log("id",this.idnorm)
   }
 
 

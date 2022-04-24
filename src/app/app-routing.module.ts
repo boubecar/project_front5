@@ -26,6 +26,7 @@ const routes: Routes = [
    {path:'test',component:TestComponent},
    {path:'filiale',component:FilialeComponent},
    {path:'note',component:NoteComponent},
+   { path: 'cri/:id', component: CritereComponent}
 ];
 
 @NgModule({
