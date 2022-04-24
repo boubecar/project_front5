@@ -67,9 +67,8 @@
 			<td>
 				<button type="button" class="btn fa fa-trash btn-light mr-1" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
 				<button type="button" class="btn fa fa-pencil-square-o btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)"></button>
-				<button (click)="detnorme(dataItem)" class="fas fa-info-circle" class="btn btn-success" class="fas fa-info-circle">Details</button>&nbsp;
-				
-			</td> 
+				<button (click)="refreshcriList(dataItem)" class="fas fa-info-circle" class="btn btn-success" class="fas fa-info-circle"></button>&nbsp;
+			</td>
 		</tr>
 	</tbody>
 </table>

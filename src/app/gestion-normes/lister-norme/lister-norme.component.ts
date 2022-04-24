@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Norme } from 'src/app/norme';
+import { CritereService } from 'src/app/services/critere.service';
 import { NormeServiceService } from 'src/app/services/norme-service.service';
 
 @Component({
@@ -10,33 +11,26 @@ import { NormeServiceService } from 'src/app/services/norme-service.service';
   styleUrls: ['./lister-norme.component.css']
 })
 export class ListerNormeComponent implements OnInit {
-  //NormeList: any = []
-  List: any = []
+  NormeList: any = []
+  CritereList: any = []
 
-  NormeList: Array<{normeId: string, designation: string}> = [
-    {normeId: "1", designation: "Nettoyer"},
-    {normeId: "2", designation: 'Ranger'},
-    {normeId: "3", designation: 'Etre rigoureux'},
-    {normeId: "4", designation: "Maintenir l'ordre"},
-    {normeId: "5", designation: "Débarrasser"},
-];
+
 
   ModalTitle: string = "ajouter un nouveau norme";
-  constructor(public normeService: NormeServiceService, private fb: FormBuilder, private router: Router) { }
+  constructor(public normeService: NormeServiceService, private fb: FormBuilder, private router: Router, public critereService: CritereService) { }
 
   ngOnInit(): void {
-    this.refreshnormList()
+    this.refreshnormList();
+    //this.refreshcriList(Norme);
   }
-  detnorme(item: any) {
-    this.router.navigate(['/cri',item.normeId]);
+  detnorme() {
+    this.router.navigate(['/critere']);
   }
-  norme() {
-    this.router.navigate(['/gnorme']);
-  }
+
   deleteClick(item: any) {
     if (confirm('Are you sure??')) {
       alert(item.normeId)
-      this.normeService.deleteNorle(item.normeId).subscribe(data => {
+      this.normeService.deleteNorle(item.NormeId).subscribe(data => {
         alert(data.toString());
         this.refreshnormList();
       })
@@ -56,7 +50,16 @@ export class ListerNormeComponent implements OnInit {
   }
   refreshnormList() {
     this.normeService.getListNormes().subscribe(data => {
-      //this.NormeList = data;
+      this.NormeList = data;
     });
   }
+  refreshcriList(e: any) {
+    //this.isShown = true;
+    this.critereService.getCritereByNorme(e.normeId).subscribe(data => {
+      this.CritereList = data;
+      console.log(this.CritereList)
+    });
+
+  }
+
 }
