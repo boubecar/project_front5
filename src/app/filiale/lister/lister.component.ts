@@ -41,12 +41,6 @@ export class ListerComponent implements OnInit {
 
     this.filialeService.formCum.reset({
       filialeId: fil.filialId,
-<<<<<<< Updated upstream
-      filialeName: fil.filialeName,
-      image: fil.image
-    });
-    this.refreshfilList();
-=======
       filialeName: fil.filialName,
       image: fil.image
     });
@@ -54,6 +48,5 @@ export class ListerComponent implements OnInit {
 
 
 
->>>>>>> Stashed changes
   }
 }

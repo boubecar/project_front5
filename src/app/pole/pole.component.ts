@@ -21,7 +21,7 @@ export class PoleComponent implements OnInit {
 ];*/
   PoleList: any = []
   PhotoFileName: string = ""
-  PhotoFilePath: string = 'assets/images/industrielle.png'
+  PhotoFilePath: string = 'assets/images/inconu.png'
 
 
   cumulative: Pole = {}
@@ -104,7 +104,7 @@ export class PoleComponent implements OnInit {
       // this.DepartmentListWithoutFilter=data;
     });
   }
-  uploadPhoto(event: any) {
+  uploadPhoto(e: any) {
    /* var file = event.target.files[0];
     const formData: FormData = new FormData();
     formData.append('uploadedFile', file, file.name);
@@ -116,8 +116,8 @@ export class PoleComponent implements OnInit {
     })
     console.log("photo")
     console.log(this.PhotoFilePath)
-    */
-    var file=event.target.files[0];
+    /*
+    var file=e.target.files[0];
     const formData:FormData=new FormData();
     formData.append('uploadedFile',file,file.name);
     alert(file.name)
@@ -125,12 +125,19 @@ export class PoleComponent implements OnInit {
     this.service.UploadPhoto(formData).subscribe((data:any)=>{
       this.PhotoFileName=data.toString();
       this.PhotoFilePath=this.service.formCum.controls['image'].value;
-    })
+    })*/
+    
+    if (e.target.files)
+    {
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload=(evant:any)=>{
+        this.PhotoFilePath=evant.target.result;
+      }
+    }
     console.log("photo")
-    console.log(this.PhotoFilePath)
- 
+    console.log(this.service.formCum.controls['image'].value)
   }
-
   ChangeData(pole: Pole) {
 
     this.service.formCum.reset({

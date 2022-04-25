@@ -16,7 +16,7 @@ import { NoteService } from '../services/note.service';
 export class NoteComponent implements OnInit {
 
   // CritereList:any
-
+ notation:any
   eval: string = ''
   isShown: boolean = false;
   NormeList: Array<{ NormeId: number, designation: string, path: string }> = [
@@ -33,24 +33,28 @@ export class NoteComponent implements OnInit {
     { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
     { critereId: 5, criterelabel: "Débarrasser", normes: "" },
   ];
-  NoteList: Array<{ Id: string, note: number, image: string, critereId: string, userId: string, FilLocallId: string, commentaire: string, criterelabel: string, }> = [
-    { Id: "1", note: 20, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", },
-    { Id: "2", note: 18, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", },
-    { Id: "3", note: 15, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", },
-    { Id: "4", note: 13, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", },
-    { Id: "5", note: 5, image: "assets/images/oasis.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", },
+  NoteList: Array<{ Id: string, note: number, image: string, critereId: string, userId: string, FilLocallId: string, commentaire: string, criterelabel: string,eval:string }> = [
+    { Id: "1", note: 20, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer",eval:"CR" },
+    { Id: "2", note: 18, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:"CM"},
+    { Id: "3", note: 15, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
+    { Id: "4", note: 13, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
+    { Id: "5", note: 5, image: "assets/images/oasis.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
   ];
   maintenant: string = ''
   maDate = new Date(2019, 0o1, 0o2);
-
+  PhotoFilePath: string = 'assets/images/inconu.png'
+note:boolean=false
   constructor(public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService, private datePipe: DatePipe) {
 
   }
 
 
-
+ 
   ngOnInit(): void {
+    console.log('note',this.notation)
     this.maintenant = this.maDate.getDate() + '-' + ((this.maDate.getMonth() + 1)) + '-' + this.maDate.getFullYear();
+   
+
   }
   refreshcriList(e: any) {
     this.isShown = true;
@@ -64,23 +68,46 @@ export class NoteComponent implements OnInit {
 
   ChangeData(note: Note) {
 
-    this.noteService.formCum.controls['note'].disable();
+    /*this.noteService.formCum.controls['note'].disable();
     this.noteService.formCum.controls['Commentaire'].disable();
     this.noteService.formCum.controls['criterelabel'].disable();
-
+*/
     this.noteService.formCum.reset({
       Id: note.Id,
       note: note.note,
       image: note.image,
       criterelabel: note.criterelabel,
-      Commentaire: note.commentaire
+      Commentaire: note.commentaire,
+      PlanDate:note.noteDate,
+
     });
     //this.refreshnormList();
 
 
 
   }
-  saveData() {
+  
+  public saveData() {
+    if (!this.noteService.formCum.valid) {
+      alert("veuillez remplir tous les champs")
+    }
+    // this.cumulative = {
+    //   normeId:this.cumulative.normeId,
+    //   designation: this.formCum.controls['designation'].value,
+    // }
+    if (this.noteService.formCum.controls['Id'].value == '00000000-0000-0000-0000-000000000000') {
 
+      console.log("post")
+      console.log(this.noteService.formCum.value);
+      this.noteService.postNote(this.noteService.formCum.value).subscribe(res => {
+        alert(res.toString());
+        //  this.cumulative={}
+      })
+    }
+
+    console.log('hello');
+    console.log(this.noteService.formCum.value);
+    // alert(this.cumulative.designation);
   }
+  
 }

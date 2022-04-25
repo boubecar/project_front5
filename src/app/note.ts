@@ -6,4 +6,5 @@ export interface Note {
     FilLocallId?:string,
     commentaire?:string,
     criterelabel?: string,
+    noteDate?:string
 }

@@ -72,19 +72,18 @@
 										</div>
 										<div class="modal-body">
 											<div class="card">
-
 												<div class="card-body">
 													<form (ngSubmit)="saveData()" [formGroup]="service.formCum">
 														<div class="form-row">
 															<div class="col-md-6 mb-3">
 																<label>enter le nom de nouveau  norme
 																</label>
-																<input type="text" class="form-control" placeholder="Nom" formcontrolname="poleName" required>
+																<input type="text" class="form-control" placeholder="Nom" formControlName="poleName" required>
 															</div>
 														</div>
 														<div class="ml-3 bd-highlight" style="width: 40%;">
-															<img [src]="PhotoFilePath" height="250px;" width="200px;">
-															<input type="file" class="mt-2" (change)="uploadPhoto($event)" formcontrolname="image"/>
+															<img [src]="PhotoFilePath" height="200px;" width="200px;">
+															<input type="file" class="mt-2" (change)="uploadPhoto($event)" formControlName="image"/>
 														</div>
 														<button type="button" class="btn btn-primary float-right" type="submit">ajouter
 														</button>
