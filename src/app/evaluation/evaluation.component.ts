@@ -105,7 +105,7 @@ export class EvaluationComponent implements OnInit {
     console.log("hhhhh")
     console.log(data.filialId)
     this.isShown = true;
-    this.LocService.GetLocalByfilialeId(data.filialId).subscribe(data => {
+    this.LocService.GetAllLocalByFilale(data.filialId).subscribe(data => {
       this.LocalList = data;
       console.log("hiii");
       console.log(this.LocalList);

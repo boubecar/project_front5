@@ -64,7 +64,7 @@ export class TestComponent implements OnInit {
   }
   refreshcriList(selectedObject: Filiale) {
     this.isShown = true;
-    this.LocService.GetLocalByfilialeId(selectedObject.filialId).subscribe(data => {
+    this.LocService.GetAllLocalByFilale(selectedObject.filialId).subscribe(data => {
       this.LocalList = data;
 
     });

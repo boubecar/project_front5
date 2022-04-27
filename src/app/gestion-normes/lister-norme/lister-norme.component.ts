@@ -35,8 +35,8 @@ export class ListerNormeComponent implements OnInit {
    // this.refreshcriList(Norme);
     
   }
-  detnorme() {
-    this.router.navigate(['/critere']);
+  detnorme(item: any) {
+    this.router.navigate(['/cri', item.normeId]);
   }
 
   deleteClick(item: any) {

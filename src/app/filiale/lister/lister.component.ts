@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Filiale } from 'src/app/filiale';
 import { FilialeService } from 'src/app/services/filiale.service';
 
@@ -9,8 +10,10 @@ import { FilialeService } from 'src/app/services/filiale.service';
   styleUrls: ['./lister.component.css']
 })
 export class ListerComponent implements OnInit {
-
-  constructor(public filialeService: FilialeService, private fb: FormBuilder) { }
+  idnorm: string = ''
+  constructor(public filialeService: FilialeService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
+    this.route.params.subscribe((params: any) => console.log(params));
+  }
   filList: any = []
   /*filList: Array<{filialeId: string, filialeName: string,image:string}> = [
     {filialeId: "1", filialeName: "Mazraa",image:"assets/images/mazraa.jpg"},
@@ -21,13 +24,12 @@ export class ListerComponent implements OnInit {
 ];
 */
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.idnorm = params['id'];
+    })
     this.refreshfilList()
   }
-  refreshfilList() {
-    this.filialeService.getFilialeList().subscribe(data => {
-      this.filList = data;
-    });
-  }
+
   deleteClick(item: any) {
     if (confirm('Are you sure??')) {
       alert(item.normeId)
@@ -48,5 +50,16 @@ export class ListerComponent implements OnInit {
 
 
 
+  }
+  refreshfilList() {
+    //this.isShown = true;
+    this.filialeService.GetAllfilialeByPole(this.idnorm).subscribe(data => {
+      this.filList = data;
+      console.log(this.filialeService)
+    });
+
+  }
+  detfil(item: any) {
+    this.router.navigate(['/lf', item.filialId]);
   }
 }

@@ -1,35 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Critere } from '../critere';
-import { CritereService } from '../services/critere.service';
-import { NormeServiceService } from '../services/norme-service.service';
+import { Local } from '../local';
+import { FilialeService } from '../services/filiale.service';
+import { LocalService } from '../services/local.service';
 
 @Component({
-  selector: 'app-critere',
-  templateUrl: './critere.component.html',
-  styleUrls: ['./critere.component.css']
+  selector: 'app-fil-local',
+  templateUrl: './fil-local.component.html',
+  styleUrls: ['./fil-local.component.css']
 })
-export class CritereComponent implements OnInit {
+export class FilLocalComponent implements OnInit {
+
   /* CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
-     { critereId: 1, criterelabel: "Nettoyer", normes: "" },
-     { critereId: 2, criterelabel: 'Degré d’engagement de la direction et d’implication du personnel pour les 5S.', normes: "" },
-     { critereId: 3, criterelabel: 'Etre rigoureux', normes: "" },
-     { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
-     { critereId: 5, criterelabel: "Débarrasser", normes: "" },
+      { critereId: 1, criterelabel: "Nettoyer", normes: "" },
+      { critereId: 2, criterelabel: 'Degré d’engagement de la direction et d’implication du personnel pour les 5S.', normes: "" },
+      { critereId: 3, criterelabel: 'Etre rigoureux', normes: "" },
+      { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
+      { critereId: 5, criterelabel: "Débarrasser", normes: "" },
+    ];
+  
+   NormeList: Array<{ NormeId: number, designation: string }> = [
+     { NormeId: 1, designation: "Nettoyer" },
+     { NormeId: 2, designation: 'Ranger' },
+     { NormeId: 3, designation: 'Etre rigoureux' },
+     { NormeId: 4, designation: "Maintenir l'ordre" },
+     { NormeId: 5, designation: "Débarrasser" },
    ];
- 
-  NormeList: Array<{ NormeId: number, designation: string }> = [
-    { NormeId: 1, designation: "Nettoyer" },
-    { NormeId: 2, designation: 'Ranger' },
-    { NormeId: 3, designation: 'Etre rigoureux' },
-    { NormeId: 4, designation: "Maintenir l'ordre" },
-    { NormeId: 5, designation: "Débarrasser" },
-  ];
-  */
+   */
   NormeList: any = []
 
-  cumulative: Critere = {}
+  cumulative: Local = {}
   CritereList: any = []
   idnorm: string = ''
 
@@ -39,32 +40,34 @@ export class CritereComponent implements OnInit {
   //filterForm: FormGroup
   //filterForm: FormGroup
   formCum!: FormGroup;
-  constructor(private route: ActivatedRoute, private router: Router, public CritereService: CritereService, private service: NormeServiceService, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private router: Router, public localService: LocalService, public filialeService: FilialeService, private fb: FormBuilder) {
     this.route.params.subscribe(params => console.log(params));
 
   }
 
   //public norme: Norme = new Norme();
   ngOnInit(): void {
-    this.refreshcriList();
-    this.refreshDepList();
     this.route.params.subscribe(params => {
       this.idnorm = params['id'];
-      this.refreshcriList();
-      this.formCum = this.fb.group({
-        critereId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-        criterelabel: [""],
-        normeId: this.idnorm
-      });
+
     })
+    //this.refreshcriList();
+    this.refreshDepList();
+    this.refreshcriList();
+    this.formCum = this.fb.group({
+      LocallId: ['00000000-0000-0000-0000-000000000000', Validators.required],
+      localdescription: [""],
+      Filialeid: this.idnorm
+    });
+
     console.log("id", this.idnorm)
   }
-  ChangeData(norme: Critere) {
+  ChangeData(local: Local) {
 
     this.formCum.reset({
-      critereId: norme.critereId,
-      criterelabel: norme.criterelabel,
-      normeId: this.idnorm
+      LocallId: local.LocallId,
+      localdescription: local.localdescription,
+      Filialeid: this.idnorm
 
 
     });
@@ -106,11 +109,11 @@ export class CritereComponent implements OnInit {
     //   normeId:this.cumulative.normeId,
     //   designation: this.formCum.controls['designation'].value,
     // }
-    if (this.formCum.controls['critereId'].value == '00000000-0000-0000-0000-000000000000') {
+    if (this.formCum.controls['LocallId'].value == '00000000-0000-0000-0000-000000000000') {
 
       console.log("post")
       console.log(this.formCum.value);
-      this.CritereService.postCritere(this.formCum.value).subscribe(res => {
+      this.localService.postLocal(this.formCum.value).subscribe(res => {
         alert(res.toString());
         //  this.cumulative={}
 
@@ -120,7 +123,7 @@ export class CritereComponent implements OnInit {
     else {
       console.log("put")
       console.log(this.formCum.value);
-      this.CritereService.editCritere(this.formCum.value).subscribe(res => {
+      this.localService.editLocal(this.formCum.value).subscribe(res => {
         alert(res.toString());
         this.refreshcriList();
         //  this.cumulative={}
@@ -138,7 +141,7 @@ export class CritereComponent implements OnInit {
   deleteClick(item: any) {
     if (confirm('Are you sure??')) {
       alert(item.critereId)
-      this.CritereService.deleteCritere(item.critereId).subscribe(data => {
+      this.localService.deleteLocal(item.locallId).subscribe(data => {
         alert(data.toString());
         this.refreshcriList();
       })
@@ -160,20 +163,20 @@ export class CritereComponent implements OnInit {
 
 
   refreshcriList() {
-    this.CritereService.getCritereByNorme(this.idnorm).subscribe(data => {
+    this.localService.GetAllLocalByFilale(this.idnorm).subscribe(data => {
       this.CritereList = data;
-      console.log('oui')
-      console.log(this.CritereList)
+
     });
 
-
+    console.log('oui')
+    console.log('local', this.CritereList)
   }
 
   refreshDepList() {
-    this.service.getListNormes().subscribe(data => {
+    this.filialeService.getFilialeList().subscribe(data => {
       this.NormeList = data;
       console.log('hay')
-      console.log(this.NormeList)
+      console.log('fil;', this.NormeList)
     });
 
 

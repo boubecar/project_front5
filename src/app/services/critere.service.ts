@@ -9,12 +9,9 @@ import { Critere } from '../critere';
 export class CritereService {
 
   backEndUrl: string = "https://localhost:44388/api/criteres";
-  constructor(private http: HttpClient, private fb: FormBuilder) { }
-  formCum = this.fb.group({
-    critereId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-    criterelabel: [""],
-    normes: [''],
-  });
+  constructor(private http: HttpClient, private fb: FormBuilder) {
+
+  }
 
   postCritere(cumulative: any) {
     return this.http.post(this.backEndUrl + "/PostFilale", cumulative)

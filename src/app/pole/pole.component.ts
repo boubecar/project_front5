@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Pole } from '../pole';
 import { PoleServiceService } from '../services/pole-service.service';
 
@@ -9,8 +10,9 @@ import { PoleServiceService } from '../services/pole-service.service';
   styleUrls: ['./pole.component.css']
 })
 export class PoleComponent implements OnInit {
+  filaleList: any;
   //constructor() { }
-  constructor(public service: PoleServiceService, private fb: FormBuilder) { }
+  constructor(public service: PoleServiceService, private fb: FormBuilder, private router: Router) { }
 
   // constructor(private service:PoleServiceService) { }
   /*PoleList:Array<{PoleId: number, PoleName: string,image :string}> = [
@@ -72,24 +74,22 @@ export class PoleComponent implements OnInit {
     if (!this.service.formCum.valid) {
       alert("veuillez remplir tous les champs")
     }
-    if (this.service.formCum.controls['poleId'].value=='00000000-0000-0000-0000-000000000000')
-    {
-    this.service.postPole(this.service.formCum.value).subscribe(res => {
-      alert(res.toString())
-      //this.cumulative = {}
-      this.refreshPoleList()
-    })
-  }
-  else 
-  {
-    
-    console.log("put")
-    console.log(this.service.formCum.value);
-    this.service.updatePole(this.service.formCum.value).subscribe(res => {
-      alert(res.toString())
-      this.refreshPoleList()
-    })
-  }
+    if (this.service.formCum.controls['poleId'].value == '00000000-0000-0000-0000-000000000000') {
+      this.service.postPole(this.service.formCum.value).subscribe(res => {
+        alert(res.toString())
+        //this.cumulative = {}
+        this.refreshPoleList()
+      })
+    }
+    else {
+
+      console.log("put")
+      console.log(this.service.formCum.value);
+      this.service.updatePole(this.service.formCum.value).subscribe(res => {
+        alert(res.toString())
+        this.refreshPoleList()
+      })
+    }
 
 
     console.log('hello');
@@ -105,34 +105,33 @@ export class PoleComponent implements OnInit {
     });
   }
   uploadPhoto(e: any) {
-   /* var file = event.target.files[0];
-    const formData: FormData = new FormData();
-    formData.append('uploadedFile', file, file.name);
-    alert(file.name)
-    this.PhotoFilePath = this.service.formCum.controls['path'].value;
-    this.service.UploadPhoto(formData).subscribe((data: any) => {
-      this.PhotoFileName = data.toString();
-      this.PhotoFilePath = this.service.formCum.controls['path'].value;
-    })
-    console.log("photo")
-    console.log(this.PhotoFilePath)
-    /*
-    var file=e.target.files[0];
-    const formData:FormData=new FormData();
-    formData.append('uploadedFile',file,file.name);
-    alert(file.name)
-    this.PhotoFilePath=this.service.formCum.controls['image'].value;
-    this.service.UploadPhoto(formData).subscribe((data:any)=>{
-      this.PhotoFileName=data.toString();
-      this.PhotoFilePath=this.service.formCum.controls['image'].value;
-    })*/
-    
-    if (e.target.files)
-    {
+    /* var file = event.target.files[0];
+     const formData: FormData = new FormData();
+     formData.append('uploadedFile', file, file.name);
+     alert(file.name)
+     this.PhotoFilePath = this.service.formCum.controls['image'].value;
+     this.service.UploadPhoto(formData).subscribe((data: any) => {
+       this.PhotoFileName = data.toString();
+       this.PhotoFilePath = this.service.formCum.controls['path'].value;
+     })
+     console.log("photo")
+     console.log(this.PhotoFilePath)
+     /*
+     var file=e.target.files[0];
+     const formData:FormData=new FormData();
+     formData.append('uploadedFile',file,file.name);
+     alert(file.name)
+     this.PhotoFilePath=this.service.formCum.controls['image'].value;
+     this.service.UploadPhoto(formData).subscribe((data:any)=>{
+       this.PhotoFileName=data.toString();
+       this.PhotoFilePath=this.service.formCum.controls['image'].value;
+     })*/
+
+    if (e.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
-      reader.onload=(evant:any)=>{
-        this.PhotoFilePath=evant.target.result;
+      reader.onload = (evant: any) => {
+        this.PhotoFilePath = evant.target.result;
       }
     }
     console.log("photo")
@@ -143,9 +142,12 @@ export class PoleComponent implements OnInit {
     this.service.formCum.reset({
       poleId: pole.poleId,
       poleName: pole.poleName,
-      image:pole.image
+      image: pole.image
     });
-    
+
   }
 
+  detnorme(item: any) {
+    this.router.navigate(['/fl', item.poleId]);
+  }
 }

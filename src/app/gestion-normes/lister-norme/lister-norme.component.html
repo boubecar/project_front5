@@ -24,15 +24,17 @@
 		<tr>
 			<th (click)="sort('id')">
 				<div class="d-flex flex-row">
-					<input type="text" class="form-control" placeholder="Filter ID " >
+					<input type="text" class="form-control" placeholder="Filter ID ">
 				</div>
 
-				NormeId &nbsp;<i class="fa fa-sort"></i></th>
+				NormeId &nbsp;<i class="fa fa-sort"></i>
+			</th>
 			<th>
 				<div class="d-flex flex-row">
 					<input type="text" class="form-control" placeholder="Filter Name " name="designation" [(ngModel)]="designation" (ngModelChange)="Search()">
 				</div>
-				Name &nbsp;<i class="fa fa-sort"></i></th>
+				Name &nbsp;<i class="fa fa-sort"></i>
+			</th>
 			<th>Options</th>
 		</tr>
 	</thead>
@@ -41,9 +43,16 @@
 			<td>{{dataItem.normeId}}</td>
 			<td>{{dataItem.designation}}</td>
 			<td>
-				<button type="button" class="btn-sup"  (click)="deleteClick(dataItem)"><i class="fa-solid fa-trash-can"></i></button>&nbsp;&nbsp;
-				<button type="button" class="btn-sup" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)"><i class="fa-solid fa-pen-to-square"></i></button>&nbsp;&nbsp;
-				<button (click)="refreshcriList(dataItem)" class="btn-sup " ><i class="fa-solid fa-circle-info"></i></button>
+				<button type="button" class="btn-sup" (click)="deleteClick(dataItem)">
+					<i class="fa-solid fa-trash-can"></i>
+				</button>&nbsp;&nbsp;
+				<button type="button" class="btn-sup" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)">
+					<i class="fa-solid fa-pen-to-square"></i>
+				</button>&nbsp;&nbsp;
+				<button (click)="detnorme(dataItem)" class="btn-sup ">
+					<i class="fa-solid fa-circle-info"></i>
+				</button>
+
 			</td>
 		</tr>
 	</tbody>

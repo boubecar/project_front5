@@ -10,7 +10,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class PoleServiceService {
   // readonly APIUrl="http://localhost:53535/api/Pole";
-  constructor(private http: HttpClient,private fb: FormBuilder) { }
+  constructor(private http: HttpClient, private fb: FormBuilder) { }
   formCum = this.fb.group({
     poleId: ['00000000-0000-0000-0000-000000000000', Validators.required],
     poleName: ['', Validators.required],
@@ -38,5 +38,8 @@ export class PoleServiceService {
   }
   UploadPhoto(val: any) {
     return this.http.post(this.backEndUrl + '/SaveFile', val);
+  }
+  GetAllfilialeByPole(cumulative: any) {
+    return this.http.get(this.backEndUrl + "/GetAllfilialeByPole?id=" + cumulative,)
   }
 }

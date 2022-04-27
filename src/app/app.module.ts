@@ -12,7 +12,7 @@ import { EmailComponent } from './email/email.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { AddEditPoleComponent } from './add-edit-pole/add-edit-pole.component';
 import { PoleServiceService } from './services/pole-service.service';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NormesComponent } from './normes/normes.component';
 import { GestionNormesComponent } from './gestion-normes/gestion-normes.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,6 +27,8 @@ import { NoteComponent } from './note/note.component';
 import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2OrderModule } from 'ng2-order-pipe';
+import { FilLocalComponent } from './fil-local/fil-local.component';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
     AddEditNormeComponent,
     ListerComponent,
     AddEditComponent,
-    NoteComponent
+    NoteComponent,
+    FilLocalComponent,
+
   ],
   imports: [
     BrowserModule,
