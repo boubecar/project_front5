@@ -76,16 +76,21 @@
 													<form (ngSubmit)="saveData()" [formGroup]="service.formCum">
 														<div class="form-row">
 															<div class="col-md-6 mb-3">
-																<label>enter le nom de nouveau  norme
+																<label style="width: 200px;"> enter le nom de nouveau  norme
 																</label>
-																<input type="text" class="form-control" placeholder="Nom" formControlName="poleName" required>
+																<input type="text" class="form-control" style="width: 225px;margin-left: 5px;" placeholder="Nom" formControlName="poleName" required>
 															</div>
 														</div>
-														<div class="ml-3 bd-highlight" style="width: 40%;">
+														<div class="ml-3 bd-highlight" style="width: 40%;" style="color: blue;">
 															<img [src]="PhotoFilePath" height="200px;" width="200px;">
-															<input type="file" class="mt-2" (change)="uploadPhoto($event)" formControlName="image"/>
+															<input type="file" id="file" class="mt-2" (change)="uploadPhoto($event)" formControlName="image" />
+															<label for="file" id="photo"> 
+																<i class=""></i>
+																choose a photo
+															</label>
+															
 														</div>
-														<button type="button" class="btn btn-primary float-right" type="submit">ajouter
+														<button type="button" class="btn btn-primary margin_top_30 margin_left_20 " style="width: 225px;margin-left: 5px;" type="submit">Enregistrer
 														</button>
 													</form>
 												</div>

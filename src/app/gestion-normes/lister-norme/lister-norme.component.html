@@ -5,7 +5,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+				<h5 class="modal-title" id="exampleModalLabel" style="color: rgb(42, 106, 243);margin-left: 20%;">Enregistrer Norme</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -22,53 +22,30 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th>
+			<th (click)="sort('id')">
 				<div class="d-flex flex-row">
-					<input class="form-control" placeholder="Filter">
-
-					<button type="button" class="btn btn-light">
-						<svg width="1em" height="1em" viewbox="0 0 16 16" class="bi bi-arrow-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-							<path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
-						</svg>
-					</button>
-					<button type="button" class="btn btn-light">
-						<svg width="1em" height="1em" viewbox="0 0 16 16" class="bi bi-arrow-up-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-							<path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
-						</svg>
-					</button>
-
+					<input type="text" class="form-control" placeholder="Filter ID " >
 				</div>
 
-				NormeId</th>
+				NormeId &nbsp;<i class="fa fa-sort"></i></th>
 			<th>
 				<div class="d-flex flex-row">
-					<input class="form-control" placeholder="Filter">
-
-					<button type="button" class="btn btn-light">
-						<svg width="1em" height="1em" viewbox="0 0 16 16" class="bi bi-arrow-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-							<path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
-						</svg>
-					</button>
-					<button type="button" class="btn btn-light">
-						<svg width="1em" height="1em" viewbox="0 0 16 16" class="bi bi-arrow-up-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-							<path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
-						</svg>
-					</button>
-
+					<input type="text" class="form-control" placeholder="Filter Name " name="designation" [(ngModel)]="designation" (ngModelChange)="Search()">
 				</div>
-				Name</th>
+				Name &nbsp;<i class="fa fa-sort"></i></th>
 			<th>Options</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let dataItem of NormeList">
+		<tr *ngFor="let dataItem of NormeList |orderBy: key: reverse | paginate: {itemsPerPage: 3 , currentPage : p} ;">
 			<td>{{dataItem.normeId}}</td>
 			<td>{{dataItem.designation}}</td>
 			<td>
-				<button type="button" class="btn fa fa-trash btn-light mr-1" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
-				<button type="button" class="btn fa fa-pencil-square-o btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)"></button>
-				<button (click)="refreshcriList(dataItem)" class="fas fa-info-circle" class="btn btn-success" class="fas fa-info-circle"></button>&nbsp;
+				<button type="button" class="btn-sup"  (click)="deleteClick(dataItem)"><i class="fa-solid fa-trash-can"></i></button>&nbsp;&nbsp;
+				<button type="button" class="btn-sup" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)"><i class="fa-solid fa-pen-to-square"></i></button>&nbsp;&nbsp;
+				<button (click)="refreshcriList(dataItem)" class="btn-sup " ><i class="fa-solid fa-circle-info"></i></button>
 			</td>
 		</tr>
 	</tbody>
+	<pagination-controls (pageChange)="p = $event"></pagination-controls>
 </table>

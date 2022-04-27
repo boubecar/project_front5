@@ -1,0 +1,11 @@
+.btn-sup{
+    background-color :transparent;
+    border-color: transparent;
+}
+.fa-solid{
+    color: black;
+}
+#exampleModal{
+    width: 300px;
+    margin-left: 500px;
+}

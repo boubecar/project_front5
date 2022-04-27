@@ -14,14 +14,26 @@ export class ListerNormeComponent implements OnInit {
   NormeList: any = []
   CritereList: any = []
 
+  designation:any
+  p: number=1;
+  key:string='id'
+  reverse:boolean=false 
+  
+ /* NormeList: Array<{ normeId: string, designation: string }> = [
+    { normeId: "1", designation: "Nettoyer" },
+    { normeId: "3", designation: 'Ranger' },
+    { normeId: "3", designation: 'Etre rigoureux' },
+    { normeId: "4", designation: "Maintenir l'ordre" },
+    { normeId: "5", designation: "Débarrasser" },
+  ]*/
 
 
-  ModalTitle: string = "ajouter un nouveau norme";
   constructor(public normeService: NormeServiceService, private fb: FormBuilder, private router: Router, public critereService: CritereService) { }
 
   ngOnInit(): void {
     this.refreshnormList();
-    //this.refreshcriList(Norme);
+   // this.refreshcriList(Norme);
+    
   }
   detnorme() {
     this.router.navigate(['/critere']);
@@ -60,6 +72,21 @@ export class ListerNormeComponent implements OnInit {
       console.log(this.CritereList)
     });
 
+  }
+  
+  Search(){
+    if (this.designation==''){
+      this.ngOnInit()
+    }else{this.NormeList = this.NormeList.filter((res: { designation: string; }) => {
+      return res.designation.toLocaleLowerCase().match(this.designation.toLocaleLowerCase());
+    })
+    }
+  }
+
+  sort(key:any)
+  {
+    this.key=key;
+    this.reverse=!this.reverse;
   }
 
 }

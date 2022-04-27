@@ -112,4 +112,43 @@
 
 {{selectedObject | json}}
 {{selectedObject1 | json}}
+<div class="input-group">
+	<div class="input-group-prepend">
+	  <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+	</div>
+	<div class="custom-file">
+	  <input type="file" class="custom-file-input" id="inputGroupFile01"
+		aria-describedby="inputGroupFileAddon01">
+	  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+	</div>
+  </div>
+
+
 <!--expanding input field -->
+<!--filtre  -->
+<h1>Members</h1>
+<input type="text" class="form-control" name="designation" placeholder="Enter your name " [(ngModel)]="designation" (ngModelChange)="Search()" >
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th (click)="sort('id')">User Id&nbsp; <i class="fa fa-sort"></i> </th>
+            <th (click)="sort('firstName')">First Name&nbsp; <i class="fa fa-sort"></i></th>
+            <th (click)="sort('lastName')">Last Name&nbsp; <i class="fa fa-sort"></i></th>
+            <th>E-mail</th>
+            <th>Mobile</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+	<tbody>
+        <tr *ngFor="let member of menberList |orderBy: key: reverse | paginate: {itemsPerPage: 3 , currentPage : p} ;">
+            <td> {{ member.Id }} </td>
+            <td> {{ member.designation }} </td>
+            <td> {{ member.lastName }} </td>
+            <td> {{ member.email }} </td>
+            <td> {{ member.mobile }} </td>
+            <td> {{ member.salary }} </td>
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>
+<!--filtre  -->

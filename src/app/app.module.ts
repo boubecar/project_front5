@@ -24,6 +24,9 @@ import { AddEditNormeComponent } from './gestion-normes/add-edit-norme/add-edit-
 import { ListerComponent } from './filiale/lister/lister.component';
 import { AddEditComponent } from './filiale/add-edit/add-edit.component';
 import { NoteComponent } from './note/note.component';
+import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2OrderModule } from 'ng2-order-pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { NoteComponent } from './note/note.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    Ng2OrderModule
   ],
   providers: [PoleServiceService],
   bootstrap: [AppComponent]

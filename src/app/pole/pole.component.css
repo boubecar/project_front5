@@ -1,3 +1,37 @@
 .heading1 margin_0{
     margin-top: 15em;
 }
+.modal-body{
+    width: 300px;
+}
+#exampleModal{
+    width: 300px;
+    margin-left: 500px;
+}
+#exampleModalLabel{
+    text-align: center;
+    color: rgb(42, 106, 243);
+    font-weight: bold;
+}
+.modal-title{
+    text-align: center;
+}
+.upload{
+    color: red;
+    width: 50px;
+}
+input[type="file"]{
+    display: none;
+}
+#photo{
+    color: white;
+    height: 60px;
+    width: 250px;
+    background-color: rgba(13, 13, 218, 0.356);
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
