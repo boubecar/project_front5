@@ -143,19 +143,23 @@ export class EvaluationComponent implements OnInit {
   cumulative: any
   image: string = ''
   Id: string = ''
-  critere: string = ''
+  critere: string = 'b99488be-96fe-4d7c-055b-08da28bfeb78'
   cumulative1: Note = {}
   notation() {
     this.cumulative = {
       id: this.Id,
-      note: this.note,
+
       commentaire: this.comment,
-      elavuer: this.eval,
+      note: this.note,
+      noteDate: this.noteDate,
+
       critereid: this.critere,
       image: this.image,
-      FilLocallId: this.selectedObject1,
       Userid: this.Userid,
-      noteDate: this.noteDate
+      evaluer: this.eval,
+      FilLocallId: this.selectedObject1,
+
+
 
 
 
