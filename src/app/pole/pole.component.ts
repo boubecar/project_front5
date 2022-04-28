@@ -11,17 +11,18 @@ import { PoleServiceService } from '../services/pole-service.service';
 })
 export class PoleComponent implements OnInit {
   filaleList: any;
+  poleName:any
   //constructor() { }
   constructor(public service: PoleServiceService, private fb: FormBuilder, private router: Router) { }
 
   // constructor(private service:PoleServiceService) { }
-  /*PoleList:Array<{PoleId: number, PoleName: string,image :string}> = [
-    {PoleId: 1, PoleName: "alimentation-animale",image:"assets/images/alimentation-animale.png"},
-    {PoleId: 2, PoleName: 'agroalimentaire',image:"assets/images/agrico.png"},
-    {PoleId: 3, PoleName: 'avicole',image:"assets/images/avicole.jpg"},
-    {PoleId: 4, PoleName: "industrielle",image:"assets/images/industrielle.png"},
-];*/
-  PoleList: any = []
+  PoleList:Array<{PoleId: number, poleName: string,image :string}> = [
+    {PoleId: 1, poleName: "alimentation-animale",image:"assets/images/alimentation-animale.png"},
+    {PoleId: 2, poleName: 'agroalimentaire',image:"assets/images/agrico.png"},
+    {PoleId: 3, poleName: 'avicole',image:"assets/images/avicole.jpg"},
+    {PoleId: 4, poleName: "industrielle",image:"assets/images/industrielle.png"},
+];
+ // PoleList: any = []
   PhotoFileName: string = ""
   PhotoFilePath: string = 'assets/images/inconu.png'
 
@@ -90,8 +91,6 @@ export class PoleComponent implements OnInit {
         this.refreshPoleList()
       })
     }
-
-
     console.log('hello');
     console.log(this.service.formCum.value);
     alert(this.service.formCum.value);
@@ -149,5 +148,13 @@ export class PoleComponent implements OnInit {
 
   detnorme(item: any) {
     this.router.navigate(['/fl', item.poleId]);
+  }
+  Search(){
+    if (this.poleName==''){
+      this.ngOnInit()
+    }else{this.PoleList = this.PoleList.filter((res: { poleName: string; }) => {
+      return res.poleName.toLocaleLowerCase().match(this.poleName.toLocaleLowerCase());
+    })
+    } 
   }
 }

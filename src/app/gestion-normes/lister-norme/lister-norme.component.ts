@@ -26,10 +26,7 @@ export class ListerNormeComponent implements OnInit {
     { normeId: "4", designation: "Maintenir l'ordre" },
     { normeId: "5", designation: "Débarrasser" },
   ]*/
-
-
   constructor(public normeService: NormeServiceService, private fb: FormBuilder, private router: Router, public critereService: CritereService) { }
-
   ngOnInit(): void {
     this.refreshnormList();
    // this.refreshcriList(Norme);
@@ -80,7 +77,7 @@ export class ListerNormeComponent implements OnInit {
     }else{this.NormeList = this.NormeList.filter((res: { designation: string; }) => {
       return res.designation.toLocaleLowerCase().match(this.designation.toLocaleLowerCase());
     })
-    }
+    } 
   }
 
   sort(key:any)

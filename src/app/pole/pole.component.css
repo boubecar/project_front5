@@ -6,7 +6,7 @@
 }
 #exampleModal{
     width: 300px;
-    margin-left: 500px;
+    margin-left: 600px;
 }
 #exampleModalLabel{
     text-align: center;
@@ -31,4 +31,17 @@ letter-spacing: 2px;
 font-weight: bold;
 margin-top: 15px;  
   color: rgb(42, 106, 243);
+}
+.card{
+    margin-right: 12px;
+}
+#btncolor{
+    background-color :transparent;
+    border-color: transparent;
+    width: 50%;
+}
+.daaaaa{
+margin-left: 50px;}
+.heading_section{
+    height: 100px;
 }

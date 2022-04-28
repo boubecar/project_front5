@@ -1,4 +1,5 @@
 import { DatePipe, formatDate } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,6 +17,9 @@ import { NoteService } from '../services/note.service';
 export class NoteComponent implements OnInit {
 
   // CritereList:any
+  post = [];
+  
+  dataSource: any;
  notation:any
   eval: string = ''
   isShown: boolean = false;
@@ -26,7 +30,7 @@ export class NoteComponent implements OnInit {
     { NormeId: 4, designation: "Maintenir l'ordre", path: "fa-cubes" },
     { NormeId: 5, designation: "Débarrasser", path: 'fa-trash' },
   ]
-  NoteList:any
+  //NoteList:any
   CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
     { critereId: 1, criterelabel: "Nettoyer", normes: "" },
     { critereId: 2, criterelabel: 'Ranger', normes: "" },
@@ -34,26 +38,32 @@ export class NoteComponent implements OnInit {
     { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
     { critereId: 5, criterelabel: "Débarrasser", normes: "" },
   ]; 
- /* NoteList: Array<{ Id: string, note: number, image: string, critereId: string, userId: string, FilLocallId: string, commentaire: string, criterelabel: string,eval:string }> = [
+ NoteList: Array<{ Id: string, note: number, image: string, critereId: string, userId: string, FilLocallId: string, commentaire: string, criterelabel: string,eval:string }> = [
     { Id: "1", note: 20, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer",eval:"CR" },
     { Id: "2", note: 18, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:"CM"},
     { Id: "3", note: 15, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
     { Id: "4", note: 13, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
     { Id: "5", note: 5, image: "assets/images/oasis.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
   ];
-*/
+
   isDisabled:boolean=true
   maintenant: string = ''
   maDate = new Date(2019, 0o1, 0o2);
   PhotoFilePath: string = 'assets/images/inconu.png'
 note:boolean=false
-  constructor(public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService, private datePipe: DatePipe) {
-
+  constructor(private http: HttpClient,public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService) {
+    this.http.get('http://localhost/note').subscribe(data => {
+      //this.post.push(data);
+    
+      this.dataSource = this.post[0];
+      console.log("nooooo"+this.dataSource
+        )
+  })
   }
 refrechNote()
 {
   this.noteService.GetAlltNote().subscribe(data => {
-    this.NoteList = data;
+    //this.NoteList = data;
     console.log(this.NoteList)
   });
 
