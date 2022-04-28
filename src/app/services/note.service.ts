@@ -22,6 +22,8 @@ export class NoteService {
   postNote(cumulative: Note) {
     return this.http.post(this.backEndUrl + "/PostNote", cumulative, { responseType: "text" })
   }
-
+  GetAlltNote() {
+    return this.http.post(this.backEndUrl + "/PostNote", { responseType: "text" })
+  }
 
 }

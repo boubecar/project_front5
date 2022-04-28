@@ -34,7 +34,7 @@ export class EvaluationComponent implements OnInit {
   isShown1: boolean = false;
   PhotoFilePath: String = ''
   commentaire: String = ''
-  eval: String = ''
+  eval: String = '' 
   selectedObject1: any;
   data: any;
   /*filList: Array<{filialeId: string, filialName: string,image:string}> = [
