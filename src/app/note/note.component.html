@@ -1,132 +1,135 @@
 <div class="full_container">
-    <div class="inner_container">
-        <app-nav></app-nav>
-        
-        <div class="full inner_elements">
-          <div class="full graph_head">
-            <div class="heading1 ">
-              <h2>Les notes attribué a Filiale le {{maintenant}}
-              </h2>
-            </div>
+	<div class="inner_container">
+		<app-nav></app-nav>
+
+		<div class="full inner_elements">
+			<div class="full graph_head">
+				<div class="heading1 ">
+					<h2>Les notes attribué a Filiale le
+						{{maintenant}}
+					</h2>
+				</div>
 
 
-          </div>
-          <div class="row">
-             <div class="col-md-12">
-                <div class="tab_style2">
-                   <div class="tabbar padding_infor_info">	
-         <nav>
-          <div class="nav nav-tabs" id="nav-tab1" role="tablist" >
-             <a class="nav-item nav-link" id="nav-profile-tab2" data-toggle="tab" href="#nav-home_s2"  role="tab" aria-controls="nav-profile_s2" aria-selected="false" *ngFor="let dataItem of NormeList ;" (click)="refreshcriList(dataItem)" >{{dataItem.designation}} </a>
-        
-          </div> 
-        </nav>
-        <div class="tab-content" id="nav-tabContent_2" *ngIf="isShown">
-          <div class="tab-pane fade show active" id="nav-home_s2" role="tabpanel" aria-labelledby="nav-home-tab" >
-         <table class="table table-bordered">
-          <thead>
-          <tr>
-              <th>criteres</th>
-              <th>Note</th>
-              <th><i class="fa fa-star-half-o" aria-hidden="true"></i></th>
-              <th>comentaire</th>
-              <th colspan="2">Reclamation</th>
-          </tr>
-        </thead>
-        
-        <tbody>
-          <tr *ngFor="let i of NoteList">
-            
-          <td>{{i.criterelabel}}</td>
-          <td>
-              <div class="input-group mb-3" >
-              
-                {{i.note}}
-        
-          </div>
-          </td>
-          <td>{{i.eval}}
-        
-          </td>
-          <td>
-           {{i.commentaire}}
-          </td>
-        
-          <td>
-            
-				<button type="button" class="btn fa fa-exclamation-circle btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(i)" ng-disabled="note"></button>
-        
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Reclamation</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="card">
-                  <form (ngSubmit)='saveData()' [formGroup]="noteService.formCum">
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="tab_style2">
+						<div class="tabbar padding_infor_info">
+							<nav>
+								<div class="nav nav-tabs" id="nav-tab1" role="tablist">
+									<a class="nav-item nav-link" id="nav-profile-tab2" data-toggle="tab" href="#nav-home_s2" role="tab" aria-controls="nav-profile_s2" aria-selected="false" *ngFor="let dataItem of NormeList ;" (click)="refreshcriList(dataItem)">{{dataItem.designation}}
+									</a>
 
-                    <input type="hidden" formControlName="Id">
-                    <div class="form-row">
-                      <div class="col-9">
-                        <label>Critere :
-                        </label>
-                        <input type="text" class="form-control" class="form-control input-sm" placeholder="critere" formControlName="criterelabel" readonly>
-                      </div>
-                      <div class="col-9">
-                        <label>Note  :
-                        </label>
-                        <input type="text" class="form-control" class="form-control input-sm" placeholder="note" formControlName="note"  readonly>
-                      </div>
-                      <div class="col-9">
-                        <label>Commentaire :
-                        </label>
-                        <input type="text" class="form-control" class="form-control input-sm" placeholder="Nom" formControlName="Commentaire" readonly>
-                      </div>
-                      <div class="col-9">
-                        <label>Date Limite :
-                        </label>
-                        <input type="date" name="party" min="2022-04-01" max="2022-04-20" >
-                      </div>
-                      <div class="col-9">
-                      <img [src]="PhotoFilePath" style="width: 200px;" alt="#" />
-                      </div>
+								</div>
+							</nav>
+							<div class="tab-content" id="nav-tabContent_2" *ngIf="isShown">
+								<div class="tab-pane fade show active" id="nav-home_s2" role="tabpanel" aria-labelledby="nav-home-tab">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>criteres</th>
+												<th>Note</th>
+												<th>
+													<i class="fa fa-star-half-o" aria-hidden="true"></i>
+												</th>
+												<th>comentaire</th>
+												<th colspan="2">Reclamation</th>
+											</tr>
+										</thead>
 
-                      <div class="col-md-6 mb-3">
-                        <label for="w3review">Reclamation:</label>
-                      <textarea id="w3review" name="w3review" rows="4" cols="50" formControlName="planDescription"> le plan a suivre</textarea>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-primary float-left" type="submit" >Enregister 
-                    </button>
-                  </form>
-                  
-                  <div class="card-body"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-              </tr>
-        </tbody>
-        
-        </table>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-              
-              </div> 
-               
-          </div>
+										<tbody>
+											<tr *ngFor="let i of NoteList">
+
+												<td>{{i.criterelabel}}</td>
+												<td>
+													<div class="input-group mb-3">
+
+														{{i.note}}
+
+													</div>
+												</td>
+												<td>{{i.eval}}
+
+												</td>
+												<td>
+													{{i.commentaire}}
+												</td>
+
+												<td>
+
+													<button type="button" class="btn fa fa-exclamation-circle btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(i)" ng-disabled="note"></button>
+
+													<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLabel">Reclamation</h5>
+																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																</div>
+																<div class="modal-body">
+																	<div class="card">
+																		<form (ngSubmit)='saveData()' [formGroup]="noteService.formCum">
+
+																			<input type="hidden" formcontrolname="Id">
+																			<div class="form-row">
+																				<div class="col-9">
+																					<label>Critere :
+																					</label>
+																					<input type="text" class="form-control" class="form-control input-sm" placeholder="critere" formcontrolname="criterelabel" readonly>
+																				</div>
+																				<div class="col-9">
+																					<label>Note  :
+																					</label>
+																					<input type="text" class="form-control" class="form-control input-sm" placeholder="note" formcontrolname="note" readonly>
+																				</div>
+																				<div class="col-9">
+																					<label>Commentaire :
+																					</label>
+																					<input type="text" class="form-control" class="form-control input-sm" placeholder="Nom" formcontrolname="Commentaire" readonly>
+																				</div>
+																				<div class="col-9">
+																					<label>Date Limite :
+																					</label>
+																					<input type="date" name="party" min="2022-04-01" max="2022-04-20">
+																				</div>
+																				<div class="col-9">
+																					<img [src]="PhotoFilePath" style="width: 200px;" alt="#"/>
+																				</div>
+
+																				<div class="col-md-6 mb-3">
+																					<label for="w3review">Reclamation:</label>
+																					<textarea id="w3review" name="w3review" rows="4" cols="50" formcontrolname="planDescription">
+																						le plan a suivre</textarea>
+																				</div>
+																			</div>
+																			<button type="button" class="btn btn-primary float-left" type="submit">Enregister
+																			</button>
+																		</form>
+
+																		<div class="card-body"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
 
 
-
- <!--expanding input field -->
- 
+	<!--expanding input field -->

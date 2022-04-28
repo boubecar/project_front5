@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Filiale } from 'src/app/filiale';
 import { FilialeService } from 'src/app/services/filiale.service';
@@ -11,6 +11,7 @@ import { FilialeService } from 'src/app/services/filiale.service';
 })
 export class ListerComponent implements OnInit {
   idnorm: string = ''
+  formCum!: FormGroup;
   constructor(public filialeService: FilialeService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
     this.route.params.subscribe((params: any) => console.log(params));
   }
@@ -27,6 +28,11 @@ export class ListerComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.idnorm = params['id'];
     })
+    this.formCum = this.fb.group({
+      filialeId: ['00000000-0000-0000-0000-000000000000', Validators.required],
+      filialeName: ['', Validators.required],
+      poleId: this.idnorm,
+    });
     this.refreshfilList()
   }
 
@@ -41,7 +47,7 @@ export class ListerComponent implements OnInit {
   }
   ChangeData(fil: Filiale) {
 
-    this.filialeService.formCum.reset({
+    this.formCum.reset({
       filialeId: fil.filialId,
       filialeName: fil.filialName,
       image: fil.image

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Filiale } from '../filiale';
+import { Note } from '../note';
 import { CritereService } from '../services/critere.service';
 import { FilialeService } from '../services/filiale.service';
 import { LocalService } from '../services/local.service';
@@ -33,10 +34,13 @@ export class EvaluationComponent implements OnInit {
   note: number = 0;
   isShown1: boolean = false;
   PhotoFilePath: String = ''
+  FilLocallId: String = ''
   commentaire: String = ''
   eval: String = '' 
   selectedObject1: any;
   data: any;
+  Userid: String = ''
+  noteDate: String = ''
   /*filList: Array<{filialeId: string, filialName: string,image:string}> = [
    {filialeId: "1", filialName: "Mazraa",image:"assets/images/mazraa.jpg"},
    {filialeId: "1", filialName: 'Jadida ',image:"assets/images/download.jpg"},
@@ -53,9 +57,10 @@ export class EvaluationComponent implements OnInit {
  ];*/
   filList: any
   LocalList: any
-  constructor(public normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService) { }
+  //constructor(public normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService) { }
 
   selectedObject: any;
+  comment: any;
   /*filList: Array<{ filialeId: string, filialName: string, image: string }> = [
     { filialeId: "1", filialName: "Mazraa", image: "assets/images/mazraa.jpg" },
     { filialeId: "1", filialName: 'Jadida ', image: "assets/images/download.jpg" },
@@ -72,7 +77,7 @@ export class EvaluationComponent implements OnInit {
   ];*/
   //filList:any
   //LocalList:any
-  //constructor(public normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService, public noteService: NoteService) { }
+  constructor(public normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService, public noteService: NoteService) { }
 
   ngOnInit(): void {
     this.refreshnormList()
@@ -137,15 +142,28 @@ export class EvaluationComponent implements OnInit {
   }
   cumulative: any
   image: string = ''
+  Id: string = ''
   critere: string = ''
+  cumulative1: Note = {}
   notation() {
     this.cumulative = {
+      id: this.Id,
       note: this.note,
-      commentaire: this.commentaire,
+      commentaire: this.comment,
       elavuer: this.eval,
-      critere: this.critere,
-      image: this.PhotoFilePath
+      critereid: this.critere,
+      image: this.image,
+      FilLocallId: this.selectedObject1,
+      Userid: this.Userid,
+      noteDate: this.noteDate
+
+
+
     }
+    this.noteService.postNote(this.cumulative).subscribe(res => {
+      alert(res.toString());
+      //  this.cumulative={}
+    })
     console.log('hhhh')
     console.log(this.cumulative)
   }

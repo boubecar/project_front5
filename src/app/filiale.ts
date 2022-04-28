@@ -4,5 +4,5 @@ export interface Filiale {
     filialId?: string,
     filialName?: string,
     image: string,
-    pole?: Pole,
+    poleId?: string,
 }

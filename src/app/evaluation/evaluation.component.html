@@ -1,129 +1,151 @@
 <div class="full_container">
-				<div class="inner_container">
-					<app-nav></app-nav>
+	<div class="inner_container">
+		<app-nav></app-nav>
 
-					<div class="">
-						<div class="white_shd full margin_bottom_30">
-							<div class="full graph_head">
-								<div class="heading1 ">
-									<h2>
-										Evaluation des filiales :
-									</h2>
+		<div class="">
+			<div class="white_shd full margin_bottom_30">
+				<div class="full graph_head">
+					<div class="heading1 ">
+						<h2>
+							Evaluation des filiales :
+						</h2>
+					</div>
+				</div>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>
+								<div class="d-flex flex-row">
+									<select class="form-control" [(ngModel)]="data" (ngModelChange)="refreshLocList(data)">
+
+										<option *ngFor="let fil of filList " [ngValue]="fil">
+											{{fil.filialName}}
+										</option>
+									</select>
+
+
 								</div>
-							</div>
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>
-											<div class="d-flex flex-row">
-												<select class="form-control" [(ngModel)]="data" (ngModelChange)="refreshLocList(data)">
+							</th>
+						</tr>
+					</thead>
+				</div>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>
+								<div class="d-flex flex-row">
+									<select class="form-control" [(ngModel)]="data" (ngModelChange)="refreshLocList(data)">
 
-													<option *ngFor="let fil of filList " [ngValue]="fil">
-														{{fil.filialName}}
-													</option>
-												</select>
-
-
-											</div>
-
-										</th>
-										<th>
-											<div class="d-flex flex-row">
-												<select class="form-control" [(ngModel)]="selectedObject1" *ngIf="isShown">
-
-													<option value="" disabled selected hidden>Local
-													</option>
-													<option *ngFor="let loc of LocalList " [ngValue]="loc">
-														{{loc.localdescription}}
-													</option>
-												</select>
+										<option *ngFor="let fil of filList " [ngValue]="fil">
+											{{fil.filialName}}
+										</option>
+									</select>
 
 
-											</div>
-										</th>
-										<th>
-											<div class="d-flex flex-row">
-												<input class="form-control" type="month" id="start" name="trip-start" min="2022-01-01" max="2023-12-31">
-											</div>
-										</th>
-									</tr>
-								</thead>
-							</table>
+								</div>
 
-							<div class="full inner_elements">
-								<div class="row">
-									<div class="col-md-12">
-										<div class="tab_style2">
-											<div class="tabbar padding_infor_info">
-												<nav>
-													<div class="nav nav-tabs" id="nav-tab1" role="tablist">
-														<a class="nav-item nav-link" id="nav-profile-tab2" data-toggle="tab" href="#nav-home_s2" role="tab" aria-controls="nav-profile_s2" aria-selected="false" *ngFor="let dataItem of NormeList ;" (click)="refreshcriList(dataItem)">{{dataItem.designation}}
-														</a>
+							</th>
+							<th>
+								<div class="d-flex flex-row">
+									<select class="form-control" [(ngModel)]="selectedObject1" *ngIf="isShown">
 
-													</div>
-												</nav>
-												<div class="tab-content" id="nav-tabContent_2" *ngIf="isShown1">
-													<div class="tab-pane fade show active" id="nav-home_s2" role="tabpanel" aria-labelledby="nav-home-tab">
+										<option value="" disabled selected hidden>Local
+										</option>
+										<option *ngFor="let loc of LocalList " [ngValue]="loc">
+											{{loc.localdescription}}
+										</option>
+									</select>
 
-														<table class="table table-bordered">
-															<thead>
-																<tr>
-																	<th>criteres</th>
-																	<th>Note</th>
-																	<th>
-																		<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																	</th>
-																	<th>comentaire</th>
-																	<th colspan="2">Ratachement</th>
-																</tr>
-															</thead>
 
-															<tbody>
-																<tr *ngFor="let i of CritereList">
+								</div>
+							</th>
+							<th>
+								<div class="d-flex flex-row">
+									<input class="form-control" type="month" id="start" name="trip-start" min="2022-01-01" max="2023-12-31">
+								</div>
+							</th>
+						</tr>
+					</thead>
+				</table>
 
-																	<td [(ngModel)]="critere">{{i.criterelabel}}</td>
-																	<td>
-																		<div class="input-group mb-3" [(ngModel)]="note">
-																			<input type="text" class="form-control" style="width: 50px;" placeholder="?/20" aria-describedby="basic-addon2" (keyup)="mention()">
-																			<div class="input-group-append">
-																				<button class="btn cur-p btn-light fa fa-check-circle" type="button"></button>
-																			</div>
+				<div class="full inner_elements">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="tab_style2">
+								<div class="tabbar padding_infor_info">
+									<nav>
+										<div class="nav nav-tabs" id="nav-tab1" role="tablist">
+											<a class="nav-item nav-link" id="nav-profile-tab2" data-toggle="tab" href="#nav-home_s2" role="tab" aria-controls="nav-profile_s2" aria-selected="false" *ngFor="let dataItem of NormeList ;" (click)="refreshcriList(dataItem)">{{dataItem.designation}}
+											</a>
 
-																		</div>
-																	</td>
-																	<td>{{eval}}
-
-																	</td>
-																	<td>
-																		<div class="timeline-panel">
-
-																			<div class="timeline-body">
-																				<input class="form-control input-md" id="myInput" placeholder="comentaire" [(ngModel)]="commentaire" type="text" required="required">
-																			</div>
-																		</div>
-																	</td>
-
-																	<td>
-																		<input type="file" [(ngModel)]="image">
-																		<i class="fa fa-camera" aria-hidden="true"></i>
-																	</td>
-
-																	<td>
-																		<button class="fa fa-check-circle cur-p btn-light" (click)="notation()"></button>
-																	</td>
-
-																</tr>
-															</tbody>
-
-														</table>
-														<button class="btn-light float-right">
-															VALIDER
-														</button>
-													</div>
-													
-												</div>
-											</div>
 										</div>
+									</nav>
+									<div class="tab-content" id="nav-tabContent_2" *ngIf="isShown1">
+										<div class="tab-pane fade show active" id="nav-home_s2" role="tabpanel" aria-labelledby="nav-home-tab">
+
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>criteres</th>
+														<th>Note</th>
+														<th>
+															<i class="fa fa-star-half-o" aria-hidden="true"></i>
+														</th>
+														<th>comentaire</th>
+														<th colspan="2">Ratachement</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<tr *ngFor="let i of CritereList">
+
+														<td [(ngModel)]="critere">{{i.criterelabel}}</td>
+														<td>
+															<div class="input-group mb-3" [(ngModel)]="note">
+																<input type="text" class="form-control" style="width: 50px;" placeholder="?/20" aria-describedby="basic-addon2" (keyup)="mention()">
+																<div class="input-group-append">
+																	<button class="btn cur-p btn-light fa fa-check-circle" type="button"></button>
+																</div>
+
+															</div>
+														</td>
+														<td>{{eval}}
+
+														</td>
+														<td>
+															<div class="timeline-panel">
+
+																<div class="timeline-body">
+																	<input class="form-control input-md" id="myInput" placeholder="comentaire" [(ngModel)]="commentaire" type="text" required="required">
+																</div>
+															</div>
+														</td>
+
+														<td>
+															<input type="file" [(ngModel)]="image">
+															<i class="fa fa-camera" aria-hidden="true"></i>
+														</td>
+
+														<td>
+															<button class="fa fa-check-circle cur-p btn-light" (click)="notation()"></button>
+														</td>
+
+													</tr>
+												</tbody>
+
+											</table>
+											<button class="btn-light float-right">
+												VALIDER
+											</button>
+										</div>
+
 									</div>
 								</div>
 							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

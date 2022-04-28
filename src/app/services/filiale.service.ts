@@ -10,11 +10,7 @@ import { Filiale } from '../filiale';
 export class FilialeService {
 
   constructor(private http: HttpClient, private fb: FormBuilder) { }
-  formCum = this.fb.group({
-    filialeId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-    filialeName: ['', Validators.required],
-    pole: [''],
-  });
+
   listFiliale: Filiale[] = []
   backEndUrl: string = "https://localhost:44388/api/Filiale";
 

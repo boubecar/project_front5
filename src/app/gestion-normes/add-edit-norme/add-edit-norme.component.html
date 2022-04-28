@@ -1,19 +1,18 @@
 <form (ngSubmit)='saveData()' [formGroup]="normeService.formCum">
 
 
-	<input type="hidden" formControlName="normeId">
+	<input type="hidden" formcontrolname="normeId">
 	<div class="form-row">
 		<div class="col-md-6 mb-3">
 			<br>
-			<label style="width: 200px; margin-left: 5px;">&nbsp; Enter le nom du norme : 
+			<label style="width: 200px; margin-left: 5px;">&nbsp; Enter le nom du norme :
 			</label>
-			<br> 
-			<input type="text"  class="form-control" class="form-control input-sm" placeholder="Nom" id="inputinfo2" formControlName="designation" style="width: 250px; margin-left: 5px;" required>
+			<br>
+			<input type="text" class="form-control" class="form-control input-sm" placeholder="Nom" id="inputinfo2" formcontrolname="designation" style="width: 250px; margin-left: 5px;" required>
 		</div>
 
 	</div>
 
-	<button type="button" class="btn  btn-primary" type="submit" style="margin-left: 30%; margin-top: 15px;">Enregister 
+	<button type="button" class="btn  btn-primary" type="submit" style="margin-left: 30%; margin-top: 15px;">Enregister
 	</button>
 </form>
-
