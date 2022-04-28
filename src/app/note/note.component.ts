@@ -16,11 +16,8 @@ import { NoteService } from '../services/note.service';
 })
 export class NoteComponent implements OnInit {
 
-  // CritereList:any
-  post = [];
-  
-  dataSource: any;
- notation:any
+  CritereList: any
+  notation: any
   eval: string = ''
   isShown: boolean = false;
   NormeList: Array<{ NormeId: number, designation: string, path: string }> = [
@@ -30,8 +27,8 @@ export class NoteComponent implements OnInit {
     { NormeId: 4, designation: "Maintenir l'ordre", path: "fa-cubes" },
     { NormeId: 5, designation: "Débarrasser", path: 'fa-trash' },
   ]
-  //NoteList:any
-  CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
+  NoteList: any
+  /*CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
     { critereId: 1, criterelabel: "Nettoyer", normes: "" },
     { critereId: 2, criterelabel: 'Ranger', normes: "" },
     { critereId: 3, criterelabel: 'Etre rigoureux', normes: "" },
@@ -45,40 +42,33 @@ export class NoteComponent implements OnInit {
     { Id: "4", note: 13, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
     { Id: "5", note: 5, image: "assets/images/oasis.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
   ];
-
-  isDisabled:boolean=true
+*/
+  isDisabled: boolean = true
   maintenant: string = ''
   maDate = new Date(2019, 0o1, 0o2);
   PhotoFilePath: string = 'assets/images/inconu.png'
-note:boolean=false
-  constructor(private http: HttpClient,public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService) {
-    this.http.get('http://localhost/note').subscribe(data => {
-      //this.post.push(data);
-    
-      this.dataSource = this.post[0];
-      console.log("nooooo"+this.dataSource
-        )
-  })
+  note: boolean = false
+  constructor(public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService, private datePipe: DatePipe) {
+
   }
-refrechNote()
-{
-  this.noteService.GetAlltNote().subscribe(data => {
-    //this.NoteList = data;
-    console.log(this.NoteList)
-  });
+  refrechNote() {
+    this.noteService.GetAlltNote().subscribe(data => {
+      this.NoteList = data;
+      console.log(this.NoteList)
+    });
 
-}
+  }
 
- 
+
   ngOnInit(): void {
-    console.log('note',this.notation)
+    console.log('note', this.notation)
     this.maintenant = this.maDate.getDate() + '-' + ((this.maDate.getMonth() + 1)) + '-' + this.maDate.getFullYear();
     this.refrechNote()
   }
   refreshcriList(e: any) {
     this.isShown = true;
     this.CritereService.getCritereByNorme(e.NormeId).subscribe(data => {
-      //this.CritereList = data;
+      this.CritereList = data;
       console.log(this.CritereList)
     });
 
@@ -95,9 +85,9 @@ refrechNote()
       Id: note.Id,
       note: note.note,
       image: note.image,
-      criterelabel: note.criterelabel,
-      Commentaire: note.commentaire,
-      PlanDate:note.noteDate,
+      //criterelabel: note.criterelabel,
+      Commentaire: note.comment,
+      PlanDate: note.noteDate,
 
     });
     //this.refreshnormList();
@@ -105,7 +95,7 @@ refrechNote()
 
 
   }
-  
+
   public saveData() {
     if (!this.noteService.formCum.valid) {
       alert("veuillez remplir tous les champs")
@@ -128,5 +118,5 @@ refrechNote()
     console.log(this.noteService.formCum.value);
     // alert(this.cumulative.designation);
   }
-  
+
 }

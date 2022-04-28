@@ -3,8 +3,8 @@ export interface Note {
     note?: number,
     image?: string,
     critereId?: string,
-    FilLocallId?:string,
-    commentaire?:string,
-    criterelabel?: string,
-    noteDate?:string
+    FilLocallId?: string,
+    comment?: string,
+    noteDate?: string
+    Userid?: string
 }

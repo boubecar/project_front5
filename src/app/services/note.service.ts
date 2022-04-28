@@ -7,23 +7,17 @@ import { Note } from '../note';
   providedIn: 'root'
 })
 export class NoteService {
-  backEndUrl: string = "https://localhost:44388/api/Normes";
+  backEndUrl: string = "https://localhost:44388/api/notation";
   formCum = this.fb.group({
-    Id: ['00000000-0000-0000-0000-000000000000', Validators.required],
-    note: [''],
-    image:[''],
-    criterelabel:[''],
-    Commentaire:[''],
-    planDescription:[''],
-    PlanDate:[''],
-
+    normeId: ['00000000-0000-0000-0000-000000000000', Validators.required],
+    designation: ['', Validators.required],
   });
   constructor(private http: HttpClient, private fb: FormBuilder) { }
   postNote(cumulative: Note) {
-    return this.http.post(this.backEndUrl + "/PostNote", cumulative, { responseType: "text" })
+    return this.http.post(this.backEndUrl + "/Postnotation", cumulative, { responseType: "text" })
   }
   GetAlltNote() {
-    return this.http.post(this.backEndUrl + "/PostNote", { responseType: "text" })
+    return this.http.get(this.backEndUrl + "/GetAllnotation")
   }
 
 }
