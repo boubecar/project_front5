@@ -27,14 +27,14 @@ export class NoteComponent implements OnInit {
     { NormeId: 4, designation: "Maintenir l'ordre", path: "fa-cubes" },
     { NormeId: 5, designation: "Débarrasser", path: 'fa-trash' },
   ]
-  NoteList: any
+  //NoteList: any
   /*CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
     { critereId: 1, criterelabel: "Nettoyer", normes: "" },
     { critereId: 2, criterelabel: 'Ranger', normes: "" },
     { critereId: 3, criterelabel: 'Etre rigoureux', normes: "" },
     { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
     { critereId: 5, criterelabel: "Débarrasser", normes: "" },
-  ]; 
+  ]; */
  NoteList: Array<{ Id: string, note: number, image: string, critereId: string, userId: string, FilLocallId: string, commentaire: string, criterelabel: string,eval:string }> = [
     { Id: "1", note: 20, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer",eval:"CR" },
     { Id: "2", note: 18, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:"CM"},
@@ -42,7 +42,7 @@ export class NoteComponent implements OnInit {
     { Id: "4", note: 13, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
     { Id: "5", note: 5, image: "assets/images/oasis.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
   ];
-*/
+
   isDisabled: boolean = true
   maintenant: string = ''
   maDate = new Date(2019, 0o1, 0o2);
@@ -53,7 +53,7 @@ export class NoteComponent implements OnInit {
   }
   refrechNote() {
     this.noteService.GetAlltNote().subscribe(data => {
-      this.NoteList = data;
+    //  this.NoteList = data;
       console.log(this.NoteList)
     });
 

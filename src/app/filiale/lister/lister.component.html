@@ -1,3 +1,12 @@
+ 
+                        <div class="d-flex flex-row" style="margin-left: 54%;">
+                           
+							<input type="search" style="width: 200px; margin-bottom: 30px" class="form-control" placeholder="Filter Pole " name="designation" [(ngModel)]="poleName" (ngModelChange)="SearchPole()">&nbsp; <i style="font-size: large; margin-top: 10px;" class="fa-solid fa-magnifying-glass"></i> &nbsp; &nbsp;
+							<input type="search" style="width: 200px; margin-bottom: 30px" class="form-control" placeholder="Filter Filiale " name="designation" [(ngModel)]="filialName" (ngModelChange)="Search()">&nbsp; <i style="font-size: large; margin-top: 10px;" class="fa-solid fa-magnifying-glass"></i>
+						</div>
+						 <div class="d-flex flex-row" style="margin-left: 48%;">
+							
+						 </div>
 <div class="row column1">
 	<div class="col-md-6 col-lg-4" *ngFor="let dataItem of filList">
 		<div class="full white_shd margin_bottom_30">
@@ -6,12 +15,12 @@
 					<img src="{{dataItem.image}}" alt="#"/>
 				</div>
 				<div class="user_info_cont">
-					<h4>{{dataItem.filialName}}</h4>
+					<h4>{{dataItem.filialName}}</h4> 
 					<p>Pole :</p>
-					<p class="p_status">{{dataItem.polename}}</p>
+					<p class="p_status">{{dataItem.poleName}}</p>
 					<button type="button" class="btn fa fa-trash btn-light mr-1 " (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
 					<button type="button" class="btn fa fa-pencil-square-o btn-light mr-1 " data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)"></button>
-					<button class="fas fa-info-circle" class="btn btn-success" class="fas fa-info-circle" (click)="detfil(dataItem)"></button>
+					<button  class="fa-solid fa-circle-info" style="border: transparent;background-color: transparent;" (click)="detfil(dataItem)"></button>
 				</div>
 
 			</div>
