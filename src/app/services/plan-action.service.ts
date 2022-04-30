@@ -10,9 +10,8 @@ export class PlanActionService {
   backEndUrl: string = "https://localhost:44388/api/Normes";
   formCum = this.fb.group({
     planId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-    notationId: [0, Validators.required],
-    criterelabel:[''],
-    PlanDescription:[''],
+    notationid: [0, Validators.required],
+    plandescription:[''],
     PlanDate:[''],
     image:['']
   });

@@ -71,3 +71,15 @@ background:#eee;
   .fa-exclamation-circle{
     color: rgb(255, 187, 0);
   }
+  #photo{
+    border: 3px solid rgb(42, 106, 243);
+    text-transform: uppercase;
+    border-color: transparent;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-top: 15px;  
+      color: rgb(42, 106, 243);
+    }
+    input[type="file"]{
+        display: none;
+    }

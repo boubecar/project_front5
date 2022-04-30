@@ -1,5 +1,6 @@
 import { DatePipe, formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,6 +8,7 @@ import { Note } from '../note';
 import { CritereService } from '../services/critere.service';
 import { NormeServiceService } from '../services/norme-service.service';
 import { NoteService } from '../services/note.service';
+import { PlanActionService } from '../services/plan-action.service';
 
 @Component({
   selector: 'app-note',
@@ -35,21 +37,27 @@ export class NoteComponent implements OnInit {
     { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
     { critereId: 5, criterelabel: "Débarrasser", normes: "" },
   ]; */
- NoteList: Array<{ Id: string, note: number, image: string, critereId: string, userId: string, FilLocallId: string, commentaire: string, criterelabel: string,eval:string }> = [
-    { Id: "1", note: 20, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer",eval:"CR" },
-    { Id: "2", note: 18, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:"CM"},
-    { Id: "3", note: 15, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
-    { Id: "4", note: 13, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
-    { Id: "5", note: 5, image: "assets/images/oasis.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval:""},
+ NoteList: Array<{ Id: string, note: number, image: string, critereId: string, userId: string, FilLocallId: string, comment: string, criterelabel: string,eval:string }> = [
+    { Id: "1", note: 20, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', comment: 'blablabla', criterelabel: "Nettoyer",eval:"CR" },
+    { Id: "2", note: 18, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', comment: 'blablabla', criterelabel: "Nettoyer", eval:"CM"},
+    { Id: "3", note: 15, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', comment: 'blablabla', criterelabel: "Nettoyer", eval:""},
+    { Id: "4", note: 13, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', comment: 'blablabla', criterelabel: "Nettoyer", eval:""},
+    { Id: "5", note: 5, image: "assets/images/oasis.jpg", critereId: '', userId: '', FilLocallId: '', comment: 'blablabla', criterelabel: "Nettoyer", eval:""},
   ];
 
   isDisabled: boolean = true
   maintenant: string = ''
-  maDate = new Date(2019, 0o1, 0o2);
+  maDate = new Date();
+  currentDate = new Date();
+ //taw=this.maDate.setDate(this.maDate.getDate() + 4);
+
+ 
+
+ // maDate = new Date(2022, 0o1, 0o2);
   PhotoFilePath: string = 'assets/images/inconu.png'
   note: boolean = false
-  constructor(public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService, private datePipe: DatePipe) {
-
+  constructor(public planService:PlanActionService,public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService,private datePipe: DatePipe) {
+  //  this.maDate = this.datePipe.transform(this.maDate, 'dd/MM/yyyy');
   }
   refrechNote() {
     this.noteService.GetAlltNote().subscribe(data => {
@@ -61,10 +69,20 @@ export class NoteComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log('note', this.notation)
     this.maintenant = this.maDate.getDate() + '-' + ((this.maDate.getMonth() + 1)) + '-' + this.maDate.getFullYear();
     this.refrechNote()
+    this.maintenant=this.addDays(4);
   }
+  pipe = new DatePipe('en-US');
+
+  addDays(days : number): string{
+    var futureDate = new Date();
+    var taw :string='';
+    futureDate. setDate(futureDate. getDate() + days);
+    taw = futureDate.getDate() + '/' + ((futureDate.getMonth() + 1)) + '/' + futureDate.getFullYear();
+
+    return taw;
+    }
   refreshcriList(e: any) {
     this.isShown = true;
     this.CritereService.getCritereByNorme(e.NormeId).subscribe(data => {
@@ -73,6 +91,7 @@ export class NoteComponent implements OnInit {
     });
 
   }
+  criterelabel:any
 
 
   ChangeData(note: Note) {
@@ -81,41 +100,49 @@ export class NoteComponent implements OnInit {
     this.noteService.formCum.controls['Commentaire'].disable();
     this.noteService.formCum.controls['criterelabel'].disable();
 */
+
+console.log(note);
     this.noteService.formCum.reset({
       Id: note.Id,
       note: note.note,
-      image: note.image,
-      //criterelabel: note.criterelabel,
-      Commentaire: note.comment,
-      PlanDate: note.noteDate,
-
+      comment:note.comment,
+      criterelabel:note.critereId
     });
+
     //this.refreshnormList();
 
 
 
   }
 
+  cumulative:any
   public saveData() {
-    if (!this.noteService.formCum.valid) {
+    console.log('hello');
+    console.log(this.planService.formCum.value);
+    if (!this.planService.formCum.valid) {
       alert("veuillez remplir tous les champs")
     }
-    // this.cumulative = {
-    //   normeId:this.cumulative.normeId,
-    //   designation: this.formCum.controls['designation'].value,
-    // }
-    if (this.noteService.formCum.controls['Id'].value == '00000000-0000-0000-0000-000000000000') {
+    if (this.planService.formCum.controls['planId'].value == '00000000-0000-0000-0000-000000000000') {
 
       console.log("post")
-      console.log(this.noteService.formCum.value);
-      this.noteService.postNote(this.noteService.formCum.value).subscribe(res => {
+      
+    /* this.cumulative = {
+      planId:this.planService.formCum. controls['planId'].value,
+      plandescription: this.planService.formCum.controls['plandescription'].value,
+      image: this.planService.formCum.controls['image'].value,
+      planDate: this.planService.formCum.controls['planDate'].value,
+      notationid: this.planService.formCum.controls['notationid'].value,
+     }
+     console.log(this.cumulative.value);
+      console.log(this.cumulative.value);*/
+      this.planService.postRec(this.planService.formCum.value).subscribe(res => {
         alert(res.toString());
         //  this.cumulative={}
       })
     }
 
     console.log('hello');
-    console.log(this.noteService.formCum.value);
+    console.log(this.planService.formCum.value);
     // alert(this.cumulative.designation);
   }
 

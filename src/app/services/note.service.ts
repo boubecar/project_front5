@@ -9,8 +9,10 @@ import { Note } from '../note';
 export class NoteService {
   backEndUrl: string = "https://localhost:44388/api/notation";
   formCum = this.fb.group({
-    normeId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-    designation: ['', Validators.required],
+    Id: ['00000000-0000-0000-0000-000000000000', Validators.required],
+    note: ['', Validators.required],
+    comment: ['', Validators.required],
+    criterelabel: ['', Validators.required],
   });
   constructor(private http: HttpClient, private fb: FormBuilder) { }
   postNote(cumulative: Note) {

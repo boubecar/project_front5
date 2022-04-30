@@ -6,6 +6,8 @@
 			<div class="full graph_head">
 				<div class="heading1 ">
 					<h2>Les notes attribué a Filiale le
+						{{currentDate | date:'yyyy-MM-dd'}}
+						<br>
 						{{maintenant}}
 					</h2>
 				</div>
@@ -53,7 +55,7 @@
 
 												</td>
 												<td>
-													{{i.commentaire}}
+													{{i.comment}}
 												</td>
 
 												<td>
@@ -71,41 +73,48 @@
 																</div>
 																<div class="modal-body">
 																	<div class="card">
-																		<form (ngSubmit)='saveData()' [formGroup]="noteService.formCum">
-
-																			<input type="hidden" formcontrolname="Id">
+																		<form (ngSubmit)='saveData()' [formGroup]="planService.formCum">
+																			<input type="hidden" formControlName="notationid">
+																			<input type="hidden" formControlName="planId">
 																			<div class="form-row">
 																				<div class="col-9">
 																					<label>Critere :
 																					</label>
-																					<input type="text" class="form-control" class="form-control input-sm" placeholder="critere" formcontrolname="criterelabel" readonly>
+																					<input type="text" class="form-control" class="form-control input-sm" placeholder="critere" readonly>
 																				</div>
 																				<div class="col-9">
 																					<label>Note  :
 																					</label>
-																					<input type="text" class="form-control" class="form-control input-sm" placeholder="note" formcontrolname="note" readonly>
+																					<input type="text" class="form-control" class="form-control input-sm" placeholder="note"  readonly >
 																				</div>
 																				<div class="col-9">
 																					<label>Commentaire :
 																					</label>
-																					<input type="text" class="form-control" class="form-control input-sm" placeholder="Nom" formcontrolname="Commentaire" readonly>
+																					<input type="text" class="form-control" class="form-control input-sm" placeholder="comment"  readonly>
 																				</div>
 																				<div class="col-9">
 																					<label>Date Limite :
 																					</label>
-																					<input type="date" name="party" min="2022-04-01" max="2022-04-20">
+																					<input type="date" name="party"  value="maintenant" formControlName="planDate" style="margin-top: 5%;">
 																				</div>
 																				<div class="col-9">
-																					<img [src]="PhotoFilePath" style="width: 200px;" alt="#"/>
+																					<img [src]="PhotoFilePath" style="width: 200px; margin-top: 5%;" alt="#"/>
+																				</div>
+																				<div class="col-md-9 mb-3">
+																					<label for="w3review">Reclamation:</label>
+																					<textarea id="w3review" name="w3review" rows="4" cols="50" formControlName="plandescription">
+																						le plan a suivre</textarea>
 																				</div>
 
 																				<div class="col-md-6 mb-3">
-																					<label for="w3review">Reclamation:</label>
-																					<textarea id="w3review" name="w3review" rows="4" cols="50" formcontrolname="planDescription">
-																						le plan a suivre</textarea>
-																				</div>
+																				<input type="file" id="file" class="mt-2"  formControlName="image" />
+																				<label for="file" id="photo"> 
+																				<i  class="fa-solid fa-camera"></i>
+																				choisir une image
+																				</label>
 																			</div>
-																			<button type="button" class="btn btn-primary float-left" type="submit">Enregister
+																			</div>
+																			<button type="button" class="btn btn-primary float-left" type="submit" >Enregister
 																			</button>
 																		</form>
 
