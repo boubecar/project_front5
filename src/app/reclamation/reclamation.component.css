@@ -1,3 +1,14 @@
-.page_title {
+.midde_cont {
     margin-top: 5em;
+}
+.div{
+    background-color: blueviolet;
+    width: 100%;
+    margin-top: 3px;
+}
+.dash_blog{
+    width: 90% ;
+}
+.dash_blog_inner{
+    margin-left: 6%;
 }

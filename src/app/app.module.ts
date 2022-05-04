@@ -28,6 +28,9 @@ import { FilLocalComponent } from './fil-local/fil-local.component';
 import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2OrderModule } from 'ng2-order-pipe';
+import { LocalComponent } from './local/local.component';
+import { LocalListComponent } from './local/local-list/local-list.component';
+import { UsersComponent } from './users/users.component';
 
 
 
@@ -53,6 +56,9 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
     AddEditComponent,
     NoteComponent,
     FilLocalComponent,
+    LocalComponent,
+    LocalListComponent,
+    UsersComponent,
 
   ],
   imports: [

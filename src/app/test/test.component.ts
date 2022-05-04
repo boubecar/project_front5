@@ -7,6 +7,7 @@ import { Norme } from '../norme';
 import { FilialeService } from '../services/filiale.service';
 import { LocalService } from '../services/local.service';
 import { NormeServiceService } from '../services/norme-service.service';
+import {FormControl,FormArray } from '@angular/forms'   
 
 @Component({
   selector: 'app-test',
@@ -14,8 +15,36 @@ import { NormeServiceService } from '../services/norme-service.service';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
+// Form Array //
+title = 'formarray';  
+  orderForm!: FormGroup;  
+  items!: FormArray;  
+  constructor(private formBuilder: FormBuilder) {}   
+  ngOnInit() {  
+    this.orderForm = new FormGroup({  
+      items: new FormArray([])  
+    });  
+  }   
+  createItem(): FormGroup {  
+    return this.formBuilder.group({  
+      name: '',  
+      description: '',  
+      price: ''  
+    });  
+  }   
+  addItem(): void {  
+    this.items = this.orderForm.get('items') as FormArray;  
+    this.items.push(this.createItem());  
+  }  
 
-  isShown: boolean = false;
+
+
+
+
+
+
+// Form Array //
+ /* isShown: boolean = false;
   selectedObject1: any;
   selectedObject: any;
   constructor(private router: Router, private fb: FormBuilder, public filialeService: FilialeService, public LocService: LocalService) {
@@ -45,7 +74,7 @@ export class TestComponent implements OnInit {
    {filialeId: "1", localdescription: "Tunis",image:"assets/images/alimentation-animale.png"},
    {filialeId: "1", localdescription: "wardia",image:"assets/images/oasis.jpg"},
  ];*/
-  filList: any
+ /* filList: any
   LocalList: any
   ngOnInit(): void {
     this.refreshfilList();
@@ -114,7 +143,7 @@ export class TestComponent implements OnInit {
        this.PhotoFilePath=this.service.formCum.controls['image'].value;
      })*/
      
-     if (e.target.files)
+    /* if (e.target.files)
      {
        var reader = new FileReader();
        reader.readAsDataURL(e.target.files[0]);
@@ -125,5 +154,5 @@ export class TestComponent implements OnInit {
      console.log("photo")
      //console.log(this.service.formCum.controls['image'].value)
    }
-
+*/
 }

@@ -1,0 +1,77 @@
+
+      <div class="full_container">
+         <div class="inner_container">
+            <app-nav></app-nav>
+            <!-- Sidebar  -->
+            <!-- end sidebar -->
+            <!-- right content -->
+               <!-- topbar -->
+               <!-- end topbar -->
+               <!-- dashboard inner -->
+               
+               <div class="midde_cont">
+                  <div class="container-fluid">
+                     <div class="row column_title">
+                        <div class="col-md-12">
+                           <div class="page_title">
+                              <h2>Contacts</h2>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- row -->
+                     <div class="row column1">
+                        <div class="col-md-12">
+                           <div class="white_shd full margin_bottom_30">
+                              <div class="full graph_head">
+                                 <div class="heading1 margin_0">
+                                    <h2>Contacts</h2>
+                                 </div>
+                              </div>
+                              <div class="full price_table padding_infor_info">
+                                 <div class="row">
+                                    <!-- column contact --> 
+                                    
+                                    <!-- end column contact blog -->
+                                    <!-- column contact --> 
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30"*ngFor="let dataItem of menberList" >
+                                       <div class="contact_blog">
+                                          <div class="contact_inner">
+                                             <div class="left">
+                                                <h3>{{dataItem.userName}}</h3>
+                                                <p><strong>About: </strong>Responsables de la filiale {{dataItem.Filile}} à {{dataItem.Filoc}}</p>
+                                                <ul class="list-unstyled">
+                                                   <li><i class="fa fa-envelope-o"></i> {{dataItem.email}}</li>
+                                                   <li><i class="fa fa-phone"></i> {{dataItem.mobile}}</li>
+                                                </ul>
+                                             </div>
+                                             <div class="right">
+                                                <div class="profile_contacts">
+                                                   <img class="img-responsive" src="assets/images/layout_img/msg2.png" alt="#" />
+                                                </div>
+                                             </div>
+                                             <div class="bottom_list">
+                                                
+                                                <div class="right_button">
+                                                   <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
+                                                   </i> <i class="fa fa-comments-o"></i> 
+                                                   </button>
+                                                   <button type="button" class="btn btn-primary btn-xs">
+                                                   <i class="fa fa-user"> </i> View Profile
+                                                   </button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!-- end column contact blog -->
+                                </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- end row -->
+                     </div>
+                  </div>
+                  <!-- end dashboard inner -->
+               </div>
+            
+         </div>
