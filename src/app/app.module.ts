@@ -31,6 +31,8 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import { LocalComponent } from './local/local.component';
 import { LocalListComponent } from './local/local-list/local-list.component';
 import { UsersComponent } from './users/users.component';
+import { AuthentificationComponent } from './authentification/authentification.component';
+import { LoginComponent } from './authentification/login/login.component';
 
 
 
@@ -59,6 +61,8 @@ import { UsersComponent } from './users/users.component';
     LocalComponent,
     LocalListComponent,
     UsersComponent,
+    AuthentificationComponent,
+    LoginComponent,
 
   ],
   imports: [

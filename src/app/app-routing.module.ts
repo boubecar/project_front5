@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './authentification/login/login.component';
 import { CritereComponent } from './critere/critere.component';
 import { EmailComponent } from './email/email.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
@@ -33,7 +34,8 @@ const routes: Routes = [
   { path: 'fl/:id', component: FilialeComponent },
   { path: 'lf/:id', component: FilLocalComponent },
   { path: 'local', component: LocalComponent },
-  { path: 'users', component: UsersComponent }
+  { path: 'users', component: UsersComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
