@@ -18,8 +18,10 @@
 					<h4>{{dataItem.filialName}}</h4> 
 					<p>Pole :</p>
 					<p class="p_status">{{dataItem.poleName}}</p>
-					<button type="button" class="btn fa fa-trash btn-light mr-1 " (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
-					<button type="button" class="btn fa fa-pencil-square-o btn-light mr-1 " data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)"></button>
+					<button type="button" class="btn fa fa-trash btn-light mr-1 " (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false" style=" background-color :transparent; 
+					border-color: transparent;"></button>
+					<button type="button" class="btn fa fa-pencil-square-o btn-light mr-1 " data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)" style=" background-color :transparent; 
+					border-color: transparent;"></button>
 					<button  class="fa-solid fa-circle-info" style="border: transparent;background-color: transparent;" (click)="detfil(dataItem)"></button>
 				</div>
 

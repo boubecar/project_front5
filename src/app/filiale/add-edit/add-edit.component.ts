@@ -46,6 +46,9 @@ export class AddEditComponent implements OnInit {
 
   ///Tost/////
   filList: any = []
+
+
+  
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.idnorm = params['id'];

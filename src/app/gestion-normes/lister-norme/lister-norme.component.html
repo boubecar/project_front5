@@ -1,4 +1,5 @@
-<button type="button" class="fa fa-plus-circle btn btn-light float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+<button type="button" class="fa fa-plus-circle btn btn-light float-right m-2" style="  border-radius: 50%;
+" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
 	Ajouter norme
 </button>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -46,15 +47,15 @@
 				<button type="button" class="btn-sup" (click)="deleteClick(dataItem)">
 					<i class="fa-solid fa-trash-can"></i>
 				</button>&nbsp;&nbsp;
-				<button type="button" class="btn-sup" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)">
+				<button type="button" class="btn-sup" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)" style="border: transparent ;background-color:#17D7A0 ;border-radius: 100px;">
 					<i class="fa-solid fa-pen-to-square"></i>
 				</button>&nbsp;&nbsp;
-				<button (click)="detnorme(dataItem)" class="btn-sup ">
+				<button (click)="detnorme(dataItem)" class="btn-sup " style="background-color: #DD4A48 ; border-color: transparent;border-radius: 100px;">
 					<i class="fa-solid fa-circle-info"></i>
 				</button>
 
 			</td>
 		</tr>
 	</tbody>
-	<pagination-controls (pageChange)="p = $event"></pagination-controls>
+	<pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
 </table>

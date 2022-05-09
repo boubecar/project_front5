@@ -9,3 +9,22 @@
     width: 300px;
     margin-left: 500px;
 }
+
+.ngx-pagination {
+    padding-left: 0px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    /**  .btn-info  */
+    .ngx-pagination .current {
+      background: #17a2b8 !important;
+      border: transparent !important;
+      border-radius: 20px !important;
+    }
+
+    .ngx-pagination .current:hover {
+      background: #17a2b8 !important;
+      border-radius: 20px !important; 
+      border: transparent !important;
+    }

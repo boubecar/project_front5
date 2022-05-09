@@ -33,6 +33,7 @@ import { LocalListComponent } from './local/local-list/local-list.component';
 import { UsersComponent } from './users/users.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { LoginComponent } from './authentification/login/login.component';
+import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.component';
 
 
 
@@ -63,6 +64,7 @@ import { LoginComponent } from './authentification/login/login.component';
     UsersComponent,
     AuthentificationComponent,
     LoginComponent,
+    AddEditUserComponent,
 
   ],
   imports: [

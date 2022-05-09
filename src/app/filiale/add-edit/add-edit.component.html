@@ -1,13 +1,13 @@
-<form (ngSubmit)='saveData()' [formGroup]="formCum" novalidate>
-
-
+<form (ngSubmit)='saveData()' [formGroup]="formCum" >
 	<input type="hidden" formcontrolname="filialeId" >
 	<div class="form-row">
 
 		<div class="col-md-6 mb-3">
 			<label style="margin-left: 15px;" for="validationCustom01" >Enter le nom de filiale
 			</label>
-			<input type="text" style="margin-left: 15px; width: 360px;" class="form-control" class="form-control input-sm" placeholder="Nom" formcontrolname="filialeName" id="validationCustom01" >
+			<input type="text" style="margin-left: 15px; width: 360px;" class="form-control input-sm" placeholder="Nom" formControlName="filialeName" id="validationCustom01" 
+			 >
+			 <small  class="text-danger">Name is Required</small> 
 			
 		</div>
 
