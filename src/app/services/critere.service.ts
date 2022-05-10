@@ -30,4 +30,9 @@ export class CritereService {
   getCritereByNorme(cumulative: any) {
     return this.http.get(this.backEndUrl + "/GetAllcritersByNormes?id=" + cumulative,)
   }
+
+  getGroupedCriterion() {
+    return this.http.get(this.backEndUrl + "/getGroupedCriterion")
+  }
 }
+

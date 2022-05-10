@@ -21,5 +21,7 @@ export class NoteService {
   GetAlltNote() {
     return this.http.get(this.backEndUrl + "/GetAllnotation")
   }
-
+  GetAllplanByNote(cumulative: any) {
+    return this.http.get(this.backEndUrl + "/GetAllplan_actionNote?id=" + cumulative,)
+  }
 }
