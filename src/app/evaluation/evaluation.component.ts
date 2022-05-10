@@ -41,21 +41,21 @@ export class EvaluationComponent implements OnInit {
   data: any;
   Userid: String = ''
   noteDate: String = ''
-  /*filList: Array<{filialeId: string, filialName: string,image:string}> = [
+  filList: Array<{filialeId: string, filialName: string,image:string}> = [
    {filialeId: "1", filialName: "Mazraa",image:"assets/images/mazraa.jpg"},
    {filialeId: "1", filialName: 'Jadida ',image:"assets/images/download.jpg"},
    {filialeId: "1", filialName: ' Gan',image:"assets/images/alimentation-animale.png"},
    {filialeId: "1", filialName: "Med oil",image:"assets/images/alimentation-animale.png"},
    {filialeId: "1", filialName: "oasis",image:"assets/images/oasis.jpg"},
  ];
- LocalList: Array<{filialeId: string, localdescription: string,image:string}> = [
+ /*LocalList: Array<{filialeId: string, localdescription: string,image:string}> = [
    {filialeId: "1", localdescription: "Zahra",image:"assets/images/mazraa.jpg"},
    {filialeId: "1", localdescription: 'Mouroug ',image:"assets/images/download.jpg"},
    {filialeId: "1", localdescription: ' Rades',image:"assets/images/alimentation-animale.png"},
    {filialeId: "1", localdescription: "Tunis",image:"assets/images/alimentation-animale.png"},
    {filialeId: "1", localdescription: "wardia",image:"assets/images/oasis.jpg"},
  ];*/
-  filList: any
+//  filList: any
   LocalList: any
   //constructor(public normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService) { }
 

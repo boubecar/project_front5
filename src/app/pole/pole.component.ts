@@ -16,13 +16,13 @@ export class PoleComponent implements OnInit {
   constructor(public service: PoleServiceService, private fb: FormBuilder, private router: Router) { }
 
   // constructor(private service:PoleServiceService) { }
-  PoleList:Array<{PoleId: number, poleName: string,image :string}> = [
+  /*PoleList:Array<{PoleId: number, poleName: string,image :string}> = [
     {PoleId: 1, poleName: "alimentation-animale",image:"assets/images/alimentation-animale.png"},
     {PoleId: 2, poleName: 'agroalimentaire',image:"assets/images/agrico.png"},
     {PoleId: 3, poleName: 'avicole',image:"assets/images/avicole.jpg"},
     {PoleId: 4, poleName: "industrielle",image:"assets/images/industrielle.png"},
-];
- // PoleList: any = []
+];*/
+  PoleList: any = []
   PhotoFileName: string = ""
   PhotoFilePath: string = 'assets/images/inconu.png'
 

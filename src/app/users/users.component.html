@@ -1,7 +1,7 @@
 
       <div class="full_container">
          <div class="inner_container">
-            <app-nav></app-nav>
+            <app-nav></app-nav> 
             <!-- Sidebar  -->
             <!-- end sidebar -->
             <!-- right content -->
@@ -24,7 +24,26 @@
                      
 
                      <div class="row column1">
-                        <span class="plus_green_bt" style="z-index: 1;position: absolute;margin-right: 30px;margin-bottom: 400px;"><a href="#" style="background-color: #2155CD;">+</a></span>
+                        <span class="plus_green_bt" style="z-index: 1;position: absolute;margin-right: 30px;margin-bottom: 450px;"  ><a href="#exampleModal"data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false" style="background-color: #2155CD;">+</a></span>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel" style="padding-left:40% ;color: rgb(42, 106, 243);">User</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <div class="card">
+                                       <app-add-edit-user></app-add-edit-user>
+                                       <div class="card-body"></div>
+                                    </div>
+                                    
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
                         <div class="col-md-12">
 
                            <div class="white_shd full margin_bottom_30">
@@ -57,7 +76,7 @@
                                                    <button type="button" class="btn btn-primary btn-xs" style="background-color: #DD4A48 ; border-color: transparent;border-radius: 100px;" > <i class="fa-solid fa-trash"></i>
                                                    
                                                    </button> &nbsp;
-                                                   <button type="button" class="btn btn-xs" style="border: transparent ;background-color:#17D7A0 ;border-radius: 100px;">
+                                                   <button type="button" class="btn btn-xs" style="border: transparent ;background-color:#17D7A0 ;border-radius: 100px;" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)">
                                                       <i class="fa-solid fa-eye"></i>
                                                    </button>
                                                 </div>
@@ -77,3 +96,14 @@
                </div>
             
          </div>
+
+
+
+
+
+
+
+
+
+
+         
