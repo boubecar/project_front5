@@ -2,9 +2,9 @@ export interface Note {
     Id?: string,
     note?: number,
     image?: string,
-    critereId?: string,
-    FilLocallId?: string,
+    critereid?: string,
+    FilLocalid?: string,
     comment?: string,
-    noteDate?: string
+    noteDate?: Date
     Userid?: string
 }

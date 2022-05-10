@@ -34,14 +34,14 @@ export class EvaluationComponent implements OnInit {
   note: number = 0;
   isShown1: boolean = false;
   PhotoFilePath: String = ''
-  FilLocallId: String = ''
+  FilLocalid: String = 'dff5b96c-07a5-489b-cbec-08da21a93181'
   commentaire: String = ''
-  eval: String = '' 
-  selectedObject1: any;
+  eval: String = ''
+  selectedObject1 = ''
   data: any;
-  Userid: String = ''
-  noteDate: String = ''
-  filList: Array<{filialeId: string, filialName: string,image:string}> = [
+  Userid: String = '60fc1633-b1a0-46a3-fbf4-02da28c41eff'
+  date_notation = new Date();
+  /*filList: Array<{filialeId: string, filialName: string,image:string}> = [
    {filialeId: "1", filialName: "Mazraa",image:"assets/images/mazraa.jpg"},
    {filialeId: "1", filialName: 'Jadida ',image:"assets/images/download.jpg"},
    {filialeId: "1", filialName: ' Gan',image:"assets/images/alimentation-animale.png"},
@@ -55,7 +55,7 @@ export class EvaluationComponent implements OnInit {
    {filialeId: "1", localdescription: "Tunis",image:"assets/images/alimentation-animale.png"},
    {filialeId: "1", localdescription: "wardia",image:"assets/images/oasis.jpg"},
  ];*/
-//  filList: any
+  filList: any
   LocalList: any
   //constructor(public normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService) { }
 
@@ -142,34 +142,32 @@ export class EvaluationComponent implements OnInit {
   }
   cumulative: any
   image: string = ''
-  Id: string = ''
-  critere: string = 'b99488be-96fe-4d7c-055b-08da28bfeb78'
+  id: string = '00000000-0000-0000-0000-000000000000'
+  critereid: string = 'b26f4836-1a8c-4bb8-6752-08da21e09543'
   cumulative1: Note = {}
   notation() {
     this.cumulative = {
-      id: this.Id,
-
-      commentaire: this.comment,
+      Id: this.id,
+      comment: this.comment,
       note: this.note,
-      noteDate: this.noteDate,
-
-      critereid: this.critere,
+      date_notation: this.date_notation,
+      critereid: this.critereid,
       image: this.image,
       Userid: this.Userid,
-      evaluer: this.eval,
-      FilLocallId: this.selectedObject1,
+      FilLocalid: this.FilLocalid,
 
 
 
 
 
     }
+    console.log(this.cumulative)
     this.noteService.postNote(this.cumulative).subscribe(res => {
       alert(res.toString());
       //  this.cumulative={}
     })
     console.log('hhhh')
-    console.log(this.cumulative)
+
   }
 
 }

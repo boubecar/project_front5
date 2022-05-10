@@ -99,10 +99,10 @@
 													<tbody>
 														<tr *ngFor="let i of CritereList">
 
-															<td [(ngModel)]="critere">{{i.criterelabel}}</td>
+															<td [(ngModel)]="critereid">{{i.criterelabel}}</td>
 															<td>
-																<div class="input-group mb-3" [(ngModel)]="note">
-																	<input type="text" class="form-control" style="width: 50px;" placeholder="?/20" aria-describedby="basic-addon2" (keyup)="mention()">
+																<div class="input-group mb-3">
+																	<input type="text" class="form-control" style="width: 50px;" placeholder="?/20" aria-describedby="basic-addon2" [(ngModel)]="note" (keyup)="mention()">
 																	<div class="input-group-append">
 																		<button class="btn cur-p btn-light fa fa-check-circle" type="button"></button>
 																	</div>
@@ -112,12 +112,15 @@
 															<td>cc
 
 															</td>
-															<td type="hidden" [(ngModel)]="Id"></td>
+															<td type="hidden" [(ngModel)]="id"></td>
+															<td type="hidden" [(ngModel)]="Userid"></td>
+															<td type="hidden" [(ngModel)]="date_notation"></td>
+															<td [(ngModel)]="FilLocalid"></td>
 															<td>
 																<div class="timeline-panel">
 
-																	<div class="timeline-body" [(ngModel)]="comment">
-																		<input class="form-control input-md" id="myInput" placeholder="comentaire" type="text" required="required">
+																	<div class="timeline-body">
+																		<input class="form-control input-md" id="myInput" [(ngModel)]="comment" placeholder="comentaire" type="text" required="required">
 																	</div>
 																</div>
 															</td>
