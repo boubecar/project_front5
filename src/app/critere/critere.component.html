@@ -37,15 +37,15 @@
 								<div class="card-body">
 									<form (ngSubmit)="saveData()" [formGroup]="formCum">
 										<div class="form-row">
-											<input type="hidden" formControlName="critereId">
+											<input type="hidden" formcontrolname="critereId">
 											<div class="col-md-6 mb-3">
 												<label>enter le nom de nouveau  critere
 												</label>
-												<input type="text" class="Form-Control" placeholder="Nom" formControlName="criterelabel" required>
+												<input type="text" class="Form-Control" placeholder="Nom" formcontrolname="criterelabel" required>
 											</div>
 
 										</div>
-										<input type="hidden" formControlName="normeId">
+										<input type="hidden" formcontrolname="normeId">
 
 										<button type="button" class="btn btn-primary float-right" type="submit">ajouter
 										</button>
@@ -63,7 +63,7 @@
 					<tr>
 						<th>CritereId</th>
 						<th>CritereName</th>
-						<th>normeid</th>
+
 						<th>Options</th>
 					</tr>
 				</thead>
@@ -71,10 +71,10 @@
 					<tr *ngFor="let dataItem of CritereList">
 						<td>{{dataItem.critereId}}</td>
 						<td>{{dataItem.criterelabel}}</td>
-						<td>{{dataItem.normes}}</td>
+
 						<td style="width:20%;">
 							<button type="button" class="btn fa fa-trash btn-light mr-1" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
-							<button type="button" class="btn fa fa-pencil-square-o btn-light mr-1" data-toggle="modal" data-target="#exampleModal1" (click)="saveData()" ></button>
+							<button type="button" class="btn fa fa-pencil-square-o btn-light mr-1" data-toggle="modal" data-target="#exampleModal1" (click)="saveData()"></button>
 						</td>
 					</tr>
 				</tbody>
