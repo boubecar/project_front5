@@ -6,6 +6,8 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Note } from '../note';
 import { CritereService } from '../services/critere.service';
+import { FilialeService } from '../services/filiale.service';
+import { LocalService } from '../services/local.service';
 import { NormeServiceService } from '../services/norme-service.service';
 import { NoteService } from '../services/note.service';
 import { PlanActionService } from '../services/plan-action.service';
@@ -17,7 +19,8 @@ import { PlanActionService } from '../services/plan-action.service';
   providers: [DatePipe]
 })
 export class NoteComponent implements OnInit {
-
+  filList: any
+  LocalList: any
   CritereList: any
   notation: any
   eval: string = ''
@@ -60,17 +63,40 @@ export class NoteComponent implements OnInit {
   note: boolean = false
   NoteList: any;
   NormeList: any;
-  constructor(public planService: PlanActionService, public normeService: NormeServiceService, public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService, private datePipe: DatePipe) {
+  formCum = this.fb.group({
+    filialeId: '00000000-0000-0000-0000-000000000000',
+    filLocalid: '00000000-0000-0000-0000-000000000000',
+  });
+  constructor(public planService: PlanActionService, public normeService: NormeServiceService, public LocService: LocalService, public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService, private datePipe: DatePipe, public filialeService: FilialeService) {
     //this.maDate = this.datePipe.transform(this.maDate, 'dd/MM/yyyy');
   }
-  refrechNote() {
-    this.noteService.GetAlltNote().subscribe(data => {
-      this.NoteList = data;
-      console.log(this.NoteList)
+
+  refreshfilList() {
+    this.filialeService.getFilialeList().subscribe(data => {
+      this.filList = data;
+      console.log(this.filList)
     });
 
   }
 
+  refreshLocList() {
+    //  debugger
+    this.isShown = true;
+    if (this.formCum.value.filialeId) {
+      this.LocService.GetAllLocalByFilale(this.formCum.value.filialeId).subscribe(data => {
+        this.LocalList = data;
+        console.log(this.LocalList);
+
+      });
+    }
+  }
+  refrechNote() {
+    this.noteService.GetAllNoteByLocal(this.formCum.value.filLocalid).subscribe(data => {
+      this.NoteList = data;
+      console.log("ggg", this.NoteList)
+    });
+
+  }
   refreshnormList() {
     this.normeService.getListNormes().subscribe(data => {
       this.NormeList = data;
@@ -80,8 +106,10 @@ export class NoteComponent implements OnInit {
   ngOnInit(): void {
     this.refreshnormList()
     this.maintenant = this.maDate.getDate() + '-' + ((this.maDate.getMonth() + 1)) + '-' + this.maDate.getFullYear();
-    this.refrechNote()
+
     this.maintenant = this.addDays(4);
+    this.refreshfilList();
+
   }
   pipe = new DatePipe('en-US');
 
@@ -111,13 +139,13 @@ export class NoteComponent implements OnInit {
     this.noteService.formCum.controls['criterelabel'].disable();
 */
 
-    console.log(note);
-    this.noteService.formCum.reset({
-      Id: note.Id,
-      note: note.note,
-      comment: note.comment,
-      criterelabel: note.critereid
-    });
+    // console.log(note);
+    // this.noteService.formCum.reset({
+    //   Id: note.Id,
+    //   note: note.note,
+    //   comment: note.comment,
+    //   criterelabel: note.critereid
+    // });
 
     //this.refreshnormList();
 

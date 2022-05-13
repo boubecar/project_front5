@@ -11,7 +11,7 @@ import { PoleServiceService } from '../services/pole-service.service';
 })
 export class PoleComponent implements OnInit {
   filaleList: any;
-  poleName:any
+  poleName: any
   //constructor() { }
   constructor(public service: PoleServiceService, private fb: FormBuilder, private router: Router) { }
 
@@ -72,9 +72,11 @@ export class PoleComponent implements OnInit {
 */
 
   public saveData() {
+
     if (!this.service.formCum.valid) {
       alert("veuillez remplir tous les champs")
     }
+    debugger
     if (this.service.formCum.controls['poleId'].value == '00000000-0000-0000-0000-000000000000') {
       this.service.postPole(this.service.formCum.value).subscribe(res => {
         alert(res.toString())
@@ -83,17 +85,12 @@ export class PoleComponent implements OnInit {
       })
     }
     else {
-
-      console.log("put")
-      console.log(this.service.formCum.value);
       this.service.updatePole(this.service.formCum.value).subscribe(res => {
         alert(res.toString())
         this.refreshPoleList()
       })
     }
-    console.log('hello');
-    console.log(this.service.formCum.value);
-    alert(this.service.formCum.value);
+    // this.refreshPoleList()
   }
 
 
@@ -149,12 +146,13 @@ export class PoleComponent implements OnInit {
   detnorme(item: any) {
     this.router.navigate(['/fl', item.poleId]);
   }
-  Search(){
-    if (this.poleName==''){
+  Search() {
+    if (this.poleName == '') {
       this.ngOnInit()
-    }else{this.PoleList = this.PoleList.filter((res: { poleName: string; }) => {
-      return res.poleName.toLocaleLowerCase().match(this.poleName.toLocaleLowerCase());
-    })
-    } 
+    } else {
+      this.PoleList = this.PoleList.filter((res: { poleName: string; }) => {
+        return res.poleName.toLocaleLowerCase().match(this.poleName.toLocaleLowerCase());
+      })
+    }
   }
 }

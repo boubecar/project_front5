@@ -11,12 +11,14 @@
 						</h2>
 					</div>
 				</div>
+	
 				<form [formGroup]="formCum">
-					<thead>
+		
+					
 						<div>
 							<div>
-								<div class="d-flex flex-row">
-									<select class="form-control" formcontrolname="filialName" (click)="refreshLocList()">
+								<div class="">
+									<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
 										<option *ngFor="let fil of filList " [value]="fil.filialId">
 											{{fil.filialName}}
 										</option>
@@ -27,12 +29,12 @@
 
 							</div>
 							<div>
-								<div class="d-flex flex-row">
-									<select class="form-control" formcontrolname="localdescription" *ngIf="isShown" (change)="onChangeCriterion()">
+								<div class="">
+									<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (change)="onChangeCriterion()">
 
 										<option value="" disabled selected hidden>Local
 										</option>
-										<option *ngFor="let loc of LocalList " [value]="loc.localdescription">
+										<option *ngFor="let loc of LocalList " [value]="loc.locallId">
 											{{loc.localdescription}}
 										</option>
 									</select>
@@ -41,15 +43,15 @@
 								</div>
 							</div>
 							<div>
-								<div class="d-flex flex-row">
-									<input class="form-control" type="date" formcontrolname="date">
+								<div class="">
+									<input class="form-control" type="date" formControlName="date_notation" [value]="today | date:'dd-MM-yyyy'">
 								</div>
 							</div>
 						</div>
-					</thead>
+					
 				</form>
 
-				<pre>{{AddOrEditNotationForm.value.NoteArray | json}}</pre>
+				
 				<div class="full inner_elements">
 					<div class="row">
 						<div class="col-md-12">
@@ -58,7 +60,7 @@
 
 
 									<form [formGroup]="AddOrEditNotationForm" autocomplete="off" (ngSubmit)="onSubmit()">
-										<div formarrayname="NoteArray">
+										<div formArrayName="NoteArray">
 
 											<ul class="nav nav-tabs p-3 rounded" id="groupeTap" role="tablist">
 												<ng-container *ngFor="let cretrionGroup of listGroupedCriterions ">
@@ -98,7 +100,7 @@
 																		</td>
 																		<td class="">
 																			<div class="input-group mb-3">
-																				<input type="number" class="form-control" style="width: 50px;" placeholder="?/20" aria-describedby="basic-addon2" formcontrolname="note">
+																				<input type="number" class="form-control" style="width: 50px;" placeholder="?/20" aria-describedby="basic-addon2" formControlName="note">
 																				<div class="input-group-append">
 																					<button class="btn cur-p btn-light fa fa-check-circle" type="button"></button>
 																				</div>
@@ -109,12 +111,12 @@
 																		<td>
 																			<div class="timeline-panel">
 																				<div class="timeline-body">
-																					<input class="form-control input-md" id="myInput" placeholder="comentaire" type="text" required="required" formcontrolname="comment">
+																					<input class="form-control input-md" id="myInput" placeholder="comentaire" type="text" required="required" formControlName="comment">
 																				</div>
 																			</div>
 																		</td>
 																		<td>
-																			<input type="file" formcontrolname="image">
+																			<input type="file" formControlName="image">
 																			<i class="fa fa-camera" aria-hidden="true"></i>
 																		</td>
 																	</ng-container>
@@ -132,7 +134,7 @@
 												Envoyer</button>
 										</div>
 									</form>
-
+ 
 								</div>
 							</div>
 

@@ -12,6 +12,7 @@ import { CritereService } from '../services/critere.service';
 import { groupedCriterionDTO } from '../groupedCriterionDTO';
 import { NoteService } from '../services/note.service';
 import { Critere } from '../critere';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-test',
@@ -30,16 +31,17 @@ export class TestComponent implements OnInit {
    get skills(): FormArray {
      return this.NotationForm.get("Note") as FormArray
    }*/
+  today = new Date()
+
   AddOrEditNotationForm = this.fb.group({
     NoteArray: this.fb.array([]),
   });
 
   formCum = this.fb.group({
-    localdescription: '',
-    filialName: '',
-    Date: '',
+    filialeId: '00000000-0000-0000-0000-000000000000',
+    filLocalid: '00000000-0000-0000-0000-000000000000',
+    date_notation: this.datePipe.transform(this.today, "yyyy-MM-dd"),
   });
-  datePipe: any;
   //ObjectArray: any;
 
   get controlArray(): FormArray {
@@ -66,16 +68,15 @@ export class TestComponent implements OnInit {
      console.log(this.skills)
    }*/
   buildFormNotation(listCriterion: any) {
-    debugger
     listCriterion.forEach((element: any) => {
       this.controlArray.push(this.fb.group({
         id: '00000000-0000-0000-0000-000000000000',
-        note: 0,
+        note: '',
         comment: [],
-        date: ['', Validators.required],
+        date_notation: ['', Validators.required],
         critereid: [element.critereId],
-        FilLocalid: [],
-        Userid: ['60fc1633-b1a0-46a3-fbf4-02da28c41eff'],
+        filLocalid: [],
+        userid: ['60fc1633-b1a0-46a3-fbf4-02da28c41eff'],
         image: [],
 
         //  index:0,
@@ -84,9 +85,6 @@ export class TestComponent implements OnInit {
       )
     })
 
-  }
-  today(today: any, arg1: string): any {
-    throw new Error('Method not implemented.');
   }
   /*addSkills() {
     // this.skills.push(this.newNote());
@@ -97,7 +95,8 @@ export class TestComponent implements OnInit {
 
   // Form Array //
 
-  constructor(private router: Router, public fb: FormBuilder, private normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService, public noteService: NoteService) {
+  constructor(private router: Router, public fb: FormBuilder, private normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService,
+    public LocService: LocalService, public noteService: NoteService, public datePipe: DatePipe) {
   }
   //NormeList: any = []
   //CritereList: any = []
@@ -127,12 +126,12 @@ export class TestComponent implements OnInit {
   data: any;
   Userid: String = ''
   noteDate: String = ''
-  /* filList: Array<{ filialeId: string, filialName: string, image: string }> = [
-     { filialeId: "1", filialName: "Mazraa", image: "assets/images/mazraa.jpg" },
-     { filialeId: "1", filialName: 'Jadida ', image: "assets/images/download.jpg" },
-     { filialeId: "1", filialName: ' Gan', image: "assets/images/alimentation-animale.png" },
-     { filialeId: "1", filialName: "Med oil", image: "assets/images/alimentation-animale.png" },
-     { filialeId: "1", filialName: "oasis", image: "assets/images/oasis.jpg" },
+  /* filList: Array<{ filialeId: string, filialeId: string, image: string }> = [
+     { filialeId: "1", filialeId: "Mazraa", image: "assets/images/mazraa.jpg" },
+     { filialeId: "1", filialeId: 'Jadida ', image: "assets/images/download.jpg" },
+     { filialeId: "1", filialeId: ' Gan', image: "assets/images/alimentation-animale.png" },
+     { filialeId: "1", filialeId: "Med oil", image: "assets/images/alimentation-animale.png" },
+     { filialeId: "1", filialeId: "oasis", image: "assets/images/oasis.jpg" },
    ];
    LocalList: Array<{ filialeId: string, localdescription: string, image: string }> = [
      { filialeId: "1", localdescription: "Zahra", image: "assets/images/mazraa.jpg" },
@@ -150,6 +149,7 @@ export class TestComponent implements OnInit {
   ngOnInit(): void {
     this.refreshnormList()
     this.refreshfilList();
+    console.log(this.controlArray.controls);
 
   }
   refreshnormList() {
@@ -178,13 +178,10 @@ export class TestComponent implements OnInit {
 
   refreshLocList() {
     //  debugger
-    console.log("hhhhh")
-    console.log(this.formCum.value.filialName)
     this.isShown = true;
-    if (this.formCum.value.filialName) {
-      this.LocService.GetAllLocalByFilale(this.formCum.value.filialName).subscribe(data => {
+    if (this.formCum.value.filialeId) {
+      this.LocService.GetAllLocalByFilale(this.formCum.value.filialeId).subscribe(data => {
         this.LocalList = data;
-        console.log("hiii");
         console.log(this.LocalList);
       });
     }
@@ -223,10 +220,9 @@ export class TestComponent implements OnInit {
         // debugger
         this.listGroupedCriterions = res as groupedCriterionDTO[]
         this.listGroupedCriterions.forEach((group: any) => {
-          alert(group)
           this.buildFormNotation(group.criterionDTOs)
-
-          console.log("list", group.criterionDTOs);
+          console.log("array =" + this.controlArray.controls[0].value.critereid);
+          //  console.log("list", group.criterionDTOs);
         });
       }
     )
@@ -245,11 +241,12 @@ export class TestComponent implements OnInit {
 
   }*/
   onSubmit() {
+    //  debugger
+    alert(this.formCum.value)
+    this.controlArray.controls.forEach((form: any) => { form['controls'].date_notation.setValue(this.formCum.value.date_notation) });
+    this.controlArray.controls.forEach((form: any) => { form['controls'].filLocalid.setValue(this.formCum.value.filLocalid) });
 
-    this.controlArray.controls.forEach(form => { form.setValue(this.formCum.value.Date) });
-    this.controlArray.controls.forEach(form => { form.setValue(this.formCum.value.localdescription) });
-
-    this.controlArray.controls.forEach((element, i) => {
+    this.controlArray.controls.forEach((element: any, i: Number) => {
 
       if (element.value.note != null) {
         this.noteService.postNote(element.value).subscribe(
@@ -259,7 +256,7 @@ export class TestComponent implements OnInit {
               // debugger
               //  for (let i = this.ObjectArray.length - 1; i >= 0; i--) {
               // this.ObjectArray.removeAt(i)
-              element.reset()
+              // element.reset()
               //   }
               /// Swal.fire('l\'ajout est effectuée avec succèes')
             }

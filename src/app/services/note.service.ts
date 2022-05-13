@@ -8,12 +8,12 @@ import { Note } from '../note';
 })
 export class NoteService {
   backEndUrl: string = "https://localhost:44388/api/notation";
-  formCum = this.fb.group({
-    Id: ['00000000-0000-0000-0000-000000000000', Validators.required],
-    note: ['', Validators.required],
-    comment: ['', Validators.required],
-    criterelabel: ['', Validators.required],
-  });
+  // formCum = this.fb.group({
+  //   id: ['00000000-0000-0000-0000-000000000000', Validators.required],
+  //   note: ['', Validators.required],
+  //   comment: ['', Validators.required],
+  //   criterelabel: ['', Validators.required],
+  // });
   constructor(private http: HttpClient, private fb: FormBuilder) { }
   postNote(cumulative: Note) {
     return this.http.post(this.backEndUrl + "/Postnotation", cumulative, { responseType: "text" })
@@ -24,4 +24,8 @@ export class NoteService {
   GetAllplanByNote(cumulative: any) {
     return this.http.get(this.backEndUrl + "/GetAllplan_actionNote?id=" + cumulative,)
   }
+  GetAllNoteByLocal(cumulative: any) {
+    return this.http.get(this.backEndUrl + "/GetSumnotationByFilLocal?id=" + cumulative,)
+  }
+
 }

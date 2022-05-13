@@ -14,23 +14,28 @@ export class ListerNormeComponent implements OnInit {
   NormeList: any = []
   CritereList: any = []
 
-  designation:any
-  p: number=1;
-  key:string='id'
-  reverse:boolean=false 
-  
- /* NormeList: Array<{ normeId: string, designation: string }> = [
-    { normeId: "1", designation: "Nettoyer" },
-    { normeId: "3", designation: 'Ranger' },
-    { normeId: "3", designation: 'Etre rigoureux' },
-    { normeId: "4", designation: "Maintenir l'ordre" },
-    { normeId: "5", designation: "Débarrasser" },
-  ]*/
+  designation: any
+  p: number = 1;
+  key: string = 'id'
+  reverse: boolean = false
+
+  /* NormeList: Array<{ normeId: string, designation: string }> = [
+     { normeId: "1", designation: "Nettoyer" },
+     { normeId: "3", designation: 'Ranger' },
+     { normeId: "3", designation: 'Etre rigoureux' },
+     { normeId: "4", designation: "Maintenir l'ordre" },
+     { normeId: "5", designation: "Débarrasser" },
+   ]*/
   constructor(public normeService: NormeServiceService, private fb: FormBuilder, private router: Router, public critereService: CritereService) { }
+  refreshnormList() {
+    this.normeService.getListNormes().subscribe(data => {
+      this.NormeList = data;
+    });
+  }
   ngOnInit(): void {
     this.refreshnormList();
-   // this.refreshcriList(Norme);
-    
+    // this.refreshcriList(Norme);
+
   }
   detnorme(item: any) {
     this.router.navigate(['/cri', item.normeId]);
@@ -39,7 +44,7 @@ export class ListerNormeComponent implements OnInit {
   deleteClick(item: any) {
     if (confirm('Are you sure??')) {
       alert(item.normeId)
-      this.normeService.deleteNorle(item.NormeId).subscribe(data => {
+      this.normeService.deleteNorle(item.normeId).subscribe(data => {
         alert(data.toString());
         this.refreshnormList();
       })
@@ -57,11 +62,7 @@ export class ListerNormeComponent implements OnInit {
     debugger
 
   }
-  refreshnormList() {
-    this.normeService.getListNormes().subscribe(data => {
-      this.NormeList = data;
-    });
-  }
+
   refreshcriList(e: any) {
     //this.isShown = true;
     this.critereService.getCritereByNorme(e.normeId).subscribe(data => {
@@ -70,20 +71,20 @@ export class ListerNormeComponent implements OnInit {
     });
 
   }
-  
-  Search(){
-    if (this.designation==''){
+
+  Search() {
+    if (this.designation == '') {
       this.ngOnInit()
-    }else{this.NormeList = this.NormeList.filter((res: { designation: string; }) => {
-      return res.designation.toLocaleLowerCase().match(this.designation.toLocaleLowerCase());
-    })
-    } 
+    } else {
+      this.NormeList = this.NormeList.filter((res: { designation: string; }) => {
+        return res.designation.toLocaleLowerCase().match(this.designation.toLocaleLowerCase());
+      })
+    }
   }
 
-  sort(key:any)
-  {
-    this.key=key;
-    this.reverse=!this.reverse;
+  sort(key: any) {
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 
 }

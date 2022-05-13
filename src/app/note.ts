@@ -1,5 +1,5 @@
 export interface Note {
-    Id?: string,
+    id?: string,
     note?: number,
     image?: string,
     critereid?: string,
