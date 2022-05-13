@@ -35,7 +35,7 @@ export class AddEditNormeComponent implements OnInit {
 
       }
       )
-      this.refreshnormList()
+      
     }
     else {
 

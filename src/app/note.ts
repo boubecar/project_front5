@@ -3,7 +3,7 @@ export interface Note {
     note?: number,
     image?: string,
     critereid?: string,
-    FilLocalid?: string,
+    filLocalid?: string,
     comment?: string,
     noteDate?: Date
     Userid?: string
