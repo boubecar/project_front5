@@ -39,7 +39,7 @@ export class ListerNormeComponent implements OnInit {
   deleteClick(item: any) {
     if (confirm('Are you sure??')) {
       alert(item.normeId)
-      this.normeService.deleteNorle(item.NormeId).subscribe(data => {
+      this.normeService.deleteNorle(item.normeId).subscribe(data => {
         alert(data.toString());
         this.refreshnormList();
       })
@@ -52,10 +52,6 @@ export class ListerNormeComponent implements OnInit {
       normeId: norme.normeId,
       designation: norme.designation,
     });
-    this.refreshnormList();
-
-    debugger
-
   }
   refreshnormList() {
     this.normeService.getListNormes().subscribe(data => {

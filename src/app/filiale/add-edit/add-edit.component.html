@@ -5,17 +5,15 @@
 		<div class="col-md-6 mb-3">
 			<label style="margin-left: 15px;" for="validationCustom01" >Enter le nom de filiale
 			</label>
-			<input type="text" style="margin-left: 15px; width: 360px;" class="form-control input-sm" placeholder="Nom" formControlName="filialeName" id="validationCustom01" 
-			 >
-			 <small  class="text-danger">Name is Required</small> 
-			
+			<input type="text" style="margin-left: 15px; width: 360px;" class="form-control form-control-sm" placeholder="Nom" formControlName="filialName" id="validationCustom01" 
+			[ngClass]="(formCum.controls['filialName'].touched ||formCum.controls['filialName'].dirty) && formCum.controls['filialName'].hasError('required')? 'is-invalid' : '' ||((formCum.controls['filialName'].touched || formCum.controls['filialName'].dirty) && !formCum.controls['filialName'].invalid) ? 'is-valid': ''">
+          <div class="invalid-feedback" style="margin-left: -60px;"> le nom de filiale 
+            obligatoire</div>
+          
 		</div>
 
 	</div>
-	<input type="hidden" formcontrolname="poleId">
+	<input type="hidden" formControlName="poleId">
 	<button style="width: 225px; margin-left: 25%; margin-top:30px;" class="btn btn-primary " type="submit">Enregister
 	</button>
-	<p>Please click one of the button to see a Toast being displayed in the top right corner of your screen:</p>
-<button class="btn btn-primary" (click)="showStandard()" ngbTooltip="Will disappear in 5s">Standard toast</button>&nbsp;
-<button class="btn btn-success" (click)="showSuccess()" ngbTooltip="Will disappear in 10s">Success toast</button>&nbsp;
-</form>
+	</form>

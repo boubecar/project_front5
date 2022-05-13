@@ -79,21 +79,25 @@ export class PoleComponent implements OnInit {
       this.service.postPole(this.service.formCum.value).subscribe(res => {
         alert(res.toString())
         //this.cumulative = {}
+        alert("refrech 1")
         this.refreshPoleList()
+        alert("refrech 2")
       })
     }
     else {
-
+      debugger
       console.log("put")
       console.log(this.service.formCum.value);
       this.service.updatePole(this.service.formCum.value).subscribe(res => {
         alert(res.toString())
+        alert("refrech 1")
         this.refreshPoleList()
+        alert("refrech 2")
       })
     }
     console.log('hello');
     console.log(this.service.formCum.value);
-    alert(this.service.formCum.value);
+    //alert(this.service.formCum.value);
   }
 
 

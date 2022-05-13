@@ -11,18 +11,20 @@
 	<div class="col-md-6 col-lg-4" *ngFor="let dataItem of filList">
 		<div class="full white_shd margin_bottom_30">
 			<div class="info_people">
-				<div class="p_info_img">
+				<div class="p_info_img" style="margin-top:30px ;">
 					<img src="{{dataItem.image}}" alt="#"/>
 				</div>
 				<div class="user_info_cont">
 					<h4>{{dataItem.filialName}}</h4> 
 					<p>Pole :</p>
 					<p class="p_status">{{dataItem.poleName}}</p>
-					<button type="button" class="btn fa fa-trash btn-light mr-1 " (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false" style=" background-color :transparent; 
-					border-color: transparent;"></button>
-					<button type="button" class="btn fa fa-pencil-square-o btn-light mr-1 " data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)" style=" background-color :transparent; 
-					border-color: transparent;"></button>
-					<button  class="fa-solid fa-circle-info" style="border: transparent;background-color: transparent;" (click)="detfil(dataItem)"></button>
+					<div style="margin-top: 10px;">
+							<button type="button"  class="fa-solid fa-trash-can btn btn-outline-danger mr-1 margin_bottom_30" (click)="deleteClick(dataItem)">
+							</button>
+							<button type="button"  data-toggle="modal" data-target="#exampleModal" class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1 margin_bottom_30" data-backdrop="static" data-keyboard="false" (click)="ChangeData(dataItem)">				
+							</button>
+							<button   (click)="detfil(dataItem)"  class="btn btn-outline-warning mr-1 margin_bottom_30"><i style="color: orange;" class="fa-solid fa-circle-info"></i></button>
+						</div>
 				</div>
 
 			</div>

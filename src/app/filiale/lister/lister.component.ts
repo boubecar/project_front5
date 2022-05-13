@@ -16,14 +16,14 @@ export class ListerComponent implements OnInit {
   constructor(public filialeService: FilialeService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
     this.route.params.subscribe((params: any) => console.log(params));
   }
-  filList: any = []
-  /*filList: Array<{filialeId: string, filialName: string,image:string,poleName:string}> = [
+//  filList: any = []
+  filList: Array<{filialeId: string, filialName: string,image:string,poleName:string}> = [
     {filialeId: "1", filialName: "Mazraa",image:"assets/images/mazraa.jpg",poleName:"Alimentation-animale"},
     {filialeId: "1", filialName: 'Jadida ',image:"assets/images/download.jpg",poleName:"agroalimentaire"},
     {filialeId: "1", filialName: ' Gan',image:"assets/images/alimentation-animale.png",poleName:"industrielle"},
     {filialeId: "1", filialName: "Med oil",image:"assets/images/alimentation-animale.png",poleName:"industrielle"},
     {filialeId: "1", filialName: "oasis",image:"assets/images/oasis.jpg",poleName:"agroalimentaire"},
-];*/
+];
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -39,8 +39,8 @@ export class ListerComponent implements OnInit {
 
   deleteClick(item: any) {
     if (confirm('Are you sure??')) {
-      alert(item.normeId)
-      this.filialeService.deleteFiliale(item.normeId).subscribe(data => {
+      
+      this.filialeService.deleteFiliale(item.filialId).subscribe(data => {
         alert(data.toString());
         this.refreshfilList();
       })
@@ -80,7 +80,7 @@ export class ListerComponent implements OnInit {
     console.log(this.filialeService)
     //this.isShown = true;
     this.filialeService.GetAllfilialeByPole(this.idnorm).subscribe(data => {
-      this.filList = data;
+    //  this.filList = data;
       console.log(this.filialeService)
     });
 

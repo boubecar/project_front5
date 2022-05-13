@@ -22,7 +22,7 @@
 
 						</div>
 						<div class="full gallery_section_inner padding_infor_info">
-							<button type="button" id="btncolor"  class="fa fa-plus-circle btn btn-light float-right m-2" style="width: 150px;  border-radius: 50%;
+							<button type="button" id=""  class="fa fa-plus btn btn-outline-primary float-right m-2" style="width: 150px;
 							" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
 								Ajouter
 							</button> 
@@ -33,22 +33,20 @@
 							<div class="row">
 								<div class="col-sm-4 col-md-3 margin_bottom_30" *ngFor="let dataItem of PoleList">
 									<div class="column">
-										<a data-fancybox="gallery" href="{{dataItem.image}}"><img class="img-responsive" src="{{dataItem.image}}" alt="#"/></a>
+										<img class="img-responsive" src="{{dataItem.image}}" alt="#"/>
 									</div>
-									<div class="heading_section">
-										<a routerlink="/rec">
-											<h4>{{dataItem.poleName}}</h4>
+									<div class="heading_section" style="background-color: #EEEEEE;color: black; border-top: #EEEEEE;">
+										<a >
+											<h4 style="color: black;">{{dataItem.poleName}}</h4>
 										</a>
 										<div class="daaaaa">
-										<button type="button" style=" background-color :transparent; 
-										border-color: transparent;" data-toggle="modal" data-target="#exampleModal" class=" btn btn-light mr-1 margin_bottom_30" data-backdrop="static" data-keyboard="false" (click)="ChangeData(dataItem)">
-											<i  class="fa-solid fa-pen-to-square"></i>
+										<button type="button"  data-toggle="modal" data-target="#exampleModal" class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1 margin_bottom_30" data-backdrop="static" data-keyboard="false" (click)="ChangeData(dataItem)">
+											
 										</button>
 
-										<button type="button" style="background-color :transparent;border-color: transparent; " class="btn btn-light mr-1 margin_bottom_30" (click)="DeleteClick(dataItem)">
-											<i class="fa-solid fa-trash-can"></i>
+										<button type="button"  class="fa-solid fa-trash-can btn btn-outline-danger mr-1 margin_bottom_30" (click)="DeleteClick(dataItem)">
 										</button>
-										<button  style=" background-color :transparent;border-color: transparent;" (click)="detnorme(dataItem)" class="btn btn-light mr-1 margin_bottom_30"><i  class="fa-solid fa-circle-info"></i></button>
+										<button   (click)="detnorme(dataItem)"  class="btn btn-outline-warning mr-1 margin_bottom_30"><i style="color: orange;" class="fa-solid fa-circle-info"></i></button>
 									</div>
 									</div>
 								</div>

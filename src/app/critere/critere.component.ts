@@ -70,73 +70,45 @@ export class CritereComponent implements OnInit {
     });
     this.refreshcriList();
 
-    debugger
 
   }
-  /*
-    public saveData() {
-      if (!this.CritereService.formCum.valid) {
-        alert("veuillez remplir tous les champs")
-      }
-  
-  
-      this.cumulative = {
-        critereId: this.cumulative.critereId,
-        criterelabel: this.CritereService.formCum.controls['criterelabel'].value,
-        normeId: this.idnorm,
-      }
-      this.CritereService.postCritere(this.cumulative).subscribe(res => {
-        alert(res.toString())
-        this.cumulative = {}
-      })
-  
-  
-      console.log('hello');
-      // console.log(this.CritereService.formCum.value);
-      //console.log(this.cumulative.normes); console.log(this.cumulative.criterelabel);
-  
-  
-    }*/
+
 
   public saveData() {
+    
     if (!this.formCum.valid) {
       alert("veuillez remplir tous les champs")
     }
-    // this.cumulative = {
-    //   normeId:this.cumulative.normeId,
-    //   designation: this.formCum.controls['designation'].value,
-    // }
+
     if (this.formCum.controls['critereId'].value == '00000000-0000-0000-0000-000000000000') {
 
       console.log("post")
       console.log(this.formCum.value);
-      this.CritereService.postCritere(this.formCum.value).subscribe(res => {
-        alert(res.toString());
-        //  this.cumulative={}
+      this.CritereService.postCritere(this.formCum.value).subscribe(data => {
+        this.refreshcriList()
+        alert(data.toString())
 
-        // this.refreshnormList();
       })
+
     }
     else {
       console.log("put")
       console.log(this.formCum.value);
-      this.CritereService.editCritere(this.formCum.value).subscribe(res => {
-        alert(res.toString());
+      this.CritereService.editCritere(this.formCum.value).subscribe(data => {
+        alert(data.toString());
         this.refreshcriList();
-        //  this.cumulative={}
       })
-
-
     }
 
     console.log('hello');
+    this.refreshcriList();
     console.log(this.formCum.value);
     // alert(this.cumulative.designation);
   }
 
 
   deleteClick(item: any) {
-    if (confirm('Are you sure??')) {
+    if (confirm('Etes vous sure??')) {
       alert(item.critereId)
       this.CritereService.deleteCritere(item.critereId).subscribe(data => {
         alert(data.toString());
@@ -165,8 +137,6 @@ export class CritereComponent implements OnInit {
       console.log('oui')
       console.log(this.CritereList)
     });
-
-
   }
 
   refreshDepList() {

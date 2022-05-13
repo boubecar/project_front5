@@ -3,23 +3,32 @@
 
 		<app-nav></app-nav>
 		<div class="container">
+                       
+				 <div class="full graph_head"  style="margin-top: -5%; margin-bottom: 1%;">
+					<div class="heading1 ">
+						<h2>Gestion des criteres d'evaluations
+						</h2>
+					</div>
 
-			<h5 class="d-flex justify-content-center">Gestion des criteres d'evaluations</h5>
 
-			<nav class="navbar navbar-expand-sm bg-light navbar-dark">
-				<ul class="navbar-nav">
+				</div>
+
+			
+			<nav class="navbar navbar-expand-sm bg-light" style="width:85%; margin-left: 72px; margin-top: 30px;margin-bottom: -6%;">
+				<ul class="navbar-nav" style="margin-left: 600px;">
 					<li class="nav-item">
-						<button routerlink="/gnorme" class="m-1 btn btn-light btn-outline-primary" button>Norme</button>
-					</li>
-
+						<button routerLink="/gnorme" class="btn btn-outline-primary float-right m-2">
+							<i class="fa fa-arrow-left" aria-hidden="true"> </i> &nbsp; Norme
+						</button>
+						</li>
+					<li class="nav-item">
+						<button type="button" class="btn btn-outline-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+							<i class="fa-solid fa-plus" style="color: #0275d8;"></i> Ajouter 
+						</button>
+						</li>
 
 				</ul>
 			</nav>
-
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
-				Ajouter critere
-			</button>
 
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -58,23 +67,25 @@
 			</div>
 
 
-			<table class="table " id="center" style="width:85%;">
-				<thead class="table-success">
+			<table class="table " id="center" style="width: 85%;">
+				<thead class="table-success" style="background-color: #CAF0F8
+				;">
 					<tr>
-						<th>CritereId</th>
 						<th>CritereName</th>
-						<th>normeid</th>
-						<th>Options</th>
+						<th >Options</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let dataItem of CritereList">
-						<td>{{dataItem.critereId}}</td>
+						
 						<td>{{dataItem.criterelabel}}</td>
-						<td>{{dataItem.normes}}</td>
+						
 						<td style="width:20%;">
-							<button type="button" class="btn fa fa-trash btn-light mr-1" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
-							<button type="button" class="btn fa fa-pencil-square-o btn-light mr-1" data-toggle="modal" data-target="#exampleModal1" (click)="saveData()" ></button>
+							<button type="button" class="btn btn-primary btn-xs" style="border-color: #DD4A48 ;background-color: transparent;" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false" > <i class="fa-solid fa-trash" style="color:#DD4A48 ; "></i>                  
+							</button> &nbsp;
+							<button type="button" class="btn btn-xs" style="background-color: transparent ;border-color:#73777B ;" class="btn btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)">
+								<i class="fa fa-pencil-square-o" style="color:#73777B ;"></i>
+							</button>
 						</td>
 					</tr>
 				</tbody>

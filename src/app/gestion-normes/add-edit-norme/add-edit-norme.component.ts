@@ -34,20 +34,18 @@ export class AddEditNormeComponent implements OnInit {
       console.log("post")
       console.log(this.normeService.formCum.value);
       this.normeService.postNorme(this.normeService.formCum.value).subscribe(res => {
-        alert(res.toString());
-        //  this.cumulative={}
+        alert(res.toString())
+        this.refreshnormList()
+      });
 
-        this.refreshnormList();
-      })
     }
     else {
       console.log("put")
       console.log(this.normeService.formCum.value);
       this.normeService.editNorme(this.normeService.formCum.value).subscribe(res => {
-        alert(res.toString());
-        this.refreshnormList();
-        //  this.cumulative={}
-      })
+        alert(res.toString())
+        this.refreshnormList()
+      });
 
 
     }
