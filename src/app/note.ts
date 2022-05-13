@@ -1,10 +1,16 @@
 export interface Note {
-    Id?: string,
+    id?: string,
     note?: number,
     image?: string,
     critereid?: string,
-    FilLocalid?: string,
+    filLocalid?: string,
     comment?: string,
+<<<<<<< Updated upstream
     noteDate?: Date
     Userid?: string
+=======
+    noteDate?: string
+    Userid?: string,
+    evaluer?: string,
+>>>>>>> Stashed changes
 }

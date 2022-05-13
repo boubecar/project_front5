@@ -34,6 +34,7 @@ import { UsersComponent } from './users/users.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { LoginComponent } from './authentification/login/login.component';
 import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -77,7 +78,7 @@ import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.compon
     Ng2OrderModule,
 
   ],
-  providers: [PoleServiceService],
+  providers: [PoleServiceService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

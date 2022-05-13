@@ -14,6 +14,40 @@
 
 
 			</div>
+<form [formGroup]="formCum">
+		
+					
+						<div>
+							<div>
+								<div class="">
+									<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
+										<option *ngFor="let fil of filList " [value]="fil.filialId">
+											{{fil.filialName}}
+										</option>
+									</select>
+
+
+								</div>
+
+							</div>
+							<div>
+								<div class="">
+									<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (change)="refrechNote()" >
+
+										<option value="" disabled selected hidden>Local
+										</option>
+										<option *ngFor="let loc of LocalList " [value]="loc.locallId">
+											{{loc.localdescription}}
+										</option>
+									</select>
+
+
+								</div>
+							</div>
+							 
+						</div>
+					
+				</form>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="tab_style2">
@@ -51,7 +85,7 @@
 
 													</div>
 												</td>
-												<td>{{i.eval}}
+												<td>CR
 
 												</td>
 												<td>

@@ -12,7 +12,7 @@ import { FilialeService } from 'src/app/services/filiale.service';
 export class ListerComponent implements OnInit {
   idnorm: string = ''
   formCum!: FormGroup;
-  filialName:any
+  filialName: any
   constructor(public filialeService: FilialeService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
     this.route.params.subscribe((params: any) => console.log(params));
   }
@@ -56,27 +56,28 @@ export class ListerComponent implements OnInit {
     this.refreshfilList();
 
   }
-  poleName:any
-  SearchPole()
-  {
-    if (this.poleName==''){
+  poleName: any
+  SearchPole() {
+    if (this.poleName == '') {
       this.ngOnInit()
-    }else{this.filList = this.filList.filter((res: { poleName: string; }) => {
-      return res.poleName.toLocaleLowerCase().match(this.poleName.toLocaleLowerCase());
-    })
-    } 
+    } else {
+      this.filList = this.filList.filter((res: { poleName: string; }) => {
+        return res.poleName.toLocaleLowerCase().match(this.poleName.toLocaleLowerCase());
+      })
+    }
   }
 
-  Search(){
-    if (this.filialName==''){
+  Search() {
+    if (this.filialName == '') {
       this.ngOnInit()
-    }else{this.filList = this.filList.filter((res: { filialName: string; }) => {
-      return res.filialName.toLocaleLowerCase().match(this.filialName.toLocaleLowerCase());
-    })
+    } else {
+      this.filList = this.filList.filter((res: { filialName: string; }) => {
+        return res.filialName.toLocaleLowerCase().match(this.filialName.toLocaleLowerCase());
+      })
     }
   }
   refreshfilList() {
-    
+
     console.log(this.filialeService)
     //this.isShown = true;
     this.filialeService.GetAllfilialeByPole(this.idnorm).subscribe(data => {

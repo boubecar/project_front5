@@ -46,17 +46,19 @@ export class CritereComponent implements OnInit {
 
   //public norme: Norme = new Norme();
   ngOnInit(): void {
-    this.refreshcriList();
-    this.refreshDepList();
     this.route.params.subscribe(params => {
       this.idnorm = params['id'];
-      this.refreshcriList();
-      this.formCum = this.fb.group({
-        critereId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-        criterelabel: [""],
-        normeId: this.idnorm
-      });
+
     })
+    //this.refreshcriList();
+    this.refreshDepList();
+    this.refreshcriList();
+    this.formCum = this.fb.group({
+      critereId: ['00000000-0000-0000-0000-000000000000', Validators.required],
+      criterelabel: [""],
+      normeId: this.idnorm
+    });
+
     console.log("id", this.idnorm)
   }
   ChangeData(norme: Critere) {

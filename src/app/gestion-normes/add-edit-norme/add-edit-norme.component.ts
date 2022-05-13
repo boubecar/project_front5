@@ -22,17 +22,13 @@ export class AddEditNormeComponent implements OnInit {
   }
 
   public saveData() {
+    debugger
     if (!this.normeService.formCum.valid) {
+
       alert("veuillez remplir tous les champs")
     }
-    // this.cumulative = {
-    //   normeId:this.cumulative.normeId,
-    //   designation: this.formCum.controls['designation'].value,
-    // }
-    if (this.normeService.formCum.controls['normeId'].value == '00000000-0000-0000-0000-000000000000') {
 
-      console.log("post")
-      console.log(this.normeService.formCum.value);
+    if (this.normeService.formCum.controls['normeId'].value == '00000000-0000-0000-0000-000000000000') {
       this.normeService.postNorme(this.normeService.formCum.value).subscribe(res => {
         alert(res.toString())
         this.refreshnormList()
@@ -40,19 +36,24 @@ export class AddEditNormeComponent implements OnInit {
 
     }
     else {
-      console.log("put")
-      console.log(this.normeService.formCum.value);
+
       this.normeService.editNorme(this.normeService.formCum.value).subscribe(res => {
         alert(res.toString())
         this.refreshnormList()
       });
 
 
+
+
     }
 
-    console.log('hello');
-    console.log(this.normeService.formCum.value);
+
     // alert(this.cumulative.designation);
+  }
+  refreshnormList() {
+    this.normeService.getListNormes().subscribe(data => {
+      this.NormeList = data;
+    });
   }
   // ChangeData(norme: Norme) {
 
@@ -64,9 +65,5 @@ export class AddEditNormeComponent implements OnInit {
   //   })
   // }
 
-  refreshnormList() {
-    this.normeService.getListNormes().subscribe(data => {
-      this.NormeList = data;
-    });
-  }
+
 }
