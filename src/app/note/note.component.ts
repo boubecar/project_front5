@@ -20,30 +20,20 @@ import { PlanActionService } from '../services/plan-action.service';
   providers: [DatePipe]
 })
 export class NoteComponent implements OnInit {
-<<<<<<< Updated upstream
   filList: any
   LocalList: any
-=======
-  NormeList: any
-  NoteList: any
->>>>>>> Stashed changes
   CritereList: any
   notation: any
   eval: string = ''
   isShown: boolean = false;
-<<<<<<< Updated upstream
   /*
   NormeList: Array<{ NormeId: number, designation: string, path: string }> = [
-=======
-  /*  NormeList: Array<{ NormeId: number, designation: string, path: string }> = [
->>>>>>> Stashed changes
     { NormeId: 1, designation: "Nettoyer", path: 'fa-paint-brush' },
     { NormeId: 2, designation: 'Ranger', path: 'fa-cubes' },
     { NormeId: 3, designation: 'Etre rigoureux', path: 'fa-balance-scale' },
     { NormeId: 4, designation: "Maintenir l'ordre", path: "fa-cubes" },
     { NormeId: 5, designation: "Débarrasser", path: 'fa-trash' },
   ]
-<<<<<<< Updated upstream
   //NoteList: any
   /*CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
     { critereId: 1, criterelabel: "Nettoyer", normes: "" },
@@ -61,16 +51,6 @@ export class NoteComponent implements OnInit {
   ];*/
 
   isDisabled: boolean = true
-=======
-/*
-  NoteList: Array<{ Id: string, note: number, image: string, critereId: string, userId: string, FilLocallId: string, commentaire: string, criterelabel: string, eval: string }> = [
-    { Id: "1", note: 20, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval: "CR" },
-    { Id: "2", note: 18, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval: "CM" },
-    { Id: "3", note: 15, image: "assets/images/mazraa.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval: "" },
-    { Id: "4", note: 13, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval: "" },
-    { Id: "5", note: 5, image: "assets/images/oasis.jpg", critereId: '', userId: '', FilLocallId: '', commentaire: 'blablabla', criterelabel: "Nettoyer", eval: "" },
-  ];*/
->>>>>>> Stashed changes
   maintenant: string = ''
   //maDate = new Date();
   currentDate = new Date();
@@ -82,7 +62,6 @@ export class NoteComponent implements OnInit {
   taw = this.maDate.setDate(this.maDate.getDate() + 4);
   PhotoFilePath: string = 'assets/images/inconu.png'
   note: boolean = false
-<<<<<<< Updated upstream
   NoteList: any;
   NormeList: any;
   formCum = this.fb.group({
@@ -108,14 +87,10 @@ export class NoteComponent implements OnInit {
       this.LocService.GetAllLocalByFilale(this.formCum.value.filialeId).subscribe(data => {
         this.LocalList = data;
         console.log(this.LocalList);
-=======
-  constructor(public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService, private datePipe: DatePipe, public norme: NormeServiceService) {
->>>>>>> Stashed changes
 
       });
     }
   }
-<<<<<<< Updated upstream
   refrechNote() {
     this.noteService.GetAllNoteByLocal(this.formCum.value.filLocalid).subscribe(data => {
       this.NoteList = data;
@@ -146,36 +121,6 @@ export class NoteComponent implements OnInit {
     taw = futureDate.getDate() + '/' + ((futureDate.getMonth() + 1)) + '/' + futureDate.getFullYear();
 
     return taw;
-=======
-
-
-
-
-  ngOnInit(): void {
-    this.refrechNote()
-    this.refrechnorme()
-    console.log('note', this.notation)
-
-    this.maintenant = this.maDate.getDate() + '-' + ((this.maDate.getMonth() + 1)) + '-' + this.maDate.getFullYear();
-
-
-  }
-  refrechnorme() {
-    this.norme.getListNormes().subscribe(data => {
-      this.NormeList
-        = data;
-      console.log(this.NoteList)
-      console.log('ff')
-    });
-  }
-  refrechNote() {
-    this.noteService.GetAlltNote().subscribe(data => {
-      this.NoteList = data;
-      console.log(this.NoteList)
-      console.log('ff')
-    });
-
->>>>>>> Stashed changes
   }
   refreshcriList(e: any) {
     this.isShown = true;
@@ -185,12 +130,8 @@ export class NoteComponent implements OnInit {
     });
 
   }
-<<<<<<< Updated upstream
   criterelabel: any
 
-=======
-  cumulative: Norme[] = new Array()
->>>>>>> Stashed changes
 
   ChangeData(note: Note) {
 

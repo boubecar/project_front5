@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Pole } from '../pole';
+import { FilialeService } from '../services/filiale.service';
 import { PoleServiceService } from '../services/pole-service.service';
 
 @Component({
@@ -12,29 +13,55 @@ import { PoleServiceService } from '../services/pole-service.service';
 export class PoleComponent implements OnInit {
   filaleList: any;
   poleName: any
-  //constructor() { }
-  constructor(public service: PoleServiceService, private fb: FormBuilder, private router: Router) { }
-
-  // constructor(private service:PoleServiceService) { }
-  /*PoleList:Array<{PoleId: number, poleName: string,image :string}> = [
-    {PoleId: 1, poleName: "alimentation-animale",image:"assets/images/alimentation-animale.png"},
-    {PoleId: 2, poleName: 'agroalimentaire',image:"assets/images/agrico.png"},
-    {PoleId: 3, poleName: 'avicole',image:"assets/images/avicole.jpg"},
-    {PoleId: 4, poleName: "industrielle",image:"assets/images/industrielle.png"},
-];*/
   PoleList: any = []
   PhotoFileName: string = ""
   PhotoFilePath: string = 'assets/images/inconu.png'
-
-
+/*filList: Array<{filialeId: string, filialName: string,image:string,poleName:string}> = [
+    {filialeId: "1", filialName: "Mazraa",image:"assets/images/mazraa.jpg",poleName:"Alimentation-animale"},
+    {filialeId: "1", filialName: 'Jadida ',image:"assets/images/download.jpg",poleName:"agroalimentaire"},
+    {filialeId: "1", filialName: ' Gan',image:"assets/images/alimentation-animale.png",poleName:"industrielle"},
+    {filialeId: "1", filialName: "Med oil",image:"assets/images/alimentation-animale.png",poleName:"industrielle"},
+    {filialeId: "1", filialName: "oasis",image:"assets/images/oasis.jpg",poleName:"agroalimentaire"},
+];*/
+filList:any
   cumulative: Pole = {}
 
   ModalTitle: string = " Pole ";
 
+
+  constructor(public filialeService: FilialeService,public service: PoleServiceService, private fb: FormBuilder, private router: Router) { }
+
+ 
   ngOnInit(): void {
     this.refreshPoleList();
   }
+  public saveData() {
 
+    if (!this.service.formCum.valid) {
+      alert("veuillez remplir tous les champs")
+    }
+    
+    if (this.service.formCum.controls['poleId'].value == '00000000-0000-0000-0000-000000000000') {
+      
+      this.service.postPole(this.service.formCum.value).subscribe(res => {
+        alert(res.toString());
+        this.refreshPoleList();
+      });
+    }
+    else {
+      console.log("put")
+      console.log(this.service.formCum.value);
+      this.service.updatePole(this.service.formCum.value).subscribe(res => {
+        alert(res.toString());
+        alert("refrech 1");
+        this.refreshPoleList();
+        alert("refrech 2");
+      })
+    }
+    console.log('hello');
+    console.log(this.service.formCum.value);
+    //alert(this.service.formCum.value);
+  }
   DeleteClick(item: any) {
     if (confirm('Are you sure??')) {
       alert(item.poleId)
@@ -44,62 +71,17 @@ export class PoleComponent implements OnInit {
       })
     }
   }
-  updatePole() {
-    /* var val = {
-       poleId: this.poleId,
-       poleName: this.poleName,
-       image: this.image
- 
-     };
-     this.service.updatePole(val).subscribe(res => {
-       alert(res.toString());
-     });*/
-  }
-  /*ChangeData() {
-    this.cumulative = {
-      poleId: this.cumulative.poleId,
-      poleName: this.formCum.controls['poleName'].value,
-      image: this.formCum.controls['path'].value
-    }
-    this.service.updatePole(this.cumulative).subscribe(res => {
-      alert(res.toString())
-      this.cumulative = {}
-    })
-    console.log('hello');
-    console.log(this.cumulative);
-    alert(this.cumulative.poleName);
-  }
-*/
 
-  public saveData() {
 
-    if (!this.service.formCum.valid) {
-      alert("veuillez remplir tous les champs")
-    }
-    
-    if (this.service.formCum.controls['poleId'].value == '00000000-0000-0000-0000-000000000000') {
-      this.service.postPole(this.service.formCum.value).subscribe(res => {
-        alert(res.toString())
-        //this.cumulative = {}
-        alert("refrech 1")
-        this.refreshPoleList()
-        alert("refrech 2")
+  deleteClick(item: any) {
+    alert(item.value);
+    if (confirm('Are you sure??')) {
+      
+      this.filialeService.deleteFiliale(item.filialId).subscribe(data => {
+        alert(data.toString());
+       // this.refreshfilList();
       })
     }
-    else {
-      debugger
-      console.log("put")
-      console.log(this.service.formCum.value);
-      this.service.updatePole(this.service.formCum.value).subscribe(res => {
-        alert(res.toString())
-        alert("refrech 1")
-        this.refreshPoleList()
-        alert("refrech 2")
-      })
-    }
-    console.log('hello');
-    console.log(this.service.formCum.value);
-    //alert(this.service.formCum.value);
   }
 
 
@@ -110,27 +92,7 @@ export class PoleComponent implements OnInit {
     });
   }
   uploadPhoto(e: any) {
-    /* var file = event.target.files[0];
-     const formData: FormData = new FormData();
-     formData.append('uploadedFile', file, file.name);
-     alert(file.name)
-     this.PhotoFilePath = this.service.formCum.controls['image'].value;
-     this.service.UploadPhoto(formData).subscribe((data: any) => {
-       this.PhotoFileName = data.toString();
-       this.PhotoFilePath = this.service.formCum.controls['path'].value;
-     })
-     console.log("photo")
-     console.log(this.PhotoFilePath)
-     /*
-     var file=e.target.files[0];
-     const formData:FormData=new FormData();
-     formData.append('uploadedFile',file,file.name);
-     alert(file.name)
-     this.PhotoFilePath=this.service.formCum.controls['image'].value;
-     this.service.UploadPhoto(formData).subscribe((data:any)=>{
-       this.PhotoFileName=data.toString();
-       this.PhotoFilePath=this.service.formCum.controls['image'].value;
-     })*/
+    
 
     if (e.target.files) {
       var reader = new FileReader();
@@ -153,7 +115,13 @@ export class PoleComponent implements OnInit {
   }
 
   detnorme(item: any) {
-    this.router.navigate(['/fl', item.poleId]);
+   //this.router.navigate(['/fl', item.poleId]);
+   console.log("id pole",item.poleId)
+    //this.isShown = true;
+    this.filialeService.GetAllfilialeByPole(item.poleId).subscribe(data => {
+      this.filialeService.detailPole = data;
+      //console.log(this.filialeService)
+    });
   }
   Search() {
     if (this.poleName == '') {

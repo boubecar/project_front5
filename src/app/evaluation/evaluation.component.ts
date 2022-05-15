@@ -37,11 +37,7 @@ export class EvaluationComponent implements OnInit {
   FilLocalid: String = 'dff5b96c-07a5-489b-cbec-08da21a93181'
   commentaire: String = ''
   eval: String = ''
-<<<<<<< Updated upstream
   selectedObject1 = ''
-=======
-  selectedObject1: any;
->>>>>>> Stashed changes
   data: any;
   Userid: String = '60fc1633-b1a0-46a3-fbf4-02da28c41eff'
   date_notation = new Date();
@@ -151,24 +147,14 @@ export class EvaluationComponent implements OnInit {
   cumulative1: Note = {}
   notation() {
     this.cumulative = {
-<<<<<<< Updated upstream
       Id: this.id,
-=======
-      Id: this.Id,
-
->>>>>>> Stashed changes
       comment: this.comment,
       note: this.note,
       date_notation: this.date_notation,
       critereid: this.critereid,
       image: this.image,
       Userid: this.Userid,
-<<<<<<< Updated upstream
       FilLocalid: this.FilLocalid,
-=======
-
-      FilLocallId: this.selectedObject1,
->>>>>>> Stashed changes
 
 
 

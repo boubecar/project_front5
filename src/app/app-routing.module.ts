@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { LocalComponent } from './local/local.component';
 import { NormesComponent } from './normes/normes.component';
 import { NoteComponent } from './note/note.component';
+import { DetailPoleComponent } from './pole/detail-pole/detail-pole.component';
 import { PoleComponent } from './pole/pole.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: 'lf/:id', component: FilLocalComponent },
   { path: 'local', component: LocalComponent },
   { path: 'users', component: UsersComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'md', component: DetailPoleComponent }
 ];
 
 @NgModule({

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Filiale } from 'src/app/filiale';
 import { FilialeService } from 'src/app/services/filiale.service';
+import { LocalService } from 'src/app/services/local.service';
 
 @Component({
   selector: 'app-lister',
@@ -13,17 +14,17 @@ export class ListerComponent implements OnInit {
   idnorm: string = ''
   formCum!: FormGroup;
   filialName: any
-  constructor(public filialeService: FilialeService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
+  constructor(public filialeService: FilialeService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router,private localService :LocalService) {
     this.route.params.subscribe((params: any) => console.log(params));
   }
-//  filList: any = []
-  filList: Array<{filialeId: string, filialName: string,image:string,poleName:string}> = [
+ filList: any = []
+  /*filList: Array<{filialeId: string, filialName: string,image:string,poleName:string}> = [
     {filialeId: "1", filialName: "Mazraa",image:"assets/images/mazraa.jpg",poleName:"Alimentation-animale"},
     {filialeId: "1", filialName: 'Jadida ',image:"assets/images/download.jpg",poleName:"agroalimentaire"},
     {filialeId: "1", filialName: ' Gan',image:"assets/images/alimentation-animale.png",poleName:"industrielle"},
     {filialeId: "1", filialName: "Med oil",image:"assets/images/alimentation-animale.png",poleName:"industrielle"},
     {filialeId: "1", filialName: "oasis",image:"assets/images/oasis.jpg",poleName:"agroalimentaire"},
-];
+];*/
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -56,13 +57,13 @@ export class ListerComponent implements OnInit {
     this.refreshfilList();
 
   }
-  poleName: any
+  polename: any
   SearchPole() {
-    if (this.poleName == '') {
+    if (this.polename == '') {
       this.ngOnInit()
     } else {
-      this.filList = this.filList.filter((res: { poleName: string; }) => {
-        return res.poleName.toLocaleLowerCase().match(this.poleName.toLocaleLowerCase());
+      this.filList = this.filList.filter((res: { polename: string; }) => {
+        return res.polename.toLocaleLowerCase().match(this.polename.toLocaleLowerCase());
       })
     }
   }
@@ -78,16 +79,21 @@ export class ListerComponent implements OnInit {
   }
   refreshfilList() {
 
-    console.log(this.filialeService)
+   // console.log("id pole",this.idnorm)
     //this.isShown = true;
-    this.filialeService.GetAllfilialeByPole(this.idnorm).subscribe(data => {
-    //  this.filList = data;
+    this.filialeService.getFilialeList().subscribe(data => {
+      this.filList = data;
       console.log(this.filialeService)
     });
 
   }
+
+
   detfil(item: any) {
-    this.router.navigate(['/lf', item.filialId]);
+    //this.router.navigate(['/lf', item.filialId]);
+    this.localService.GetAllLocalByFilale(item.filialId).subscribe(data => {
+      this.localService.detFiliale = data;
+    });
   }
 
 }

@@ -46,8 +46,8 @@
 
 										<button type="button"  class="fa-solid fa-trash-can btn btn-outline-danger mr-1 margin_bottom_30" (click)="DeleteClick(dataItem)">
 										</button>
-										<button   (click)="detnorme(dataItem)"  class="btn btn-outline-warning mr-1 margin_bottom_30"><i style="color: orange;" class="fa-solid fa-circle-info"></i></button>
-									</div>
+										<button  data-toggle="modal" data-target="#exampleModal1"  (click)="detnorme(dataItem)"  class="btn btn-outline-warning mr-1 margin_bottom_30"><i style="color: orange;" class="fa-solid fa-circle-info"></i></button>
+									</div> 
 									</div>
 								</div>
 							</div>
@@ -67,7 +67,7 @@
 										<div class="modal-body">
 											<div class="card">
 												<div class="card-body">
-													<form (ngSubmit)="saveData()" [formGroup]="service.formCum">
+													<!--<form (ngSubmit)="saveData()" [formGroup]="service.formCum">
 														<div class="form-row">
 															<div class="col-md-6 mb-3">
 																<label style="width: 200px;margin-left: 10px;"> Enter le nom de nouveau  pole :
@@ -86,10 +86,29 @@
 														</div>
 														<button type="button" class="btn btn-primary margin_top_30 margin_left_20 " style="width: 225px;margin-left: 5px;" type="submit">Enregistrer
 														</button>
-													</form>
+													</form>-->
+													<app-add-edit-pole></app-add-edit-pole>
 												</div>
 											</div>
 										</div>
+									</div>
+								</div>
+
+							</div>
+							<!-- Modal Detail-->
+							<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel" style="padding-left:40% ;">Liste des filiales</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<app-detail-pole></app-detail-pole>
+										</div>
+									</div>
 									</div>
 								</div>
 

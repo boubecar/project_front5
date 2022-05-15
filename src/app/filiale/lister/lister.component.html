@@ -1,7 +1,7 @@
  
                         <div class="d-flex flex-row" style="margin-left: 54%;">
                            
-							<input type="search" style="width: 200px; margin-bottom: 30px" class="form-control" placeholder="Filter Pole " name="designation" [(ngModel)]="poleName" (ngModelChange)="SearchPole()">&nbsp; <i style="font-size: large; margin-top: 10px;" class="fa-solid fa-magnifying-glass"></i> &nbsp; &nbsp;
+							<input type="search" style="width: 200px; margin-bottom: 30px" class="form-control" placeholder="Filter Pole " name="designation" [(ngModel)]="polename" (ngModelChange)="SearchPole()">&nbsp; <i style="font-size: large; margin-top: 10px;" class="fa-solid fa-magnifying-glass"></i> &nbsp; &nbsp;
 							<input type="search" style="width: 200px; margin-bottom: 30px" class="form-control" placeholder="Filter Filiale " name="designation" [(ngModel)]="filialName" (ngModelChange)="Search()">&nbsp; <i style="font-size: large; margin-top: 10px;" class="fa-solid fa-magnifying-glass"></i>
 						</div>
 						 <div class="d-flex flex-row" style="margin-left: 48%;">
@@ -17,16 +17,52 @@
 				<div class="user_info_cont">
 					<h4>{{dataItem.filialName}}</h4> 
 					<p>Pole :</p>
-					<p class="p_status">{{dataItem.poleName}}</p>
+					<p class="p_status">{{dataItem.polename}}</p>
 					<div style="margin-top: 10px;">
 							<button type="button"  class="fa-solid fa-trash-can btn btn-outline-danger mr-1 margin_bottom_30" (click)="deleteClick(dataItem)">
 							</button>
 							<button type="button"  data-toggle="modal" data-target="#exampleModal" class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1 margin_bottom_30" data-backdrop="static" data-keyboard="false" (click)="ChangeData(dataItem)">				
 							</button>
-							<button   (click)="detfil(dataItem)"  class="btn btn-outline-warning mr-1 margin_bottom_30"><i style="color: orange;" class="fa-solid fa-circle-info"></i></button>
+							<button  data-toggle="modal" data-target="#exampleModal1" (click)="detfil(dataItem)"  class="btn btn-outline-warning mr-1 margin_bottom_30"><i style="color: orange;" class="fa-solid fa-circle-info"></i></button>
 						</div>
 				</div>
-
+				<!--Model Detail-->
+				<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+					   <div class="modal-content">
+						  <div class="modal-header">
+							 <h5 class="modal-title" id="exampleModalLabel" style="padding-left:40% ;color: rgb(42, 106, 243);">Filiale</h5>
+							 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							 </button>
+						  </div>
+						  <div class="modal-body">
+							 <div class="card">
+									<app-detail-fil></app-detail-fil>
+								<div class="card-body"></div>
+							 </div>
+						  </div>
+					   </div>
+					</div>
+				 </div>
+				 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+					   <div class="modal-content">
+						  <div class="modal-header">
+							 <h5 class="modal-title" id="exampleModalLabel" style="padding-left:40% ;color: rgb(42, 106, 243);">Filiale</h5>
+							 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							 </button>
+						  </div>
+						  <div class="modal-body">
+							 <div class="card">
+								<app-add-edit></app-add-edit>
+							 </div>
+						  </div>
+					   </div>
+					</div>
+				 </div>
+			  
 			</div>
 
 		</div>

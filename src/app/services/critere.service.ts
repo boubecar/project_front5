@@ -24,7 +24,7 @@ export class CritereService {
     return this.http.delete(this.backEndUrl + "/Deletecriteres?SaisieCommentId=" + cumulative, { responseType: "text" })
   }
   editCritere(cumulative: any) {
-    return this.http.put(this.backEndUrl + "/edit", cumulative, { responseType: "text" })
+    return this.http.put(this.backEndUrl + "/Putcriteres", cumulative, { responseType: "text" })
   }
 
   getCritereByNorme(cumulative: any) {

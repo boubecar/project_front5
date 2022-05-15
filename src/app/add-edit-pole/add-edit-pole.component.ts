@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Pole } from '../pole';
 import { PoleServiceService } from '../services/pole-service.service';
 
@@ -10,57 +11,84 @@ import { PoleServiceService } from '../services/pole-service.service';
 })
 export class AddEditPoleComponent implements OnInit {
 
- // constructor() { }
-   constructor(public service:PoleServiceService,private fb: FormBuilder) { }
- /* pole:any;
-  PoleId:string="";
-  PoleName:string="";*/
-  PhotoFileName:string="";
-  PhotoFilePath:string="";
+  PoleList: any = []
+  
+  PhotoFileName: string = ""
+  PhotoFilePath: string = 'assets/images/inconu.png'
+  constructor(public service: PoleServiceService, private fb: FormBuilder, private router: Router) { }
 
-  formCum=this.fb.group({
-    designation:[""],
-    image:[""],
-    });
 
-    cumulative: Pole = {}
   ngOnInit(): void {
-   // this.PoleId=this.pole.PoleId;
-    //this.PoleName=this.pole.PoleName;
+    this.refreshPoleList();
   }
-  addPole(){
-    if(! this.formCum.valid){
+ 
+  
+  public saveData() {
+
+    if (!this.service.formCum.valid) {
       alert("veuillez remplir tous les champs")
     }
     
-    this.cumulative = {
-      poleId:this.cumulative.poleId,
-      poleName: this.formCum.controls['designation'].value,
-      image:this.formCum.controls['PhotoFilePath'].value
-    }
-    this.service.postPole(this.cumulative).subscribe(res=>{
-      alert(res.toString());
-    })
-  
-  
-    console.log('hello');
-  } 
-
-  updatePole(){
-   /* var val = {DepartmentId:this.PoleId,
-      DepartmentName:this.PoleName};
-      /*this.service.updatePole(val).subscribe(res=>{
+    if (this.service.formCum.controls['poleId'].value == '00000000-0000-0000-0000-000000000000') {
+      
+      this.service.postPole(this.service.formCum.value).subscribe(res => {
         alert(res.toString());
-        });*/
+       
+      });
+      this.ngOnInit();
+    }
+    else {
+      console.log("put")
+      console.log(this.service.formCum.value);
+      this.service.updatePole(this.service.formCum.value).subscribe(res => {
+        alert(res.toString());
+        alert("refrech 1");
+        this.refreshPoleList();
+        alert("refrech 2");
+      })
+    }
+    console.log('hello');
+    console.log(this.service.formCum.value);
+    //alert(this.service.formCum.value);
   }
-  uploadPhoto(event:any){
-    var file=event.target.files[0];
-    const formData:FormData=new FormData();
-    formData.append('uploadedFile',file,file.name);
+  refreshPoleList() {
+    this.service.getPoleList().subscribe(data => {
+      this.PoleList = data;
+    });
+  }
+  uploadPhoto(e: any) {
+    /* var file = event.target.files[0];
+     const formData: FormData = new FormData();
+     formData.append('uploadedFile', file, file.name);
+     alert(file.name)
+     this.PhotoFilePath = this.service.formCum.controls['image'].value;
+     this.service.UploadPhoto(formData).subscribe((data: any) => {
+       this.PhotoFileName = data.toString();
+       this.PhotoFilePath = this.service.formCum.controls['path'].value;
+     })
+     console.log("photo")
+     console.log(this.PhotoFilePath)
+     /*
+     var file=e.target.files[0];
+     const formData:FormData=new FormData();
+     formData.append('uploadedFile',file,file.name);
+     alert(file.name)
+     this.PhotoFilePath=this.service.formCum.controls['image'].value;
+     this.service.UploadPhoto(formData).subscribe((data:any)=>{
+       this.PhotoFileName=data.toString();
+       this.PhotoFilePath=this.service.formCum.controls['image'].value;
+     })*/
 
-    /*this.service.UploadPhoto(formData).subscribe((data:any)=>{
-      this.PhotoFileName=data.toString();
-      this.PhotoFilePath=this.service.PhotoUrl+this.PhotoFileName;
-    })*/
+    if (e.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (evant: any) => {
+        this.PhotoFilePath = evant.target.result;
+      }
+    }
+    console.log("photo")
+    console.log(this.service.formCum.controls['image'].value)
   }
+  
+
 }

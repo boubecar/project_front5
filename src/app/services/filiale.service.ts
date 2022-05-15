@@ -10,13 +10,13 @@ import { Filiale } from '../filiale';
 export class FilialeService {
 
   constructor(private http: HttpClient, private fb: FormBuilder) { }
-
+   detailPole:any=[]
   listFiliale: Filiale[] = []
   backEndUrl: string = "https://localhost:44388/api/Filiale";
 
   postFiliale(cumulative: any) {
     return this.http.post(this.backEndUrl + "/PostFilale", cumulative, { responseType: "text" })
-  }
+  } 
   getFilialeList(): Observable<any[]> {
     return this.http.get<any>(this.backEndUrl + '/GetAllFiliale');
   }

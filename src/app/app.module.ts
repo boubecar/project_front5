@@ -35,6 +35,8 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { LoginComponent } from './authentification/login/login.component';
 import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.component';
 import { DatePipe } from '@angular/common';
+import { DetailPoleComponent } from './pole/detail-pole/detail-pole.component';
+import { DetailFilComponent } from './filiale/detail-fil/detail-fil.component';
 
 
 
@@ -66,6 +68,8 @@ import { DatePipe } from '@angular/common';
     AuthentificationComponent,
     LoginComponent,
     AddEditUserComponent,
+    DetailPoleComponent,
+    DetailFilComponent,
 
   ],
   imports: [
