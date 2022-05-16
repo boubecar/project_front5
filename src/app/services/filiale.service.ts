@@ -9,10 +9,16 @@ import { Filiale } from '../filiale';
 })
 export class FilialeService {
 
-  constructor(private http: HttpClient, private fb: FormBuilder) { }
+  formCum = this.fb.group({
+    filialId: ['00000000-0000-0000-0000-000000000000', Validators.required],
+    filialName: ['', Validators.required],
+    poleId: ['00000000-0000-0000-0000-000000000000', Validators.required],
+  });
    detailPole:any=[]
   listFiliale: Filiale[] = []
   backEndUrl: string = "https://localhost:44388/api/Filiale";
+  constructor(private http: HttpClient, private fb: FormBuilder) { }
+  
 
   postFiliale(cumulative: any) {
     return this.http.post(this.backEndUrl + "/PostFilale", cumulative, { responseType: "text" })

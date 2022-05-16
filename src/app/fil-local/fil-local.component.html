@@ -4,22 +4,13 @@
 		<app-nav></app-nav>
 		<div class="container">
 
-			<h5 class="d-flex justify-content-center">Gestion des Local
+			<h5 class="d-flex justify-content-center">Gestion des Locaux
 			</h5>
 
-			<nav class="navbar navbar-expand-sm bg-light navbar-dark">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<button routerlink="/gnorme" class="m-1 btn btn-light btn-outline-primary" button>Filiale</button>
-					</li>
-
-
-				</ul>
-			</nav>
 
 			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
-				Ajouter un  Local
+			<button type="button" style="margin-left: 300px;" class="fa fa-plus btn btn-outline-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+				Ajouter
 			</button>
 
 			<!-- Modal -->
@@ -38,11 +29,28 @@
 								<div class="card-body">
 									<form (ngSubmit)="saveData()" [formGroup]="formCum">
 										<div class="form-row">
-											<input type="hidden" formcontrolname="LocallId">
-											<div class="col-md-6 mb-3">
-												<label>enter le nom de nouveau  critere
-												</label>
-												<input type="text" class="Form-Control" placeholder="Nom" formcontrolname="localdescription" required>
+											<div class="input-group">
+												<input type="hidden" formcontrolname="LocallId">
+												<div class="col-md-6 mb-3">
+													<label>enter le nom de nouveau  critere
+													</label>
+													<input type="text" class="Form-Control" placeholder="Nom" formControlName="localdescription" required>
+													
+												</div>
+											</div>
+												<div class="input-group">
+
+													<label style="margin-left: 15px;" for="validationCustom01" >
+														Sélectionnez une filiale 
+													</label>
+													<select  style="margin-left: 15px; width: 360px;" class="form-control form-control-sm"
+												id="validationCustom01"  formControlName="Filialeid"
+												[ngClass]="(formCum.controls['Filialeid'].touched ||formCum.controls['Filialeid'].dirty) && formCum.controls['Filialeid'].hasError('required')? 'is-invalid' : '' ||((formCum.controls['Filialeid'].touched || formCum.controls['Filialeid'].dirty) && !formCum.controls['Filialeid'].invalid) ? 'is-valid': ''">
+												<option *ngFor="let dataItem of filList"   [value]="dataItem.filialId">{{dataItem.filialName}}</option>
+												</select>
+												<div class="invalid-feedback" style="margin-left: 13px;">   la filiale  est  
+													obligatoire
+												</div>
 											</div>
 
 										</div>
@@ -60,22 +68,22 @@
 
 
 			<table class="table " id="center" style="width:85%;">
-				<thead class="table-success">
+				<thead style="background-color: #CAF0F8">
 					<tr>
-						<th>LocallId</th>
 						<th>localdescription</th>
-
+						<th>Filiale Name </th>
 						<th>Options</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let dataItem of CritereList">
-						<td>{{dataItem.locallId}}</td>
+					
 						<td>{{dataItem.localdescription}}</td>
+						<td>{{dataItem.fliname}}</td>
 
 						<td style="width:20%;">
-							<button type="button" class="btn fa fa-trash btn-light mr-1" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
-							<button type="button" class="btn fa fa-pencil-square-o btn-light mr-1" data-toggle="modal" data-target="#exampleModal1" (click)="ChangeData(dataItem)"></button>
+							<button type="button" class="btn fa-solid fa-trash-can btn btn-outline-danger mr-1" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
+							<button type="button" class="fa-solid fa-pen-to-square btn btn-outline-secondary  mr-1" data-toggle="modal" data-target="#exampleModal1" (click)="ChangeData(dataItem)"></button>
 						</td>
 					</tr>
 				</tbody>

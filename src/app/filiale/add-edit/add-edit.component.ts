@@ -40,8 +40,10 @@ export class AddEditComponent implements OnInit {
     });
   }
   refreshPoleList() {
+   
     this.service.getPoleList().subscribe(data => {
       this.PoleList = data;
+      console.log("pole",this.PoleList)
     });
   }
   public saveData() {

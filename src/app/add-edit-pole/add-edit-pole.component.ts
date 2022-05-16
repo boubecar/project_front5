@@ -14,7 +14,7 @@ export class AddEditPoleComponent implements OnInit {
   PoleList: any = []
   
   PhotoFileName: string = ""
-  PhotoFilePath: string = 'assets/images/inconu.png'
+  PhotoFilePath: string = 'https://cdn3.sosav.fr/store/69879-large_default/plaque-metallique-de-protection-des-nappes-du-lcd-iphone-6.jpg'
   constructor(public service: PoleServiceService, private fb: FormBuilder, private router: Router) { }
 
 

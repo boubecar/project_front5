@@ -24,8 +24,10 @@
                      
 
                      <div class="row column1">
-                        <span class="plus_green_bt" style="z-index: 1;position: absolute;margin-right: 30px;margin-bottom: 450px;"  ><a href="#exampleModal"data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false" style="background-color: #2155CD;">+</a></span>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <button type="button" style="margin-left: 300px;"  class="fa fa-plus btn btn-outline-primary  m-2" style="width: 150px;
+                        " data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+                           Ajouter
+                        </button> <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                            <div class="modal-dialog">
                               <div class="modal-content">
                                  <div class="modal-header">
@@ -70,11 +72,11 @@
                                              <div class="bottom_list">
                                                 
                                                 <div class="right_button">
-                                                   <button type="button" class="btn btn-primary btn-xs" style="background-color: #DD4A48 ; border-color: transparent;border-radius: 100px;" > <i class="fa-solid fa-trash"></i>
+                                                   <button type="button" class="btn fa-solid fa-trash-can btn-outline-danger btn-primary btn-xs"  > <i class=""></i>
                                                    
                                                    </button> &nbsp;
-                                                   <button type="button" class="btn btn-xs" style="border: transparent ;background-color:#17D7A0 ;border-radius: 100px;" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)">
-                                                      <i class="fa-solid fa-eye"></i>
+                                                   <button type="button" class="btn fa-solid fa-eye btn-xs btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)">
+                                                     
                                                    </button>
                                                 </div>
                                              </div>

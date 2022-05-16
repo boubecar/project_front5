@@ -18,23 +18,17 @@ export class ListerComponent implements OnInit {
     this.route.params.subscribe((params: any) => console.log(params));
   }
  filList: any = []
-  /*filList: Array<{filialeId: string, filialName: string,image:string,poleName:string}> = [
-    {filialeId: "1", filialName: "Mazraa",image:"assets/images/mazraa.jpg",poleName:"Alimentation-animale"},
-    {filialeId: "1", filialName: 'Jadida ',image:"assets/images/download.jpg",poleName:"agroalimentaire"},
-    {filialeId: "1", filialName: ' Gan',image:"assets/images/alimentation-animale.png",poleName:"industrielle"},
-    {filialeId: "1", filialName: "Med oil",image:"assets/images/alimentation-animale.png",poleName:"industrielle"},
-    {filialeId: "1", filialName: "oasis",image:"assets/images/oasis.jpg",poleName:"agroalimentaire"},
-];*/
+ 
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.idnorm = params['id'];
     })
-    this.formCum = this.fb.group({
+  /*  this.formCum = this.fb.group({
       filialeId: ['00000000-0000-0000-0000-000000000000', Validators.required],
       filialeName: ['', Validators.required],
       poleId: this.idnorm,
-    });
+    });*/
     this.refreshfilList()
   }
 
@@ -48,14 +42,11 @@ export class ListerComponent implements OnInit {
     }
   }
   ChangeData(fil: Filiale) {
-
-    this.formCum.reset({
-      filialeId: fil.filialId,
-      filialeName: fil.filialName,
-      image: fil.image
+    console.log("change",fil)
+    this.filialeService.formCum.reset({
+      filialId: fil.filialId,
+      filialName: fil.filialName
     });
-    this.refreshfilList();
-
   }
   polename: any
   SearchPole() {

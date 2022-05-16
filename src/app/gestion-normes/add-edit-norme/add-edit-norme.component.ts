@@ -22,7 +22,7 @@ export class AddEditNormeComponent implements OnInit {
   }
 
   public saveData() {
-    debugger
+    
     if (!this.normeService.formCum.valid) {
 
       alert("veuillez remplir tous les champs")

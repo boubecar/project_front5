@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'cri/:id', component: CritereComponent },
   { path: 'fl/:id', component: FilialeComponent },
   { path: 'lf/:id', component: FilLocalComponent },
-  { path: 'local', component: LocalComponent },
+  { path: 'loc', component: FilLocalComponent },
   { path: 'users', component: UsersComponent },
   { path: 'login', component: LoginComponent },
   { path: 'md', component: DetailPoleComponent }
