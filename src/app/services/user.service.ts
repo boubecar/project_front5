@@ -23,7 +23,7 @@ export class UserService {
     return this.http.put(this.backEndUrl + '/PutUser', val);
   }
   deleteUser (val: any) {
-    return this.http.delete(this.backEndUrl + '/DeleteUser?SaisieCommentId=' + val, { responseType: "text" });
+    return this.http.delete(this.backEndUrl + '/DeleteUsers?SaisieCommentId=' + val, { responseType: "text" });
   }
 
 }

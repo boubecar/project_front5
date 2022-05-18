@@ -37,6 +37,7 @@ import { AddEditUserComponent } from './users/add-edit-user/add-edit-user.compon
 import { DatePipe } from '@angular/common';
 import { DetailPoleComponent } from './pole/detail-pole/detail-pole.component';
 import { DetailFilComponent } from './filiale/detail-fil/detail-fil.component';
+import { ListerUsersComponent } from './users/lister-users/lister-users.component';
 
 
 
@@ -70,6 +71,7 @@ import { DetailFilComponent } from './filiale/detail-fil/detail-fil.component';
     AddEditUserComponent,
     DetailPoleComponent,
     DetailFilComponent,
+    ListerUsersComponent,
 
   ],
   imports: [

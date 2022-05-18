@@ -1,0 +1,36 @@
+<div class="full price_table padding_infor_info">
+    <div class="row">
+       <!-- column contact --> 
+       <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30" *ngFor="let dataItem of userList">
+          <div class="contact_blog">
+             <h4 class="brief">Responsable 5S </h4>
+             <div class="contact_inner">
+                <div class="left">
+                   <h3>{{dataItem.userName}}</h3>
+                   <p><strong>Filiale: </strong>Frontend Developer</p>
+                   <tr class="list-unstyled">
+                      <td><i class="fa fa-envelope-o"></i>{{dataItem.email}} </td>
+                      </tr>
+                </div>
+                <div class="right">
+                   <div class="profile_contacts">
+                      <img class="img-responsive" src="{{dataItem.userimage}}" alt="#" />
+                   </div>
+                </div>
+                <div class="bottom_list">
+                  
+                   <div class="right_button">
+                    <button type="button"  data-toggle="modal" data-target="#exampleModal" class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1 margin_bottom_30" data-backdrop="static" data-keyboard="false" (click)="ChangeData(dataItem)">
+											
+                    </button>
+
+                    <button type="button"  class="fa-solid fa-trash-can btn btn-outline-danger mr-1 margin_bottom_30" (click)="deleteClick(dataItem)">
+                    </button>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <!-- end column contact blog -->
+    </div>
+ </div>

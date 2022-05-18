@@ -46,77 +46,9 @@
                               </div>
                            </div>
                         </div>
-                        <div class="col-md-12">
-
-                           <div class="white_shd full margin_bottom_30">
-                              
-                              <div class="full price_table padding_infor_info">
-
-                                 <div class="row"  *ngFor="let i of service.PoleList " >
-                                    <pre> {{userList | json }}</pre>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30" *ngFor="let dataItem of menberList " style="margin-top:30px ;">
-                                       <div class="contact_blog">
-
-                                          <div class="contact_inner">
-                                             <div class="left">
-                                                <h3>aaaaa</h3>
-                                                 <ul class="list-unstyled">
-                                                   <li><i class="fa fa-envelope-o"></i> {{dataItem.userName}}</li>
-                                                   <li><i class="fa fa-phone"></i> {{dataItem.userName}}</li>
-                                                </ul>
-                                             </div>
-                                             <div class="right">
-                                                <div class="profile_contacts">
-                                                   <img class="img-responsive" alt="#" />
-                                                </div>
-                                             </div>
-                                             <div class="bottom_list">
-                                                <div class="right_button">
-                                                   <button type="button" class="btn fa-solid fa-trash-can btn-outline-danger btn-primary btn-xs"  > <i class=""></i>
-                                                   
-                                                   </button> &nbsp;
-                                                   <button type="button" class="btn fa-solid fa-eye btn-xs btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)">
-                                                     
-                                                   </button>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-
-                                    </div>
-                                     
-                                    <!-- end column contact blog -->
-
-                                    <!--<div class="col-md-6 col-lg-4" *ngFor="let dataItem of service.PoleList ">
-                                       <div class="full white_shd margin_bottom_30">
-                                          <div class="info_people">
-                                             <div class="p_info_img" style="margin-top:30px ;">
-                                                <img src="{{dataItem.image}}" alt="#"/>
-                                             </div>
-                                             <div class="user_info_cont">
-                                                <p>Pole :</p>
-                                                <p class="p_status">{{dataItem.poleName}}</p>
-                                                <div style="margin-top: 10px;">
-                                                      <button type="button"  class="fa-solid fa-trash-can btn btn-outline-danger mr-1 margin_bottom_30" >
-                                                      </button>
-                                                      <button type="button"  data-toggle="modal" data-target="#exampleModal" class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1 margin_bottom_30" data-backdrop="static" data-keyboard="false" (click)="ChangeData(dataItem)">				
-                                                      </button>
-                                                      <button  data-toggle="modal" data-target="#exampleModal1"   class="btn btn-outline-warning mr-1 margin_bottom_30"><i style="color: orange;" class="fa-solid fa-circle-info"></i></button>
-                                                      
-                                                   </div>
-                                             </div>
-                                             
-                                          
-                                          </div>
-                                 
-                                       </div>
-                                    </div>-->
-                                 
-
-
-                                </div>
-                              </div>
+                        <div class="col-md-12" >
+                           <div class="white_shd full margin_bottom_30">   
+                              <app-lister-users></app-lister-users>    
                            </div>
                         </div>
                         <!-- end row -->
