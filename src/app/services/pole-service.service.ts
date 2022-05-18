@@ -10,6 +10,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class PoleServiceService {
   // readonly APIUrl="http://localhost:53535/api/Pole";
+  PoleList: any = []
+
   constructor(private http: HttpClient, private fb: FormBuilder) { }
   formCum = this.fb.group({
     poleId: ['00000000-0000-0000-0000-000000000000', Validators.required],

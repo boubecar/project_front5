@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  backEndUrl: string = "https://localhost:44388/api/User";
+  
+  backEndUrl: string = "https://localhost:44388/api/Users";
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
   PostUser(cumulative: any) {
@@ -15,7 +16,7 @@ export class UserService {
   }
 
   getUserList(): Observable<any[]> {
-    return this.http.get<any>(this.backEndUrl + '/GetAllUsers');
+    return this.http.get<any>(this.backEndUrl + '/GetAllFiliale');
   }
 
   updateUser(val: any) {

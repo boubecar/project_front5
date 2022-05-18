@@ -31,7 +31,7 @@
 								<input type="search" style="width: 200px; margin-bottom: 30px;margin-top: 5px;" class="form-control" placeholder="Filter Name " name="designation" [(ngModel)]="poleName" (ngModelChange)="Search()">&nbsp; <i style="font-size: large; margin-top: 10px;" class="fa-solid fa-magnifying-glass"></i>
 							</div>
 							<div class="row">
-								<div class="col-sm-4 col-md-3 margin_bottom_30" *ngFor="let dataItem of PoleList">
+								<div class="col-sm-4 col-md-3 margin_bottom_30" *ngFor="let dataItem of service.PoleList">
 									<div class="column">
 										<img class="img-responsive" src="{{dataItem.image}}" alt="#"/>
 									</div>
@@ -51,9 +51,6 @@
 									</div>
 								</div>
 							</div>
-
-
-
 							<!-- Modal -->
 							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog">

@@ -30,7 +30,7 @@
 									<form (ngSubmit)="saveData()" [formGroup]="formCum">
 										<div class="form-row">
 											<div class="input-group">
-												<input type="hidden" formcontrolname="LocallId">
+												<input type="hidden" formcontrolname="locallId">
 												<div class="col-md-6 mb-3">
 													<label>enter le nom de nouveau  critere
 													</label>
@@ -83,7 +83,7 @@
 
 						<td style="width:20%;">
 							<button type="button" class="btn fa-solid fa-trash-can btn btn-outline-danger mr-1" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
-							<button type="button" class="fa-solid fa-pen-to-square btn btn-outline-secondary  mr-1" data-toggle="modal" data-target="#exampleModal1" (click)="ChangeData(dataItem)"></button>
+							<button type="button" class="fa-solid fa-pen-to-square btn btn-outline-secondary  mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)"></button>
 						</td>
 					</tr>
 				</tbody>

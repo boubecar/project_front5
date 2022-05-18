@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Pole } from '../pole';
@@ -11,7 +11,7 @@ import { PoleServiceService } from '../services/pole-service.service';
 })
 export class AddEditPoleComponent implements OnInit {
 
-  PoleList: any = []
+  //PoleList: any = []
   
   PhotoFileName: string = ""
   PhotoFilePath: string = 'https://cdn3.sosav.fr/store/69879-large_default/plaque-metallique-de-protection-des-nappes-du-lcd-iphone-6.jpg'
@@ -22,40 +22,43 @@ export class AddEditPoleComponent implements OnInit {
     this.refreshPoleList();
   }
  
-  
+  refreshPoleList() {
+    this.service.getPoleList().subscribe(data => {
+      this.service.PoleList = data;
+
+    });
+  }
+
   public saveData() {
 
-    if (!this.service.formCum.valid) {
+    /*if (!this.service.formCum.valid) {
       alert("veuillez remplir tous les champs")
-    }
-    
+    }*/
+    debugger
     if (this.service.formCum.controls['poleId'].value == '00000000-0000-0000-0000-000000000000') {
       
       this.service.postPole(this.service.formCum.value).subscribe(res => {
         alert(res.toString());
-       
+        this.refreshPoleList();
       });
-      this.ngOnInit();
     }
     else {
       console.log("put")
       console.log(this.service.formCum.value);
       this.service.updatePole(this.service.formCum.value).subscribe(res => {
         alert(res.toString());
-        alert("refrech 1");
         this.refreshPoleList();
-        alert("refrech 2");
-      })
+      });
     }
     console.log('hello');
     console.log(this.service.formCum.value);
     //alert(this.service.formCum.value);
   }
-  refreshPoleList() {
-    this.service.getPoleList().subscribe(data => {
-      this.PoleList = data;
-    });
-  }
+
+
+
+
+
   uploadPhoto(e: any) {
     /* var file = event.target.files[0];
      const formData: FormData = new FormData();

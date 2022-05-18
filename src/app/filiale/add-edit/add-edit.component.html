@@ -7,7 +7,7 @@
 					<input type="hidden" formControlName="filialId">
 					<label style="margin-left: 15px;" for="validationCustom01" >Enter le nom de filiale
 					</label>
-					<input type="text" style="margin-left: 15px; width: 360px;" class="form-control form-control-sm" placeholder="Nom" formControlName="filialName" id="validationCustom01" 
+					<input type="text" style="margin-left: 15px; width: 360px;" class="form-control form-control-sm" placeholder="Nom"   formControlName="filialName" id="validationCustom01" 
 					[ngClass]="(formCum.controls['filialName'].touched ||formCum.controls['filialName'].dirty) && formCum.controls['filialName'].hasError('required')? 'is-invalid' : '' ||((formCum.controls['filialName'].touched || formCum.controls['filialName'].dirty) && !formCum.controls['filialName'].invalid) ? 'is-valid': ''">
 				<div class="invalid-feedback" style="margin-left: 13px;"> le nom de filiale 
 					obligatoire
@@ -21,7 +21,7 @@
 					<select  style="margin-left: 15px; width: 360px;" class="form-control form-control-sm"
 					id="validationCustom01"  formControlName="poleId"
 					[ngClass]="(formCum.controls['poleId'].touched ||formCum.controls['poleId'].dirty) && formCum.controls['poleId'].hasError('required')? 'is-invalid' : '' ||((formCum.controls['poleId'].touched || formCum.controls['poleId'].dirty) && !formCum.controls['poleId'].invalid) ? 'is-valid': ''">
-					<option *ngFor="let dataItem of PoleList"   [value]="dataItem.poleId">{{dataItem.poleName}}</option>
+					<option *ngFor="let dataItem of service.PoleList"   [value]="dataItem.poleId">{{dataItem.poleName}}</option>
 					</select>
 				<div class="invalid-feedback" style="margin-left: 13px;">   le pole est  
 					obligatoire

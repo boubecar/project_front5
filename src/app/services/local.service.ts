@@ -16,7 +16,7 @@ export class LocalService {
     return this.http.get<any>(this.backEndUrl + '/GetAllFiLocal');
   }
 
-  postLocal(cumulative: Local) {
+  postLocal(cumulative: any) {
     return this.http.post(this.backEndUrl + "/PostFilLocal", cumulative, { responseType: "text" })
   }
   listNormes: Local[] = []
@@ -24,7 +24,7 @@ export class LocalService {
   deleteLocal(cumulative: any) {
     return this.http.delete(this.backEndUrl + "/DeleteFilLocal?SaisieCommentId=" + cumulative, { responseType: "text" })
   }
-  editLocal(cumulative: Local) {
+  editLocal(cumulative: any) {
     return this.http.put(this.backEndUrl + "/PutFilLocal", cumulative, { responseType: "text" })
   }
   GetAllLocalByFilale(cumulative: any) {

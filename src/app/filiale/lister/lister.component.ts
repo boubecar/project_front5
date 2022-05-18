@@ -4,6 +4,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Filiale } from 'src/app/filiale';
 import { FilialeService } from 'src/app/services/filiale.service';
 import { LocalService } from 'src/app/services/local.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-lister',
@@ -14,10 +15,10 @@ export class ListerComponent implements OnInit {
   idnorm: string = ''
   formCum!: FormGroup;
   filialName: any
-  constructor(public filialeService: FilialeService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router,private localService :LocalService) {
+  constructor(public filialeService: FilialeService,private userService : UserService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router,private localService :LocalService) {
     this.route.params.subscribe((params: any) => console.log(params));
   }
- filList: any = []
+ //filList: any = []
  
 
   ngOnInit(): void {
@@ -30,6 +31,7 @@ export class ListerComponent implements OnInit {
       poleId: this.idnorm,
     });*/
     this.refreshfilList()
+   //this.refreshMemberList();
   }
 
   deleteClick(item: any) {
@@ -45,7 +47,8 @@ export class ListerComponent implements OnInit {
     console.log("change",fil)
     this.filialeService.formCum.reset({
       filialId: fil.filialId,
-      filialName: fil.filialName
+      filialName: fil.filialName,
+      poleId: fil.poleId,
     });
   }
   polename: any
@@ -53,7 +56,7 @@ export class ListerComponent implements OnInit {
     if (this.polename == '') {
       this.ngOnInit()
     } else {
-      this.filList = this.filList.filter((res: { polename: string; }) => {
+      this.filialeService.filList = this.filialeService.filList.filter((res: { polename: string; }) => {
         return res.polename.toLocaleLowerCase().match(this.polename.toLocaleLowerCase());
       })
     }
@@ -63,7 +66,7 @@ export class ListerComponent implements OnInit {
     if (this.filialName == '') {
       this.ngOnInit()
     } else {
-      this.filList = this.filList.filter((res: { filialName: string; }) => {
+      this.filialeService.filList = this.filialeService.filList.filter((res: { filialName: string; }) => {
         return res.filialName.toLocaleLowerCase().match(this.filialName.toLocaleLowerCase());
       })
     }
@@ -73,12 +76,22 @@ export class ListerComponent implements OnInit {
    // console.log("id pole",this.idnorm)
     //this.isShown = true;
     this.filialeService.getFilialeList().subscribe(data => {
-      this.filList = data;
+      this.filialeService.filList = data;
       console.log(this.filialeService)
     });
 
   }
+  userList:any
+  refreshMemberList() {
+    this.userService.getUserList().subscribe(data => {
+      this.userList = data;
+      console.log(this.userList)
+    });
+    
+    //console.log("list",this.userList)
 
+
+  }
 
   detfil(item: any) {
     //this.router.navigate(['/lf', item.filialId]);

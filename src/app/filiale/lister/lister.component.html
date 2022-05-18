@@ -1,16 +1,17 @@
  
-                        <div class="d-flex flex-row" style="margin-left: 54%;">
+
+						<div class="d-flex flex-row" style="margin-left: 80%;">
+							<button type="button" id="btncolor"   class="fa fa-plus-circle btn btn-light float-right m-2" style="width: 150px;margin-top: -30%; " data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+								Ajouter
+							 </button>
+						</div>						 
+						<div class="d-flex flex-row" style="margin-left: 54%;">
 							
 							<input type="search" style="width: 200px; margin-bottom: 30px" class="form-control" placeholder="Filter Pole " name="designation" [(ngModel)]="polename" (ngModelChange)="SearchPole()">&nbsp; <i style="font-size: large; margin-top: 10px;" class="fa-solid fa-magnifying-glass"></i> &nbsp; &nbsp;
 							<input type="search" style="width: 200px; margin-bottom: 30px" class="form-control" placeholder="Filter Filiale " name="designation" [(ngModel)]="filialName" (ngModelChange)="Search()">&nbsp; <i style="font-size: large; margin-top: 10px;" class="fa-solid fa-magnifying-glass"></i>
 						</div>
-						 <div class="d-flex flex-row" style="margin-left: 48%;">
-							<button type="button" id="btncolor"  class="fa fa-plus-circle btn btn-light float-right m-2" style="width: 150px; margin-top:70%; " data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
-								Ajouter
-							 </button>
-						 </div>
 <div class="row column1">
-	<div class="col-md-6 col-lg-4" *ngFor="let dataItem of filList">
+	<div class="col-md-6 col-lg-4" *ngFor="let dataItem of filialeService.filList">
 		<div class="full white_shd margin_bottom_30">
 			<div class="info_people">
 				<div class="p_info_img" style="margin-top:30px ;">
@@ -48,6 +49,7 @@
 					   </div>
 					</div>
 				 </div>
+				 	<!--Model Add-edit-->
 				 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 					   <div class="modal-content">

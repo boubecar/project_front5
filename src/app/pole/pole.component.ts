@@ -13,7 +13,7 @@ import { PoleServiceService } from '../services/pole-service.service';
 export class PoleComponent implements OnInit {
   filaleList: any;
   poleName: any
-  PoleList: any = []
+//  PoleList: any = []
   PhotoFileName: string = ""
   PhotoFilePath: string = 'assets/images/inconu.png'
 /*filList: Array<{filialeId: string, filialName: string,image:string,poleName:string}> = [
@@ -35,7 +35,7 @@ filList:any
   ngOnInit(): void {
     this.refreshPoleList();
   }
-  public saveData() {
+ /* public saveData() {
 
     if (!this.service.formCum.valid) {
       alert("veuillez remplir tous les champs")
@@ -61,7 +61,7 @@ filList:any
     console.log('hello');
     console.log(this.service.formCum.value);
     //alert(this.service.formCum.value);
-  }
+  }*/
   DeleteClick(item: any) {
     if (confirm('Are you sure??')) {
       alert(item.poleId)
@@ -87,7 +87,7 @@ filList:any
 
   refreshPoleList() {
     this.service.getPoleList().subscribe(data => {
-      this.PoleList = data;
+      this.service.PoleList = data;
       // this.DepartmentListWithoutFilter=data;
     });
   }
@@ -127,7 +127,7 @@ filList:any
     if (this.poleName == '') {
       this.ngOnInit()
     } else {
-      this.PoleList = this.PoleList.filter((res: { poleName: string; }) => {
+      this.service.PoleList = this.service.PoleList.filter((res: { poleName: string; }) => {
         return res.poleName.toLocaleLowerCase().match(this.poleName.toLocaleLowerCase());
       })
     }

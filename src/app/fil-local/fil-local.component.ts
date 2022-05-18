@@ -34,19 +34,19 @@ export class FilLocalComponent implements OnInit {
     this.refreshfilList();
     this.refreshcriList();
     this.formCum = this.fb.group({
-      LocallId: ['00000000-0000-0000-0000-000000000000', Validators.required],
+      locallId: ['00000000-0000-0000-0000-000000000000', Validators.required],
       localdescription: [""],
       Filialeid: this.idnorm
     });
 
     console.log("id", this.idnorm)
   }
-  ChangeData(local: Local) {
+  ChangeData(local: any) {
 
     this.formCum.reset({
-      LocallId: local.LocallId,
+      locallId: local.locallId,
       localdescription: local.localdescription,
-      Filialeid: this.idnorm
+      filialeid: local.Filialeid
 
 
     });
@@ -87,7 +87,7 @@ export class FilLocalComponent implements OnInit {
     //   normeId:this.cumulative.normeId,
     //   designation: this.formCum.controls['designation'].value,
     // }
-    if (this.formCum.controls['LocallId'].value == '00000000-0000-0000-0000-000000000000') {
+    if (this.formCum.controls['locallId'].value == '00000000-0000-0000-0000-000000000000') {
 
       console.log("post")
       console.log(this.formCum.value);
@@ -95,7 +95,7 @@ export class FilLocalComponent implements OnInit {
         alert(res.toString());
         //  this.cumulative={}
 
-        // this.refreshnormList();
+        this.refreshcriList();
       })
     }
     else {

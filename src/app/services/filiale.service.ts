@@ -14,6 +14,8 @@ export class FilialeService {
     filialName: ['', Validators.required],
     poleId: ['00000000-0000-0000-0000-000000000000', Validators.required],
   });
+
+  filList: any = []
    detailPole:any=[]
   listFiliale: Filiale[] = []
   backEndUrl: string = "https://localhost:44388/api/Filiale";
@@ -28,7 +30,7 @@ export class FilialeService {
   }
 
   updateFiliale(val: any) {
-    return this.http.put(this.backEndUrl + '/PutPole', val);
+    return this.http.put(this.backEndUrl + '/PutFiliale', val);
   }
   deleteFiliale(val: any) {
     return this.http.delete(this.backEndUrl + '/DeleteFiliale?SaisieCommentId=' + val, { responseType: "text" });
