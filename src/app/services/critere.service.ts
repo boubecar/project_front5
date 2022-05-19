@@ -34,5 +34,8 @@ export class CritereService {
   getGroupedCriterion() {
     return this.http.get(this.backEndUrl + "/getGroupedCriterion")
   }
+  getcriteres(cumulative: any) {
+    return this.http.get(this.backEndUrl + "/" + cumulative,)
+  }
 }
 

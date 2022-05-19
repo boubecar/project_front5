@@ -27,5 +27,7 @@ export class NoteService {
   GetAllNoteByLocal(cumulative: any) {
     return this.http.get(this.backEndUrl + "/GetSumnotationByFilLocal?id=" + cumulative,)
   }
-
+  getnotation(cumulative: any) {
+    return this.http.get(this.backEndUrl + "/" + cumulative,)
+  }
 }

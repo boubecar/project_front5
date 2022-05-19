@@ -16,15 +16,15 @@ export class FilialeService {
   });
 
   filList: any = []
-   detailPole:any=[]
+  detailPole: any = []
   listFiliale: Filiale[] = []
   backEndUrl: string = "https://localhost:44388/api/Filiale";
   constructor(private http: HttpClient, private fb: FormBuilder) { }
-  
+
 
   postFiliale(cumulative: any) {
     return this.http.post(this.backEndUrl + "/PostFilale", cumulative, { responseType: "text" })
-  } 
+  }
   getFilialeList(): Observable<any[]> {
     return this.http.get<any>(this.backEndUrl + '/GetAllFiliale');
   }
@@ -47,7 +47,7 @@ export class FilialeService {
     this.toasts.push({ textOrTpl, ...options });
   }
 
-  remove(toast:any) {
+  remove(toast: any) {
     this.toasts = this.toasts.filter(t => t !== toast);
   }
 

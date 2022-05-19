@@ -1,5 +1,10 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Filiale } from '../filiale';
+import { groupedCriterionDTO } from '../groupedCriterionDTO';
 import { Note } from '../note';
 import { CritereService } from '../services/critere.service';
 import { FilialeService } from '../services/filiale.service';
@@ -13,8 +18,86 @@ import { NoteService } from '../services/note.service';
   styleUrls: ['./evaluation.component.css']
 })
 export class EvaluationComponent implements OnInit {
-  NormeList: any = []
-  CritereList: any = []
+  // Form Array //
+  /* NotationForm = this.fb.group({
+     Note: this.fb.array([]),
+   });
+  filList: any
+   LocalList: any
+   NormeList: any
+   CritereList: any
+   get skills(): FormArray {
+     return this.NotationForm.get("Note") as FormArray
+   }*/
+  today = new Date()
+
+  AddOrEditNotationForm = this.fb.group({
+    NoteArray: this.fb.array([]),
+  });
+
+  formCum = this.fb.group({
+    filialeId: '00000000-0000-0000-0000-000000000000',
+    filLocalid: '00000000-0000-0000-0000-000000000000',
+    date_notation: this.datePipe.transform(this.today, "yyyy-MM-dd"),
+  });
+  //ObjectArray: any;
+
+  get controlArray(): FormArray {
+    return this.AddOrEditNotationForm.get('NoteArray') as FormArray;
+  }
+  filList: any
+  LocalList: any
+  NormeList: any
+  CritereList: any
+  /* buildFormNotation(list: any) {
+     list.array.forEach(() => {
+       this.skills.push(this.fb.group({
+         Id: ["00000000-0000-0000-0000-000000000000"],
+         note: [""],
+         image: [""],
+         critereid: [list.critereid],
+         comment: [""],
+         noteDate: [""],
+         Userid: [''],
+         FilLocalid: ['']
+       }))
+     });
+     console.log("ee")
+     console.log(this.skills)
+   }*/
+  buildFormNotation(listCriterion: any) {
+    listCriterion.forEach((element: any) => {
+      this.controlArray.push(this.fb.group({
+        id: '00000000-0000-0000-0000-000000000000',
+        note: '',
+        comment: [],
+        date_notation: ['', Validators.required],
+        critereid: [element.critereId],
+        filLocalid: [],
+        userid: ['60fc1633-b1a0-46a3-fbf4-02da28c41eff'],
+        image: [],
+
+        //  index:0,
+        criterionLabel: [element.criterelabel]
+      })
+      )
+    })
+
+  }
+  /*addSkills() {
+    // this.skills.push(this.newNote());
+  }
+  onSubmit() {
+    console.log(this.NotationForm.value);
+  }*/
+
+  // Form Array //
+
+  constructor(private router: Router, public fb: FormBuilder, private normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService,
+    public LocService: LocalService, public noteService: NoteService, public datePipe: DatePipe) {
+  }
+  //NormeList: any = []
+  //CritereList: any = []
   /*NormeList: Array<{ NormeId: number, designation: string, path: string }> = [
     { NormeId: 1, designation: "Nettoyer", path: 'fa-paint-brush' },
     { NormeId: 2, designation: 'Ranger', path: 'fa-cubes' },
@@ -22,8 +105,8 @@ export class EvaluationComponent implements OnInit {
     { NormeId: 4, designation: "Maintenir l'ordre", path: "fa-cubes" },
     { NormeId: 5, designation: "Débarrasser", path: 'fa-trash' },
   ]
-
-  /*CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
+ 
+  CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
     { critereId: 1, criterelabel: "Nettoyer", normes: "" },
     { critereId: 2, criterelabel: 'Ranger', normes: "" },
     { critereId: 3, criterelabel: 'Etre rigoureux', normes: "" },
@@ -34,54 +117,37 @@ export class EvaluationComponent implements OnInit {
   note: number = 0;
   isShown1: boolean = false;
   PhotoFilePath: String = ''
-  FilLocalid: String = 'dff5b96c-07a5-489b-cbec-08da21a93181'
+  FilLocallId: String = ''
   commentaire: String = ''
   eval: String = ''
-  selectedObject1 = ''
+  selectedObject1: any;
   data: any;
-  Userid: String = '60fc1633-b1a0-46a3-fbf4-02da28c41eff'
-  date_notation = new Date();
-  /*filList: Array<{filialeId: string, filialName: string,image:string}> = [
-   {filialeId: "1", filialName: "Mazraa",image:"assets/images/mazraa.jpg"},
-   {filialeId: "1", filialName: 'Jadida ',image:"assets/images/download.jpg"},
-   {filialeId: "1", filialName: ' Gan',image:"assets/images/alimentation-animale.png"},
-   {filialeId: "1", filialName: "Med oil",image:"assets/images/alimentation-animale.png"},
-   {filialeId: "1", filialName: "oasis",image:"assets/images/oasis.jpg"},
- ];
- /*LocalList: Array<{filialeId: string, localdescription: string,image:string}> = [
-   {filialeId: "1", localdescription: "Zahra",image:"assets/images/mazraa.jpg"},
-   {filialeId: "1", localdescription: 'Mouroug ',image:"assets/images/download.jpg"},
-   {filialeId: "1", localdescription: ' Rades',image:"assets/images/alimentation-animale.png"},
-   {filialeId: "1", localdescription: "Tunis",image:"assets/images/alimentation-animale.png"},
-   {filialeId: "1", localdescription: "wardia",image:"assets/images/oasis.jpg"},
- ];*/
-  filList: any
-  LocalList: any
-  //constructor(public normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService) { }
+  Userid: String = ''
+  noteDate: String = ''
+  /* filList: Array<{ filialeId: string, filialeId: string, image: string }> = [
+     { filialeId: "1", filialeId: "Mazraa", image: "assets/images/mazraa.jpg" },
+     { filialeId: "1", filialeId: 'Jadida ', image: "assets/images/download.jpg" },
+     { filialeId: "1", filialeId: ' Gan', image: "assets/images/alimentation-animale.png" },
+     { filialeId: "1", filialeId: "Med oil", image: "assets/images/alimentation-animale.png" },
+     { filialeId: "1", filialeId: "oasis", image: "assets/images/oasis.jpg" },
+   ];
+   LocalList: Array<{ filialeId: string, localdescription: string, image: string }> = [
+     { filialeId: "1", localdescription: "Zahra", image: "assets/images/mazraa.jpg" },
+     { filialeId: "1", localdescription: 'Mouroug ', image: "assets/images/download.jpg" },
+     { filialeId: "1", localdescription: ' Rades', image: "assets/images/alimentation-animale.png" },
+     { filialeId: "1", localdescription: "Tunis", image: "assets/images/alimentation-animale.png" },
+     { filialeId: "1", localdescription: "wardia", image: "assets/images/oasis.jpg" },
+   ];*/
+
+  // constructor(public normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService) { }
 
   selectedObject: any;
   comment: any;
-  /*filList: Array<{ filialeId: string, filialName: string, image: string }> = [
-    { filialeId: "1", filialName: "Mazraa", image: "assets/images/mazraa.jpg" },
-    { filialeId: "1", filialName: 'Jadida ', image: "assets/images/download.jpg" },
-    { filialeId: "1", filialName: ' Gan', image: "assets/images/alimentation-animale.png" },
-    { filialeId: "1", filialName: "Med oil", image: "assets/images/alimentation-animale.png" },
-    { filialeId: "1", filialName: "oasis", image: "assets/images/oasis.jpg" },
-  ];
-  LocalList: Array<{ filialeId: string, localdescription: string, image: string }> = [
-    { filialeId: "1", localdescription: "Zahra", image: "assets/images/mazraa.jpg" },
-    { filialeId: "1", localdescription: 'Mouroug ', image: "assets/images/download.jpg" },
-    { filialeId: "1", localdescription: ' Rades', image: "assets/images/alimentation-animale.png" },
-    { filialeId: "1", localdescription: "Tunis", image: "assets/images/alimentation-animale.png" },
-    { filialeId: "1", localdescription: "wardia", image: "assets/images/oasis.jpg" },
-  ];*/
-  //filList:any
-  //LocalList:any
-  constructor(public normeService: NormeServiceService, public CritereService: CritereService, public filialeService: FilialeService, public LocService: LocalService, public noteService: NoteService) { }
-
+  date = new Date;
   ngOnInit(): void {
     this.refreshnormList()
     this.refreshfilList();
+    console.log(this.controlArray.controls);
 
   }
   refreshnormList() {
@@ -90,15 +156,16 @@ export class EvaluationComponent implements OnInit {
       console.log(this.NormeList)
     });
   }
-  refreshcriList(e: any) {
-    this.isShown1 = true;
-    this.CritereService.getCritereByNorme(e.normeId).subscribe(data => {
-      this.CritereList = data;
 
-      console.log(this.CritereList)
-    });
-    console.log("dd")
-  }
+  // refreshcriList(e: any) {
+
+  //   this.isShown1 = true;
+  //   this.CritereService.getCritereByNorme(e.normeId).subscribe(data => {
+  //     this.CritereList = data;
+  //     console.log(this.CritereList)
+  //   });
+  // }
+
   refreshfilList() {
     this.filialeService.getFilialeList().subscribe(data => {
       this.filList = data;
@@ -106,25 +173,26 @@ export class EvaluationComponent implements OnInit {
     });
 
   }
-  refreshLocList(data: Filiale) {
-    console.log("hhhhh")
-    console.log(data.filialId)
+
+  refreshLocList() {
+    //  debugger
     this.isShown = true;
-    this.LocService.GetAllLocalByFilale(data.filialId).subscribe(data => {
-      this.LocalList = data;
-      console.log("hiii");
-      console.log(this.LocalList);
-    });
+    if (this.formCum.value.filialeId) {
+      this.LocService.GetAllLocalByFilale(this.formCum.value.filialeId).subscribe(data => {
+        this.LocalList = data;
+        console.log(this.LocalList);
+      });
+    }
 
 
-
-
-    console.log("hello");
-    console.log(this.data)
-    console.log('lll')
-    console.log(this.selectedObject1)
   }
-
+  refreshcriList(e: any) {
+    this.CritereService.getCritereByNorme(e.normeid).subscribe(data => {
+      this.CritereList = data;
+      console.log('oui')
+      console.log(this.CritereList)
+    });
+  }
   mention() {
     switch (this.note) {
       case 0:
@@ -140,34 +208,72 @@ export class EvaluationComponent implements OnInit {
     }
     console.log(this.note)
   }
-  cumulative: any
-  image: string = ''
-  id: string = '00000000-0000-0000-0000-000000000000'
-  critereid: string = 'b26f4836-1a8c-4bb8-6752-08da21e09543'
-  cumulative1: Note = {}
-  notation() {
-    this.cumulative = {
-      Id: this.id,
-      comment: this.comment,
-      note: this.note,
-      date_notation: this.date_notation,
-      critereid: this.critereid,
-      image: this.image,
-      Userid: this.Userid,
-      FilLocalid: this.FilLocalid,
+  listGroupedCriterions: any;
 
+  onChangeCriterion() {
+    this.CritereService.getGroupedCriterion().subscribe(
+      res => {
+        // debugger
+        this.listGroupedCriterions = res as groupedCriterionDTO[]
+        this.listGroupedCriterions.forEach((group: any) => {
+          this.buildFormNotation(group.criterionDTOs)
+          console.log("array =" + this.controlArray.controls[0].value.critereid);
+          //  console.log("list", group.criterionDTOs);
+        });
+      }
+    )
+  }
 
-
-
-
-    }
-    console.log(this.cumulative)
-    this.noteService.postNote(this.cumulative).subscribe(res => {
+  /*onSubmit() {
+ 
+    console.log('hhhh')
+ 
+    console.log(this.AddOrEditNotationForm.value)
+    this.noteService.postNote(this.AddOrEditNotationForm.value).subscribe(res => {
       alert(res.toString());
       //  this.cumulative={}
     })
     console.log('hhhh')
+ 
+  }*/
+  onSubmit() {
+    debugger
+    this.controlArray.controls.forEach((form: any) => { form['controls'].date_notation.setValue(this.formCum.value.date_notation) });
+    this.controlArray.controls.forEach((form: any) => { form['controls'].filLocalid.setValue(this.formCum.value.filLocalid) });
 
+    this.controlArray.controls.forEach((element: any, i: Number) => {
+
+      if (element.value.note != null) {
+        this.noteService.postNote(element.value).subscribe(
+          res => {
+
+            if (res == "Added done") {
+              // debugger
+              for (let i = this.controlArray.length - 1; i >= 0; i--) {
+                this.controlArray.removeAt(i)
+                element.reset()
+              }
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'l\'ajout est effectuée avec succèes',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              //  Swal.fire('l\'ajout est effectuée avec succèes')
+            }
+            else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: res,
+                footer: '<a href="">Why do I have this issue?</a>'
+              })
+            }
+
+          }
+        )
+      }
+    });
   }
-
 }

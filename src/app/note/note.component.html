@@ -14,40 +14,40 @@
 
 
 			</div>
-<form [formGroup]="formCum">
-		
-					
-						<div>
-							<div>
-								<div class="">
-									<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
-										<option *ngFor="let fil of filList " [value]="fil.filialId">
-											{{fil.filialName}}
-										</option>
-									</select>
+			<form [formGroup]="formCum">
 
 
-								</div>
-
-							</div>
-							<div>
-								<div class="">
-									<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (change)="refrechNote()" >
-
-										<option value="" disabled selected hidden>Local
-										</option>
-										<option *ngFor="let loc of LocalList " [value]="loc.locallId">
-											{{loc.localdescription}}
-										</option>
-									</select>
+				<div>
+					<div>
+						<div class="">
+							<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
+								<option *ngFor="let fil of filList " [value]="fil.filialId">
+									{{fil.filialName}}
+								</option>
+							</select>
 
 
-								</div>
-							</div>
-							 
 						</div>
-					
-				</form>
+
+					</div>
+					<div>
+						<div class="">
+							<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (change)="refrechNote()">
+
+								<option value="" disabled selected hidden>Local
+								</option>
+								<option *ngFor="let loc of LocalList " [value]="loc.locallId">
+									{{loc.localdescription}}
+								</option>
+							</select>
+
+
+						</div>
+					</div>
+
+				</div>
+
+			</form>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="tab_style2">
@@ -75,9 +75,9 @@
 										</thead>
 
 										<tbody>
-											<tr *ngFor="let i of NoteList">
+											<tr *ngFor="let i of NoteList" (click)="refrechgetNote(i)" (click)="refrechcritere(i)" >
 
-												<td>{{i.critereid}}</td>
+												<td >{{cri.criterelabel}}</td>
 												<td>
 													<div class="input-group mb-3">
 
@@ -107,42 +107,43 @@
 																</div>
 																<div class="modal-body">
 																	<div class="card">
-																		<form (ngSubmit)='saveData()' [formGroup]="planService.formCum">
-																			<input type="hidden" formcontrolname="notationid" value="{{i.id}}">
-																			<input type="hidden" formcontrolname="planId">
+																		<form (ngSubmit)='saveData()' [formGroup]="planService.formCum"  >
+                           
+
+ 
 																			<div class="form-row">
 																				<div class="col-9">
 																					<label>Critere :
 
 																					</label>
-																					<input value="{{i.critereid}}" type="text" class="form-control" class="form-control input-sm" placeholder="critere" readonly>
+																					<input value="{{cri.criterelabel}}" type="text" class="form-control" class="form-control input-sm" placeholder="critere" readonly>
 																				</div>
 																				<div class="col-9">
 																					<label>Note  :
 																					</label>
-																					<input type="text" value="{{i.note}}" class=" form-control" class=" form-control input-sm" placeholder=" note" readonly>
+																					<input type="text" value="{{Noteget.note}}" class=" form-control" class=" form-control input-sm" placeholder="note" readonly>
 																				</div>
 																				<div class=" col-9">
 																					<label>Commentaire :
 																					</label>
-																					<input type="text" value="{{i.comment}}" class="form-control" class="form-control input-sm" placeholder="comment" readonly>
+																					<input type="text" value="{{Noteget.comment}}" class="form-control" class="form-control input-sm" placeholder="comment" readonly>
 																				</div>
 																				<div class="col-9">
 																					<label>Date Limite :
 																					</label>
-																					<input type="date" value="{{i.date_notation}}" name="party" value="maintenant" formcontrolname="planDate" style="margin-top: 5%;">
+																					<input type="date"   name="party" value="maintenant" formControlName="planDate" style="margin-top: 5%;">
 																				</div>
 																				<div class="col-9">
 																					<img [src]="PhotoFilePath" style="width: 200px; margin-top: 5%;" alt="#"/>
 																				</div>
 																				<div class="col-md-9 mb-3">
 																					<label for="w3review">Reclamation:</label>
-																					<textarea id="w3review" name="w3review" rows="4" cols="50" formcontrolname="Plandescription">
+																					<textarea id="w3review" name="w3review" rows="4" cols="50" formControlName="plandescription">
 																						le plan a suivre</textarea>
 																				</div>
 
 																				<div class="col-md-6 mb-3">
-																					<input type="file" id="file" class="mt-2" formcontrolname="image"/>
+																					<input type="file" id="file" class="mt-2" formControlName="image"/>
 																					<label for="file" id="photo">
 																						<i class="fa-solid fa-camera"></i>
 																						choisir une image

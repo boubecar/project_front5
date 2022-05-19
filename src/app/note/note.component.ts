@@ -1,9 +1,10 @@
 import { DatePipe, formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { not } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Norme } from '../norme';
 import { Note } from '../note';
 import { CritereService } from '../services/critere.service';
@@ -26,6 +27,7 @@ export class NoteComponent implements OnInit {
   notation: any
   eval: string = ''
   isShown: boolean = false;
+  @Input() id: String = ""
   /*
   NormeList: Array<{ NormeId: number, designation: string, path: string }> = [
     { NormeId: 1, designation: "Nettoyer", path: 'fa-paint-brush' },
@@ -67,6 +69,7 @@ export class NoteComponent implements OnInit {
   formCum = this.fb.group({
     filialeId: '00000000-0000-0000-0000-000000000000',
     filLocalid: '00000000-0000-0000-0000-000000000000',
+    date_notation: ''
   });
   constructor(public planService: PlanActionService, public normeService: NormeServiceService, public LocService: LocalService, public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService, private datePipe: DatePipe, public filialeService: FilialeService) {
     //this.maDate = this.datePipe.transform(this.maDate, 'dd/MM/yyyy');
@@ -95,6 +98,27 @@ export class NoteComponent implements OnInit {
     this.noteService.GetAllNoteByLocal(this.formCum.value.filLocalid).subscribe(data => {
       this.NoteList = data;
       console.log("ggg", this.NoteList)
+      console.log("dd", this.Noteget)
+
+    });
+
+  }
+  cri: any
+  refrechcritere(e: any) {
+    this.CritereService.getcriteres(e.critereid).subscribe(data => {
+      this.cri = data;
+
+
+
+    });
+
+  }
+  Noteget: any
+  refrechgetNote(note: any) {
+    this.noteService.getnotation(note.id).subscribe(data => {
+      this.Noteget = data;
+      console.log("gggsss", this.Noteget)
+
     });
 
   }
@@ -126,7 +150,7 @@ export class NoteComponent implements OnInit {
     this.isShown = true;
     this.CritereService.getCritereByNorme(e.normeId).subscribe(data => {
       this.CritereList = data;
-      console.log(this.CritereList)
+      console.log('ggg', this.CritereList)
     });
 
   }
@@ -156,32 +180,38 @@ export class NoteComponent implements OnInit {
 
   cumulative: any
   public saveData() {
-    console.log('hello');
-    console.log(this.planService.formCum.value);
+
     if (!this.planService.formCum.valid) {
       alert("veuillez remplir tous les champs")
     }
-    if (this.planService.formCum.controls['planId'].value == '00000000-0000-0000-0000-000000000000') {
+    if (this.planService.formCum.controls['planid'].value == '00000000-0000-0000-0000-000000000000') {
+      this.planService.formCum.controls['notationid'].setValue(this.Noteget.id);
+      console.log('ggg', this.planService.formCum.value)
 
-      console.log("post")
-
-      /*  this.cumulative = {
-          planId: this.planService.formCum.controls['planId'].value,
-          plandescription: this.planService.formCum.controls['plandescription'].value,
-          image: this.planService.formCum.controls['image'].value,
-          planDate: this.planService.formCum.controls['planDate'].value,
-          notationid: this.planService.formCum.controls['notationid'].value,
-        }*/
-      //console.log(this.cumulative.value);
-      // console.log(this.cumulative.value);
       this.planService.postRec(this.planService.formCum.value).subscribe(res => {
-        alert(res.toString());
-        //  this.cumulative={}
+        if (res == "Added done") {
+          // 
+
+          Swal.fire({
+
+            icon: 'success',
+            title: 'l\'ajout est effectuée avec succèes',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          //  Swal.fire('l\'ajout est effectuée avec succèes')
+        }
+        else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: res,
+            footer: '<a href="">Why do I have this issue?</a>'
+          })
+        }
       })
     }
 
-    console.log('hello');
-    console.log(this.planService.formCum.value);
     // alert(this.cumulative.designation);
   }
 
