@@ -56,20 +56,23 @@
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
    </head>
+  <!-- <div class="div_img">
+<img src="https://capholding.ma/wp-content/uploads/2020/10/cicavi-flous-mabrouk-capholding-casablanca-maroc.jpg">
+   </div>-->
   <div class="content">
     <img style="width: 50px;" src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png">
-    <div class="text">Bienvenue</div>
+    <div class="text"><marquee behavior="alternate"> Bienvenue </marquee></div>
     <form (ngSubmit)='LogOn()' [formGroup]="formLog">
-      <div class="field">
+      <div class="field" style=" background-color: transparent;">
         <span class="fa fa-user"></span>
-        <input type="text" placeholder="Matricule" formControlName="matricule" required>
+        <input type="text" placeholder="Matricule" formControlName="matricule" required style=" background-color:rgb(146, 142, 142);">
       </div>
       <div class="field">
         <span class="fa fa-lock"></span>
-        <input type="password" placeholder="Mot de Passe " formControlName="password">
+        <input type="password" placeholder="Mot de Passe " formControlName="password" style=" background-color:rgb(146, 142, 142) ;">
       </div>
     </form>
-    <button (click)="LogOn()">se conencter </button>
+    <button (click)="LogOn()" style="background-color:rgb(146, 142, 142); color: black;">se conencter </button>
 
   </div>
 </body>

@@ -1,3 +1,4 @@
+import { NoopAnimationPlayer } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   formLog!: FormGroup;
+  isshow:boolean= true;
+  ishiden:boolean =false
   constructor(private fb: FormBuilder,private route: Router) { }
 
   ngOnInit(): void {
@@ -29,6 +32,11 @@ export class LoginComponent implements OnInit {
       this.route.navigate(['/login']);
     }
 
+  }
+  show()
+  {
+    this.isshow =!this.isshow;
+    this.ishiden =!this.ishiden;
   }
 
 }

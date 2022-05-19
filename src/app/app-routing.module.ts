@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './authentification/login/login.component';
 import { CritereComponent } from './critere/critere.component';
 import { EmailComponent } from './email/email.component';
+import { NoteUserComponent } from './espace_responsable/note-user/note-user.component';
+import { ProfileUserComponent } from './espace_responsable/profile-user/profile-user.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { FilLocalComponent } from './fil-local/fil-local.component';
 import { FilialeComponent } from './filiale/filiale.component';
@@ -37,7 +39,9 @@ const routes: Routes = [
   { path: 'loc', component: FilLocalComponent },
   { path: 'users', component: UsersComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'md', component: DetailPoleComponent }
+  { path: 'md', component: DetailPoleComponent },
+  { path: 'note_user', component: NoteUserComponent },
+  { path: 'home', component: ProfileUserComponent }
 ];
 
 @NgModule({
