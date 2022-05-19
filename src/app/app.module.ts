@@ -38,6 +38,9 @@ import { DatePipe } from '@angular/common';
 import { DetailPoleComponent } from './pole/detail-pole/detail-pole.component';
 import { DetailFilComponent } from './filiale/detail-fil/detail-fil.component';
 import { ListerUsersComponent } from './users/lister-users/lister-users.component';
+import { NavUserComponent } from './espace_responsable/nav-user/nav-user.component';
+import { ProfileUserComponent } from './espace_responsable/profile-user/profile-user.component';
+import { NoteUserComponent } from './espace_responsable/note-user/note-user.component';
 
 
 
@@ -72,6 +75,9 @@ import { ListerUsersComponent } from './users/lister-users/lister-users.componen
     DetailPoleComponent,
     DetailFilComponent,
     ListerUsersComponent,
+    NavUserComponent,
+    ProfileUserComponent,
+    NoteUserComponent,
 
   ],
   imports: [

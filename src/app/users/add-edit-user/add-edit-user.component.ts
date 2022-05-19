@@ -29,10 +29,10 @@ export class AddEditUserComponent implements OnInit {
     console.log(this.filList)
     this.exform=this.fb.group({
       userId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-      name: [null, Validators.required],
-      mail: [null, Validators.required, Validators.email],
-      filialeName: [null, Validators.required],
-      LocName:[null, Validators.required],
+      name: ['', Validators.required],
+      mail: ['', Validators.required, Validators.email],
+      userRole: ['responsable'],
+      userpassword:['', Validators.required],
     });
     
   }
