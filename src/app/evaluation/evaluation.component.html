@@ -15,21 +15,22 @@
 				<form [formGroup]="formCum">
 		
 					
-						<div>
+						<!--<div>
 							<div>
-								<div class="">
+								<div class="row">
+									<label>Sélectionnez une filiale :</label>
 									<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
 										<option *ngFor="let fil of filList " [value]="fil.filialId">
 											{{fil.filialName}}
 										</option>
 									</select>
-
-
+									
 								</div>
 
 							</div>
 							<div>
 								<div class="">
+									sélectionnez un locale 
 									<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (change)="onChangeCriterion()">
 
 										<option value="" disabled selected hidden>Local
@@ -40,19 +41,56 @@
 									</select>
 
 
+
 								</div>
 							</div>
 							<div>
 								<div class="">
+									<label> une date :</label>
 									<input class="form-control" type="date" formControlName="date_notation" [value]="today | date:'dd-MM-yyyy'">
 								</div>
 							</div>
-						</div>
+						</div>-->
 					
+				        <table style="margin-top: 170px;">
+							<tr>
+									<td><label>&nbsp; Sélectionnez une filiale :</label> &nbsp;</td>
+							<td>
+									<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
+										<option *ngFor="let fil of filList " [value]="fil.filialId">
+											{{fil.filialName}}
+										</option>
+									</select>
+									
+								</td>
+								<td>
+									<label>&nbsp; &nbsp; Sélectionnez un locale : &nbsp;</label>
+								</td>
+								<td>
+									<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (change)="onChangeCriterion()">
+
+										<option value="" disabled selected hidden>Local
+										</option>
+										<option *ngFor="let loc of LocalList " [value]="loc.locallId">
+											{{loc.localdescription}}
+										</option>
+									</select>
+									
+
+								</td>
+								<td>
+
+								<label>&nbsp; &nbsp; Sélectionnez une date : &nbsp;</label>
+								</td>
+								<td>
+									<input class="form-control" type="date" formControlName="date_notation" [value]="today | date:'dd-MM-yyyy'">
+								</td>
+					</tr>
+					</table>
 				</form>
 
 				
-				<div class="full inner_elements">
+				<div class="full inner_elements" style="margin-top: -2%;">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="tab_style2">
@@ -75,7 +113,7 @@
 											<div class="tab-content" id="groupeTapContent">
 												<ng-container *ngFor="let cretrionGroup of listGroupedCriterions">
 													<div class="tab-pane fade show " [attr.id]="cretrionGroup?.normename" role="tabpanel" [attr.aria-labelledby]="cretrionGroup?.normename+'-Tab'">
-														<table class="table table-hover">
+														<table class="table">
 															<thead class="badge-info p-2">
 																<tr class="text-center">
 																	<th>#</th>
@@ -92,34 +130,42 @@
    
 															<tbody>
 
-																<tr class="" *ngFor="let item of cretrionGroup.criterionDTOs;let i=index">
+																<tr  class="trtable" *ngFor="let item of cretrionGroup.criterionDTOs;let i=index">
 																	<ng-container [formGroupName]="item.index">
 																		<td>{{item.index}}</td>
 																		<td>{{item.criterelabel}}</td>
 																		<td>
-																			<span class="badge bg-success">{{item.normename}}</span>
+																			<span class="badge badge-secondary" style="color: white;">{{item.normename}}</span>
 																		</td>
-																		<td class="">
-																			<div class="input-group mb-3">
-																				<input type="number" class="form-control" style="width: 50px;" placeholder="?/20" aria-describedby="basic-addon2" formControlName="note">
-																				<div class="input-group-append">
-																					<button class="btn cur-p btn-light fa fa-check-circle" type="button"></button>
+																		<td>
+																				<input type="number" class="form-control" style="width: 90px;" placeholder="?/20" aria-describedby="basic-addon2" formControlName="note"  min="0" max="20">
+																		</td>
+																		<td></td>
+																		<td>
+																			<div class="timeline-panel">
+																				<div class="timeline-body">
+																					<input class="form-control input-md" id="myInput" placeholder="Reclamation" type="text" required="required" formControlName="comment">
 																				</div>
 																			</div>
 																		</td>
 																		<td></td>
-																		<td type="hidden"></td>
-																		<td>
-																			<div class="timeline-panel">
-																				<div class="timeline-body">
-																					<input class="form-control input-md" id="myInput" placeholder="comentaire" type="text" required="required" formControlName="comment">
-																				</div>
-																			</div>
+																		<td >
+																		<!--	<input type="file" formControlName="image" (change)="uploadPhoto($event)">
+																			<i class="fa fa-camera" aria-hidden="true"></i>-->
+
+																			<label for="firstimg">
+																				<!-- image and icon-->
+																			<!-- <i class="fa fa-camera d-flex justify-content-center
+																				" style="font-size:24px;
+																				border:1px solid gray; border-radius: 10px; 
+																				cursor:pointer;padding: 10px;"></i>-->
+																				<img [src]="PhotoFilePath" height="50px;" width="50px;">
+																		   </label>
+																		   <input type="file" name="" id="firstimg"style="display:none;visibility:none;"   (change)="uploadPhoto($event)">
+
 																		</td>
 																		<td>
-																			<input type="file" formControlName="image">
-																			<i class="fa fa-camera" aria-hidden="true"></i>
-																		</td>
+ </td>
 																	</ng-container>
 
 																</tr>
@@ -130,7 +176,7 @@
 													</div>
 												</ng-container>
 											</div>
-											<button type="submit" class="btn btn-outline-info btn-sm">
+											<button type="submit" class="btn btn-outline-info float-right btn-sm">
 												<i class="fas fa-solid fa-paper-plane mr-2"></i>
 												Envoyer</button>
 										</div>

@@ -57,9 +57,6 @@ export class NoteComponent implements OnInit {
   //maDate = new Date();
   currentDate = new Date();
 
-
-
-
   maDate = new Date(2022, 0o1, 0o2);
   taw = this.maDate.setDate(this.maDate.getDate() + 4);
   PhotoFilePath: string = 'assets/images/inconu.png'
@@ -176,6 +173,17 @@ export class NoteComponent implements OnInit {
 
 
 
+  }
+
+  //noteDate: any
+  SearchDate() {
+    if (this.formCum.controls['noteDate'].value == '') {
+      this.ngOnInit()
+    } else {
+      this.filialeService.filList = this.filialeService.filList.filter((res: { noteDate: Date; }) => {
+        return res.noteDate.getDate().toLocaleString(this.formCum.controls['noteDate'].value.getDate());
+      })
+    }
   }
 
   cumulative: any

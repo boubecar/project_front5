@@ -52,10 +52,10 @@
 			<td>{{dataItem.designation}}</td>
 			<td style="padding-left: 420px;">
 
-				<button type="button" class="btn btn-xs" style="background-color: transparent ;border-color:#73777B ;" class="btn btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)">
-					<i class="fa fa-pencil-square-o" style="color:#73777B ;"></i>
+				<button type="button" class="btn btn-xs"  class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)">
+					
 				</button>&nbsp;
-				<button type="button" class="btn btn-primary btn-xs" style="border-color: #DD4A48 ;background-color: transparent;" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false" > <i class="fa-solid fa-trash" style="color:#DD4A48 ; "></i>                  
+				<button type="button" class="fa-solid fa-trash-can btn btn-outline-danger btn-xs"  (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false" > 
 				</button> &nbsp;
 				<button (click)="detnorme(dataItem)" type="button" class="btn btn-primary btn-xs" style="background-color: transparent; border-color:#73777B ">
 					<i class="fa-solid fa-circle-info"  style="color:#73777B "></i>

@@ -17,7 +17,7 @@
 			<form [formGroup]="formCum">
 
 
-				<div>
+			<!--	<div>
 					<div>
 						<div class="">
 							<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
@@ -45,8 +45,42 @@
 						</div>
 					</div>
 
-				</div>
+				</div>-->
+				<table style="margin-top: 150px;">
+					<tr>
+							<td><label>Sélectionnez une filiale :</label> &nbsp;</td>
+					<td>
+							<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
+								<option *ngFor="let fil of filList " [value]="fil.filialId">
+									{{fil.filialName}}
+								</option>
+							</select>
+							
+						</td>
+						<td>
+							<label>&nbsp; Sélectionnez un locale : &nbsp;</label>
+						</td>
+						<td>
+							<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (change)="refrechNote()">
 
+								<option value="" disabled selected hidden>Local
+								</option>
+								<option *ngFor="let loc of LocalList " [value]="loc.locallId">
+									{{loc.localdescription}}
+								</option>
+							</select>
+							
+
+						</td>
+						<td>
+
+						<label>&nbsp; Sélectionnez une date : &nbsp;</label>
+						</td>
+						<td>
+							<input class="form-control" type="date" formControlName="noteDate" >
+						</td>
+			</tr>
+			</table>
 			</form>
 			<div class="row">
 				<div class="col-md-12">
