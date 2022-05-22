@@ -21,13 +21,59 @@
 							<div class="list_cont">
 								<p>Les reclamations envoyees</p>
 							</div>
-							<div class="task_list_main" *ngFor="let dataItem of NoteList">
-								<ul class="task_list">
+							<div class="task_list_main" *ngFor="let dataItem of NoteList" (click)="refrechgetNote(dataItem)">
+								<ul class="task_list" >
+
 									<li>
 										<a href="#">{{dataItem.comment}}</a><br><strong>{{dataItem.date_notation  | date:'dd MMM'}}</strong>
+                                
 									</li>
+<li>							<button  data-toggle="modal" data-target="#exampleModal1" class="btn btn-outline-warning mr-1 margin_bottom_30"><i style="color: orange;" class="fa-solid fa-circle-info"></i></button>
+</li>
 								</ul>
-							</div>
+							
+<!--Model Detail-->
+				<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+					   <div class="modal-content">
+						  <div class="modal-header">
+							 <h5 class="modal-title" id="exampleModalLabel" style="padding-left:40% ;color: rgb(42, 106, 243);">Reclamation</h5>
+							 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							 </button>
+						  </div>
+						  <div class="modal-body">
+							 <div class="card">
+									<div style="margin-top: 1em;">
+
+
+	<div class="container">
+
+		<div class="col-md-5" style="margin-right:30px ; box-shadow: none;">
+			<div>
+				<div class="position-tl w-102 border-t-3 brc-primary-tp3 ml-n1px mt-n1px"></div>
+				<!-- the blue line on top -->
+				<div class="card-body pt-2 pb-1">
+					<div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
+						<span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2"></span>
+
+						<span class="text-default-d3 text-90 text-600">
+                        {{filialeget.filialName}}
+						</span>
+<span class="text-default-d3 text-90 text-600">
+{{Localget.localdescription}}
+ 
+						</span>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div></div>
 							<div class="read_more">
 								<div class="center">
 									<a class="main_bt read_bt" href="#">Read More</a>
@@ -36,6 +82,14 @@
 						</div>
 					</div>
 				</div>
+
+     
+								<div class="card-body"></div>
+							 </div>
+						  </div>
+					   </div>
+					</div>
+				 </div>
 				<div class="col-md-6">
 					<div class="dash_blog">
 						<div class="dash_blog_inner">

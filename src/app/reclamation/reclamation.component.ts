@@ -40,6 +40,8 @@ export class ReclamationComponent implements OnInit {
   ngOnInit(): void {
     this.refrechNote()
     this.refrechplan()
+    this.refrechNote()
+    this.refrechgetfilaile()
   }
   NoteList: any
   planList: any
@@ -47,7 +49,7 @@ export class ReclamationComponent implements OnInit {
   refrechNote() {
     this.noteService.GetAlltNote().subscribe(data => {
       this.NoteList = data;
-      console.log("ggg", this.NoteList)
+      console.log("listnote", this.NoteList)
 
     });
   }
@@ -57,5 +59,32 @@ export class ReclamationComponent implements OnInit {
       //console.log("ggg", this.NoteList)
 
     });
+  }
+  Noteget: any
+  refrechgetNote(note: any) {
+    this.noteService.getnotation(note.id).subscribe(data => {
+      this.Noteget = data;
+      console.log("note", this.Noteget)
+
+    });
+
+  }
+  filialeget: any
+  refrechgetfilaile() {
+    this.filialeService.getfiliale(this.Localget.filialeid).subscribe(data => {
+      this.filialeget = data;
+      console.log("filailz", this.filialeget)
+
+    });
+
+  }
+  Localget: any
+  refreshLocalget() {
+    this.LocService.getlocal(this.Noteget.filLocalid).subscribe(data => {
+      this.Localget = data;
+      console.log("Local", this.Localget)
+
+    });
+
   }
 }

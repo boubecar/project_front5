@@ -30,4 +30,7 @@ export class NoteService {
   getnotation(cumulative: any) {
     return this.http.get(this.backEndUrl + "/" + cumulative,)
   }
+  GetSum(cumulative: any) {
+    return this.http.get(this.backEndUrl + "/GetSum?id=" + cumulative,)
+  }
 }
