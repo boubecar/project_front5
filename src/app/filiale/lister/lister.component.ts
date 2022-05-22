@@ -5,6 +5,7 @@ import { Filiale } from 'src/app/filiale';
 import { FilialeService } from 'src/app/services/filiale.service';
 import { LocalService } from 'src/app/services/local.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lister',
@@ -33,17 +34,34 @@ export class ListerComponent implements OnInit {
     this.refreshfilList()
    //this.refreshMemberList();
   }
-
   deleteClick(item: any) {
-    if (confirm('Are you sure??')) {
-      
-      this.filialeService.deleteFiliale(item.filialId).subscribe(data => {
-        alert(data.toString());
-        this.refreshfilList();
-      })
-    }
-  }
-  ChangeData(fil: Filiale) {
+     Swal.fire({
+       title: 'Êtes vous sûrs?',
+       text: "Voulez supprimer cette filiale !",
+       icon: 'warning',
+       showCancelButton: true,
+       confirmButtonColor: '#3085d6',
+       cancelButtonColor: '#d33',
+       confirmButtonText: 'oui, Supprimez !'
+     }).then((result) => {
+       if (result.isConfirmed) {
+         this.filialeService.deleteFiliale(item.filialId).subscribe(data => {
+           //alert(data.toString());
+         Swal.fire(
+           'supprimé!',
+           'une filiale est supprimé avec succès .',
+           'success'
+         )
+         this.refreshfilList();
+
+         })
+       }
+     })
+ 
+ 
+ 
+   }
+   ChangeData(fil: Filiale) {
     console.log("change",fil)
     this.filialeService.formCum.reset({
       filialId: fil.filialId,

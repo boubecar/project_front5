@@ -1,6 +1,7 @@
 import { Component, OnInit, QueryList } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Pole } from '../pole';
 import { PoleServiceService } from '../services/pole-service.service';
 
@@ -38,16 +39,60 @@ export class AddEditPoleComponent implements OnInit {
     if (this.service.formCum.controls['poleId'].value == '00000000-0000-0000-0000-000000000000') {
       
       this.service.postPole(this.service.formCum.value).subscribe(res => {
-        alert(res.toString());
-        this.refreshPoleList();
+       // alert(res.toString());
+       
+       if (res == "Added done") {
+        // debugger
+        
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'l\'ajout est effectuée avec succèes',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+      else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: res,
+          footer: '<a href="">Erreur de saisie ?</a>'
+        })
+      }
+
+        this.refreshPoleList(); 
       });
     }
     else {
       console.log("put")
       console.log(this.service.formCum.value);
       this.service.updatePole(this.service.formCum.value).subscribe(res => {
-        alert(res.toString());
-        this.refreshPoleList();
+       // alert(res.toString());
+
+       if (res == "Updated done")
+      {
+        // debugger
+        
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'l\'ajout est effectuée avec succèes',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+      else 
+      {
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href="/pole">Veuillez réessayer </a>'
+      })
+      }
+
+        this.refreshPoleList(); 
       });
     }
     console.log('hello');

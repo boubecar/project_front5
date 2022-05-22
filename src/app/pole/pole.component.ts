@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Pole } from '../pole';
 import { FilialeService } from '../services/filiale.service';
 import { PoleServiceService } from '../services/pole-service.service';
@@ -63,27 +64,41 @@ filList:any
     //alert(this.service.formCum.value);
   }*/
   DeleteClick(item: any) {
+    /*
     if (confirm('Are you sure??')) {
       alert(item.poleId)
       this.service.deletePole(item.poleId).subscribe(data => {
         alert(data.toString());
         this.refreshPoleList();
       })
-    }
+    }*/
+
+    
+    Swal.fire({
+      title: 'Êtes vous sûrs?',
+      text: "Voulez vous supprimer ce pole!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'oui, Supprimez !'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.deletePole(item.poleId).subscribe(data => {
+          //alert(data.toString());
+        Swal.fire(
+          'supprimé!',
+          'Le pole est supprimé avec succès .',
+          'success'
+        )
+        this.refreshPoleList();
+        })
+      }
+    })
   }
 
 
-  deleteClick(item: any) {
-    alert(item.value);
-    if (confirm('Are you sure??')) {
-      
-      this.filialeService.deleteFiliale(item.filialId).subscribe(data => {
-        alert(data.toString());
-       // this.refreshfilList();
-      })
-    }
-  }
-
+  
 
   refreshPoleList() {
     this.service.getPoleList().subscribe(data => {

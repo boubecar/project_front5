@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FilialeService } from 'src/app/services/filiale.service';
 import { PoleServiceService } from 'src/app/services/pole-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-edit',
@@ -37,24 +38,62 @@ export class AddEditComponent implements OnInit {
   });
   }
   public saveData() {
-    /*if (!this.formCum.valid) {
-     // alert("veuillez remplir tous les champs")
-    }*/
-    debugger
+
     console.log(this.formCum.value);
     if (this.formCum.controls['filialId'].value == '00000000-0000-0000-0000-000000000000') {
     //  console.log("post")
      // console.log(this.formCum.value);
       this.filService.postFiliale(this.formCum.value).subscribe(res => {
-        alert(res.toString());
-        this.refreshfilList();
-      });
+        //alert(res.toString());
+        if (res == "Added done") {
+          // debugger
+          
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'l\'ajout est effectuée avec succèes',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+        else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: res,
+            footer: '<a href="/filiale">Erreur de saisie ?</a>'
+          })
+        }
+  
+          this.refreshPoleList(); 
+        });
     }
     else {
       console.log("put")
       console.log(this.formCum.value);
       this.filService.updateFiliale(this.formCum.value).subscribe(res => {
-        alert(res.toString());
+       // alert(res.toString());
+       if (res == "Updated done")
+      {
+        // debugger
+        
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Modification est effectuée avec succèes',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+      else 
+      {
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: ' Il ya une erreur quelque part !',
+        footer: '<a href="/filiale">Veuillez réessayer </a>'
+      })
+      }
         this.refreshfilList();
         console.log(this.filService.filList);
       })
