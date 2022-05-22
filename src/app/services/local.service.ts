@@ -9,7 +9,7 @@ import { Local } from '../local';
 export class LocalService {
 
   constructor(private http: HttpClient) { }
-  detFiliale: any = [] 
+  detFiliale: any = []
   backEndUrl: string = "https://localhost:44388/api/FiLocal";
   getLocalList(): Observable<any[]> {
 
@@ -30,5 +30,7 @@ export class LocalService {
   GetAllLocalByFilale(cumulative: any) {
     return this.http.get(this.backEndUrl + "/GetLocalByfilialeId?id=" + cumulative,)
   }
-
+  getlocal(cumulative: any) {
+    return this.http.get(this.backEndUrl + "/" + cumulative,)
+  }
 }

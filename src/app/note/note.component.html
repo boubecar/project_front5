@@ -32,7 +32,7 @@
 					</div>
 					<div>
 						<div class="">
-							<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (change)="refrechNote()">
+							<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (click)="refrechNote()" (click)="refreshSum()">
 
 								<option value="" disabled selected hidden>Local
 								</option>
@@ -86,13 +86,7 @@
 				<div class="col-md-12">
 					<div class="tab_style2">
 						<div class="tabbar padding_infor_info">
-							<nav>
-								<div class="nav nav-tabs" id="nav-tab1" role="tablist">
-									<a class="nav-item nav-link" id="nav-profile-tab2" data-toggle="tab" href="#nav-home_s2" role="tab" aria-controls="nav-profile_s2" aria-selected="false" *ngFor="let dataItem of NormeList ;" (click)="refreshcriList(dataItem)">{{dataItem.designation}}
-									</a>
-
-								</div>
-							</nav>
+							
 							<div class="tab-content" id="nav-tabContent_2" *ngIf="isShown">
 								<div class="tab-pane fade show active" id="nav-home_s2" role="tabpanel" aria-labelledby="nav-home-tab">
 									<table class="table table-bordered">
@@ -109,9 +103,9 @@
 										</thead>
 
 										<tbody>
-											<tr *ngFor="let i of NoteList" (click)="refrechgetNote(i)" (click)="refrechcritere(i)" >
+											<tr  *ngFor="let i of NoteList" (click)="refrechgetNote(i)" (click)="refrechcritere(i)"  >
 
-												<td >{{cri.criterelabel}}</td>
+												<td>{{cri.criterelabel}}</td>
 												<td>
 													<div class="input-group mb-3">
 
@@ -128,7 +122,7 @@
 
 												<td>
 
-													<button type="button" class="btn fa fa-exclamation-circle btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(i)" ng-disabled="note"></button>
+													<button type="button"   class="btn fa fa-exclamation-circle btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(i)" ng-disabled="note"></button>
 
 													<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 														<div class="modal-dialog">
@@ -141,7 +135,7 @@
 																</div>
 																<div class="modal-body">
 																	<div class="card">
-																		<form (ngSubmit)='saveData()' [formGroup]="planService.formCum"  >
+																		<form (ngSubmit)='saveData()' [formGroup]="planService.formCum">
                            
 
  
@@ -203,8 +197,13 @@
 												</td>
 											</tr>
 										</tbody>
+ 
 
 									</table>
+<div class="text-center">  
+                          <span class="label label-default" style="color:orange" >  Moyenne:</span>            
+  <span class="label label-default"  >  {{sum}}</span>
+                                    </div>
 								</div>
 							</div>
 						</div>

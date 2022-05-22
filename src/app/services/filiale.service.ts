@@ -54,6 +54,8 @@ export class FilialeService {
   clear() {
     this.toasts.splice(0, this.toasts.length);
   }
-
+  getfiliale(cumulative: any) {
+    return this.http.get(this.backEndUrl + "/" + cumulative,)
+  }
 
 }

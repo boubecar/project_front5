@@ -41,6 +41,7 @@ import { ListerUsersComponent } from './users/lister-users/lister-users.componen
 import { NavUserComponent } from './espace_responsable/nav-user/nav-user.component';
 import { ProfileUserComponent } from './espace_responsable/profile-user/profile-user.component';
 import { NoteUserComponent } from './espace_responsable/note-user/note-user.component';
+import { DetailRecComponent } from './reclamation/detail-rec/detail-rec.component';
 
 
 
@@ -78,6 +79,7 @@ import { NoteUserComponent } from './espace_responsable/note-user/note-user.comp
     NavUserComponent,
     ProfileUserComponent,
     NoteUserComponent,
+    DetailRecComponent,
 
   ],
   imports: [

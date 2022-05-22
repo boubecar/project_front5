@@ -70,6 +70,7 @@ export class NoteComponent implements OnInit {
   });
   constructor(public planService: PlanActionService, public normeService: NormeServiceService, public LocService: LocalService, public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService, private datePipe: DatePipe, public filialeService: FilialeService) {
     //this.maDate = this.datePipe.transform(this.maDate, 'dd/MM/yyyy');
+
   }
 
   refreshfilList() {
@@ -94,8 +95,7 @@ export class NoteComponent implements OnInit {
   refrechNote() {
     this.noteService.GetAllNoteByLocal(this.formCum.value.filLocalid).subscribe(data => {
       this.NoteList = data;
-      console.log("ggg", this.NoteList)
-      console.log("dd", this.Noteget)
+      console.log("allnote", this.NoteList)
 
     });
 
@@ -104,8 +104,6 @@ export class NoteComponent implements OnInit {
   refrechcritere(e: any) {
     this.CritereService.getcriteres(e.critereid).subscribe(data => {
       this.cri = data;
-
-
 
     });
 
@@ -119,6 +117,16 @@ export class NoteComponent implements OnInit {
     });
 
   }
+  /*
+   refrechcritere() {
+    for (let i of this.NoteList) {
+      this.CritereService.getcriteres(i.critereid).subscribe(data => {
+        this.cri = data;
+        this.list += this.cri
+        console.log('verify', this.list)
+      });
+
+    }*/
   refreshnormList() {
     this.normeService.getListNormes().subscribe(data => {
       this.NormeList = data;
@@ -126,11 +134,22 @@ export class NoteComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+
     this.refreshnormList()
     this.maintenant = this.maDate.getDate() + '-' + ((this.maDate.getMonth() + 1)) + '-' + this.maDate.getFullYear();
 
     this.maintenant = this.addDays(4);
     this.refreshfilList();
+    this.refreshSum()
+
+  }
+  cri2: any
+  refrechcritere2(e: any) {
+    this.CritereService.getcriteres(e.critereid).subscribe(data => {
+      this.cri2 = data;
+
+    });
+
 
   }
   pipe = new DatePipe('en-US');
@@ -148,6 +167,14 @@ export class NoteComponent implements OnInit {
     this.CritereService.getCritereByNorme(e.normeId).subscribe(data => {
       this.CritereList = data;
       console.log('ggg', this.CritereList)
+    });
+
+  }
+  sum: any;
+  refreshSum() {
+    this.noteService.GetSum(this.formCum.value.filLocalid).subscribe(data => {
+      this.sum = data;
+      console.log("sum", this.sum)
     });
 
   }
