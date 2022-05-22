@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FilialeService } from 'src/app/services/filiale.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,31 +10,22 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AddEditUserComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,public userService :UserService) { }
+  constructor(private fb: FormBuilder,public userService :UserService,public filialeService: FilialeService) { }
   exform!:FormGroup;
-  filList: Array<{filialeId: string, filialName: string,image:string}> = [
-    {filialeId: "1", filialName: "Mazraa",image:"assets/images/mazraa.jpg"},
-    {filialeId: "2", filialName: 'Jadida ',image:"assets/images/download.jpg"},
-    {filialeId: "3", filialName: ' Gan',image:"assets/images/alimentation-animale.png"},
-    {filialeId: "4", filialName: "Med oil",image:"assets/images/alimentation-animale.png"},
-    {filialeId: "5", filialName: "oasis",image:"assets/images/oasis.jpg"},
-  ];
 
-  filLou: Array<{nom : string}> = [
-    {nom:"Ahmed"},
-    {nom:"Mohamed"}
-  ];
 
 
   ngOnInit(): void {
-    console.log(this.filList)
     this.exform=this.fb.group({
       userId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-      name: ['', Validators.required],
-      mail: ['', Validators.required, Validators.email],
-      userRole: ['responsable'],
+      userName: ['', Validators.required],
+      userRole:["responsable 5S"],
+      email: ['', Validators.required, Validators.email],
+      userimage: ["assets/images/layout_img/msg2.png"],
       userpassword:['', Validators.required],
+      filialId: ['00000000-0000-0000-0000-000000000000', Validators.required],
     });
+   this.refreshfilList();
     
   }
 
@@ -44,9 +36,9 @@ export class AddEditUserComponent implements OnInit {
     if (this.exform.controls['userId'].value == '00000000-0000-0000-0000-000000000000') {
       console.log("post")
       console.log(this.exform.value);
-      this.userService.PostUser(this.exform).subscribe(res => {
+      this.userService.PostUser(this.exform.value).subscribe(res => {
         alert(res.toString());
-       // this.refreshfilList();
+        this.refreshMemberList();
       })
     }
 
@@ -55,13 +47,28 @@ export class AddEditUserComponent implements OnInit {
       console.log(this.exform.value);
       this.userService.updateUser(this.exform.value).subscribe(res => {
         alert(res.toString());
-       // this.refreshfilList();
-        //  this.cumulative={}
+        this.refreshMemberList();
       })
     }
     console.log('hello');
     console.log(this.exform.value);
-    // alert(this.cumulative.designation);
   }
+
+  
+  refreshMemberList() {
+    this.userService.getUserList().subscribe(data => {
+      this.userService.userList = data;
+      console.log(this.userService.userList)
+    });
+}
+
+
+  refreshfilList() {
+     this.filialeService.getFilialeList().subscribe(data => {
+       this.filialeService.filList = data;
+       console.log(this.filialeService)
+     });
+ 
+   }
 
 }

@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  
+  userList :any
   backEndUrl: string = "https://localhost:44388/api/Users";
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
   PostUser(cumulative: any) {
-    return this.http.post(this.backEndUrl + "/PostUser", cumulative, { responseType: "text" })
+    return this.http.post(this.backEndUrl + "/PostFilale", cumulative, { responseType: "text" })
   }
 
   getUserList(): Observable<any[]> {

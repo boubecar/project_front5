@@ -2,13 +2,13 @@
 <div class="container">
   <div class="row justify-content-sm-center">
     <div class="col-sm-6 shadow round pb-3">
-      <form [formGroup]="exform" style="width: 300px;" (ngSubmit)="saveData()">
+    <!--  <form [formGroup]="exform" style="width: 300px;" (ngSubmit)="saveData()">
         <div class="form-group">
           <input type="hidden" formControlName="userId" class="form-control form-control-sm" >
           </div>
         <div class="form-group">
-          <label class="col-form-label" style="margin-left: -60px;">Nom:</label>
-          <input   type="text" style="margin-left: -60px;" formControlName="name" class="form-control form-control-sm" [ngClass]="(exform.controls['name'].touched ||exform.controls['name'].dirty) && exform.controls['name'].hasError('required')? 'is-invalid' : '' ||((exform.controls['name'].touched || exform.controls['name'].dirty) && !exform.controls['name'].invalid) ? 'is-valid': ''">
+          <label class="col-form-label" style="margin-left: -60px;">Entrer le Nom:</label>
+          <input   type="text" style="margin-left: -60px;" formControlName="userName" class="form-control form-control-sm" [ngClass]="(exform.controls['name'].touched ||exform.controls['name'].dirty) && exform.controls['name'].hasError('required')? 'is-invalid' : '' ||((exform.controls['name'].touched || exform.controls['name'].dirty) && !exform.controls['name'].invalid) ? 'is-valid': ''">
           <div class="invalid-feedback" style="margin-left: -60px;"> le nom est
             obligatoire</div>
           </div>
@@ -32,25 +32,68 @@
         </div>
         <div class="form-group">
         <label style="margin-left: -60px;"> Sélectionnez  une filiale </label>
-        <select   type="text" style="margin-left: -60px;" class="custom-select form-control-sm"  formControlName="filialeName" [ngClass]="(exform.controls['filialeName'].touched ||exform.controls['filialeName'].dirty) && exform.controls['filialeName'].hasError('required')? 'is-invalid' : '' ||((exform.controls['filialeName'].touched || exform.controls['filialeName'].dirty) && !exform.controls['filialeName'].invalid) ? 'is-valid': ''">
-          <option *ngFor="let fil of filLou" [ngValue]="fil">
-            {{fil.nom}}
+        <select   type="text" style="margin-left: -60px;" class="custom-select form-control-sm"  formControlName="filialName" [ngClass]="(exform.controls['filialName'].touched ||exform.controls['filialName'].dirty) && exform.controls['filialName'].hasError('required')? 'is-invalid' : '' ||((exform.controls['filialName'].touched || exform.controls['filialName'].dirty) && !exform.controls['filialName'].invalid) ? 'is-valid': ''">
+          <option *ngFor="let fil of filialeService.filList " [ngValue]="fil">
+            {{fil.filialName}}
           </option>
       </select>
         <div class="invalid-feedback" style="margin-left: -60px;"> selectionnez une filiale  est
           obligatoire</div>
         </div>
-        <button type="button" [disabled]="exform.invalid" type="submit" class="btn btn-primary" >Enregistrer </button>
+        <button type="button" [disabled]="exform.invalid" type="submit" class="btn btn-primary" >Enregistrer 
+
+        </button>
         
-          <button type="button" class="btn btn-light"
-              >Annuler</button>
-      
+          <button type="button" class="btn btn-light">Annuler
+          </button>
+    
+      </form>-->
+<!--Methode2 -->
+<form [formGroup]="exform" style="width: 300px;" (ngSubmit)="saveData()">
+  <div class="form-group">
+    <input type="hidden" formControlName="userId" class="form-control form-control-sm" >
+    </div>
+    <div class="form-group">
+      <label class="col-form-label" style="margin-left: -60px;">Entrer le Nom:</label>
+      <input   type="text" style="margin-left: -60px;" formControlName="userName" class="form-control form-control-sm" [ngClass]="(exform.controls['userName'].touched ||exform.controls['userName'].dirty) && exform.controls['userName'].hasError('required')? 'is-invalid' : '' ||((exform.controls['userName'].touched || exform.controls['userName'].dirty) && !exform.controls['userName'].invalid) ? 'is-valid': ''">
+      <div class="invalid-feedback" style="margin-left: -60px;"> le nom est
+        obligatoire</div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" style="margin-left: -60px;">Entrer un Email:</label>
+        <input type="mail" class="form-control form-control-sm" formControlName="email" style="margin-left: -60px;" [ngClass]="(exform.controls['email'].touched ||exform.controls['email'].dirty) && exform.controls['email'].hasError('required')? 'is-invalid' : '' ||((exform.controls['email'].touched || exform.controls['email'].dirty) && !exform.controls['email'].invalid) ? 'is-valid': ''">
+        <div class="invalid-feedback" style="margin-left: -60px;"> le mail est
+          obligatoire</div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" style="margin-left: -60px;">Mot de passe:</label>
+        <input type="password" class="form-control form-control-sm" formControlName="userpassword" style="margin-left: -60px;" [ngClass]="(exform.controls['userpassword'].touched ||exform.controls['userpassword'].dirty) && exform.controls['userpassword'].hasError('required')? 'is-invalid' : '' ||((exform.controls['userpassword'].touched || exform.controls['userpassword'].dirty) && !exform.controls['userpassword'].invalid) ? 'is-valid': ''">
+        <div class="invalid-feedback" style="margin-left: -60px;"> le mot de passe est
+          obligatoire</div>
+      </div>
+     <!-- <div class="form-group">
+        <label class="col-form-label" style="margin-left: -60px;">Confirmer mot de passe :</label>
+        <input type="password" class="form-control form-control-sm" formControlName="confPass" style="margin-left: -60px;" [ngClass]="(exform.controls['confPass'].touched ||exform.controls['confPass'].dirty) && exform.controls['confPass'].hasError('required')? 'is-invalid' : '' ||((exform.controls['confPass'].touched || exform.controls['confPass'].dirty) && !exform.controls['confPass'].invalid) ? 'is-valid': ''">
+        <div class="invalid-feedback" style="margin-left: -60px;"> le mail est
+          obligatoire</div>
+      </div>-->
+<pre>{{filialeService.filList|json}}</pre>
+      <select   type="text" style="margin-left: -60px;" class="custom-select form-control-sm"  formControlName="filialId" [ngClass]="(exform.controls['filialId'].touched ||exform.controls['filialId'].dirty) && exform.controls['filialId'].hasError('required')? 'is-invalid' : '' ||((exform.controls['filialId'].touched || exform.controls['filialId'].dirty) && !exform.controls['filialId'].invalid) ? 'is-valid': ''">
+        <option *ngFor="let dataItem of filialeService.filList">
+          {{dataItem.filialName}}
+        </option>
+    </select>
+  <button type="button" [disabled]="exform.invalid" type="submit" class="btn btn-primary" >Enregistrer 
+
+  </button>
+  
+    <button type="button" class="btn btn-light">Annuler
+    </button>
+
+</form>
 
 
 
-
-
-      </form>
     </div>
   </div>
 </div>

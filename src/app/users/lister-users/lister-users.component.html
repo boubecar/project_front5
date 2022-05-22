@@ -1,8 +1,9 @@
 <div class="full price_table padding_infor_info">
     <div class="row">
        <!-- column contact --> 
-       <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30" *ngFor="let dataItem of userList">
-          <div class="contact_blog">
+       <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30" *ngFor="let dataItem of userService.userList" >
+
+         <div class="contact_blog" >
              <h4 class="brief">Responsable 5S </h4>
              <div class="contact_inner">
                 <div class="left">
@@ -20,7 +21,7 @@
                 <div class="bottom_list">
                   
                    <div class="right_button">
-                    <button type="button"  data-toggle="modal" data-target="#exampleModal" class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1 margin_bottom_30" data-backdrop="static" data-keyboard="false" (click)="ChangeData(dataItem)">
+                    <button type="button"  data-toggle="modal" data-target="#exampleModal" class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1 margin_bottom_30" (click)="ChangeData(dataItem)" data-backdrop="static" data-keyboard="false" >
 											
                     </button>
 
@@ -31,6 +32,8 @@
              </div>
           </div>
        </div>
+       <!--<pre >{{userService.userList |json}}</pre>-->
+
        <!-- end column contact blog -->
     </div>
  </div>
