@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Local } from '../local';
 import { FilialeService } from '../services/filiale.service';
 import { LocalService } from '../services/local.service';
@@ -92,9 +93,28 @@ export class FilLocalComponent implements OnInit {
       console.log("post")
       console.log(this.formCum.value);
       this.localService.postLocal(this.formCum.value).subscribe(res => {
-        alert(res.toString());
+        //alert(res.toString());
         //  this.cumulative={}
-
+        if (res == "Added done") {
+          // debugger
+          
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'l\'ajout est effectuée avec succèes',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+        else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: res,
+            footer: '<a href="/loc">Erreur de saisie ?</a>'
+          })
+        }
+  
         this.refreshcriList();
       })
     }
@@ -102,7 +122,28 @@ export class FilLocalComponent implements OnInit {
       console.log("put")
       console.log(this.formCum.value);
       this.localService.editLocal(this.formCum.value).subscribe(res => {
-        alert(res.toString());
+       // alert(res.toString());
+       if (res == "Updated done")
+      {
+        // debugger
+        
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Modification est effectuée avec succèes',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+      else 
+      {
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: ' Il ya une erreur quelque part !',
+        footer: '<a href="/filiale">Veuillez réessayer </a>'
+      })
+      }
         this.refreshcriList();
         //  this.cumulative={}
       })
@@ -117,13 +158,28 @@ export class FilLocalComponent implements OnInit {
 
 
   deleteClick(item: any) {
-    if (confirm('Are you sure??')) {
-      alert(item.critereId)
-      this.localService.deleteLocal(item.locallId).subscribe(data => {
-        alert(data.toString());
+    
+    Swal.fire({
+      title: 'Êtes vous sûrs?',
+      text: "Voulez vous supprimer ce local !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'oui, Supprimez !'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.localService.deleteLocal(item.locallId).subscribe(data => {
+          //alert(data.toString());
+        Swal.fire(
+          'supprimé!',
+          'un local  est supprimé avec succès .',
+          'success'
+        )
         this.refreshcriList();
-      })
-    }
+        })
+      }
+    })
   }
   /* this.cumulative = {
     normeId:this.cumulative.normeId,

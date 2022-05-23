@@ -70,14 +70,14 @@ export class AddEditPoleComponent implements OnInit {
       this.service.updatePole(this.service.formCum.value).subscribe(res => {
        // alert(res.toString());
 
-       if (res == "Updated done")
+       if (res == "Update Done")
       {
         // debugger
         
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'l\'ajout est effectuée avec succèes',
+          title: 'la modification  est effectuée avec succèes',
           showConfirmButton: false,
           timer: 1500
         })
