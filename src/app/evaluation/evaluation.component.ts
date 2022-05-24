@@ -265,7 +265,7 @@ PhotoFilePath:string='https://png.pngtree.com/png-vector/20191129/ourlarge/pngtr
 
     this.controlArray.controls.forEach((element: any, i: Number) => {
       console.log('note',element.value.note);
-      if (element.value.note != null) {
+     // if (element.value.note != null) {
         this.noteService.postNote(element.value).subscribe(
           res => {
 
@@ -295,7 +295,7 @@ PhotoFilePath:string='https://png.pngtree.com/png-vector/20191129/ourlarge/pngtr
 
           }
         )
-      }
+     // }
     });
   }
 }

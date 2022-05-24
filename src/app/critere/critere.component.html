@@ -33,7 +33,7 @@
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-					<div class="modal-content">
+					<div class="modal-content" style=" width: 350px;margin-left: 30%;">
 						<div class="modal-header">
 							<h5 class="modal-title" id="exampleModalLabel">Ajouter</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -41,23 +41,25 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							<div class="card">
+							<div class="card" style="width: 320px;">
 
 								<div class="card-body">
 									<form (ngSubmit)="saveData()" [formGroup]="formCum">
 										<div class="form-row">
 											<input type="hidden" formcontrolname="critereId">
-											<div class="col-md-6 mb-3">
-												<label>enter le nom de nouveau  critere
+											<div class="col-md-6 mb-3" >
+												<label style="width: 300px; margin-left: 40px;">enter le nouveau  critere:
 												</label>
-												<input type="text" class="Form-Control" placeholder="Nom" formControlName="criterelabel" required>
+												<input  type="text" style="margin-left: 40px;" class="Form-Control" placeholder="Nom" formControlName="criterelabel" required>
 											</div>
 
 										</div>
 										<input type="hidden" formcontrolname="normeId">
 
-										<button type="button" class="btn btn-primary float-right" type="submit">ajouter
+										<button type="button" class="btn btn-primary " style="margin-left: 40px;" type="submit">ajouter
 										</button>
+										<button type="button" class="btn btn-secondary" style="margin-left: 120px; margin-top: -19%;" data-dismiss="modal">Fermer</button>
+
 									</form>
 								</div>
 							</div>
@@ -86,6 +88,7 @@
 							<button type="button" class="btn btn-xs" style="background-color: transparent ;border-color:#73777B ;" class="btn btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)">
 								<i class="fa fa-pencil-square-o" style="color:#73777B ;"></i>
 							</button>
+
 						</td>
 					</tr>
 				</tbody>

@@ -76,7 +76,7 @@ export class NoteComponent implements OnInit {
   refreshfilList() {
     this.filialeService.getFilialeList().subscribe(data => {
       this.filList = data;
-      console.log(this.filList)
+     // console.log(this.filList)
     });
 
   }
@@ -87,7 +87,7 @@ export class NoteComponent implements OnInit {
     if (this.formCum.value.filialeId) {
       this.LocService.GetAllLocalByFilale(this.formCum.value.filialeId).subscribe(data => {
         this.LocalList = data;
-        console.log(this.LocalList);
+      //  console.log(this.LocalList);
 
       });
     }
@@ -106,6 +106,7 @@ export class NoteComponent implements OnInit {
       this.cri = data;
 
     });
+    this.refreshSum();
 
   }
   Noteget: any
@@ -134,15 +135,20 @@ export class NoteComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.refreshSum()
 
     this.refreshnormList()
     this.maintenant = this.maDate.getDate() + '-' + ((this.maDate.getMonth() + 1)) + '-' + this.maDate.getFullYear();
 
     this.maintenant = this.addDays(4);
     this.refreshfilList();
-    this.refreshSum()
 
   }
+  EditNote()
+  {
+    this.router.navigateByUrl('/evaluation')
+  }
+
   cri2: any
   refrechcritere2(e: any) {
     this.CritereService.getcriteres(e.critereid).subscribe(data => {
@@ -172,6 +178,7 @@ export class NoteComponent implements OnInit {
   }
   sum: any;
   refreshSum() {
+    console.log("summmmmmm")
     this.noteService.GetSum(this.formCum.value.filLocalid).subscribe(data => {
       this.sum = data;
       console.log("sum", this.sum)
@@ -207,8 +214,8 @@ export class NoteComponent implements OnInit {
     if (this.formCum.controls['noteDate'].value == '') {
       this.ngOnInit()
     } else {
-      this.filialeService.filList = this.filialeService.filList.filter((res: { noteDate: Date; }) => {
-        return res.noteDate.getDate().toLocaleString(this.formCum.controls['noteDate'].value.getDate());
+      this.filialeService.filList = this.filialeService.filList.filter((res: { date_notation: Date; }) => {
+        return res.date_notation.getDate().toLocaleString(this.formCum.controls['noteDate'].value.getDate());
       })
     }
   }

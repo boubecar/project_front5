@@ -77,19 +77,16 @@
         <div class="invalid-feedback" style="margin-left: -60px;"> le mail est
           obligatoire</div>
       </div>-->
-<pre>{{filialeService.filList|json}}</pre>
+<!-- <pre>{{filialeService.filList|json}}</pre> -->
       <select   type="text" style="margin-left: -60px;" class="custom-select form-control-sm"  formControlName="filialId" [ngClass]="(exform.controls['filialId'].touched ||exform.controls['filialId'].dirty) && exform.controls['filialId'].hasError('required')? 'is-invalid' : '' ||((exform.controls['filialId'].touched || exform.controls['filialId'].dirty) && !exform.controls['filialId'].invalid) ? 'is-valid': ''">
         <option *ngFor="let dataItem of filialeService.filList">
           {{dataItem.filialName}}
         </option>
     </select>
-  <button type="button" [disabled]="exform.invalid" type="submit" class="btn btn-primary" >Enregistrer 
+  <button type="button" [disabled]="exform.invalid" style="margin-top: 30px;" type="submit" class="btn btn-primary" >Enregistrer 
 
   </button>
   
-    <button type="button" class="btn btn-light">Annuler
-    </button>
-
 </form>
 
 

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  userList :any
+  userList :any 
   backEndUrl: string = "https://localhost:44388/api/Users";
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
