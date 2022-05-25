@@ -67,10 +67,14 @@
       </div>
       <div class="form-group">
         <label class="col-form-label" style="margin-left: -60px;">Mot de passe:</label>
-        <input type="password" class="form-control form-control-sm" formControlName="userpassword" style="margin-left: -60px;" [ngClass]="(exform.controls['userpassword'].touched ||exform.controls['userpassword'].dirty) && exform.controls['userpassword'].hasError('required')? 'is-invalid' : '' ||((exform.controls['userpassword'].touched || exform.controls['userpassword'].dirty) && !exform.controls['userpassword'].invalid) ? 'is-valid': ''">
+        <input type="password" class="form-control form-control-sm" formControlName="userpassword" name="password" style="margin-left: -60px;" [ngClass]="(exform.controls['userpassword'].touched ||exform.controls['userpassword'].dirty) && exform.controls['userpassword'].hasError('required')? 'is-invalid' : '' ||((exform.controls['userpassword'].touched || exform.controls['userpassword'].dirty) && !exform.controls['userpassword'].invalid) ? 'is-valid': ''">
         <div class="invalid-feedback" style="margin-left: -60px;"> le mot de passe est
           obligatoire</div>
       </div>
+      <div class="form-group">
+        <!-- <input type="password" name="confirmpassword" class="form-control"placeholder="Confirmer Password" required > -->
+        <!-- <p class="alert alert-danger" *ngIf="password.value!==confirmpassword.value && password.touched"></p>-->
+      </div> 
      <!-- <div class="form-group">
         <label class="col-form-label" style="margin-left: -60px;">Confirmer mot de passe :</label>
         <input type="password" class="form-control form-control-sm" formControlName="confPass" style="margin-left: -60px;" [ngClass]="(exform.controls['confPass'].touched ||exform.controls['confPass'].dirty) && exform.controls['confPass'].hasError('required')? 'is-invalid' : '' ||((exform.controls['confPass'].touched || exform.controls['confPass'].dirty) && !exform.controls['confPass'].invalid) ? 'is-valid': ''">

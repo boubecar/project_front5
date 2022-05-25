@@ -37,12 +37,14 @@ export class AddEditComponent implements OnInit {
     poleId: ['00000000-0000-0000-0000-000000000000', Validators.required],
   });
   }
+ 
   public saveData() {
 
     console.log(this.formCum.value);
     if (this.formCum.controls['filialId'].value == '00000000-0000-0000-0000-000000000000') {
     //  console.log("post")
      // console.log(this.formCum.value);
+    
       this.filService.postFiliale(this.formCum.value).subscribe(res => {
         //alert(res.toString());
         if (res == "Added done") {

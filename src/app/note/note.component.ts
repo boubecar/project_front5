@@ -96,16 +96,25 @@ export class NoteComponent implements OnInit {
     this.noteService.GetAllNoteByLocal(this.formCum.value.filLocalid).subscribe(data => {
       this.NoteList = data;
       console.log("allnote", this.NoteList)
+      console.log(this.NoteList)
 
     });
 
   }
   cri: any
+  List:any=[]
   refrechcritere(e: any) {
     this.CritereService.getcriteres(e.critereid).subscribe(data => {
       this.cri = data;
 
     });
+   /* for (let i of this.NoteList)
+    {
+      this.CritereService.getcriteres(i.critereid).subscribe(data => {
+        this.cri = data;
+        this.List.push(this.cri)
+      });
+    }*/
     this.refreshSum();
 
   }

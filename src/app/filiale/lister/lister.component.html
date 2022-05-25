@@ -16,9 +16,11 @@
 			<div class="info_people">
 				<div class="p_info_img" style="margin-top:30px ;">
 					<img src="{{dataItem.image}}" alt="#"/>
+					{{output}}<input [value]="dataItem.filialName"
+					(input)="output=changeimage(dataItem.filialName)">
 				</div>
 				<div class="user_info_cont">
-					<h4>{{dataItem.filialName}}</h4> 
+					<h4 >{{dataItem.filialName}}</h4> 
 					<p>Pole :</p>
 					<p class="p_status">{{dataItem.polename}}</p>
 					<div style="margin-top: 10px;">

@@ -16,6 +16,8 @@ export class ListerComponent implements OnInit {
   idnorm: string = ''
   formCum!: FormGroup;
   filialName: any
+  output : any
+
   constructor(public filialeService: FilialeService,private userService : UserService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router,private localService :LocalService) {
     this.route.params.subscribe((params: any) => console.log(params));
   }
@@ -26,6 +28,7 @@ export class ListerComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.idnorm = params['id'];
     })
+    
   /*  this.formCum = this.fb.group({
       filialeId: ['00000000-0000-0000-0000-000000000000', Validators.required],
       filialeName: ['', Validators.required],
@@ -33,6 +36,13 @@ export class ListerComponent implements OnInit {
     });*/
     this.refreshfilList()
    //this.refreshMemberList();
+  }
+
+  changeimage(name:string)
+  {
+    var split = name.split(" ");
+    this.output  = split[0][0] + split[1][0];
+    console.log("Coup",this.output);
   }
   deleteClick(item: any) {
      Swal.fire({
