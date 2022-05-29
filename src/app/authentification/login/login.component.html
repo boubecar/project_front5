@@ -11,15 +11,15 @@
 
               </div>
               <div class="login_form">
-                 <form>
+                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <fieldset>
                        <div class="field">
                           <label class="label_field">Email Address</label>
-                          <input type="email" name="email" placeholder="E-mail" />
+                          <input type="text" formControlName="email" class="form-control" id="staticEmail" value="">
                        </div>
                        <div class="field">
                           <label class="label_field">Password</label>
-                          <input type="password" name="password" placeholder="Password" />
+                          input type="password" formControlName="password" class="form-control" id="inputPassword">
                        </div>
                        <div class="field">
                           <label class="label_field hidden">hidden label</label>
@@ -28,7 +28,7 @@
                        </div>
                        <div class="field margin_0">
                           <label class="label_field hidden">hidden label</label>
-                          <button class="main_bt">Sing In</button>
+                         <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Sign In</button>
                        </div>
                     </fieldset>
                  </form>
@@ -62,17 +62,20 @@
   <!--<div class="content">
     <img style="width: 50px;" src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png">
     <div class="text"><marquee behavior="alternate"> Bienvenue </marquee></div>
-    <form (ngSubmit)='LogOn()' [formGroup]="formLog">
+     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="field" style=" background-color: transparent;">
         <span class="fa fa-user"></span>
-        <input type="text" placeholder="Matricule" formControlName="matricule" required style=" background-color:rgb(146, 142, 142);">
+                          <input type="text" formControlName="email" class="form-control" id="staticEmail" value="" required style=" background-color:rgb(146, 142, 142);">
+
+ 
       </div>
       <div class="field">
         <span class="fa fa-lock"></span>
-        <input type="password" placeholder="Mot de Passe " formControlName="password" style=" background-color:rgb(146, 142, 142) ;">
+        <input type="password" formControlName="password" class="form-control" id="inputPassword" style=" background-color:rgb(146, 142, 142) ;">
       </div>
+ <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid" style="background-color:rgb(146, 142, 142); color: black;">se conencter</button>
     </form>
-    <button (click)="LogOn()" style="background-color:rgb(146, 142, 142); color: black;">se conencter </button>
+     
 
   </div>
 </body>-->

@@ -1,5 +1,5 @@
 
-<nav id="sidebar">
+<nav id="sidebar"  >
     <div class="sidebar_blog_1">
        <div class="sidebar-header">
           <div class="logo_section">
@@ -11,26 +11,26 @@
           <div class="user_profle_side">
              <div class="user_img"><img class="img-responsive" src="assets/images/layout_img/user_img.jpg" alt="#" /></div>
              <div class="user_info">
-                <h6>Mariem Boubaker</h6>
+                <h6>{{user.fullName}}</h6>
                 <p><span class="online_animation"></span> Online</p>
              </div>
           </div>
        </div>
     </div>
     <div class="sidebar_blog_2">
-       <h4>Respnsable 5S </h4>
+       <h4>Respnsable 5S ({{user.roles.join(',')}})</h4>
        <ul class="list-unstyled components">
           
-          <li><a routerLink="/note_user"><i class="fa fa-table purple_color2"></i> <span>Evaluation</span></a></li>
-          <li><a routerLink="/rec"><i class="fa fa-clock-o orange_color"></i> <span>Plan d'action</span></a></li>
+          <li><a [class.disabled]="isAdmin" *ngIf="isUserlogin && !isAdmin"  routerLink="/note_user"><i class="fa fa-table purple_color2"></i> <span>Evaluation</span></a></li>
+          <li><a  [class.disabled]="isAdmin" *ngIf="isUserlogin && !isAdmin" routerLink="/rec"><i class="fa fa-clock-o orange_color"></i> <span>Plan d'action</span></a></li>
           <li>
              <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-paper-plane red_color"></i> <span>Contact</span></a>
              <ul class="collapse list-unstyled" id="apps">
-                <li><a routerLink="/mail">> <span>Email</span></a></li>
+                <li><a  [class.disabled]="isAdmin" *ngIf="isUserlogin && !isAdmin" routerLink="/mail">> <span>Email</span></a></li>
              </ul>
           </li>
          <li>
-             <a routerLink="/home">
+             <a [class.disabled]="isAdmin" *ngIf="isUserlogin && !isAdmin" routerLink="/home">
                <i class="fa fa-user" aria-hidden="true"></i>
                <span>Profil</span></a>
           </li>
@@ -61,7 +61,7 @@
                             <a class="dropdown-item" href="profile.html">My Profile</a>
                             <a class="dropdown-item" href="settings.html">Settings</a>
                             <a class="dropdown-item" href="help.html">Help</a>
-                            <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                            <a class="dropdown-item" routerLink="/login" (click)="onLogout()"  href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
                          </div>
                       </li>
                    </ul>

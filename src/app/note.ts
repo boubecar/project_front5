@@ -6,5 +6,5 @@ export interface Note {
     filLocalid?: string,
     comment?: string,
     noteDate?: Date
-    Userid?: string
+    userid?: string
 }

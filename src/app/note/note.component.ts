@@ -5,6 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Critere } from '../critere';
 import { Norme } from '../norme';
 import { Note } from '../note';
 import { CritereService } from '../services/critere.service';
@@ -51,7 +52,7 @@ export class NoteComponent implements OnInit {
     { Id: "4", note: 13, image: "assets/images/download.jpg", critereId: '', userId: '', FilLocallId: '', comment: 'blablabla', criterelabel: "Nettoyer", eval: "" },
     { Id: "5", note: 5, image: "assets/images/oasis.jpg", critereId: '', userId: '', FilLocallId: '', comment: 'blablabla', criterelabel: "Nettoyer", eval: "" },
   ];*/
-
+  cri2: any;
   isDisabled: boolean = true
   maintenant: string = ''
   //maDate = new Date();
@@ -76,7 +77,7 @@ export class NoteComponent implements OnInit {
   refreshfilList() {
     this.filialeService.getFilialeList().subscribe(data => {
       this.filList = data;
-     // console.log(this.filList)
+      // console.log(this.filList)
     });
 
   }
@@ -87,34 +88,49 @@ export class NoteComponent implements OnInit {
     if (this.formCum.value.filialeId) {
       this.LocService.GetAllLocalByFilale(this.formCum.value.filialeId).subscribe(data => {
         this.LocalList = data;
-      //  console.log(this.LocalList);
+        //  console.log(this.LocalList);
 
       });
     }
   }
   refrechNote() {
+    debugger
     this.noteService.GetAllNoteByLocal(this.formCum.value.filLocalid).subscribe(data => {
+
       this.NoteList = data;
       console.log("allnote", this.NoteList)
-      console.log(this.NoteList)
+      for (let i of this.NoteList) {
+        this.CritereService.getcriteres(i.critereid).subscribe(data => {
+          this.cri = data;
+
+          this.Liste.push(this.cri);
+          console.log('listetest4', this.cri)
+          //this.Liste.reverse
+        });
+      }
+      console.log('listetest', this.Liste)
+      //delete 
 
     });
 
+
+
+
   }
   cri: any
-  List:any=[]
+  List: any = []
   refrechcritere(e: any) {
     this.CritereService.getcriteres(e.critereid).subscribe(data => {
       this.cri = data;
 
     });
-   /* for (let i of this.NoteList)
-    {
-      this.CritereService.getcriteres(i.critereid).subscribe(data => {
-        this.cri = data;
-        this.List.push(this.cri)
-      });
-    }*/
+    /* for (let i of this.NoteList)
+     {
+       this.CritereService.getcriteres(i.critereid).subscribe(data => {
+         this.cri = data;
+         this.List.push(this.cri)
+       });
+     }*/
     this.refreshSum();
 
   }
@@ -151,21 +167,30 @@ export class NoteComponent implements OnInit {
 
     this.maintenant = this.addDays(4);
     this.refreshfilList();
+    this.refrechNote()
+
 
   }
-  EditNote()
-  {
-    this.router.navigateByUrl('/evaluation')
-  }
 
-  cri2: any
+  critere = {} as Critere;
+  Liste: Critere[] = []
   refrechcritere2(e: any) {
+    debugger
+    //this.refrechcritere2(e)={}
+    //this.cri2 = {}
     this.CritereService.getcriteres(e.critereid).subscribe(data => {
-      this.cri2 = data;
 
+      if (this.critere != data) {
+        console.log('seb1', this.critere)
+        this.critere = {} as Critere;
+        console.log('se2', this.critere)
+
+      }
+      this.critere = data
+      console.log('seb', this.cri2)
     });
 
-
+    // return this.critere
   }
   pipe = new DatePipe('en-US');
 
