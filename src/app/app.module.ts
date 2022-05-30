@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { PoleComponent } from './pole/pole.component';
@@ -42,6 +41,8 @@ import { NavUserComponent } from './espace_responsable/nav-user/nav-user.compone
 import { ProfileUserComponent } from './espace_responsable/profile-user/profile-user.component';
 import { NoteUserComponent } from './espace_responsable/note-user/note-user.component';
 import { DetailRecComponent } from './reclamation/detail-rec/detail-rec.component';
+import { ToastrService } from 'ngx-toastr';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -91,8 +92,14 @@ import { DetailRecComponent } from './reclamation/detail-rec/detail-rec.componen
     NgxPaginationModule,
     Ng2OrderModule,
 
+
+
+
   ],
-  providers: [PoleServiceService, DatePipe],
+  providers: [PoleServiceService, DatePipe, {
+    provide: ToastrService, useValue: ToastrService
+
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

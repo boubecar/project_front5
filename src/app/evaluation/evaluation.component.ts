@@ -34,11 +34,11 @@ export class EvaluationComponent implements OnInit {
   AddOrEditNotationForm = this.fb.group({
     NoteArray: this.fb.array([]),
   });
-/* Change  Image */ 
-PhotoFileName: string = ""
-PhotoFilePath:string='https://png.pngtree.com/png-vector/20191129/ourlarge/pngtree-image-upload-icon-photo-upload-icon-png-image_2047547.jpg'
-//PhotoFilePath: string = 'https://cdn3.sosav.fr/store/69879-large_default/plaque-metallique-de-protection-des-nappes-du-lcd-iphone-6.jpg'
-  
+  /* Change  Image */
+  PhotoFileName: string = ""
+  PhotoFilePath: string = 'https://png.pngtree.com/png-vector/20191129/ourlarge/pngtree-image-upload-icon-photo-upload-icon-png-image_2047547.jpg'
+  //PhotoFilePath: string = 'https://cdn3.sosav.fr/store/69879-large_default/plaque-metallique-de-protection-des-nappes-du-lcd-iphone-6.jpg'
+
   formCum = this.fb.group({
     filialeId: '00000000-0000-0000-0000-000000000000',
     filLocalid: '00000000-0000-0000-0000-000000000000',
@@ -74,12 +74,12 @@ PhotoFilePath:string='https://png.pngtree.com/png-vector/20191129/ourlarge/pngtr
     listCriterion.forEach((element: any) => {
       this.controlArray.push(this.fb.group({
         id: '00000000-0000-0000-0000-000000000000',
-        note: '',
-        comment: [],
+        note: 0,
+        comment: [''],
         date_notation: ['', Validators.required],
         critereid: [element.critereId],
         filLocalid: [],
-        userid: ['19074f1d-d967-4adf-0a48-08da38d5e1b1'],
+        userid: ['60fc1633-b1a0-46a3-fbf4-02da28c41eff'],
         image: [],
 
         //  index:0,
@@ -143,7 +143,7 @@ PhotoFilePath:string='https://png.pngtree.com/png-vector/20191129/ourlarge/pngtr
      { filialeId: "1", localdescription: "wardia", image: "assets/images/oasis.jpg" },
    ];*/
 
-  
+
   selectedObject: any;
   comment: any;
   date = new Date;
@@ -163,9 +163,9 @@ PhotoFilePath:string='https://png.pngtree.com/png-vector/20191129/ourlarge/pngtr
 
 
   /*change Image  */
-  
+
   uploadPhoto(e: any) {
-   
+
     if (e.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
@@ -176,7 +176,7 @@ PhotoFilePath:string='https://png.pngtree.com/png-vector/20191129/ourlarge/pngtr
     console.log("photo")
     console.log(this.formCum.controls['image'].value)
   }
-  
+
 
 
   // refreshcriList(e: any) {
@@ -259,43 +259,43 @@ PhotoFilePath:string='https://png.pngtree.com/png-vector/20191129/ourlarge/pngtr
  
   }*/
   onSubmit() {
-    console.log('local ',this.formCum.value.filLocalid);
+    console.log('local ', this.formCum.value.filLocalid);
     this.controlArray.controls.forEach((form: any) => { form['controls'].date_notation.setValue(this.formCum.value.date_notation) });
     this.controlArray.controls.forEach((form: any) => { form['controls'].filLocalid.setValue(this.formCum.value.filLocalid) });
 
     this.controlArray.controls.forEach((element: any, i: Number) => {
-      console.log('note',element.value.note);
-     // if (element.value.note != null) {
-        this.noteService.postNote(element.value).subscribe(
-          res => {
+      console.log('note', element.value.note);
+      // if (element.value.note != null) {
+      this.noteService.postNote(element.value).subscribe(
+        res => {
 
-            if (res == "Added done") {
-              // debugger
-              for (let i = this.controlArray.length - 1; i >= 0; i--) {
-                this.controlArray.removeAt(i)
-                element.reset()
-              }
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'l\'ajout est effectuée avec succèes',
-                showConfirmButton: false,
-                timer: 1500
-              })
-              //  Swal.fire('l\'ajout est effectuée avec succèes')
+          if (res == "Added done") {
+            // debugger
+            for (let i = this.controlArray.length - 1; i >= 0; i--) {
+              this.controlArray.removeAt(i)
+              element.reset()
             }
-            else {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: res,
-                footer: '<a href="">Why do I have this issue?</a>'
-              })
-            }
-
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'l\'ajout est effectuée avec succèes',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            //  Swal.fire('l\'ajout est effectuée avec succèes')
           }
-        )
-     // }
+          else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: res,
+              footer: '<a href="">Why do I have this issue?</a>'
+            })
+          }
+
+        }
+      )
+
     });
   }
 }

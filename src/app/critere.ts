@@ -5,3 +5,8 @@ export interface Critere {
     criterelabel?: string,
     normeId?: string,
 }
+const cr2: Critere = {
+    critereId: "",
+    criterelabel: "My Description",
+    normeId: ''
+};

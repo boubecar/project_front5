@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { User } from 'src/app/Models/user';
 import { PoleServiceService } from 'src/app/services/pole-service.service';
 import { UserService } from 'src/app/services/user.service';
+import { UsersService } from 'src/app/users.service';
 
 @Component({
   selector: 'app-lister-users',
@@ -9,7 +12,28 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./lister-users.component.css']
 })
 export class ListerUsersComponent implements OnInit {
+  @BlockUI('user-loader') blockUI!: NgBlockUI;
+  //public blockUiTemplateComponent = BlockUiTemplateComponent;
+  public loaderMessage: string = "loading test";
+  public userList: User[] = [];
+  constructor(private userService: UsersService) { }
 
+  ngOnInit(): void {
+    this.getAllUser();
+  }
+
+  getAllUser() {
+    this.blockUI.start();
+    this.userService.getAllUser().subscribe((data: User[]) => {
+      this.userList = data;
+      this.blockUI.stop();
+    }, () => {
+      this.blockUI.stop();
+    })
+  }
+
+}
+/*
   exform!:FormGroup;
   menberList: Array<{userId: string, userName: string,lastName:string,email:string,mobile:string,Filile:string,Filoc:string}> = [
     {userId: "1", userName: "Mohamed",lastName:"Mahwechi",email:"mahwechi@gmail.com",mobile:"2890405",Filile:"8",Filoc:""},
@@ -54,4 +78,4 @@ console.log("change ",user)
    // filialId:user.filialId
   });
 }
-}
+}*/
