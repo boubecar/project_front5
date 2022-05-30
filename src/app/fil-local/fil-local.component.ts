@@ -6,6 +6,7 @@ import { Local } from '../local';
 import { FilialeService } from '../services/filiale.service';
 import { LocalService } from '../services/local.service';
 
+
 @Component({
   selector: 'app-fil-local',
   templateUrl: './fil-local.component.html',
@@ -19,7 +20,7 @@ export class FilLocalComponent implements OnInit {
   cumulative: Local = {}
   CritereList: any = []
   idnorm: string = ''
-
+  filLocList:any=[]
 
   formCum!: FormGroup;
   constructor(private route: ActivatedRoute, private router: Router, public localService: LocalService, public filialeService: FilialeService, private fb: FormBuilder) {
@@ -37,7 +38,7 @@ export class FilLocalComponent implements OnInit {
     this.formCum = this.fb.group({
       locallId: ['00000000-0000-0000-0000-000000000000', Validators.required],
       localdescription: [""],
-      Filialeid: this.idnorm
+      Filialeid: ['00000000-0000-0000-0000-000000000000', Validators.required]
     });
 
     console.log("id", this.idnorm)
@@ -79,7 +80,26 @@ export class FilLocalComponent implements OnInit {
   
   
     }*/
+     ok :boolean =false
+   public   saisie():boolean
+   { 
+    console.log("fil",this.formCum.controls['Filialeid'].value)
+    this.localService.GetAllLocalByFilale(this.formCum.controls['Filialeid'].value).subscribe(data => {
+      this.filLocList = data; 
+      console.log('localiiiiii', this.filLocList)
+      if(this.filLocList.find((e: any) => e.localdescription == this.formCum.controls['localdescription'].value))
+        console.log("existe",true)
+        return true
+    });
+    return false
 
+
+   //ok= this.filLocList.includes(this.formCum.controls['localdescription']);
+    
+    //console.log(ok);
+  }
+
+rep:any
   public saveData() {
     if (!this.formCum.valid) {
       alert("veuillez remplir tous les champs")
@@ -89,41 +109,50 @@ export class FilLocalComponent implements OnInit {
     //   designation: this.formCum.controls['designation'].value,
     // }
     if (this.formCum.controls['locallId'].value == '00000000-0000-0000-0000-000000000000') {
-
+    debugger
       console.log("post")
-      console.log(this.formCum.value);
-      this.localService.postLocal(this.formCum.value).subscribe(res => {
-        //alert(res.toString());
-        //  this.cumulative={}
-        if (res == "Added done") {
-          // debugger
-          
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'l\'ajout est effectuée avec succèes',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        }
-        else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: res,
-            footer: '<a href="/loc">Erreur de saisie ?</a>'
-          })
-        }
-  
-        this.refreshcriList();
-      })
+     // console.log("saisie,",this.saisie())
+     this.ok= this.saisie();
+      alert(this.ok)
+      if(this.ok)
+      { alert("ce pole existe deja ");}
+      else 
+      {
+        console.log(this.formCum.value);
+        this.localService.postLocal(this.formCum.value).subscribe(res => {
+          //alert(res.toString());
+          //  this.cumulative={}
+          if (res == "Added done") {
+            // debugger
+            
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'l\'ajout est effectuée avec succèes',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+          else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: res,
+              footer: '<a href="/loc">Erreur de saisie ?</a>'
+            })
+          }
+    
+          this.refreshcriList();
+        })
+
+      }
     }
     else {
       console.log("put")
       console.log(this.formCum.value);
       this.localService.editLocal(this.formCum.value).subscribe(res => {
        // alert(res.toString());
-       if (res == "Updated done")
+       if (res == "Update Done")
       {
         // debugger
         
@@ -199,10 +228,10 @@ export class FilLocalComponent implements OnInit {
   refreshcriList() {
     this.localService.getLocalList().subscribe(data => {
       this.CritereList = data;
-      console.log('local', this.CritereList.value)
+     // console.log('local', this.CritereList.value)
     });
 
-    console.log('oui')
+  //  console.log('oui')
   }
 
   refreshfilList() {

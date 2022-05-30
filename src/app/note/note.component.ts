@@ -5,6 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Critere } from '../critere';
 import { Norme } from '../norme';
 import { Note } from '../note';
 import { CritereService } from '../services/critere.service';
@@ -92,17 +93,26 @@ export class NoteComponent implements OnInit {
       });
     }
   }
+
+  cri: any
+  List:Critere []=[]
   refrechNote() {
     this.noteService.GetAllNoteByLocal(this.formCum.value.filLocalid).subscribe(data => {
       this.NoteList = data;
       console.log("allnote", this.NoteList)
-      console.log(this.NoteList)
+      //console.log(this.NoteList)
 
     });
-
+    for (let i of this.NoteList)
+    {
+      this.CritereService.getcriteres(i.critereid).subscribe(data => {
+        this.cri = data;
+        this.List.push(this.cri)
+        console.log('"list cri',this.List)
+      });
+    }
   }
-  cri: any
-  List:any=[]
+ 
   refrechcritere(e: any) {
     this.CritereService.getcriteres(e.critereid).subscribe(data => {
       this.cri = data;

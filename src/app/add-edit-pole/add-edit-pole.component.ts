@@ -35,7 +35,7 @@ export class AddEditPoleComponent implements OnInit {
     /*if (!this.service.formCum.valid) {
       alert("veuillez remplir tous les champs")
     }*/
-    debugger
+    //debugger
     if (this.service.formCum.controls['poleId'].value == '00000000-0000-0000-0000-000000000000') {
       
       this.service.postPole(this.service.formCum.value).subscribe(res => {
@@ -68,7 +68,7 @@ export class AddEditPoleComponent implements OnInit {
       console.log("put")
       console.log(this.service.formCum.value);
       this.service.updatePole(this.service.formCum.value).subscribe(res => {
-       // alert(res.toString());
+        alert(res.toString());
 
        if (res == "Update Done")
       {

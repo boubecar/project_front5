@@ -123,8 +123,8 @@
 													{{i.date_notation}}
 												</td>
 												<td>
-													<span class="badge badge-success" *ngIf="i.note!=''">Noté</span>
-													<span class="badge badge-danger" *ngIf="i.note==''" (click)="EditNote()">Pas encore</span>
+													<span class="badge badge-success" *ngIf="i.note!=0">Noté</span>
+													<span class="badge badge-danger" *ngIf="i.note==0" (click)="EditNote()">Pas encore</span>
 
 												<!--	<button type="button"   class="btn fa fa-exclamation-circle btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(i)" ng-disabled="note"></button>-->
 
