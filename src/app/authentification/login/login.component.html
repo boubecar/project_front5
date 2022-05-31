@@ -92,23 +92,24 @@
      
     <div class="container" style="width: 350px;"> 
      <div class="form"> 
-       <h2 style="text-align: center;"> Bienvenue </h2>
-       <form (ngSubmit)='LogOn()' [formGroup]="formLog">
+      <img  src="assets/images/polinalogo.png"  style="width: 80px;margin-left: 90px;" />
+       <h2 style="text-align: center;"> Poulina Holding Group </h2>
+       <form (ngSubmit)='onSubmit()' [formGroup]="formLog">
          <div class="inputBx" style="text-align: center;">
            <input type="text"  required="required" formControlName="matricule">
-           <span  style="margin-left: 20px;">Matricule</span>
+           <span  style="margin-left: 20px;">Email</span>
            <!-- <i class="fas fa-user-circle"></i> -->
          </div>
          <div class="inputBx password" style="text-align: center;">
             <!-- <i class="fa fa-key"></i> -->
 
-           <input id="password-input" type="password" name="password"  formControlName="password" required="required">
+           <input id="password-input" [type]="shown ? 'text' : 'password'" name="password"  formControlName="password" required="required">
            <span style="margin-left: 20px;">Mot de passe </span>
-           <a style="margin-right: 30px;" href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+           <button style="margin-right: 30px; border: none;" href="#" class="password-control" (click)="password()"></button>
            <!-- <i class="fa fa-key"></i> -->
          </div>
          <div class="inputBx" style="text-align: center;">
-           <input type="submit" value="Log in" (click)="LogOn()"/>
+           <input type="submit" value="Log in"/>
          </div>
        </form>
        <p style="text-align: center;">Mot de passe oublier ? <a href="#">Click ici</a></p>
