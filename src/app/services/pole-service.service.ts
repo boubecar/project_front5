@@ -16,13 +16,13 @@ export class PoleServiceService {
   formCum = this.fb.group({
     poleId: ['00000000-0000-0000-0000-000000000000', Validators.required],
     poleName: ['', Validators.required],
-    image: ['', Validators.required],
+    image: []
   });
   listNorme: Norme[] = []
   backEndUrl: string = "https://localhost:44388/api/Pole";
 
-  postPole(cumulative: any) {
-    return this.http.post(this.backEndUrl + "/PostPole", cumulative, { responseType: "text" })
+  postPole(cumulative: any, cumulative2: any) {
+    return this.http.post(this.backEndUrl + "/PostPole", cumulative + cumulative2, { responseType: "text" },)
   }
   getPoleList(): Observable<any[]> {
     return this.http.get<any>(this.backEndUrl + '/GetAllPole');
@@ -41,5 +41,5 @@ export class PoleServiceService {
   UploadPhoto(val: any) {
     return this.http.post(this.backEndUrl + '/SaveFile', val);
   }
-  
+
 }

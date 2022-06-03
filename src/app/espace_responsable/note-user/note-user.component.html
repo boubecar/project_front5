@@ -14,22 +14,25 @@
 
 			</div>
 			<form [formGroup]="formCum">
-				<table style="margin-top: 170px;margin-left: 50px;">
+				<table style="margin-top: 150px;">
 					<tr>
-							<td><label>Sélectionnez une filiale :</label> &nbsp;</td>
-					<td>
+						<td>
+							<label>Sélectionnez une filiale
+							</label>
+							&nbsp;</td>
+						<td>
 							<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
 								<option *ngFor="let fil of filList " [value]="fil.filialId">
 									{{fil.filialName}}
 								</option>
 							</select>
-							
+
 						</td>
 						<td>
 							<label>&nbsp; Sélectionnez un locale : &nbsp;</label>
 						</td>
 						<td>
-							<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (change)="refrechNote()">
+							<select  class="form-control" formControlName="filLocalid" *ngIf="isShown" >
 
 								<option value="" disabled selected hidden>Local
 								</option>
@@ -37,24 +40,25 @@
 									{{loc.localdescription}}
 								</option>
 							</select>
-							
+
 
 						</td>
 						<td>
 
-						<label>&nbsp; Sélectionnez une date : &nbsp;</label>
+							<label>&nbsp; Sélectionnez une date : &nbsp;</label>
 						</td>
 						<td>
-							<input class="form-control" type="date" formControlName="noteDate" >
+							<input class="form-control" type="date" formControlName="date_notation" (change)="refrechNote()"   (change)="refreshSum()"     >
 						</td>
-			</tr>
-			</table>
+					</tr>
+				</table>
+			
 			</form>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="tab_style2">
 						<div class="tabbar padding_infor_info">
-							
+
 							<div class="tab-content" id="nav-tabContent_2" *ngIf="isShown">
 								<div class="tab-pane fade show active" id="nav-home_s2" role="tabpanel" aria-labelledby="nav-home-tab">
 									<table class="table table-bordered">
@@ -70,10 +74,10 @@
 											</tr>
 										</thead>
 
-										<tbody>
-											<tr  *ngFor="let i of NoteList" (click)="refrechgetNote(i)" (click)="refrechcritere(i)"  >
+										<tbody *ngFor="let i of NoteList">
+											<tr *ngIf="i.comment !==''"  >
 
-												<td>{{cri.criterelabel}}</td>
+												<td  >{{i.criterelabel}}</td>
 												<td>
 													<div class="input-group mb-3">
 
@@ -90,9 +94,9 @@
 
 												<td>
 
-													<button type="button"   class="btn fa fa-exclamation-circle btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(i)" ng-disabled="note"></button>
+													<button type="button" (click)=" refrechgetNote(i, $event) " class="btn fa fa-exclamation-circle btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(i)" full></button>
 
-													<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+													<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-target="#modal">
 														<div class="modal-dialog">
 															<div class="modal-content">
 																<div class="modal-header">
@@ -101,33 +105,33 @@
 																		<span aria-hidden="true">&times;</span>
 																	</button>
 																</div>
-																<div class="modal-body">
+																<div class="modal-body"  >
 																	<div class="card">
-																		<form (ngSubmit)='saveData()' [formGroup]="planService.formCum">
-                           
+																		<form (ngSubmit)='saveData()' [formGroup]="planService.formCum" *ngFor="let comment of Noteget[i.index]">
 
- 
+
 																			<div class="form-row">
 																				<div class="col-9">
 																					<label>Critere :
 
+
 																					</label>
-																					<input value="{{cri.criterelabel}}" type="text" class="form-control" class="form-control input-sm" placeholder="critere" readonly>
+																					<input   value="{{comment.criterelabel}}" type="text" class="form-control" class="form-control input-sm" placeholder="critere" readonly>
 																				</div>
 																				<div class="col-9">
 																					<label>Note  :
 																					</label>
-																					<input type="text" value="{{Noteget.note}}" class=" form-control" class=" form-control input-sm" placeholder="note" readonly>
+																					<input type="text"  value="{{comment.note}}" class=" form-control" class=" form-control input-sm" placeholder="note" readonly>
 																				</div>
 																				<div class=" col-9">
 																					<label>Reclamation :
 																					</label>
-																					<input type="text" value="{{Noteget.comment}}" class="form-control" class="form-control input-sm" placeholder="comment" readonly>
+																					<input type="text"  value="{{comment.comment}}" class="form-control" class="form-control input-sm" placeholder="comment" readonly>
 																				</div>
 																				<div class="col-9">
 																					<label>Date Limite :
 																					</label>
-																					<input type="date"   name="party" value="maintenant" formControlName="planDate" style="margin-top: 5%;">
+																					<input type="date" name="party" value="maintenant" formControlName="planDate" style="margin-top: 5%;">
 																				</div>
 																				<div class="col-9">
 																					<img [src]="PhotoFilePath" style="width: 200px; margin-top: 5%;" alt="#"/>
@@ -145,7 +149,7 @@
 																						choisir une image
 																					</label>
 
-																					
+
 																				</div>
 																			</div>
 																			<button type="button" class="btn btn-primary float-left" type="submit">Enregister
@@ -161,13 +165,15 @@
 												</td>
 											</tr>
 										</tbody>
- 
+
 
 									</table>
-									<div class="text-center">  
-                          				<span class="label label-default" style="color:orange" >  Moyenne:</span>            
-  										<span class="label label-default"  >  {{sum}}</span>
-                                    </div>
+									<div class="text-center">
+										<span class="label label-default" style="color:orange">
+											Moyenne:</span>
+										<span class="label label-default">
+											{{sum}}</span>
+									</div>
 								</div>
 							</div>
 						</div>

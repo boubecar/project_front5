@@ -1,4 +1,4 @@
-<form (ngSubmit)='saveData()' [formGroup]="formCum" >
+<form (ngSubmit)='saveData()' [formGroup]="this.filialeService.formCum" >
 	<input type="hidden" formcontrolname="filialeId" >
 	<div class="form-row">
 
@@ -7,13 +7,12 @@
 					<input type="hidden" formControlName="filialId">
 					<label style="margin-left: 15px;" for="validationCustom01" >Enter le nom de filiale
 					</label>
-					<input type="text" style="margin-left: 15px; width: 360px;" class="form-control form-control-sm" placeholder="Nom"   formControlName="filialName" id="validationCustom01" 
-					[ngClass]="(formCum.controls['filialName'].touched ||formCum.controls['filialName'].dirty) && formCum.controls['filialName'].hasError('required')? 'is-invalid' : '' ||((formCum.controls['filialName'].touched || formCum.controls['filialName'].dirty) && !formCum.controls['filialName'].invalid) ? 'is-valid': ''">
+					<input type="text" style="margin-left: 15px; width: 360px;" class="form-control form-control-sm" placeholder="Nom"   formControlName="filialName" id="validationCustom01" >
 				<div class="invalid-feedback" style="margin-left: 13px;"> le nom de filiale 
 					obligatoire
 				</div>
 			</div>
-			<div class="input-group">
+			<div class="input-group" *ngIf="this.filialeService.formCum.controls['filialId'].value == '00000000-0000-0000-0000-000000000000' " >
 
 					<label style="margin-left: 15px;" for="validationCustom01" >
 						Sélectionnez un pole 

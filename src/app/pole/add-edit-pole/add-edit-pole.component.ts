@@ -17,37 +17,28 @@ export class AddEditPoleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
-  
+
+
   public saveData() {
 
     if (!this.service.formCum.valid) {
       alert("veuillez remplir tous les champs")
     }
-    
+
     if (this.service.formCum.controls['poleId'].value == '00000000-0000-0000-0000-000000000000') {
       this.service.postPole(this.service.formCum.value).subscribe(res => {
-        alert(res.toString())
-        //this.cumulative = {}
-        alert("refrech 1")
-        this.refreshPoleList()
-        alert("refrech 2")
+        this.service.formCum.reset()
       })
     }
     else {
-      debugger
-      console.log("put")
-      console.log(this.service.formCum.value);
+
+
+
       this.service.updatePole(this.service.formCum.value).subscribe(res => {
-        alert(res.toString())
-        alert("refrech 1")
-        this.refreshPoleList()
-        alert("refrech 2")
+
       })
     }
-    console.log('hello');
-    console.log(this.service.formCum.value);
-    //alert(this.service.formCum.value);
+
   }
   refreshPoleList() {
     this.service.getPoleList().subscribe(data => {

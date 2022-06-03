@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./note-user.component.css']
 })
 export class NoteUserComponent implements OnInit {
- 
+
   filList: any
   LocalList: any
   CritereList: any
@@ -54,52 +54,57 @@ export class NoteUserComponent implements OnInit {
     this.refreshfilList();
 
   }
- /*
-   refrechcritere() {
-    for (let i of this.NoteList) {
-      this.CritereService.getcriteres(i.critereid).subscribe(data => {
-        this.cri = data;
-        this.list += this.cri
-        console.log('verify', this.list)
-      });
-
-    }*/
-    refreshnormList() {
-      this.normeService.getListNormes().subscribe(data => {
-        this.NormeList = data;
-        console.log(this.NormeList)
-      });
-    }
+  /*
+    refrechcritere() {
+     for (let i of this.NoteList) {
+       this.CritereService.getcriteres(i.critereid).subscribe(data => {
+         this.cri = data;
+         this.list += this.cri
+         console.log('verify', this.list)
+       });
+ 
+     }*/
+  refreshnormList() {
+    this.normeService.getListNormes().subscribe(data => {
+      this.NormeList = data;
+      console.log(this.NormeList)
+    });
+  }
   refreshfilList() {
     this.filialeService.getFilialeList().subscribe(data => {
       this.filList = data;
-     // console.log(this.filList)
+      // console.log(this.filList)
     });
 
   }
 
   refreshLocList() {
-    //  debugger
+
     this.isShown = true;
     if (this.formCum.value.filialeId) {
       this.LocService.GetAllLocalByFilale(this.formCum.value.filialeId).subscribe(data => {
         this.LocalList = data;
-      //  console.log(this.LocalList);
+        //  console.log(this.LocalList);
 
       });
     }
   }
+
   refrechNote() {
-    this.noteService.GetAllNoteByLocal(this.formCum.value.filLocalid).subscribe(data => {
+
+    this.noteService.GetAllNoteByLocal2(this.formCum.value.filialeId, this.formCum.value.filLocalid, this.formCum.value.date_notation).subscribe(data => {
+
       this.NoteList = data;
-    //  console.log("allnote", this.NoteList)
 
     });
+    console.log("allnote", this.NoteList)
+
+
 
   }
   cri: any
   refrechcritere(e: any) {
-    
+
     this.CritereService.getcriteres(e.critereid).subscribe(data => {
       this.cri = data;
 
@@ -107,14 +112,15 @@ export class NoteUserComponent implements OnInit {
     this.refreshSum();
 
   }
-  Noteget: any
-  refrechgetNote(note: any) {
+  Noteget: any = []
+  refrechgetNote(note: any, event: any) {
+    this.Noteget = []
     this.noteService.getnotation(note.id).subscribe(data => {
-      this.Noteget = data;
-      console.log("gggsss", this.Noteget)
+      this.Noteget[note.index] = data;
+      console.log("note", this.Noteget)
 
     });
-
+    return this.Noteget
   }
   cri2: any
   refrechcritere2(e: any) {
@@ -145,9 +151,10 @@ export class NoteUserComponent implements OnInit {
   }
   sum: any;
   refreshSum() {
-    this.noteService.GetSum(this.formCum.value.filLocalid).subscribe(data => {
+    console.log("summmmmmm")
+    this.noteService.GetSum2(this.formCum.value.filialeId, this.formCum.value.filLocalid, this.formCum.value.date_notation).subscribe(data => {
       this.sum = data;
-      //alert("sum"+ this.sum)
+      console.log("sum", this.sum)
     });
 
   }
@@ -193,9 +200,9 @@ export class NoteUserComponent implements OnInit {
       alert("veuillez remplir tous les champs")
     }
     if (this.planService.formCum.controls['planid'].value == '00000000-0000-0000-0000-000000000000') {
-      this.planService.formCum.controls['notationid'].setValue(this.Noteget.id);
+      console.log('id', this.Noteget[0][0].id)
+      this.planService.formCum.controls['notationid'].setValue(this.Noteget[0][0].id);
       console.log('ggg', this.planService.formCum.value)
-
       this.planService.postRec(this.planService.formCum.value).subscribe(res => {
         if (res == "Added done") {
           // 

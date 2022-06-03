@@ -1,7 +1,7 @@
 import { DatePipe, formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { not } from '@angular/compiler/src/output/output_ast';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -57,6 +57,7 @@ export class NoteComponent implements OnInit {
   maintenant: string = ''
   //maDate = new Date();
   currentDate = new Date();
+  critereName: string = "";
 
   maDate = new Date(2022, 0o1, 0o2);
   taw = this.maDate.setDate(this.maDate.getDate() + 4);
@@ -64,6 +65,8 @@ export class NoteComponent implements OnInit {
   note: boolean = false
   NoteList: any;
   NormeList: any;
+
+
   formCum = this.fb.group({
     filialeId: '00000000-0000-0000-0000-000000000000',
     filLocalid: '00000000-0000-0000-0000-000000000000',
@@ -95,29 +98,18 @@ export class NoteComponent implements OnInit {
   }
 
   refrechNote() {
-    debugger
-    this.noteService.GetAllNoteByLocal(this.formCum.value.filLocalid).subscribe(data => {
+
+    this.noteService.GetAllNoteByLocal2(this.formCum.value.filialeId, this.formCum.value.filLocalid, this.formCum.value.date_notation).subscribe(data => {
 
       this.NoteList = data;
-      console.log("allnote", this.NoteList)
-      for (let i of this.NoteList) {
-        this.CritereService.getcriteres(i.critereid).subscribe(data => {
-          this.cri = data;
-
-          this.Liste.push(this.cri);
-          console.log('listetest4', this.cri)
-          //this.Liste.reverse
-        });
-      }
-      console.log('listetest', this.Liste)
-      //delete 
 
     });
-
+    console.log("allnote", this.NoteList)
 
 
 
   }
+  @ViewChild('closebutton') closebutton!: any;
   cri: any
   List: any = []
   refrechcritere(e: any) {
@@ -135,10 +127,10 @@ export class NoteComponent implements OnInit {
     this.refreshSum();
 
   }
-  Noteget: any
+  Noteget: any = []
   refrechgetNote(note: any) {
     this.noteService.getnotation(note.id).subscribe(data => {
-      this.Noteget = data;
+      this.Noteget[note.index] = data;
       console.log("gggsss", this.Noteget)
 
     });
@@ -161,21 +153,23 @@ export class NoteComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.refreshSum()
+
 
     this.refreshnormList()
     this.maintenant = this.maDate.getDate() + '-' + ((this.maDate.getMonth() + 1)) + '-' + this.maDate.getFullYear();
 
     this.maintenant = this.addDays(4);
     this.refreshfilList();
-    this.refrechNote()
+
 
 
   }
-
+  EditNote() {
+    this.router.navigateByUrl('/evaluation')
+  }
   critere = {} as Critere;
   Liste: Critere[] = []
-  refrechcritere2(e: any) {
+  /*refrechcritere2(e: any) {
     debugger
     //this.refrechcritere2(e)={}
     //this.cri2 = {}
@@ -192,7 +186,7 @@ export class NoteComponent implements OnInit {
     });
 
     // return this.critere
-  }
+  }*/
   pipe = new DatePipe('en-US');
 
   addDays(days: number): string {
@@ -214,82 +208,111 @@ export class NoteComponent implements OnInit {
   sum: any;
   refreshSum() {
     console.log("summmmmmm")
-    this.noteService.GetSum(this.formCum.value.filLocalid).subscribe(data => {
+    this.noteService.GetSum2(this.formCum.value.filialeId, this.formCum.value.filLocalid, this.formCum.value.date_notation).subscribe(data => {
       this.sum = data;
       console.log("sum", this.sum)
     });
 
   }
   criterelabel: any
+  d: any = []
+
+  ChangeData(note: any) {
 
 
-  ChangeData(note: Note) {
-
-    /*this.noteService.formCum.controls['note'].disable();
-    this.noteService.formCum.controls['Commentaire'].disable();
-    this.noteService.formCum.controls['criterelabel'].disable();
-*/
-
-    // console.log(note);
-    // this.noteService.formCum.reset({
-    //   Id: note.Id,
-    //   note: note.note,
-    //   comment: note.comment,
-    //   criterelabel: note.critereid
-    // });
+    // id: '00000000-0000-0000-0000-000000000000',
+    // note: 0,
+    // comment: [''],
+    // date_notation: ['', Validators.required],
+    // critereid: [element.critereId],
+    // filLocalid: [],
+    // userid: ['3FA85F64-5717-4562-B3FC-2C963F66AFA7'],
+    // image: [],
 
     //this.refreshnormList();
 
+    // this.planService.formCum2.reset({
+    //   id: this.Noteget[note.index].id,
+    //   note: this.Noteget[note.index].note,
+    //   date_notation: this.Noteget[note.index].date_notation,
+    //   comment: this.Noteget[note.index].comment,
+    //   critereid: this.Noteget[note.index].critereid,
+    //   image: this.Noteget[note.index].image,
+    //   filLocalid: this.Noteget[note.index].filLocalid,
+    //   userid: this.Noteget[note.index].userid
+    // });
+
+    this.critereName = note.criterelabel;
+    this.planService.formCum2.reset({
+      id: note.id,
+      note: note.note,
+      date_notation: note.date_notation,
+      comment: note.comment,
+      critereid: note.critereid,
+      image: note.image,
+      filLocalid: note.filLocalid,
+      userid: note.userid
+    });
+    console.log('dd', this.planService.formCum2.value)
 
 
   }
 
-  //noteDate: any
+  //date_notation: any
   SearchDate() {
-    if (this.formCum.controls['noteDate'].value == '') {
+    if (this.formCum.controls['date_notation'].value == '') {
       this.ngOnInit()
     } else {
       this.filialeService.filList = this.filialeService.filList.filter((res: { date_notation: Date; }) => {
-        return res.date_notation.getDate().toLocaleString(this.formCum.controls['noteDate'].value.getDate());
+        return res.date_notation.getDate().toLocaleString(this.formCum.controls['date_notation'].value.getDate());
       })
     }
   }
 
   cumulative: any
+
   public saveData() {
 
-    if (!this.planService.formCum.valid) {
-      alert("veuillez remplir tous les champs")
-    }
-    if (this.planService.formCum.controls['planid'].value == '00000000-0000-0000-0000-000000000000') {
-      this.planService.formCum.controls['notationid'].setValue(this.Noteget.id);
-      console.log('ggg', this.planService.formCum.value)
+    console.log("put")
+    console.log(this.planService.formCum2.value);
+    this.noteService.updateNote(this.planService.formCum2.value).subscribe(res => {
+      //  alert(res.toString());
+      console.log("c?")
+      this.d = res
+      //  if (res == "Updated done") {
+      // debugger
 
-      this.planService.postRec(this.planService.formCum.value).subscribe(res => {
-        if (res == "Added done") {
-          // 
-
-          Swal.fire({
-
-            icon: 'success',
-            title: 'l\'ajout est effectuée avec succèes',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          //  Swal.fire('l\'ajout est effectuée avec succèes')
-        }
-        else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: res,
-            footer: '<a href="">Why do I have this issue?</a>'
-          })
-        }
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: res,
+        showConfirmButton: false,
+        timer: 1500
       })
-    }
+      this.planService.formCum2.reset();
+      this.closebutton.nativeElement.click();
+      this.refrechNote();
+      //  }
+      // else {
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Oops...',
+      //     text: 'ee',
+      //     footer: '<a href="/filiale">Veuillez réessayer </a>'
+      //   })
+      // }
 
-    // alert(this.cumulative.designation);
+      //  this.cumulative={}
+    })
+
+
   }
-
+  // Swal.fire({
+  //   position: 'top-end',
+  //   icon: 'success',
+  //   title: 'update done',
+  //   showConfirmButton: false,
+  //   timer: 1500
+  // })
+  // alert(this.cumulative.designation);
 }

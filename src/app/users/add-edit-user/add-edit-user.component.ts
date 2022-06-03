@@ -44,12 +44,12 @@ export class AddEditUserComponent implements OnInit {
         this.router.navigate(["login"]);
 
       } else {
-        this.toastr.info(data.dateSet[0]);
+        //  this.toastr.info(data.dateSet[0]);
       }
       console.log("response", data);
     }, error => {
       console.log("error", error)
-      this.toastr.info("Something went wrong please try again later");
+      // this.toastr.info("Something went wrong please try again later");
     })
   }
   getAllRoles() {

@@ -30,7 +30,8 @@
 									<form (ngSubmit)="saveData()" [formGroup]="formCum">
 										<div class="form-row">
 											<div class="input-group">
-												<input type="hidden" formcontrolname="locallId">
+												<input type="hidden" formControlName="locallId">
+
 												<div class="col-md-6 mb-3">
 													<label>Enter un local
 													</label>
@@ -38,14 +39,14 @@
 													
 												</div>
 											</div>
-												<div class="input-group">
+												<div class="input-group" *ngIf="this.formCum.controls['locallId'].value == '00000000-0000-0000-0000-000000000000' ">
 
 													<label style="margin-left: 15px;" for="validationCustom01" >
 														Sélectionnez une filiale 
 													</label>
 													<select  style="margin-left: 15px; width: 360px;" class="form-control form-control-sm"
-												id="validationCustom01"  formControlName="Filialeid"
-												[ngClass]="(formCum.controls['Filialeid'].touched ||formCum.controls['Filialeid'].dirty) && formCum.controls['Filialeid'].hasError('required')? 'is-invalid' : '' ||((formCum.controls['Filialeid'].touched || formCum.controls['Filialeid'].dirty) && !formCum.controls['Filialeid'].invalid) ? 'is-valid': ''">
+												id="validationCustom01"  formControlName="filialeid"
+												 >
 												<option *ngFor="let dataItem of filList"   [value]="dataItem.filialId">{{dataItem.filialName}}</option>
 												</select>
 												<div class="invalid-feedback" style="margin-left: 13px;">   la filiale  est  
@@ -54,7 +55,7 @@
 											</div>
 
 										</div>
-										<input type="hidden" formcontrolname="Filialeid">
+										<input type="hidden" formControlName="Filialeid">
 
 										<button type="button" class="btn btn-primary float-right" type="submit">Enregistrer
 										</button>
