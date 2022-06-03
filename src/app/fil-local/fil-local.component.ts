@@ -14,13 +14,13 @@ import { LocalService } from '../services/local.service';
 })
 export class FilLocalComponent implements OnInit {
 
- 
+
   filList: any = []
 
   cumulative: Local = {}
   CritereList: any = []
   idnorm: string = ''
-  filLocList:any=[]
+  filLocList: any = []
 
   formCum!: FormGroup;
   constructor(private route: ActivatedRoute, private router: Router, public localService: LocalService, public filialeService: FilialeService, private fb: FormBuilder) {
@@ -38,17 +38,17 @@ export class FilLocalComponent implements OnInit {
     this.formCum = this.fb.group({
       locallId: ['00000000-0000-0000-0000-000000000000', Validators.required],
       localdescription: [""],
-      Filialeid: ['00000000-0000-0000-0000-000000000000', Validators.required]
+      filialeid: ['00000000-0000-0000-0000-000000000000']
     });
 
-    console.log("id", this.idnorm)
+    // console.log("id", this.idnorm)
   }
   ChangeData(local: any) {
 
     this.formCum.reset({
       locallId: local.locallId,
       localdescription: local.localdescription,
-      filialeid: local.Filialeid
+      filialeid: local.filialeid
 
 
     });
@@ -80,26 +80,25 @@ export class FilLocalComponent implements OnInit {
   
   
     }*/
-     ok :boolean =false
-   public   saisie():boolean
-   { 
-    console.log("fil",this.formCum.controls['Filialeid'].value)
+  ok: boolean = false
+  public saisie(): boolean {
+    console.log("fil", this.formCum.controls['Filialeid'].value)
     this.localService.GetAllLocalByFilale(this.formCum.controls['Filialeid'].value).subscribe(data => {
-      this.filLocList = data; 
+      this.filLocList = data;
       console.log('localiiiiii', this.filLocList)
-      if(this.filLocList.find((e: any) => e.localdescription == this.formCum.controls['localdescription'].value))
-        console.log("existe",true)
-        return true
+      if (this.filLocList.find((e: any) => e.localdescription == this.formCum.controls['localdescription'].value))
+        console.log("existe", true)
+      return true
     });
     return false
 
 
-   //ok= this.filLocList.includes(this.formCum.controls['localdescription']);
-    
+    //ok= this.filLocList.includes(this.formCum.controls['localdescription']);
+
     //console.log(ok);
   }
 
-rep:any
+  rep: any
   public saveData() {
     if (!this.formCum.valid) {
       alert("veuillez remplir tous les champs")
@@ -109,70 +108,59 @@ rep:any
     //   designation: this.formCum.controls['designation'].value,
     // }
     if (this.formCum.controls['locallId'].value == '00000000-0000-0000-0000-000000000000') {
-    debugger
+      debugger
       console.log("post")
-     // console.log("saisie,",this.saisie())
-     this.ok= this.saisie();
-      alert(this.ok)
-      if(this.ok)
-      { alert("ce pole existe deja ");}
-      else 
-      {
-        console.log(this.formCum.value);
-        this.localService.postLocal(this.formCum.value).subscribe(res => {
-          //alert(res.toString());
-          //  this.cumulative={}
-          if (res == "Added done") {
-            // debugger
-            
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'l\'ajout est effectuée avec succèes',
-              showConfirmButton: false,
-              timer: 1500
-            })
-          }
-          else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: res,
-              footer: '<a href="/loc">Erreur de saisie ?</a>'
-            })
-          }
-    
-          this.refreshcriList();
-        })
+      console.log(this.formCum.value);
+      this.localService.postLocal(this.formCum.value).subscribe(res => {
+        //alert(res.toString());
+        //  this.cumulative={}
+        if (res == "Added done") {
+          // debugger
 
-      }
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'l\'ajout est effectuée avec succèes',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+        else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: res,
+            footer: '<a href="/loc">Erreur de saisie ?</a>'
+          })
+        }
+
+        this.refreshcriList();
+      })
     }
     else {
       console.log("put")
       console.log(this.formCum.value);
       this.localService.editLocal(this.formCum.value).subscribe(res => {
-       // alert(res.toString());
-       if (res == "Update Done")
-      {
-        // debugger
-        
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Modification est effectuée avec succèes',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-      else 
-      {
-        Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: ' Il ya une erreur quelque part !',
-        footer: '<a href="/filiale">Veuillez réessayer </a>'
-      })
-      }
+        // alert(res.toString());
+        if (res == "Updated done") {
+          // debugger
+
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: res,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+        else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: res,
+            footer: '<a href="/filiale">Veuillez réessayer </a>'
+          })
+        }
         this.refreshcriList();
         //  this.cumulative={}
       })
@@ -187,7 +175,7 @@ rep:any
 
 
   deleteClick(item: any) {
-    
+
     Swal.fire({
       title: 'Êtes vous sûrs?',
       text: "Voulez vous supprimer ce local !",
@@ -200,12 +188,12 @@ rep:any
       if (result.isConfirmed) {
         this.localService.deleteLocal(item.locallId).subscribe(data => {
           //alert(data.toString());
-        Swal.fire(
-          'supprimé!',
-          'un local  est supprimé avec succès .',
-          'success'
-        )
-        this.refreshcriList();
+          Swal.fire(
+            'supprimé!',
+            'un local  est supprimé avec succès .',
+            'success'
+          )
+          this.refreshcriList();
         })
       }
     })
@@ -228,10 +216,10 @@ rep:any
   refreshcriList() {
     this.localService.getLocalList().subscribe(data => {
       this.CritereList = data;
-     // console.log('local', this.CritereList.value)
+      // console.log('local', this.CritereList.value)
     });
 
-  //  console.log('oui')
+    //  console.log('oui')
   }
 
   refreshfilList() {

@@ -19,35 +19,35 @@
 
 
 				<!--	<div>
-									<div>
-										<div class="">
-											<select class="form-control" formControlName="filialeId" (click)="refreshLocList()"
-				 >
-												<option *ngFor="let fil of filList " [value]="fil.filialId" >
-													{{fil.filialName}}
-												</option>
-											</select>
-				
-				
-										</div>
-				
-									</div>
-									<div>
-										<div class="">
-											<select class="form-control" formControlName="filLocalid" *ngIf="isShown"  >
-				
-												<option value="" disabled selected hidden>Local
-												</option>
-												<option *ngFor="let loc of LocalList " [value]="loc.locallId">
-													{{loc.localdescription}}
-												</option>
-											</select>
-				
-				
-										</div>
-									</div>
-				
-								</div>-->
+													<div>
+														<div class="">
+															<select class="form-control" formControlName="filialeId" (click)="refreshLocList()"
+								 >
+																<option *ngFor="let fil of filList " [value]="fil.filialId" >
+																	{{fil.filialName}}
+																</option>
+															</select>
+								
+								
+														</div>
+								
+													</div>
+													<div>
+														<div class="">
+															<select class="form-control" formControlName="filLocalid" *ngIf="isShown"  >
+								
+																<option value="" disabled selected hidden>Local
+																</option>
+																<option *ngFor="let loc of LocalList " [value]="loc.locallId">
+																	{{loc.localdescription}}
+																</option>
+															</select>
+								
+								
+														</div>
+													</div>
+								
+												</div>-->
 				<table style="margin-top: 150px;">
 					<tr>
 						<td>
@@ -66,7 +66,7 @@
 							<label>&nbsp; Sélectionnez un locale : &nbsp;</label>
 						</td>
 						<td>
-							<select (change)="refrechNote()" (click)="refrechNote()" class="form-control" formcontrolname="filLocalid" *ngIf="isShown" (click)="refreshSum()" (click)="Liste=[]">
+							<select class="form-control" formcontrolname="filLocalid" *ngIf="isShown">
 
 								<option value="" disabled selected hidden>Local
 								</option>
@@ -82,12 +82,15 @@
 							<label>&nbsp; Sélectionnez une date : &nbsp;</label>
 						</td>
 						<td>
-							<input class="form-control" type="date" formcontrolname="noteDate" (click)="SearchDate()">
+							<input class="form-control" type="date" formcontrolname="date_notation" (change)="refrechNote()" (change)="refreshSum()">
 						</td>
 					</tr>
 				</table>
 			</form>
-			<div class="row" (click)="Liste=[]">
+			<br>
+			<br>
+			<br>
+			<div class="row">
 				<div class="col-md-12">
 					<div class="tab_style2">
 						<div class="tabbar padding_infor_info">
@@ -109,11 +112,11 @@
 
 										<tbody>
 
-											<tr *ngFor="let i of NoteList;let t = index" (click)="refrechgetNote(i)">
+											<tr *ngFor="let i of NoteList;let t = index">
 
 												<td>
-													{{t}}
-													{{Liste[t].criterelabel}}
+
+													{{i.criterelabel}}
 												</td>
 												<td>
 													<div class="input-group mb-3">
@@ -132,8 +135,8 @@
 													{{i.date_notation}}
 												</td>
 												<td>
-													<span class="badge badge-success" *ngIf="i.note!=0">Noté</span>
-													<span class="badge badge-danger" *ngIf="i.note==0" (click)="EditNote()">Pas encore</span>
+													<span class="badge badge-success" *ngIf="i.note!=''">Noté</span>
+													<span class="badge badge-danger" (click)="ChangeData(i)" *ngIf="i.note==''" data-toggle="modal" data-target="#exampleModal">Pas encore</span>
 
 													<!--	<button type="button"   class="btn fa fa-exclamation-circle btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(i)" ng-disabled="note"></button>-->
 
@@ -141,7 +144,8 @@
 														<div class="modal-dialog">
 															<div class="modal-content">
 																<div class="modal-header">
-																	<h5 class="modal-title" id="exampleModalLabel">Reclamation</h5>
+																	<h5 class="modal-title" id="exampleModalLabel">Modification de note
+																	</h5>
 																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																		<span aria-hidden="true">&times;</span>
 
@@ -150,7 +154,7 @@
 																</div>
 																<div class="modal-body">
 																	<div class="card">
-																		<form (ngSubmit)='saveData()' [formGroup]="planService.formCum">
+																		<form (ngSubmit)='saveData()' [formGroup]=" planService.formCum2">
 
 
 																			<div class="form-row">
@@ -158,31 +162,31 @@
 																					<label>Critere :
 
 																					</label>
-																					<input value="{{t}}{{Liste[t].criterelabel}}" type="text" class="form-control" class="form-control input-sm" placeholder="critere" readonly>
+																					<input [value]="critereName" type="text" class="form-control" class="form-control input-sm" placeholder="critere">
 																				</div>
 																				<div class="col-9">
 																					<label>Note  :
 																					</label>
-																					<input type="text" value="{{Noteget.note}}" class=" form-control" class=" form-control input-sm" placeholder="note" readonly>
+																					<input type="number" class=" form-control" class=" form-control input-sm" formcontrolname="note" placeholder="note">
 																				</div>
 																				<div class=" col-9">
 																					<label>Commentaire :
 																					</label>
-																					<input type="text" value="{{Noteget.comment}}" class="form-control" class="form-control input-sm" placeholder="comment" readonly>
+																					<input type="text" class="form-control" class="form-control input-sm" formcontrolname="comment" placeholder="comment">
 																				</div>
 																				<div class="col-9">
-																					<label>Date Limite :
+																					<label>Date
 																					</label>
-																					<input type="date" name="party" value="maintenant" formcontrolname="planDate" style="margin-top: 5%;">
+																					<input type="date" name="party" value="maintenant" formcontrolname="date_notation" [value]="planService.formCum2.value.date_notation | date :'yyyy-MM-dd'" style="margin-top: 5%;">
 																				</div>
 																				<div class="col-9">
 																					<img [src]="PhotoFilePath" style="width: 200px; margin-top: 5%;" alt="#"/>
 																				</div>
-																				<div class="col-md-9 mb-3">
-																					<label for="w3review">Reclamation:</label>
-																					<textarea id="w3review" name="w3review" rows="4" cols="50" formcontrolname="plandescription">
-																						le plan a suivre</textarea>
-																				</div>
+																				<!--div class="col-md-9 mb-3">
+																																									<label for="w3review">Reclamation:</label>
+																																									<textarea id="w3review" name="w3review" rows="4" cols="50" formControlName="plandescription">
+																																										le plan a suivre</textarea>
+																																								</div-->
 
 																				<div class="col-md-6 mb-3">
 																					<input type="file" id="file" class="mt-2" formcontrolname="image"/>
@@ -198,8 +202,10 @@
 																					</div>
 																				</div>
 																			</div>
-																			<button type="button" class="btn btn-primary float-left" type="submit">Enregister
+																			<button type="button" id="closeModal" class="btn btn-primary float-left" type="submit">Enregister
 																			</button>
+																			<pre>{{planService.formCum2.value | json}}</pre>
+
 																		</form>
 
 																		<div class="card-body"></div>

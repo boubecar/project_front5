@@ -3,8 +3,81 @@
 		class="inner_container">
 		<!-- Sidebar  -->
 		<app-nav></app-nav>
-		<div class="midde_cont">
 
+		<div class="midde_cont">
+<form
+				[formGroup]="formCum">
+
+
+				<!--	<div>
+									<div>
+										<div class="">
+											<select class="form-control" formControlName="filialeId" (click)="refreshLocList()"
+				 >
+												<option *ngFor="let fil of filList " [value]="fil.filialId" >
+													{{fil.filialName}}
+												</option>
+											</select>
+				
+				
+										</div>
+				
+									</div>
+									<div>
+										<div class="">
+											<select class="form-control" formControlName="filLocalid" *ngIf="isShown"  >
+				
+												<option value="" disabled selected hidden>Local
+												</option>
+												<option *ngFor="let loc of LocalList " [value]="loc.locallId">
+													{{loc.localdescription}}
+												</option>
+											</select>
+				
+				
+										</div>
+									</div>
+				
+								</div>-->
+				<table style="margin-top: 150px;">
+					<tr>
+						<td>
+							<label>Sélectionnez une filiale
+							</label>
+							&nbsp;</td>
+						<td>
+							<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
+								<option *ngFor="let fil of filList " [value]="fil.filialId">
+									{{fil.filialName}}
+								</option>
+							</select>
+
+						</td>
+						<td>
+							<label>&nbsp; Sélectionnez un locale : &nbsp;</label>
+						</td>
+						<td>
+							<select  class="form-control" formControlName="filLocalid" *ngIf="isShown" >
+
+								<option value="" disabled selected hidden>Local
+								</option>
+								<option *ngFor="let loc of LocalList " [value]="loc.locallId">
+									{{loc.localdescription}}
+								</option>
+							</select>
+
+
+						</td>
+						<td>
+
+							<label>&nbsp; Sélectionnez une date : &nbsp;</label>
+						</td>
+						<td>
+							<input class="form-control" type="date" formControlName="date_notation" (change)="refrechNote()"    (change)="refrechplan()"    >
+						</td>
+					</tr>
+				</table>
+			</form>
 			<div class="row column4 graph">
 				<div class="col-md-6">
 					<div class="dash_blog">
@@ -21,14 +94,14 @@
 							<div class="list_cont">
 								<p>Les reclamations envoyees</p>
 							</div>
-							<div class="task_list_main" *ngFor="let dataItem of NoteList" (click)="refrechgetNote(dataItem)">
-								<ul class="task_list" >
+							<div class="task_list_main" *ngFor="let dataItem of NoteList">
+								<ul class="task_list" *ngIf="dataItem.comment !==''"  >
 
 									<li>
 										<a href="#">{{dataItem.comment}}</a><br><strong>{{dataItem.date_notation  | date:'dd MMM'}}</strong>
                                 
 									</li>
-<li>							<button  data-toggle="modal" data-target="#exampleModal1" class="btn btn-outline-warning mr-1 margin_bottom_30"><i style="color: orange;" class="fa-solid fa-circle-info"></i></button>
+<li>							 
 </li>
 								</ul>
 							
@@ -58,10 +131,10 @@
 						<span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2"></span>
 
 						<span class="text-default-d3 text-90 text-600">
-                        {{filialeget.filialName}}
+                         
 						</span>
 <span class="text-default-d3 text-90 text-600">
-{{Localget.localdescription}}
+ 
  
 						</span>
 

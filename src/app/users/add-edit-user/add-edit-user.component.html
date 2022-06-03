@@ -50,18 +50,18 @@
 			<!--Methode2 -->
 				<form style="width: 300px;" [formGroup]="registerForm" (ngSubmit)="onSubmit()"> <div class="form-group">
 					<label class="col-form-label" style="margin-left: -60px;">Entrer le Nom:</label>
-					<input type="text" style="margin-left: -60px;" formcontrolname="fullName" class="form-control form-control-sm">
+					<input type="text" style="margin-left: -60px;" formControlName="fullName" class="form-control form-control-sm">
 					<div class="invalid-feedback" style="margin-left: -60px;">
 						le nom est
 						        obligatoire</div>
 				</div>
 				<div class="form-group">
 					<label class="col-form-label" style="margin-left: -60px;">Entrer un Email:</label>
-					<input type="mail" class="form-control form-control-sm" formcontrolname="email" style="margin-left: -60px;">
+					<input type="mail" class="form-control form-control-sm" formControlName="email" style="margin-left: -60px;">
 				</div>
 				<div class="form-group">
 					<label class="col-form-label" style="margin-left: -60px;">Mot de passe:</label>
-					<input type="password" class="form-control form-control-sm" formcontrolname="password" style="margin-left: -60px;">
+					<input type="password" class="form-control form-control-sm" formControlName="password" style="margin-left: -60px;">
 					<div class="invalid-feedback" style="margin-left: -60px;">
 						le mot de passe est
 						          obligatoire</div>

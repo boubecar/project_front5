@@ -11,8 +11,8 @@ export class FilialeService {
 
   formCum = this.fb.group({
     filialId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-    filialName: ['', Validators.required],
-    poleId: ['00000000-0000-0000-0000-000000000000', Validators.required],
+    filialName: [''],
+    poleId: ['00000000-0000-0000-0000-000000000000']
   });
 
   filList: any = []

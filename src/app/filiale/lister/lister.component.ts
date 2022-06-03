@@ -16,63 +16,68 @@ export class ListerComponent implements OnInit {
   idnorm: string = ''
   formCum!: FormGroup;
   filialName: any
-  output : any
+  output: any
 
-  constructor(public filialeService: FilialeService,private userService : UserService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router,private localService :LocalService) {
-    this.route.params.subscribe((params: any) => console.log(params));
+  constructor(public filialeService: FilialeService, private userService: UserService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router, private localService: LocalService) {
+    //    this.route.params.subscribe((params: any) => console.log(params));
   }
- //filList: any = []
- 
+  //filList: any = []
+
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.idnorm = params['id'];
-    })
-    
-  /*  this.formCum = this.fb.group({
-      filialeId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-      filialeName: ['', Validators.required],
-      poleId: this.idnorm,
-    });*/
-    this.refreshfilList()
-   //this.refreshMemberList();
+    // this.route.params.subscribe(params => {
+    //   this.idnorm = params['id'];
+    // })
+
+    /*  this.formCum = this.fb.group({
+        filialeId: ['00000000-0000-0000-0000-000000000000', Validators.required],
+        filialeName: ['', Validators.required],
+        poleId: this.idnorm,
+      });*/
+    //   this.refreshfilList()
+    //this.refreshMemberList();
+    debugger
+    this.filialeService.getFilialeList().subscribe(data => {
+      this.filialeService.filList = data;
+      debugger
+      console.log(this.filialeService)
+    });
   }
 
-  changeimage(name:string)
-  {
+  changeimage(name: string) {
     var split = name.split(" ");
-    this.output  = split[0][0] + split[1][0];
-    console.log("Coup",this.output);
+    this.output = split[0][0] + split[1][0];
+    console.log("Coup", this.output);
   }
   deleteClick(item: any) {
-     Swal.fire({
-       title: 'Êtes vous sûrs?',
-       text: "Voulez supprimer cette filiale !",
-       icon: 'warning',
-       showCancelButton: true,
-       confirmButtonColor: '#3085d6',
-       cancelButtonColor: '#d33',
-       confirmButtonText: 'oui, Supprimez !'
-     }).then((result) => {
-       if (result.isConfirmed) {
-         this.filialeService.deleteFiliale(item.filialId).subscribe(data => {
-           //alert(data.toString());
-         Swal.fire(
-           'supprimé!',
-           'une filiale est supprimé avec succès .',
-           'success'
-         )
-         this.refreshfilList();
+    Swal.fire({
+      title: 'Êtes vous sûrs?',
+      text: "Voulez supprimer cette filiale !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'oui, Supprimez !'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.filialeService.deleteFiliale(item.filialId).subscribe(data => {
+          //alert(data.toString());
+          Swal.fire(
+            'supprimé!',
+            'une filiale est supprimé avec succès .',
+            'success'
+          )
+          this.refreshfilList();
 
-         })
-       }
-     })
- 
- 
- 
-   }
-   ChangeData(fil: Filiale) {
-    console.log("change",fil)
+        })
+      }
+    })
+
+
+
+  }
+  ChangeData(fil: Filiale) {
+    console.log("change", fil)
     this.filialeService.formCum.reset({
       filialId: fil.filialId,
       filialName: fil.filialName,
@@ -82,7 +87,8 @@ export class ListerComponent implements OnInit {
   polename: any
   SearchPole() {
     if (this.polename == '') {
-      this.ngOnInit()
+      //    this.ngOnInit()
+      this.refreshfilList()
     } else {
       this.filialeService.filList = this.filialeService.filList.filter((res: { polename: string; }) => {
         return res.polename.toLocaleLowerCase().match(this.polename.toLocaleLowerCase());
@@ -92,7 +98,8 @@ export class ListerComponent implements OnInit {
 
   Search() {
     if (this.filialName == '') {
-      this.ngOnInit()
+      //   this.ngOnInit()
+      this.refreshfilList()
     } else {
       this.filialeService.filList = this.filialeService.filList.filter((res: { filialName: string; }) => {
         return res.filialName.toLocaleLowerCase().match(this.filialName.toLocaleLowerCase());
@@ -101,7 +108,7 @@ export class ListerComponent implements OnInit {
   }
   refreshfilList() {
 
-   // console.log("id pole",this.idnorm)
+    // console.log("id pole",this.idnorm)
     //this.isShown = true;
     this.filialeService.getFilialeList().subscribe(data => {
       this.filialeService.filList = data;
@@ -109,13 +116,13 @@ export class ListerComponent implements OnInit {
     });
 
   }
-  userList:any
+  userList: any
   refreshMemberList() {
     this.userService.getUserList().subscribe(data => {
       this.userList = data;
       console.log(this.userList)
     });
-    
+
     //console.log("list",this.userList)
 
 

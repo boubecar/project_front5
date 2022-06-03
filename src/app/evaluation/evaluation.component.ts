@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Filiale } from '../filiale';
 import { groupedCriterionDTO } from '../groupedCriterionDTO';
+import { Constants } from '../Helper/constants';
 import { Note } from '../note';
 import { CritereService } from '../services/critere.service';
 import { FilialeService } from '../services/filiale.service';
@@ -30,7 +31,10 @@ export class EvaluationComponent implements OnInit {
      return this.NotationForm.get("Note") as FormArray
    }*/
   today = new Date()
-
+  get isUserlogin() {
+    const user = localStorage.getItem(Constants.USER_KEY) || '{}';
+    return user && user.length > 0;
+  }
   AddOrEditNotationForm = this.fb.group({
     NoteArray: this.fb.array([]),
   });
@@ -79,7 +83,7 @@ export class EvaluationComponent implements OnInit {
         date_notation: ['', Validators.required],
         critereid: [element.critereId],
         filLocalid: [],
-        userid: ['60fc1633-b1a0-46a3-fbf4-02da28c41eff'],
+        userid: ['3FA85F64-5717-4562-B3FC-2C963F66AFA7'],
         image: [],
 
         //  index:0,
@@ -195,6 +199,7 @@ export class EvaluationComponent implements OnInit {
     });
 
   }
+
 
   refreshLocList() {
     //  debugger

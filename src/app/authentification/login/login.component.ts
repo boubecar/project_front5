@@ -69,9 +69,9 @@ export class LoginComponent implements OnInit {
     email: ['', [Validators.email, Validators.required]],
     password: ['', Validators.required]
   })
-  onSubmit() {
+  LogOn() {
     console.log("on submit")
-    // this.blockUI.start();
+    this.blockUI.start();
     let email = this.loginForm.controls["email"].value;
     let password = this.loginForm.controls["password"].value;
     this.userServie.login(email, password).subscribe((data: ResponseModel) => {
