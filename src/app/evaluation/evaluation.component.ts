@@ -191,7 +191,7 @@ export class EvaluationComponent implements OnInit {
   refreshfilList() {
     this.filialeService.getFilialeList().subscribe(data => {
       this.filList = data;
-      console.log(this.filList)
+      console.log('fils',this.filList)
     });
 
   }
