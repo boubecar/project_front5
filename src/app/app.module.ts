@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -43,6 +43,8 @@ import { NoteUserComponent } from './espace_responsable/note-user/note-user.comp
 import { DetailRecComponent } from './reclamation/detail-rec/detail-rec.component';
 import { ToastrService } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
+import { BarChartComponent } from './home/bar-chart/bar-chart.component';
+import { GestionRoleComponent } from './gestion-role/gestion-role.component';
 
 
 
@@ -81,6 +83,8 @@ import { HomeComponent } from './home/home.component';
     ProfileUserComponent,
     NoteUserComponent,
     DetailRecComponent,
+    BarChartComponent,
+    GestionRoleComponent,
 
   ],
   imports: [
@@ -91,7 +95,7 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     NgxPaginationModule,
     Ng2OrderModule,
-
+    NgChartsModule,
 
 
 

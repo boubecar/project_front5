@@ -35,8 +35,6 @@ export class ListerNormeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.refreshnormList();
-    // this.refreshcriList(Norme);
-
   }
   detnorme(item: any) {
     this.router.navigate(['/cri', item.normeId]);
@@ -58,7 +56,7 @@ export class ListerNormeComponent implements OnInit {
           //alert(data.toString());
         Swal.fire(
           'supprimé!',
-          'Le pole est supprimé avec succès .',
+          'La norme est supprimé avec succès .',
           'success'
         )
         this.refreshnormList();
@@ -81,19 +79,9 @@ export class ListerNormeComponent implements OnInit {
       this.CritereList = data;
       console.log(this.CritereList)
     });
-
   }
 
-  Search() {
-    if (this.designation == '') {
-      this.ngOnInit()
-    } else {
-      this.NormeList = this.NormeList.filter((res: { designation: string; }) => {
-        return res.designation.toLocaleLowerCase().match(this.designation.toLocaleLowerCase());
-      })
-    }
-  }
-
+ 
   sort(key: any) {
     this.key = key;
     this.reverse = !this.reverse;

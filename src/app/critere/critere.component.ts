@@ -31,7 +31,7 @@ export class CritereComponent implements OnInit {
   NormeList: any = []
 
   cumulative: Critere = {}
-  CritereList: any = []
+  //CritereList: any = []
   idnorm: string = ''
 
 
@@ -56,7 +56,7 @@ export class CritereComponent implements OnInit {
     this.refreshcriList();
     this.formCum = this.fb.group({
       critereId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-      criterelabel: [""],
+      criterelabel: ["",Validators.required],
       normeId: this.idnorm
     });
 
@@ -192,9 +192,9 @@ export class CritereComponent implements OnInit {
 
   refreshcriList() {
     this.CritereService.getCritereByNorme(this.idnorm).subscribe(data => {
-      this.CritereList = data;
+      this.CritereService.CritereList = data;
       console.log('oui')
-      console.log(this.CritereList)
+      // console.log(this.CritereList)
     });
   }
 

@@ -35,7 +35,7 @@
 				<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
 					<div class="modal-content" style=" width: 350px;margin-left: 30%;">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Ajouter</h5>
+							<h5 class="modal-title" id="exampleModalLabel" style="color: #0275d8;">Critére </h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -48,17 +48,30 @@
 										<div class="form-row">
 											<input type="hidden" formcontrolname="critereId">
 											<div class="col-md-6 mb-3" >
-												<label style="width: 300px; margin-left: 40px;">enter le nouveau  critere:
+												<div class="imput-group">
+												<label style="width: 300px; margin-left: 40px;">Enter le critere:
 												</label>
-												<input  type="text" style="margin-left: 40px;" class="Form-Control" placeholder="Nom" formControlName="criterelabel" required>
+												<input  type="text" style="margin-left: 40px;" class="Form-Control" placeholder="Nom" formControlName="criterelabel" [ngClass]="
+												(formCum.controls['criterelabel'].touched ||
+												formCum.controls['criterelabel'].dirty) &&
+												formCum.controls['criterelabel'].hasError('required')
+												? 'is-invalid'
+												: ''|| (formCum.controls['criterelabel'].touched ||
+													formCum.controls['criterelabel'].dirty) &&
+													!formCum.controls['criterelabel'].invalid
+												? 'is-valid'
+												: ''
+												">
+												<div style="margin-left: 6%;" class="invalid-feedback">le nom est obligatoire</div>
+											</div>
 											</div>
 
 										</div>
 										<input type="hidden" formcontrolname="normeId">
 
-										<button type="button" class="btn btn-primary " style="margin-left: 40px;" type="submit">ajouter
+										<button type="button" class="btn btn-primary " style="margin-left: 40px;" type="submit">Enregistrer 
 										</button>
-										<button type="button" class="btn btn-secondary" style="margin-left: 120px; margin-top: -19%;" data-dismiss="modal">Fermer</button>
+										<button type="button" class="btn btn-secondary" style="margin-left: 140px; margin-top: -19%;" data-dismiss="modal">Fermer</button>
 
 									</form>
 								</div>
@@ -78,7 +91,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let dataItem of CritereList">
+					<tr *ngFor="let dataItem of CritereService.CritereList">
 						
 						<td>{{dataItem.criterelabel}}</td>
 						

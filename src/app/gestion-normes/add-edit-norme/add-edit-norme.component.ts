@@ -11,8 +11,6 @@ import Swal from 'sweetalert2';
 })
 export class AddEditNormeComponent implements OnInit {
 
-
-
   cumulative: Norme[] = new Array()
   NormeList: any = []
   constructor(public normeService: NormeServiceService) { }

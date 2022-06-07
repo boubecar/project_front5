@@ -58,6 +58,7 @@ export class AddEditPoleComponent implements OnInit {
     console.log('gt', this.service.formCum.value)
 
     if (this.service.formCum.controls['poleId'].value == '00000000-0000-0000-0000-000000000000') {
+      console.log('post', this.service.formCum.value)
 
       this.service.postPole(this.service.formCum.value, this.image).subscribe(res => {
         // alert(res.toString());

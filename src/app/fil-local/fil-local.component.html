@@ -2,14 +2,21 @@
 	<div class="inner_container">
 
 		<app-nav></app-nav>
+		
 		<div class="container">
 
-			<h5 class="d-flex justify-content-center">Gestion des Locaux
-			</h5>
+			<div class="full graph_head">
+				<div class="heading1 " style="margin-top: -2%;">
+					<h2>Les Locaux des filiales de Poulina Group Holding
+					</h2>
+				</div>
+
+
+			</div>
 
 
 			<!-- Button trigger modal -->
-			<button type="button" style="margin-left: 300px;" class="fa fa-plus btn btn-outline-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+			<button type="button" class="fa fa-plus btn btn-outline-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
 				Ajouter
 			</button>
 
@@ -18,7 +25,7 @@
 				<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Ajouter</h5>
+							<h5 class="modal-title" id="exampleModalLabel" >Local </h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -29,37 +36,61 @@
 								<div class="card-body">
 									<form (ngSubmit)="saveData()" [formGroup]="formCum">
 										<div class="form-row">
-											<div class="input-group">
-												<input type="hidden" formControlName="locallId">
-
-												<div class="col-md-6 mb-3">
-													<label>Enter un local
-													</label>
-													<input type="text" class="Form-Control" placeholder="Nom" formControlName="localdescription" required>
-													
-												</div>
+											<div class="input-group"><input type="hidden" formControlName="locallId"></div>
+												
+												<div class="">
+													<label style="margin-left: 15px;">Enter un local :</label>
+													<input type="text" class="form-control form-control-sm" style="margin-left: 15px; width: 360px;"  placeholder="description" formControlName="localdescription" [ngClass]="
+													(formCum.controls['localdescription'].touched ||
+													formCum.controls['localdescription'].dirty) &&
+													formCum.controls['localdescription'].hasError('required')
+													? 'is-invalid'
+													: ''|| (formCum.controls['localdescription'].touched ||
+														formCum.controls['localdescription'].dirty) &&
+														!formCum.controls['localdescription'].invalid
+													? 'is-valid'
+													: ''
+													">
+													<div class="invalid-feedback" style="margin-left: 13px;">   la description  est  
+														obligatoire
+													</div>
 											</div>
+											<div class="form-group">
 												<div class="input-group" *ngIf="this.formCum.controls['locallId'].value == '00000000-0000-0000-0000-000000000000' ">
 
-													<label style="margin-left: 15px;" for="validationCustom01" >
+													<label style="margin-left: 15px;padding-top: 2%;" for="validationCustom01" >
 														Sélectionnez une filiale 
 													</label>
 													<select  style="margin-left: 15px; width: 360px;" class="form-control form-control-sm"
-												id="validationCustom01"  formControlName="filialeid"
+												id="validationCustom01"  formControlName="filialeid" [ngClass]="
+												(formCum.controls['filialeid'].touched ||
+												formCum.controls['filialeid'].dirty) &&
+												formCum.controls['filialeid'].hasError('required')
+												? 'is-invalid'
+												: ''|| (formCum.controls['filialeid'].touched ||
+													formCum.controls['filialeid'].dirty) &&
+													!formCum.controls['filialeid'].invalid
+												? 'is-valid'
+												: ''
+												"
 												 >
-												<option *ngFor="let dataItem of filList"   [value]="dataItem.filialId">{{dataItem.filialName}}</option>
+												<option *ngFor="let dataItem of filList"   [value]="dataItem.filialId" >{{dataItem.filialName}}</option>
 												</select>
 												<div class="invalid-feedback" style="margin-left: 13px;">   la filiale  est  
 													obligatoire
 												</div>
 											</div>
+											</div>
 
 										</div>
 										<input type="hidden" formControlName="Filialeid">
 
-										<button type="button" class="btn btn-primary float-right" type="submit">Enregistrer
+										<button type="button" class="btn btn-primary float-right" type="submit" >Enregistrer
 										</button>
+
 									</form>
+									<button type="button" class="btn btn-secondary" style="margin-left: 250px;" data-dismiss="modal">Fermer</button>
+
 								</div>
 							</div>
 						</div>
@@ -68,7 +99,7 @@
 			</div>
 
 
-			<table class="table " id="center" style="width:85%;">
+			<table class="table " id="center" style="width:85%; margin-top: 10%;" >
 				<thead style="background-color: #CAF0F8">
 					<tr>
 						<th>localdescription</th>

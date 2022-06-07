@@ -8,7 +8,19 @@
 			<label style="width: 200px; margin-left: 5px;">&nbsp; Enter le nom du norme :
 			</label>
 			<br>
-			<input type="text" class="form-control" class="form-control input-sm" placeholder="Nom" id="inputinfo2" formControlName="designation" style="width: 250px; margin-left: 5px;" required>
+			<input type="text" class="form-control" class="form-control input-sm" placeholder="Nom" id="" formControlName="designation" style="width: 250px; margin-left: 5px;" 
+			[ngClass]="
+            (normeService.formCum.controls['designation'].touched ||
+            normeService.formCum.controls['designation'].dirty) &&
+            normeService.formCum.controls['designation'].hasError('required')
+            ? 'is-invalid'
+            : ''|| (normeService.formCum.controls['designation'].touched ||
+			normeService.formCum.controls['designation'].dirty) &&
+                !normeService.formCum.controls['designation'].invalid
+            ? 'is-valid'
+            : ''
+            ">
+			<div style="margin-left: 6%;" class="invalid-feedback">le nom est obligatoire</div>
 		</div>
 
 	</div>

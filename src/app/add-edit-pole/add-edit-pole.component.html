@@ -1,9 +1,23 @@
 <form (ngSubmit)="saveData()" [formGroup]="service.formCum">
     <div class="form-row">
-        <div class="col-md-6 mb-3">
-            <label style="width: 200px;margin-left: 10px;"> Enter le nom de nouveau  pole :
+        <div>
+         <div class="input-group">
+            <label style="width: 200px;margin-left: 10px;" > Enter le nom de nouveau  pole :
             </label>
-            <input type="text" class="form-control" style="width: 225px;" placeholder="Nom" formControlName="poleName" required>
+            <input type="text" class="form-control" style="width: 225px;" placeholder="Nom" formControlName="poleName" required 
+            [ngClass]="
+            (service.formCum.controls['poleName'].touched ||
+            service.formCum.controls['poleName'].dirty) &&
+            service.formCum.controls['poleName'].hasError('required')
+            ? 'is-invalid'
+            : ''|| (service.formCum.controls['poleName'].touched ||
+                service.formCum.controls['poleName'].dirty) &&
+                !service.formCum.controls['poleName'].invalid
+            ? 'is-valid'
+            : ''
+            ">
+        <div class="invalid-feedback">le nom est obligatoire</div>
+         </div>
         </div>
     </div>
     <div class="ml-3 bd-highlight" style="width: 40%;" style="color: blue;">
@@ -16,6 +30,7 @@
         
  
     </div>
-    <button type="button" class="btn btn-primary margin_top_30 margin_left_20 " style="margin-right: 105px;" type="submit">Enregistrer
+    <button type="button"                                       
+    class="btn btn-primary margin_top_30 margin_left_20 " style="margin-right: 105px;" type="submit">Enregistrer
     </button>
 </form>

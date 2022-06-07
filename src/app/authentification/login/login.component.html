@@ -92,11 +92,13 @@
      
     <div class="container" style="width: 350px;"> 
      <div class="form"> 
-       <h2 style="text-align: center;"> Bienvenue </h2>
+      <img style="width: 80px; margin-left: 35%;margin-top: -8%;" src="assets/images/polinalogo.png"/>
+
+       <h2 style="text-align: center;"> Poulina Holding Group  </h2>
        <form (ngSubmit)='LogOn()' [formGroup]="loginForm">
          <div class="inputBx" style="text-align: center;">
            <input type="text"  required="required" formControlName="email">
-           <span  style="margin-left: 20px;">Matricule</span>
+           <span  style="margin-left: 20px;">Email</span>
            <!-- <i class="fas fa-user-circle"></i> -->
          </div>
          <div class="inputBx password" style="text-align: center;">
@@ -111,7 +113,7 @@
            <input type="submit" value="Log in"  />
          </div>
        </form>
-       <p style="text-align: center;">Mot de passe oublier ? <a href="#">Click ici</a></p>
+      
      </div>
    </div>
      
