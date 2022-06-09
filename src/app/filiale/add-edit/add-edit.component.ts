@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FilialeService } from 'src/app/services/filiale.service';
@@ -37,16 +37,20 @@ export class AddEditComponent implements OnInit {
       poleId: ['00000000-0000-0000-0000-000000000000'],
     });
   }
-  d: any
+  @ViewChild('closebutton') closebutton: any;
+
   public saveData() {
 
 
     if (this.filialeService.formCum.controls['filialId'].value == '00000000-0000-0000-0000-000000000000') {
-      //  console.log("post")
-      // console.log(this.formCum.value);
-
       this.filService.postFiliale(this.filialeService.formCum.value).subscribe(res => {
-        //alert(res.toString());
+        this.filialeService.formCum.reset({
+          filialId: ['00000000-0000-0000-0000-000000000000', Validators.required],
+          filialName: [''],
+          poleId: ['00000000-0000-0000-0000-000000000000'],
+        }
+        )
+        this.refreshfilList()
         if (res == "Added done") {
           // debugger
 
@@ -67,19 +71,20 @@ export class AddEditComponent implements OnInit {
           })
         }
 
-        this.refreshPoleList();
       });
     }
     else {
       console.log("put")
       console.log(this.filialeService.formCum.value);
       this.filService.updateFiliale(this.filialeService.formCum.value).subscribe(res => {
-        alert(res.toString());
-        console.log("c?")
-        this.d = res
-        if (res == "Updated done") {
-          // debugger
-
+        this.filialeService.formCum.reset({
+          filialId: ['00000000-0000-0000-0000-000000000000', Validators.required],
+          filialName: [''],
+          poleId: ['00000000-0000-0000-0000-000000000000'],
+        }
+        )
+      this.refreshfilList()
+        if (res == "Update Done") {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -96,19 +101,13 @@ export class AddEditComponent implements OnInit {
             footer: '<a href="/filiale">Veuillez réessayer </a>'
           })
         }
-
         //  this.cumulative={}
       })
 
 
     }
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'update done',
-      showConfirmButton: false,
-      timer: 1500
-    })
+    this.closebutton.nativeElement.click();
+
     // alert(this.cumulative.designation);
   }
   refreshfilList() {

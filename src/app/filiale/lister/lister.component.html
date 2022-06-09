@@ -1,4 +1,4 @@
- <div class="row column1">
+<div class="row " style="margin-top: 20%;">
 	<div class="col-md-6 col-lg-4" *ngFor="let dataItem of filialeService.filList">
 		<div class="full white_shd margin_bottom_30">
 			<div class="info_people">
@@ -20,45 +20,27 @@
 				</div>
 				<!--Model Detail-->
 				<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-					   <div class="modal-content">
-						  <div class="modal-header">
-							 <h5 class="modal-title" id="exampleModalLabel" style="padding-left:40% ;color: rgb(42, 106, 243);">Filiale</h5>
-							 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							 </button>
-						  </div>
-						  <div class="modal-body">
-							 <div class="card">
-									<app-detail-fil></app-detail-fil>
-								<div class="card-body"></div>
-							 </div>
-						  </div>
+				  <div class="modal-dialog">
+					 <div class="modal-content">
+					  <div class="modal-header">
+					   <h5 class="modal-title" id="exampleModalLabel" style="padding-left:40% ;color: rgb(42, 106, 243);">Filiale</h5>
+					   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					   </button>
+					  </div>
+					  <div class="modal-body">
+					   <div class="card">
+						  <app-detail-fil></app-detail-fil>
+						<div class="card-body"></div>
 					   </div>
-					</div>
+					  </div>
+					 </div>
+				  </div>
 				 </div>
-				 	<!--Model Add-edit-->
-				 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-					   <div class="modal-content">
-						  <div class="modal-header">
-							 <h5 class="modal-title" id="exampleModalLabel" style="padding-left:40% ;color: rgb(42, 106, 243);">Filiale</h5>
-							 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							 </button>
-						  </div>
-						  <div class="modal-body">
-							 <div class="card">
-								<!-- <app-add-edit></app-add-edit> -->
-								<button type="button" class="btn btn-secondary" style="width: 80px; margin-left: 300px; margin-top: -7%;" data-dismiss="modal">Fermer</button>
-							 </div>
-						  </div>
-					   </div>
-					</div>
-				 </div>
+					 <!--Model Add-edit-->
+				 
 			  
 			</div>
 
 		</div>
 	</div>
-</div>

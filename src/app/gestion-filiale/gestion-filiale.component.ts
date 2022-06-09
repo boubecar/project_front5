@@ -7,17 +7,18 @@ import { FilialeService } from '../services/filiale.service';
 import { LocalService } from '../services/local.service';
 
 @Component({
-  selector: 'app-filiale',
-  templateUrl: './filiale.component.html',
-  styleUrls: ['./filiale.component.css']
+  selector: 'app-gestion-filiale',
+  templateUrl: './gestion-filiale.component.html',
+  styleUrls: ['./gestion-filiale.component.css']
 })
-export class FilialeComponent implements OnInit {
+export class GestionFilialeComponent implements OnInit {
+
   constructor(public filialeService: FilialeService,private route: ActivatedRoute, private fb: FormBuilder, private router: Router , private localService: LocalService) {
   }
-
   ngOnInit(): void {
-    this.refreshfilList()
+    this.refreshfilList();
   }
+
   refreshfilList() {
     console.log("List")
     this.filialeService.getFilialeList().subscribe(data => {

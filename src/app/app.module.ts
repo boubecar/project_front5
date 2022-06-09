@@ -45,6 +45,9 @@ import { ToastrService } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
 import { BarChartComponent } from './home/bar-chart/bar-chart.component';
 import { GestionRoleComponent } from './gestion-role/gestion-role.component';
+import { GestionFilialeComponent } from './gestion-filiale/gestion-filiale.component';
+import { GestionfilialeComponent } from './gestionfiliale/gestionfiliale.component';
+import { ListeFilComponent } from './gestionfiliale/liste-fil/liste-fil.component';
 
 
 
@@ -85,6 +88,9 @@ import { GestionRoleComponent } from './gestion-role/gestion-role.component';
     DetailRecComponent,
     BarChartComponent,
     GestionRoleComponent,
+    GestionFilialeComponent,
+    GestionfilialeComponent,
+    ListeFilComponent,
 
   ],
   imports: [

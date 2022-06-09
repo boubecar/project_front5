@@ -8,11 +8,11 @@ import { ProfileUserComponent } from './espace_responsable/profile-user/profile-
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { FilLocalComponent } from './fil-local/fil-local.component';
 import { FilialeComponent } from './filiale/filiale.component';
+import { GestionFilialeComponent } from './gestion-filiale/gestion-filiale.component';
 import { GestionNormesComponent } from './gestion-normes/gestion-normes.component';
 import { GestionRoleComponent } from './gestion-role/gestion-role.component';
 import { AuthGuardService } from './guards/auth.service';
 import { HomeComponent } from './home/home.component';
-import { LocalComponent } from './local/local.component';
 import { NormesComponent } from './normes/normes.component';
 import { NoteComponent } from './note/note.component';
 import { DetailPoleComponent } from './pole/detail-pole/detail-pole.component';
@@ -44,7 +44,9 @@ const routes: Routes = [
   { path: 'md', component: DetailPoleComponent, canActivate: [AuthGuardService] },
   { path: 'note_user', component: NoteUserComponent, canActivate: [AuthGuardService] },
   { path: 'home', component: ProfileUserComponent, canActivate: [AuthGuardService] },
-  { path: 'role', component: GestionRoleComponent, canActivate: [AuthGuardService] }
+  { path: 'role', component: GestionRoleComponent, canActivate: [AuthGuardService] },
+  { path: 'gfilial', component: GestionFilialeComponent, canActivate: [AuthGuardService] }
+
 ];
 
 @NgModule({

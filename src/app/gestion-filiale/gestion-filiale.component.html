@@ -1,0 +1,100 @@
+<div class="full_container">
+    <div class="inner_container">
+       <!-- Sidebar  -->
+       <app-nav></app-nav>
+       <!-- right content -->
+          <!-- end topbar -->
+          <!-- dashboard inner -->
+          <div class="midde_cont">
+             <div class="container-fluid">
+                <div class="row column_title" style="margin-top: 1em;">
+                   <div class="col-md-12">
+                    <div class="full">
+						<div class="full graph_head">
+							<div class="heading1 ">
+								<h2>Les filiales de Poulina Group Holding
+								</h2>
+							</div>
+						</div>
+                      <button type="button" id=""  class="fa fa-plus btn btn-outline-primary float-right m-2" style="width: 150px;" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+								Ajouter
+						   </button> 
+                           <div class="row " style="margin-top: 20%;">
+                            <div class="col-md-6 col-lg-4" *ngFor="let dataItem of filialeService.filList">
+                                <div class="full white_shd margin_bottom_30">
+                                    <div class="info_people">
+                                        <div class="p_info_img" style="margin-top:30px ;">
+                                            <img src="{{dataItem.image}}" alt="#"/>					
+                                        </div>
+                                        <div class="user_info_cont">
+                                            <h4 >{{dataItem.filialName}}</h4> 
+                                            <p>Pole :</p>
+                                            <p class="p_status">{{dataItem.polename}}</p>
+                                            <div style="margin-top: 10px;">
+                                                    <button type="button"  class="fa-solid fa-trash-can btn btn-outline-danger mr-1 margin_bottom_30" (click)="deleteClick(dataItem)">
+                                                    </button>
+                                                    <button type="button"  data-toggle="modal" data-target="#exampleModal" class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1 margin_bottom_30" data-backdrop="static" data-keyboard="false" (click)="ChangeData(dataItem)">				
+                                                    </button>
+                                                    <button  data-toggle="modal" data-target="#exampleModal1" (click)="detfil(dataItem)"  class="btn btn-outline-warning mr-1 margin_bottom_30"><i style="color: orange;" class="fa-solid fa-circle-info"></i></button>
+                                                    
+                                                </div>
+                                        </div>
+                                        <!--Model Detail-->
+                                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                             <div class="modal-content">
+                                              <div class="modal-header">
+                                               <h5 class="modal-title" id="exampleModalLabel" style="padding-left:40% ;color: rgb(42, 106, 243);">Filiale</h5>
+                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                               </button>
+                                              </div>
+                                              <div class="modal-body">
+                                               <div class="card">
+                                                  <app-detail-fil></app-detail-fil>
+                                                <div class="card-body"></div>
+                                               </div>
+                                              </div>
+                                             </div>
+                                          </div>
+                                         </div>
+                                             <!--Model Add-edit-->
+                                         
+                                      
+                                    </div>
+                        
+                                </div>
+                            </div>
+                           </div>
+                        
+                    </div>  
+
+                   </div>
+                </div>
+                
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel" style="padding-left:40% ;color: rgb(42, 106, 243);">Filiale</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="card">
+                                <app-add-edit></app-add-edit> 
+                              <button type="button" class="btn btn-secondary" style="width: 80px; margin-left: 300px; margin-top: -7%;" data-dismiss="modal">Fermer</button>
+                            </div>
+                          </div>
+                        </div>
+                     </div>
+                   </div>
+               
+                
+             </div>
+             <!-- footer -->
+          </div>
+          <!-- end dashboard inner -->
+       </div>
+    </div> 

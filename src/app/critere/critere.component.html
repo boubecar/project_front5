@@ -51,7 +51,8 @@
 												<div class="imput-group">
 												<label style="width: 300px; margin-left: 40px;">Enter le critere:
 												</label>
-												<input  type="text" style="margin-left: 40px;" class="Form-Control" placeholder="Nom" formControlName="criterelabel" [ngClass]="
+												<input  type="text" style="margin-left: 40px;" class="Form-Control" placeholder="Nom" formControlName="criterelabel" 
+												[ngClass]="
 												(formCum.controls['criterelabel'].touched ||
 												formCum.controls['criterelabel'].dirty) &&
 												formCum.controls['criterelabel'].hasError('required')
@@ -81,7 +82,7 @@
 				</div>
 			</div>
 
-
+			<div class="">
 			<table class="table " id="center" style="width: 85%;">
 				<thead class="table-success" style="background-color: #CAF0F8
 				;">
@@ -106,5 +107,6 @@
 					</tr>
 				</tbody>
 			</table>
+			</div>
 		</div>
 	</div>

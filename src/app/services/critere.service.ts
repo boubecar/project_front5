@@ -14,7 +14,7 @@ export class CritereService {
   }
 
   postCritere(cumulative: any) {
-    return this.http.post(this.backEndUrl + "/PostFilale", cumulative)
+    return this.http.post(this.backEndUrl + "/PostFilale", cumulative, { responseType: "text" })
   }
 
   getListCriteres() {

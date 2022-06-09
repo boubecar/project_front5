@@ -30,7 +30,7 @@ export class FilialeService {
   }
 
   updateFiliale(val: any) {
-    return this.http.put(this.backEndUrl + '/PutFiliale', val);
+    return this.http.put(this.backEndUrl + '/PutFiliale', val, { responseType: "text" });
   }
   deleteFiliale(val: any) {
     return this.http.delete(this.backEndUrl + '/DeleteFiliale?SaisieCommentId=' + val, { responseType: "text" });

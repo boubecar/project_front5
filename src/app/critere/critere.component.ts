@@ -88,6 +88,15 @@ export class CritereComponent implements OnInit {
       console.log("post")
       console.log(this.formCum.value);
       this.CritereService.postCritere(this.formCum.value).subscribe(res => {
+        this.formCum.reset({
+          critereId: '00000000-0000-0000-0000-000000000000' ,
+          criterelabel: "",
+          normeId: this.idnorm
+    
+    
+        });
+        this.refreshcriList()
+
         if (res == "Added done") {
           // debugger
           
@@ -110,7 +119,6 @@ export class CritereComponent implements OnInit {
         }
 
       })
-      this.refreshcriList()
 
 
     }
@@ -119,6 +127,8 @@ export class CritereComponent implements OnInit {
       console.log(this.formCum.value);
       this.CritereService.editCritere(this.formCum.value).subscribe(data => {
         //alert(data.toString());
+        this.refreshcriList();
+
         if (data == "Update Done")
       {
         // debugger
@@ -141,7 +151,6 @@ export class CritereComponent implements OnInit {
       })
       }
 
-        this.refreshcriList();
       })
     }
 
@@ -155,7 +164,7 @@ export class CritereComponent implements OnInit {
   deleteClick(item: any) {
     Swal.fire({
       title: 'Êtes vous sûrs?',
-      text: "Voulez vous supprimer ce pole!",
+      text: "Voulez vous supprimer ce critére!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -167,7 +176,7 @@ export class CritereComponent implements OnInit {
           //alert(data.toString());
         Swal.fire(
           'supprimé!',
-          'Le pole est supprimé avec succès .',
+          'Le critére est supprimé avec succès .',
           'success'
         )
         this.refreshcriList();

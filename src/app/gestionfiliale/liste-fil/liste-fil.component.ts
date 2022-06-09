@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Filiale } from 'src/app/filiale';
+import { FilialeService } from 'src/app/services/filiale.service';
+import { LocalService } from 'src/app/services/local.service';
 import Swal from 'sweetalert2';
-import { Filiale } from '../filiale';
-import { FilialeService } from '../services/filiale.service';
-import { LocalService } from '../services/local.service';
 
 @Component({
-  selector: 'app-filiale',
-  templateUrl: './filiale.component.html',
-  styleUrls: ['./filiale.component.css']
+  selector: 'app-liste-fil',
+  templateUrl: './liste-fil.component.html',
+  styleUrls: ['./liste-fil.component.css']
 })
-export class FilialeComponent implements OnInit {
-  constructor(public filialeService: FilialeService,private route: ActivatedRoute, private fb: FormBuilder, private router: Router , private localService: LocalService) {
-  }
+export class ListeFilComponent implements OnInit {
+
+  constructor(public filialeService: FilialeService,private route: ActivatedRoute, private fb: FormBuilder, private router: Router , private localService: LocalService) {}
 
   ngOnInit(): void {
     this.refreshfilList()
   }
+
   refreshfilList() {
     console.log("List")
     this.filialeService.getFilialeList().subscribe(data => {
@@ -68,5 +69,7 @@ export class FilialeComponent implements OnInit {
       this.localService.detFiliale = data;
     });
   }
+
+
 
 }

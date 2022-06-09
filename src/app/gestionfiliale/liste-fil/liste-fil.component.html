@@ -1,0 +1,30 @@
+<div class="row " style="margin-top: 20%;">
+    <div class="col-md-6 col-lg-4" *ngFor="let dataItem of filialeService.filList">
+        <div class="full white_shd margin_bottom_30">
+            <div class="info_people">
+                <div class="p_info_img" style="margin-top:30px ;">
+                    <img src="{{dataItem.image}}" alt="#"/>					
+                </div>
+                <div class="user_info_cont">
+                    <h4 >{{dataItem.filialName}}</h4> 
+                    <p>Pole :</p>
+                    <p class="p_status">{{dataItem.polename}}</p>
+                    <div style="margin-top: 10px;">
+                            <button type="button"  class="fa-solid fa-trash-can btn btn-outline-danger mr-1 margin_bottom_30" (click)="deleteClick(dataItem)">
+                            </button>
+                            <button type="button"  data-toggle="modal" data-target="#exampleModal" class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1 margin_bottom_30" data-backdrop="static" data-keyboard="false" (click)="ChangeData(dataItem)">				
+                            </button>
+                            <button  data-toggle="modal" data-target="#exampleModal1" (click)="detfil(dataItem)"  class="btn btn-outline-warning mr-1 margin_bottom_30"><i style="color: orange;" class="fa-solid fa-circle-info"></i></button>
+                            
+                        </div>
+                </div>
+                <!--Model Detail-->
+                
+                     <!--Model Add-edit-->
+                 
+              
+            </div>
+
+        </div>
+    </div>
+   </div>

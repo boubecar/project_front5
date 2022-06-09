@@ -13,42 +13,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./lister.component.css']
 })
 export class ListerComponent implements OnInit {
-  idnorm: string = ''
-  formCum!: FormGroup;
-  filialName: any
-  output: any
-
+  filialName: any;
+  
   constructor(public filialeService: FilialeService, private userService: UserService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router, private localService: LocalService) {
-    //    this.route.params.subscribe((params: any) => console.log(params));
   }
-  //filList: any = []
 
 
   ngOnInit(): void {
-    // this.route.params.subscribe(params => {
-    //   this.idnorm = params['id'];
-    // })
-
-    /*  this.formCum = this.fb.group({
-        filialeId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-        filialeName: ['', Validators.required],
-        poleId: this.idnorm,
-      });*/
-    //   this.refreshfilList()
-    //this.refreshMemberList();
-    debugger
-    this.filialeService.getFilialeList().subscribe(data => {
-      this.filialeService.filList = data;
-      debugger
-      console.log(this.filialeService)
-    });
+   this.refreshfilList();
   }
-
-  changeimage(name: string) {
-    var split = name.split(" ");
-    this.output = split[0][0] + split[1][0];
-    console.log("Coup", this.output);
-  }
+ 
   deleteClick(item: any) {
     Swal.fire({
       title: 'Êtes vous sûrs?',
@@ -107,27 +81,14 @@ export class ListerComponent implements OnInit {
     }
   }
   refreshfilList() {
-
-    // console.log("id pole",this.idnorm)
-    //this.isShown = true;
+    console.log('List')
     this.filialeService.getFilialeList().subscribe(data => {
       this.filialeService.filList = data;
       console.log(this.filialeService)
     });
 
   }
-  userList: any
-  refreshMemberList() {
-    this.userService.getUserList().subscribe(data => {
-      this.userList = data;
-      console.log(this.userList)
-    });
-
-    //console.log("list",this.userList)
-
-
-  }
-
+  
   detfil(item: any) {
     //this.router.navigate(['/lf', item.filialId]);
     this.localService.GetAllLocalByFilale(item.filialId).subscribe(data => {
