@@ -31,7 +31,7 @@
 			</nav>
 
 			<!-- Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
 					<div class="modal-content" style=" width: 350px;margin-left: 30%;">
 						<div class="modal-header">
@@ -48,22 +48,22 @@
 										<div class="form-row">
 											<input type="hidden" formcontrolname="critereId">
 											<div class="col-md-6 mb-3" >
-												<div class="imput-group">
+												<div class="form-group">
 												<label style="width: 300px; margin-left: 40px;">Enter le critere:
 												</label>
-												<input  type="text" style="margin-left: 40px;" class="Form-Control" placeholder="Nom" formControlName="criterelabel" 
+												<input type="text" class="form-control" class="form-control input-sm" placeholder="Nom" id="" formControlName="criterelabel" style="width: 250px; margin-left: 5px;" 
 												[ngClass]="
-												(formCum.controls['criterelabel'].touched ||
-												formCum.controls['criterelabel'].dirty) &&
-												formCum.controls['criterelabel'].hasError('required')
+												( formCum.controls['criterelabel'].touched ||
+												 formCum.controls['criterelabel'].dirty) &&
+												 formCum.controls['criterelabel'].hasError('required')
 												? 'is-invalid'
-												: ''|| (formCum.controls['criterelabel'].touched ||
-													formCum.controls['criterelabel'].dirty) &&
-													!formCum.controls['criterelabel'].invalid
+												: ''|| ( formCum.controls['criterelabel'].touched ||
+												 formCum.controls['criterelabel'].dirty) &&
+													! formCum.controls['criterelabel'].invalid
 												? 'is-valid'
 												: ''
-												">
-												<div style="margin-left: 6%;" class="invalid-feedback">le nom est obligatoire</div>
+												"> 
+												<div style="margin-left: 6%;" class="invalid-feedback">la designation de critére est obligatoire</div>
 											</div>
 											</div>
 

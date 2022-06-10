@@ -31,12 +31,14 @@ export class AddEditComponent implements OnInit {
 
     this.refreshPoleList()
     //   this.refreshfilList();
-    this.formCum = this.fb.group({
-      filialId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-      filialName: [''],
-      poleId: ['00000000-0000-0000-0000-000000000000'],
-    });
+    // this.formCum = this.fb.group({
+    //   filialId: ['00000000-0000-0000-0000-000000000000', Validators.required],
+    //   filialName: [''],
+    //   poleId: ['00000000-0000-0000-0000-000000000000'],
+    // });
   }
+ 
+  
   @ViewChild('closebutton') closebutton: any;
 
   public saveData() {
@@ -77,12 +79,8 @@ export class AddEditComponent implements OnInit {
       console.log("put")
       console.log(this.filialeService.formCum.value);
       this.filService.updateFiliale(this.filialeService.formCum.value).subscribe(res => {
-        this.filialeService.formCum.reset({
-          filialId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-          filialName: [''],
-          poleId: ['00000000-0000-0000-0000-000000000000'],
-        }
-        )
+        this.filialeService.formCum.disable()
+        
       this.refreshfilList()
         if (res == "Update Done") {
           Swal.fire({

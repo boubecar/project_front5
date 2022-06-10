@@ -16,21 +16,15 @@ export class AddEditNormeComponent implements OnInit {
   constructor(public normeService: NormeServiceService) { }
 
   ngOnInit(): void {
-    this.refreshnormList();
 
   }
 
   public saveData() {
     
-    if (!this.normeService.formCum.valid) {
-
-      alert("veuillez remplir tous les champs")
-    }
-
     if (this.normeService.formCum.controls['normeId'].value == '00000000-0000-0000-0000-000000000000') {
       this.normeService.postNorme(this.normeService.formCum.value).subscribe(res => {
-       // alert(res.toString())
-       if (res == "Added done") {
+        this.refreshnormList();
+        if (res == "Added done") {
         // debugger
         
         Swal.fire({
@@ -56,8 +50,8 @@ export class AddEditNormeComponent implements OnInit {
     else {
 
       this.normeService.editNorme(this.normeService.formCum.value).subscribe(res => {
-        //alert(res.toString())
-       if (res == "Update Done")
+        this.refreshnormList();
+        if (res == "Update Done")
        {
          // debugger
          
@@ -78,32 +72,14 @@ export class AddEditNormeComponent implements OnInit {
          footer: '<a href="/gnorme">Veuillez réessayer </a>'
        })
        }
- 
         this.refreshnormList()
       });
 
-
-
-
     }
-
-
-    // alert(this.cumulative.designation);
   }
   refreshnormList() {
     this.normeService.getListNormes().subscribe(data => {
-      this.NormeList = data;
+      this.normeService.NormeList = data;
     });
   }
-  // ChangeData(norme: Norme) {
-
-  //   debugger
-  //   this.formCum.reset({
-  //     normeId: norme.normeId,
-  //     designation: norme.designation,
-
-  //   })
-  // }
-
-
 }

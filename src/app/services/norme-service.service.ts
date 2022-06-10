@@ -10,7 +10,7 @@ import { PoleComponent } from '../pole/pole.component';
   providedIn: 'root'
 })
 export class NormeServiceService {
-
+  NormeList: any = []
   formCum = this.fb.group({
     normeId: ['00000000-0000-0000-0000-000000000000', Validators.required],
     designation: ['', Validators.required],

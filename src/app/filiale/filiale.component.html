@@ -16,7 +16,7 @@
                         </h2>
                       </div>
                     </div>
-                    <button type="button" id=""  class="fa fa-plus btn btn-outline-primary float-right m-2" style="width: 150px;" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+                    <button type="button" id=""  class="fa fa-plus btn btn-outline-primary float-right m-2" style="width: 150px;" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false" (click)="open()">
                       Ajouter
                     </button> 
 
@@ -27,7 +27,7 @@
                  </div>
               </div>
               
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div #myModel  class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                    <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">

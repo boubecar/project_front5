@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Filiale } from '../filiale';
@@ -53,7 +53,23 @@ export class FilialeComponent implements OnInit {
 
 
   }
+  @ViewChild('myModal') myModal: any;
+
+  public open ()
+ {
+ 
+  this.filialeService.formCum.enable();
+  this.filialeService.formCum.reset({
+    filialId: '00000000-0000-0000-0000-000000000000',
+    filialName: '',
+    poleId: '00000000-0000-0000-0000-000000000000',
+  });
+  this.myModal.nativeElement.className = 'modal fade show';
+ 
+ 
+ }
   ChangeData(fil: Filiale) {
+    debugger
     console.log("change", fil)
     this.filialeService.formCum.reset({
       filialId: fil.filialId,

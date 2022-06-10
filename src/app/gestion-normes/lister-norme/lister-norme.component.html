@@ -50,7 +50,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let dataItem of NormeList |orderBy: key: reverse | paginate: {itemsPerPage: 3 , currentPage : p} ;">
+		<tr *ngFor="let dataItem of normeService.NormeList |orderBy: key: reverse | paginate: {itemsPerPage: 3 , currentPage : p} ;">
 			<td>{{dataItem.designation}}</td>
 			<td style="padding-left: 420px;">
 

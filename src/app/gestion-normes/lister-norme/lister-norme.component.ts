@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./lister-norme.component.css']
 })
 export class ListerNormeComponent implements OnInit {
-  NormeList: any = []
+ 
   CritereList: any = []
 
   designation: any
@@ -28,13 +28,14 @@ export class ListerNormeComponent implements OnInit {
      { normeId: "5", designation: "Débarrasser" },
    ]*/
   constructor(public normeService: NormeServiceService, private fb: FormBuilder, private router: Router, public critereService: CritereService) { }
-  refreshnormList() {
-    this.normeService.getListNormes().subscribe(data => {
-      this.NormeList = data;
-    });
-  }
+  
   ngOnInit(): void {
     this.refreshnormList();
+  }
+  refreshnormList() {
+    this.normeService.getListNormes().subscribe(data => {
+      this.normeService.NormeList = data;
+    });
   }
   detnorme(item: any) {
     this.router.navigate(['/cri', item.normeId]);
