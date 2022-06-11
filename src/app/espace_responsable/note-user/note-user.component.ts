@@ -40,7 +40,6 @@ export class NoteUserComponent implements OnInit {
   NoteList: any;
   NormeList: any;
   formCum = this.fb.group({
-    filialeId: '00000000-0000-0000-0000-000000000000',
     filLocalid: '00000000-0000-0000-0000-000000000000',
     date_notation: ''
   });
@@ -54,7 +53,8 @@ export class NoteUserComponent implements OnInit {
     this.maintenant = this.maDate.getDate() + '-' + ((this.maDate.getMonth() + 1)) + '-' + this.maDate.getFullYear();
 
     this.maintenant = this.addDays(4);
-    this.refreshfilList();
+    this.refreshLocList();
+
 
   }
   /*
@@ -84,18 +84,19 @@ export class NoteUserComponent implements OnInit {
   refreshLocList() {
 
     this.isShown = true;
-    if (this.formCum.value.filialeId) {
-      this.LocService.GetAllLocalByFilale(this.formCum.value.filialeId).subscribe(data => {
+    if (this.user.filalelId) {
+      this.LocService.GetAllLocalByFilale(this.user.filalelId).subscribe(data => {
         this.LocalList = data;
-        //  console.log(this.LocalList);
+        console.log(this.LocalList);
 
       });
     }
   }
 
   refrechNote() {
+    this.sum = 0
 
-    this.noteService.GetAllNoteByLocal2(this.formCum.value.filialeId, this.formCum.value.filLocalid, this.formCum.value.date_notation).subscribe(data => {
+    this.noteService.GetAllNoteByLocal2(this.user.filalelId, this.formCum.value.filLocalid, this.formCum.value.date_notation).subscribe(data => {
 
       this.NoteList = data;
 
@@ -105,6 +106,7 @@ export class NoteUserComponent implements OnInit {
 
 
   }
+
   cri: any
   refrechcritere(e: any) {
 
@@ -155,7 +157,7 @@ export class NoteUserComponent implements OnInit {
   sum: any;
   refreshSum() {
     console.log("summmmmmm")
-    this.noteService.GetSum2(this.formCum.value.filialeId, this.formCum.value.filLocalid, this.formCum.value.date_notation).subscribe(data => {
+    this.noteService.GetSum2(this.user.filalelId, this.formCum.value.filLocalid, this.formCum.value.date_notation).subscribe(data => {
       this.sum = data;
       console.log("sum", this.sum)
     });
@@ -165,7 +167,6 @@ export class NoteUserComponent implements OnInit {
   today = new Date();
   to = this.datePipe.transform(this.today, "dd")
   ChangeData(note: any) {
-
 
     console.log(note)
     this.planService.GetAllplanByNote(note.id).subscribe(data => {

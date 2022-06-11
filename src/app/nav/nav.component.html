@@ -29,7 +29,7 @@
 				</a>
 				<ul class="collapse list-unstyled" id="dashboard">
 					<li>
-						<a routerlink="">>
+						<a routerLink="">>
 							<span>Admin Dashboard</span>
 						</a>
 					</li>
@@ -37,7 +37,7 @@
 				</ul>
 			</li>
 			<li>
-				<a routerlink="/rec">
+				<a routerLink="/rec">
 					<i class="fa fa-clock-o orange_color"></i>
 					<span>Plan d'action</span>
 				</a>
@@ -49,29 +49,29 @@
 				</a>
 				<ul class="collapse list-unstyled" id="element">
 					<li>
-						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerlink="/pole">>
+						<a   routerLink="/pole">>
 							<span>Pole</span>
 						</a>
 					</li>
 					<li>
-						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerlink="/filiale">>
+						<a   routerLink="/filiale">>
 							<span>Filiale</span>
 						</a>
 					</li>
 					<li>
-						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerlink="/loc">>
+						<a   routerLink="/loc">>
 							<span>Local</span>
 						</a>
 					</li>
 					<li>
-						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerlink="/gnorme">>
+						<a   routerLink="/gnorme">>
 							<span>Norme</span>
 						</a>
 					</li>
 				</ul>
 			</li>
 			<li>
-				<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerlink="/evaluation">
+				<a   routerLink="/evaluation">
 					<i class="fa fa-table purple_color2"></i>
 					<span>Evaluation</span>
 				</a>
@@ -84,12 +84,12 @@
 				</a>
 				<ul class="collapse list-unstyled" id="element1">
 					<li>
-						<a routerlink="/evaluation">>
+						<a routerLink="/evaluation">>
 							<span>Evaluation</span>
 						</a>
 					</li>
 					<li>
-						<a routerlink="/note">>
+						<a routerLink="/note">>
 							<span>notes</span>
 						</a>
 					</li>
@@ -99,13 +99,13 @@
 			<ul class="collapse list-unstyled">
 
 				<li>
-					<a routerlink="/evaluation">
+					<a routerLink="/evaluation">
 						<i class="fa fa-table purple_color2"></i>
 						<span>Evaluation</span>
 					</a>
 				</li>
 				<li>
-					<a routerlink="/note">
+					<a routerLink="/note">
 						<i class="fa fa-table purple_color2"></i>
 						<span>notes</span>
 					</a>
@@ -119,11 +119,18 @@
 					</span>
 				</a>
 				<ul class="collapse list-unstyled" id="apps">
-					<<<<<<<HEAD<li><arouterLink="/role">><span>roles</span></a></li><li><arouterLink="/users">><span>Utilisateurs</span></a></li>=======<li><a[class.disabled]="isUser"aria-current="page"*ngIf="isUserlogin&&!isUser"routerLink="/mail">><span>Email</span></a></li><li><a[class.disabled]="isUser"aria-current="page"*ngIf="isUserlogin&&!isUser"routerLink="/users">><span>Contact</span></a></li>>>>>>>> 4cd385f (version10)
+					 <li><a routerLink="/role">
+<span>roles</span>
+</a></li>
+<li><a routerLink="/users">
+<span>Utilisateurs</span></a>
+</li>
+<li>
+<a    routerLink="/mail"> <span>Email</span></a></li><li><a   aria-current="page"  routerLink="/users"><span>Contact</span> </a> </li>
 				</ul>
 			</li>
 			<li>
-				<a [class.disabled]="isUser" aria-current="page" *ngIf="isUserlogin && !isUser" routerlink="/profile">
+				<a    routerLink="/profile">
 					<i class="fa fa-user" aria-hidden="true"></i>
 					<span>Profil</span>
 				</a>
@@ -174,7 +181,7 @@
 									<a class="dropdown-item" href="profile.html">My Profile</a>
 									<a class="dropdown-item" href="settings.html">Settings</a>
 									<a class="dropdown-item" href="help.html">Help</a>
-									<a class="dropdown-item" routerlink="/login" (click)="onLogout()" href="#">
+									<a class="dropdown-item" routerLink="/login" (click)="onLogout()" href="#">
 										<span>Log Oute</span>
 										<i class="fa fa-sign-out"></i>
 									</a>

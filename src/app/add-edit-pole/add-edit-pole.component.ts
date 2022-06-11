@@ -2,6 +2,7 @@ import { Component, OnInit, QueryList } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Constants } from '../Helper/constants';
 import { Pole } from '../pole';
 import { PoleServiceService } from '../services/pole-service.service';
 
@@ -21,7 +22,10 @@ export class AddEditPoleComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // const user = JSON.parse(localStorage.getItem(Constants.USER_KEY) || '{}');
+    // console.log('tokn', user.token)
     this.refreshPoleList();
+
   }
 
   refreshPoleList() {
@@ -93,7 +97,7 @@ export class AddEditPoleComponent implements OnInit {
     else {
       console.log("put")
       console.log(this.service.formCum.value);
-      this.service.updatePole(formData).subscribe(res => {
+      this.service.updatePole(this.service.formCum.value).subscribe(res => {
         // alert(res.toString());
 
         if (res == "Update Done") {
