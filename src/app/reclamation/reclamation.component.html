@@ -73,13 +73,13 @@
 							<label>&nbsp; Sélectionnez une date : &nbsp;</label>
 						</td>
 						<td>
-							<input class="form-control" type="date" formControlName="date_notation" (change)="refrechNote()"    (change)="refrechplan()"    >
+							<input class="form-control" type="date" formControlName="date_notation" (change)="refrechNote()"        >
 						</td>
 					</tr>
 				</table>
 			</form>
 			<div class="row column4 graph">
-				<div class="col-md-6">
+				
 					<div class="dash_blog">
 						<div class="dash_blog_inner">
 							<div class="dash_head">
@@ -101,7 +101,8 @@
 										<a href="#">{{dataItem.comment}}</a><br><strong>{{dataItem.date_notation  | date:'dd MMM'}}</strong>
                                 
 									</li>
-<li>							 
+<li>
+	<span class="badge badge-success" class="badge badge-success"    (click)="refrechplan(dataItem)" data-toggle="modal" data-target="#exampleModal"  >Palan d'action Recus</span>							 
 </li>
 								</ul>
 							
@@ -154,7 +155,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				 
 
      
 								<div class="card-body"></div>
@@ -163,7 +164,20 @@
 					   </div>
 					</div>
 				 </div>
-				<div class="col-md-6">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLabel"> 
+																	</h5>
+																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+
+																	</button>
+
+																</div>
+																<div class="modal-body">
+				<div class="col-md-12">
 					<div class="dash_blog">
 						<div class="dash_blog_inner">
 							<div class="dash_head">
@@ -179,16 +193,19 @@
 							<div class="list_cont">
 								<p>Plan d'action déposé</p>
 							</div>
-							<div class="msg_list_main">
-								<ul class="msg_list">
-									<li *ngFor="let dataItem of planList">
+							<div class="msg_list_main" *ngFor="let dataItem of planList">
+								<ul class="msg_list" >
+									<li >
 										<span><img src="assets/images/layout_img/msg2.png" class="img-responsive" alt="#"/></span>
 										<span>
-											<span class="name_user">{{dataItem.userName}}</span>
-											<span class="msg_user">{{dataItem.plandescription}}</span>
+											 
+											
 											<span class="time_ago">{{dataItem.planDate | date:'dd MMM'}}</span>
 										</span>
 									</li>
+<li>
+<p>{{dataItem.plandescription}}</p>
+</li>
 								</ul>
 							</div>
 							<div class="read_more">
@@ -198,6 +215,11 @@
 							</div>
 						</div>
 					</div>
+</div>
+</div>
+</div>
+</div>
+
 				</div>
 			</div>
 		</div>

@@ -69,17 +69,18 @@
 				<div class="form-group"><!-- <input type="password" name="confirmpassword" class="form-control"placeholder="Confirmer Password" required > -->
 					<!-- <p class="alert alert-danger" *ngIf="password.value!==confirmpassword.value && password.touched"></p>-->
 				</div>
-				<!-- <div class="form-group">
+				<!-- div class="form-group">
 				        <label class="col-form-label" style="margin-left: -60px;">Confirmer mot de passe :</label>
 				        <input type="password" class="form-control form-control-sm" formControlName="formControlName="password"" style="margin-left: -60px;"  > le mot de passe est
-				          obligatoire</div>
+				          obligatoire</div-->
 				      
-				<pre>{{filialeService.filList|json}}</pre>
-				      <select   type="text" style="margin-left: -60px;" class="custom-select form-control-sm"  formControlName="filialId" [ngClass]="(exform.controls['filialId'].touched ||exform.controls['filialId'].dirty) && exform.controls['filialId'].hasError('required')? 'is-invalid' : '' ||((exform.controls['filialId'].touched || exform.controls['filialId'].dirty) && !exform.controls['filialId'].invalid) ? 'is-valid': ''">
-				        <option *ngFor="let dataItem of filialeService.filList">
+ 
+				      <select     class="form-control form-control-sm"
+												id="validationCustom01"   formControlName="filalelId"  >
+				        <option *ngFor="let dataItem of filList" [value]="dataItem.filialId">
 				          {{dataItem.filialName}}
 				        </option>
-				    </select></div>-->
+ </select>
 				<div class="row mb-3">
 					<label for="inputPassword" class="col-form-label" style="margin-left: -60px;">Role</label>
 					<div class="col-sm-2">

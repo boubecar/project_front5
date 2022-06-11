@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./lister-norme.component.css']
 })
 export class ListerNormeComponent implements OnInit {
- 
   CritereList: any = []
 
   designation: any
@@ -28,7 +27,7 @@ export class ListerNormeComponent implements OnInit {
      { normeId: "5", designation: "Débarrasser" },
    ]*/
   constructor(public normeService: NormeServiceService, private fb: FormBuilder, private router: Router, public critereService: CritereService) { }
-  
+
   ngOnInit(): void {
     this.refreshnormList();
   }
@@ -55,12 +54,12 @@ export class ListerNormeComponent implements OnInit {
       if (result.isConfirmed) {
         this.normeService.deleteNorle(item.normeId).subscribe(data => {
           //alert(data.toString());
-        Swal.fire(
-          'supprimé!',
-          'La norme est supprimé avec succès .',
-          'success'
-        )
-        this.refreshnormList();
+          Swal.fire(
+            'supprimé!',
+            'Le pole est supprimé avec succès .',
+            'success'
+          )
+          this.refreshnormList();
         })
       }
     })
@@ -80,9 +79,20 @@ export class ListerNormeComponent implements OnInit {
       this.CritereList = data;
       console.log(this.CritereList)
     });
+
   }
 
- 
+  Search() {
+    if (this.designation == '') {
+      this.ngOnInit()
+    } else {
+      this.normeService.NormeList = this.normeService.NormeList.filter((res: { designation: string; }) => {
+        return res.designation.toLocaleLowerCase().match(this.designation.toLocaleLowerCase());
+      })
+    }
+  }
+
+
   sort(key: any) {
     this.key = key;
     this.reverse = !this.reverse;

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './authentification/login/login.component';
 import { CritereComponent } from './critere/critere.component';
 import { EmailComponent } from './email/email.component';
+import { NavUserComponent } from './espace_responsable/nav-user/nav-user.component';
 import { NoteUserComponent } from './espace_responsable/note-user/note-user.component';
 import { ProfileUserComponent } from './espace_responsable/profile-user/profile-user.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
@@ -45,7 +46,8 @@ const routes: Routes = [
   { path: 'note_user', component: NoteUserComponent, canActivate: [AuthGuardService] },
   { path: 'home', component: ProfileUserComponent, canActivate: [AuthGuardService] },
   { path: 'role', component: GestionRoleComponent, canActivate: [AuthGuardService] },
-  { path: 'gfilial', component: GestionFilialeComponent, canActivate: [AuthGuardService] }
+  { path: 'gfilial', component: GestionFilialeComponent, canActivate: [AuthGuardService] },
+  { path: 'nav', component: NavUserComponent, canActivate: [AuthGuardService] }
 
 ];
 

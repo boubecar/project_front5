@@ -22,7 +22,7 @@ export class NavComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    //  throw new Error('Method not implemented.');
   }
   onLogout() {
     localStorage.removeItem(Constants.USER_KEY);

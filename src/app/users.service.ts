@@ -23,12 +23,13 @@ export class UsersService {
     return this.httpClient.post<ResponseModel>(Constants.BASE_URL + "user/Login", body);
   }
 
-  public register(fullname: string, email: string, password: string, roles: string[]) {
+  public register(fullname: string, email: string, password: string, filaid: string, roles: string[]) {
 
     const body = {
       FullName: fullname,
       Email: email,
       Password: password,
+      filalelId: filaid,
       Roles: roles
     }
     return this.httpClient.post<ResponseModel>(Constants.BASE_URL + "user/RegisterUser", body);
@@ -45,7 +46,7 @@ export class UsersService {
       if (res.responseCode == ResponseCode.OK) {
         if (res.dateSet) {
           res.dateSet.map((x: User) => {
-            userList.push(new User(x.userId, x.fullName, x.email, x.userName, x.roles));
+            userList.push(new User(x.id, x.email, x.userName, x.filalelId, x.roles, x.fullName));
           })
         }
       }
@@ -63,7 +64,7 @@ export class UsersService {
       if (res.responseCode == ResponseCode.OK) {
         if (res.dateSet) {
           res.dateSet.map((x: User) => {
-            userList.push(new User(x.userId, x.fullName, x.email, x.userName, x.roles));
+            userList.push(new User(x.id, x.email, x.userName, x.filalelId, x.roles, x.fullName));
           })
         }
       } else {

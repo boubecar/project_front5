@@ -18,8 +18,9 @@ export class NoteService {
   postNote(cumulative: any) {
     return this.http.post(this.backEndUrl + "/Postnotation", cumulative, { responseType: "text" })
   }
-  GetAlltNote() {
-    return this.http.get(this.backEndUrl + "/GetAllnotation")
+  GetAlltNote(cumulative: any, cumulative2: any, date: any) {
+    return this.http.get(this.backEndUrl + "/GetAllnotation?filialeId=" + cumulative + "&id=" + cumulative2 +
+      '&date=' + date)
   }
   GetAllplanByNote(cumulative: any) {
     return this.http.get(this.backEndUrl + "/GetAllplan_actionNote?id=" + cumulative,)

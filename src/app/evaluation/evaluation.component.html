@@ -15,8 +15,9 @@
 				<form [formGroup]="formCum">
 		
 					
+
 						<!--<div>
-							<div>
+						
 								<div class="row">
 									<label>Sélectionnez une filiale :</label>
 									<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
@@ -27,8 +28,8 @@
 									
 								</div>
 
-							</div>
-							<div>
+							
+						
 								<div class="">
 									sélectionnez un locale 
 									<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (change)="onChangeCriterion()">
@@ -42,21 +43,24 @@
 
 
 
-								</div>
+							
 							</div>
-							<div>
+							
 								<div class="">
 									<label> une date :</label>
 									<input class="form-control" type="date" formControlName="date_notation" [value]="today | date:'dd-MM-yyyy'">
 								</div>
-							</div>
+
+
+						
 						</div>-->
 					
-				        <table style="margin-top: 170px;">
+				        <table class=" table table-responsive" style="margin-top: 170px;">
 							<tr>
 									<td><label>&nbsp; Sélectionnez une filiale :</label> &nbsp;</td>
 							<td>
-									<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
+									<select class="form-control" formControlName="filialeId"
+(click)="refreshLocList()" (change)="refrechall()" >
 										<option *ngFor="let fil of filList " [value]="fil.filialId">
 											{{fil.filialName}}
 										</option>
@@ -67,11 +71,13 @@
 									<label>&nbsp; &nbsp; Sélectionnez un locale : &nbsp;</label>
 								</td>
 								<td>
-									<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (change)="onChangeCriterion()">
+									<select class="form-control" formControlName="filLocalid" *ngIf="isShown" 
+(change)="refrechall()"  >
 
-										<option value="" disabled selected hidden>Local
+										<option value="" disabled selected hidden>Local 
 										</option>
-										<option *ngFor="let loc of LocalList " [value]="loc.locallId">
+										<option *ngFor="let loc of LocalList " [value]="loc.locallId" 
+>
 											{{loc.localdescription}}
 										</option>
 									</select>
@@ -82,25 +88,37 @@
 
 								<label>&nbsp; &nbsp; Sélectionnez une date : &nbsp;</label>
 								</td>
-								<td>
-									<input class="form-control" type="date" formControlName="date_notation" [value]="today | date:'dd-MM-yyyy'">
-								</td>
+								<td  >
+									<input     class="form-control" type="date"   (change)="refrechall()"  formControlName="date_notation" [value]="today | date:'dd-MM-yyyy'">
+								</td> 
+
+<td>
+
+<input type="button" class="form-control" (click)="onChangeCriterion()">
+</td>
+							 
+            
 					</tr>
 					</table>
+
 				</form>
 
 				
-				<div class="full inner_elements" style="margin-top: -2%;">
-					<div class="row">
+				<div class="full inner_elements" style="margin-top: -2%;" 
+*ngIf="formCum.value.filialeId != '00000000-0000-0000-0000-000000000000' &&
+      formCum.value.filLocalid != '00000000-0000-0000-0000-000000000000' &&
+      formCum.value.date_notation != null">
+					<div class="row" >
 						<div class="col-md-12">
 							<div class="tab_style2">
 								<div class="tabbar padding_infor_info">
 
 
-									<form [formGroup]="AddOrEditNotationForm" autocomplete="off" (ngSubmit)="onSubmit()">
+									<form  *ngIf="controlArray" [formGroup]="AddOrEditNotationForm" autocomplete="off" (ngSubmit)="onSubmit()">
 										<div formArrayName="NoteArray">
 
-											<ul class="nav nav-tabs p-3 rounded" id="groupeTap" role="tablist">
+											<ul class="nav nav-tabs p-3 rounded" id="groupeTap" role="tablist"
+>
 												<ng-container *ngFor="let cretrionGroup of listGroupedCriterions ">
 													<li class="nav-item ">
 														<a class="nav-link p-3 rounded text-black" [attr.id]="cretrionGroup?.normename+'-Tab'" data-toggle="tab" [attr.href]="'#'+cretrionGroup?.normename" role="tab" [attr.aria-controls]="cretrionGroup?.normename" aria-selected="true">
@@ -113,14 +131,14 @@
 											<div class="tab-content" id="groupeTapContent">
 												<ng-container *ngFor="let cretrionGroup of listGroupedCriterions">
 													<div class="tab-pane fade show " [attr.id]="cretrionGroup?.normename" role="tabpanel" [attr.aria-labelledby]="cretrionGroup?.normename+'-Tab'">
-														<table class="table">
+														<table class="table table-responsive">
 															<thead class="badge-info p-2">
 																<tr class="text-center">
 																	<th>#</th>
 																	<th>Critere</th>
 																	<th>Norme</th>
 																	<th>Note</th>
-																	<th></th>
+																	<th>eval</th>
 																	<th>Commentaire</th>
 																	<th></th>
 																	<th>Image</th>
@@ -130,17 +148,30 @@
    
 															<tbody>
 
-																<tr  class="trtable" *ngFor="let item of cretrionGroup.criterionDTOs;let i=index">
-																	<ng-container [formGroupName]="item.index">
+																<tr class="trtable" *ngFor="let item of cretrionGroup.criterionDTOs;let i=index">
+																	<ng-container [formGroupName]="item?.index">
+
+
+
 																		<td>{{item.index}}</td>
 																		<td>{{item.criterelabel}}</td>
 																		<td>
 																			<span class="badge badge-secondary" style="color: white;">{{item.normename}}</span>
 																		</td>
 																		<td>
-																				<input type="number" class="form-control" style="width: 90px;" placeholder="?/20" aria-describedby="basic-addon2" formControlName="note"  min="0" max="20">
+<div class="timeline-panel">
+																				<div class="timeline-body">
+																				<input type="number" class="form-control" style="width: 90px;"   aria-describedby="basic-addon2"  formControlName="note" 
+(keyup)="mention($event , item.index)"  min="0" max="20"></div>
+																			</div>
 																		</td>
-																		<td></td>
+																		<td>
+																			<div class="timeline-panel">
+																				<div class="timeline-body">
+																					<input class="form-control input-md" id="myInput"   type="text" required="required" formControlName="eval"  >
+																				</div>
+																			</div>
+																		</td>
 																		<td>
 																			<div class="timeline-panel">
 																				<div class="timeline-body">
@@ -174,17 +205,25 @@
 
 														</table>
 													</div>
+
 												</ng-container>
 											</div>
 											<button type="submit" class="btn btn-outline-info float-right btn-sm">
 												<i class="fas fa-solid fa-paper-plane mr-2"></i>
 												Envoyer</button>
+
+ 
 										</div>
 									</form>
- 
+ <pre>{{controlArray.value | json}}</pre>
+
 								</div>
 							</div>
 
 						</div>
 					</div>
 				</div>
+
+
+
+
