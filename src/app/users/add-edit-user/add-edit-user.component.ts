@@ -17,28 +17,34 @@ import { UsersService } from 'src/app/users.service';
 export class AddEditUserComponent implements OnInit {
   public roles: Role[] = [];
   registerForm!: FormGroup;
-  constructor(private router: Router, private formBuilder: FormBuilder, private userServie: UsersService, private toastr: ToastrService) { }
+  constructor(private router: Router, private filialeService: FilialeService, private formBuilder: FormBuilder, private userServie: UsersService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.refreshfilList()
     this.registerForm = this.formBuilder.group({
       fullName: ['', [Validators.required]],
       email: ['', [Validators.email, Validators.required]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      filalelId: ['', Validators.required]
     });
     this.getAllRoles();
   }
   onSubmit() {
     //   this.toastr["success"]("test message", "test")
 
-    console.log('onsu')
+    console.log('onsu', this.registerForm)
     let fullName = this.registerForm.controls["fullName"].value;
     let email = this.registerForm.controls["email"].value;
     let password = this.registerForm.controls["password"].value;
-    this.userServie.register(fullName, email, password, this.roles.filter(x => x.isSelected).map(x => x.role)).subscribe((data: ResponseModel) => {
+    let filalelId = this.registerForm.controls["filalelId"].value;
+
+    this.userServie.register(fullName, email, password, filalelId, this.roles.filter(x => x.isSelected).map(x => x.role)).subscribe((data: ResponseModel) => {
       if (data.responseCode == ResponseCode.OK) {
         this.registerForm.controls["fullName"].setValue("");
         this.registerForm.controls["email"].setValue("");
         this.registerForm.controls["password"].setValue("");
+        this.registerForm.controls["filalelId"].setValue("");
+
         this.roles.forEach(x => x.isSelected = false);
         ////this.toastr.info("You have created account please login");
         this.router.navigate(["login"]);
@@ -69,7 +75,16 @@ export class AddEditUserComponent implements OnInit {
   get isRoleSelected() {
     return this.roles.filter(x => x.isSelected).length > 0;
   }
+  filList: any;
+  refreshfilList() {
+    this.filialeService.getFilialeList().subscribe(data => {
+      this.filList = data;
+      console.log('hay')
+      console.log('fil;', this.filList)
+    });
 
+
+  }
 }
 /*
 

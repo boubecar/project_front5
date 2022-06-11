@@ -13,10 +13,27 @@ export class AuthGuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const user = JSON.parse(localStorage.getItem(Constants.USER_KEY) || '{}') as User;
     if (user && user.email) {
+
       return true;
     } else {
       this.router.navigate(["login"]);
       return false;
     }
+    if (user.roles.indexOf('Admin') > -1) { return true; }
+    else {
+      this.router.navigate(["login"]);
+
+    }
+
   }
+
+  // canActivate2(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  //   const user = JSON.parse(localStorage.getItem(Constants.USER_KEY) || '{}') as User;
+  //   if (user && user.roles.indexOf('User') > -1) {
+  //     return true;
+  //   } else {
+  //     this.router.navigate([""]);
+  //     return false;
+  //   }
+  // }
 }

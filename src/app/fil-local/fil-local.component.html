@@ -2,7 +2,7 @@
 	<div class="inner_container">
 
 		<app-nav></app-nav>
-		
+
 		<div class="container">
 
 			<div class="full graph_head">
@@ -25,7 +25,8 @@
 				<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel" >Local </h5>
+							<h5 class="modal-title" id="exampleModalLabel">Local
+							</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -36,89 +37,89 @@
 								<div class="card-body">
 									<form (ngSubmit)="saveData()" [formGroup]="formCum">
 										<div class="form-row">
-											<div class="input-group"><input type="hidden" formControlName="locallId"></div>
-												
-												<div class="">
-													<label style="margin-left: 15px;">Enter un local :</label>
-													<input type="text" class="form-control form-control-sm" style="margin-left: 15px; width: 360px;"  placeholder="description" formControlName="localdescription" [ngClass]="
-													(formCum.controls['localdescription'].touched ||
-													formCum.controls['localdescription'].dirty) &&
-													formCum.controls['localdescription'].hasError('required')
-													? 'is-invalid'
-													: ''|| (formCum.controls['localdescription'].touched ||
-														formCum.controls['localdescription'].dirty) &&
-														!formCum.controls['localdescription'].invalid
-													? 'is-valid'
-													: ''
-													">
-													<div class="invalid-feedback" style="margin-left: 13px;">   la description  est  
-														obligatoire
-													</div>
-											</div>
-											<div class="form-group">
-												<div class="input-group" *ngIf="this.formCum.controls['locallId'].value == '00000000-0000-0000-0000-000000000000' ">
+											<div class="input-group"><input type="hidden" formcontrolname="locallId"></div>
 
-													<label style="margin-left: 15px;padding-top: 2%;" for="validationCustom01" >
-														Sélectionnez une filiale 
-													</label>
-													<select  style="margin-left: 15px; width: 360px;" class="form-control form-control-sm"
-												id="validationCustom01"  formControlName="filialeid" [ngClass]="
-												(formCum.controls['filialeid'].touched ||
-												formCum.controls['filialeid'].dirty) &&
-												formCum.controls['filialeid'].hasError('required')
-												? 'is-invalid'
-												: ''|| (formCum.controls['filialeid'].touched ||
-													formCum.controls['filialeid'].dirty) &&
-													!formCum.controls['filialeid'].invalid
-												? 'is-valid'
-												: ''
-												"
-												 >
-												<option *ngFor="let dataItem of filList"   [value]="dataItem.filialId" >{{dataItem.filialName}}</option>
-												</select>
-												<div class="invalid-feedback" style="margin-left: 13px;">   la filiale  est  
-													obligatoire
+											<div class="">
+												<label style="margin-left: 15px;">Enter un local :</label>
+												<input type="text" class="form-control form-control-sm" style="margin-left: 15px; width: 360px;" placeholder="description" formcontrolname="localdescription" [ngClass]="
+																										(formCum.controls['localdescription'].touched ||
+																										formCum.controls['localdescription'].dirty) &&
+																										formCum.controls['localdescription'].hasError('required')
+																										? 'is-invalid'
+																										: ''|| (formCum.controls['localdescription'].touched ||
+																											formCum.controls['localdescription'].dirty) &&
+																											!formCum.controls['localdescription'].invalid
+																										? 'is-valid'
+																										: ''
+																										">
+												<div class="invalid-feedback" style="margin-left: 13px;">
+													la description  est  
+																											obligatoire
 												</div>
 											</div>
+											<div class="input-group">
+
+												<label style="margin-left: 15px;padding-top: 2%;" for="validationCustom01">
+													Sélectionnez une filiale
+												</label>
+												<select style="margin-left: 15px; width: 360px;" class="form-control form-control-sm" id="validationCustom01" formcontrolname="filialeid" [ngClass]="
+																										(formCum.controls['filialeid'].touched ||
+																										formCum.controls['filialeid'].dirty) &&
+																										formCum.controls['filialeid'].hasError('required')
+																										? 'is-invalid'
+																										: ''|| (formCum.controls['filialeid'].touched ||
+																											formCum.controls['filialeid'].dirty) &&
+																											!formCum.controls['filialeid'].invalid
+																										? 'is-valid'
+																										: ''
+																										">
+													<option *ngFor="let dataItem of filList" [value]="dataItem.filialId">{{dataItem.filialName}}</option>
+												</select>
+												<div class="invalid-feedback" style="margin-left: 13px;">
+													la filiale  est  
+																										obligatoire
+												</div>
 											</div>
-
 										</div>
-										<input type="hidden" formControlName="Filialeid">
 
-										<button type="button" class="btn btn-primary float-right" type="submit" >Enregistrer
-										</button>
+									</div>
+									<input type="hidden" formcontrolname="Filialeid">
 
-									</form>
-									<button type="button" class="btn btn-secondary" style="margin-left: 250px;" data-dismiss="modal">Fermer</button>
+									<button type="button" class="btn btn-primary float-right" type="submit">Enregistrer
+									</button>
 
-								</div>
+								</form>
+								<button type="button" class="btn btn-secondary" style="margin-left: 250px;" data-dismiss="modal">Fermer</button>
+
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
-			<table class="table " id="center" style="width:85%; margin-top: 10%;" >
-				<thead style="background-color: #CAF0F8">
-					<tr>
-						<th>localdescription</th>
-						<th>Filiale Name </th>
-						<th>Options</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let dataItem of CritereList">
-					
-						<td>{{dataItem.localdescription}}</td>
-						<td>{{dataItem.fliname}}</td>
-
-						<td style="width:20%;">
-							<button type="button" class="btn fa-solid fa-trash-can btn btn-outline-danger mr-1" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
-							<button type="button" class="fa-solid fa-pen-to-square btn btn-outline-secondary  mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)"></button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
 		</div>
+
+
+		<table class="table " id="center" style="width:85%; margin-top: 10%;">
+			<thead style="background-color: #CAF0F8">
+				<tr>
+					<th>localdescription</th>
+					<th>Filiale Name
+					</th>
+					<th>Options</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let dataItem of CritereList">
+
+					<td>{{dataItem.localdescription}}</td>
+					<td>{{dataItem.fliname}}</td>
+
+					<td style="width:20%;">
+						<button type="button" class="btn fa-solid fa-trash-can btn btn-outline-danger mr-1" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
+						<button type="button" class="fa-solid fa-pen-to-square btn btn-outline-secondary  mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)"></button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
+</div>

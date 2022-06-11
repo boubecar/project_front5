@@ -78,9 +78,10 @@ export class NoteComponent implements OnInit {
   }
 
   refreshfilList() {
+    debugger
     this.filialeService.getFilialeList().subscribe(data => {
       this.filList = data;
-      // console.log(this.filList)
+      console.log(this.filList)
     });
 
   }
@@ -146,27 +147,20 @@ export class NoteComponent implements OnInit {
       });
 
     }*/
-  refreshnormList() {
-    this.normeService.getListNormes().subscribe(data => {
-      this.NormeList = data;
-      console.log(this.NormeList)
-    });
-  }
+
   ngOnInit(): void {
+    this.refreshfilList();
 
-
-    this.refreshnormList()
+    //this.refreshnormList()
     this.maintenant = this.maDate.getDate() + '-' + ((this.maDate.getMonth() + 1)) + '-' + this.maDate.getFullYear();
 
     this.maintenant = this.addDays(4);
-    this.refreshfilList();
+    //
 
 
 
   }
-  EditNote() {
-    this.router.navigateByUrl('/evaluation')
-  }
+
   critere = {} as Critere;
   Liste: Critere[] = []
   /*refrechcritere2(e: any) {
@@ -272,6 +266,7 @@ export class NoteComponent implements OnInit {
   cumulative: any
 
   public saveData() {
+    this.planService.formCum.controls['notationid'].setValue(this.Noteget[0][0].id);
 
     console.log("put")
     console.log(this.planService.formCum2.value);

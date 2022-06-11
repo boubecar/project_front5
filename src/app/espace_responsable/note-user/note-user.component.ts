@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Constants } from 'src/app/Helper/constants';
+import { User } from 'src/app/Models/user';
 import { Note } from 'src/app/note';
 import { CritereService } from 'src/app/services/critere.service';
 import { FilialeService } from 'src/app/services/filiale.service';
@@ -42,6 +44,7 @@ export class NoteUserComponent implements OnInit {
     filLocalid: '00000000-0000-0000-0000-000000000000',
     date_notation: ''
   });
+  planList: any;
   constructor(public planService: PlanActionService, public normeService: NormeServiceService, public LocService: LocalService, public noteService: NoteService, private router: Router, private fb: FormBuilder, public CritereService: CritereService, private datePipe: DatePipe, public filialeService: FilialeService) {
   }
 
@@ -159,28 +162,53 @@ export class NoteUserComponent implements OnInit {
 
   }
   criterelabel: any
+  today = new Date();
+  to = this.datePipe.transform(this.today, "dd")
+  ChangeData(note: any) {
 
 
-  ChangeData(note: Note) {
+    console.log(note)
+    this.planService.GetAllplanByNote(note.id).subscribe(data => {
+      this.planList = data;
+      console.log("ggg", this.planList[0])
 
-    /*this.noteService.formCum.controls['note'].disable();
-    this.noteService.formCum.controls['Commentaire'].disable();
-    this.noteService.formCum.controls['criterelabel'].disable();
+
+      if (this.planList.length > 0) {
+        this.planService.formCum.reset({
+          planId: this.planList[0].planId,
+          notationid: [this.planList[0].notationid],
+          plandescription: [this.planList[0].plandescription],
+          image: this.planList[0].image,
+          planDate: this.datePipe.transform(this.planList[0].planDate, "yyyy-MM-dd"),
+          userid: this.planList[0].userid,
+        });
+        console.log("ggg", this.to)
+        this.planService.formCum.controls['planDate'].disable();
+        if (Number(this.datePipe.transform(this.planList[0].planDate, "dd")) < Number(this.to)) {
+          this.planService.formCum.disable();
+        }
+      }
+    });
+  }
+
+  /*this.noteService.formCum.controls['note'].disable();
+  this.noteService.formCum.controls['Commentaire'].disable();
+  this.noteService.formCum.controls['criterelabel'].disable();
 */
 
-    // console.log(note);
-    // this.noteService.formCum.reset({
-    //   Id: note.Id,
-    //   note: note.note,
-    //   comment: note.comment,
-    //   criterelabel: note.critereid
-    // });
+  // console.log(note);
+  // this.noteService.formCum.reset({
+  //   Id: note.Id,
+  //   note: note.note,
+  //   comment: note.comment,
+  //   criterelabel: note.critereid
+  // });
 
-    //this.refreshnormList();
+  //this.refreshnormList();
 
 
 
-  }
+
 
   //noteDate: any
   SearchDate() {
@@ -192,16 +220,21 @@ export class NoteUserComponent implements OnInit {
       })
     }
   }
-
+  get user(): User {
+    return JSON.parse(localStorage.getItem(Constants.USER_KEY) || '{}') as User;
+  }
   cumulative: any
   public saveData() {
+    debugger
 
     if (!this.planService.formCum.valid) {
-      alert("veuillez remplir tous les champs")
+      alert("Vous Avez Depasser Le Date ")
     }
-    if (this.planService.formCum.controls['planid'].value == '00000000-0000-0000-0000-000000000000') {
+    if (this.planService.formCum.controls['planId'].value == '00000000-0000-0000-0000-000000000000') {
       console.log('id', this.Noteget[0][0].id)
       this.planService.formCum.controls['notationid'].setValue(this.Noteget[0][0].id);
+      this.planService.formCum.controls['userid'].setValue(this.user.id);
+
       console.log('ggg', this.planService.formCum.value)
       this.planService.postRec(this.planService.formCum.value).subscribe(res => {
         if (res == "Added done") {
@@ -226,8 +259,27 @@ export class NoteUserComponent implements OnInit {
         }
       })
     }
+    else {
 
-    // alert(this.cumulative.designation);
+      console.log('id', this.Noteget[0][0].id)
+      this.planService.formCum.controls['notationid'].setValue(this.Noteget[0][0].id);
+      this.planService.formCum.controls['userid'].setValue(this.user.id);
+
+      console.log('ggg', this.planService.formCum.value)
+      this.planService.updateplan(this.planService.formCum.value).subscribe(res => {
+        this.planService.formCum.disable()
+        Swal.fire({
+          position: 'top-end',
+          icon: 'warning',
+          title: 'Modification est effectuée avec succèes',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
+
+      // alert(this.cumulative.designation);
+
+    }
   }
-
 }
+

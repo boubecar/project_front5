@@ -55,7 +55,7 @@
 							</label>
 							&nbsp;</td>
 						<td>
-							<select class="form-control" formcontrolname="filialeId" (click)="refreshLocList()">
+							<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
 								<option *ngFor="let fil of filList " [value]="fil.filialId">
 									{{fil.filialName}}
 								</option>
@@ -66,7 +66,7 @@
 							<label>&nbsp; Sélectionnez un locale : &nbsp;</label>
 						</td>
 						<td>
-							<select class="form-control" formcontrolname="filLocalid" *ngIf="isShown">
+							<select class="form-control" formControlName="filLocalid" *ngIf="isShown">
 
 								<option value="" disabled selected hidden>Local
 								</option>
@@ -82,7 +82,7 @@
 							<label>&nbsp; Sélectionnez une date : &nbsp;</label>
 						</td>
 						<td>
-							<input class="form-control" type="date" formcontrolname="date_notation" (change)="refrechNote()" (change)="refreshSum()">
+							<input class="form-control" type="date" formControlName="date_notation" (change)="refrechNote()" (change)="refreshSum()">
 						</td>
 					</tr>
 				</table>
@@ -135,8 +135,8 @@
 													{{i.date_notation}}
 												</td>
 												<td>
-													<span class="badge badge-success" *ngIf="i.note!=''">Noté</span>
-													<span class="badge badge-danger" (click)="ChangeData(i)" *ngIf="i.note==''" data-toggle="modal" data-target="#exampleModal">Pas encore</span>
+													<span class="badge badge-success" *ngIf="i.comment!='' || i.note>16"   >Noté</span>
+													<span class="badge badge-danger"  *ngIf="i.comment=='' && i.note==0"  (click)="ChangeData(i)"  data-toggle="modal" data-target="#exampleModal">Pas encore</span>
 
 													<!--	<button type="button"   class="btn fa fa-exclamation-circle btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(i)" ng-disabled="note"></button>-->
 
@@ -167,17 +167,17 @@
 																				<div class="col-9">
 																					<label>Note  :
 																					</label>
-																					<input type="number" class=" form-control" class=" form-control input-sm" formcontrolname="note" placeholder="note">
+																					<input type="number" class=" form-control" class=" form-control input-sm" formControlName="note" placeholder="note">
 																				</div>
 																				<div class=" col-9">
 																					<label>Commentaire :
 																					</label>
-																					<input type="text" class="form-control" class="form-control input-sm" formcontrolname="comment" placeholder="comment">
+																					<input type="text" class="form-control" class="form-control input-sm" formControlName="comment" placeholder="comment">
 																				</div>
 																				<div class="col-9">
 																					<label>Date
 																					</label>
-																					<input type="date" name="party" value="maintenant" formcontrolname="date_notation" [value]="planService.formCum2.value.date_notation | date :'yyyy-MM-dd'" style="margin-top: 5%;">
+																					<input type="date" name="party" value="maintenant" formControlName="date_notation" [value]="planService.formCum2.value.date_notation | date :'yyyy-MM-dd'" style="margin-top: 5%;">
 																				</div>
 																				<div class="col-9">
 																					<img [src]="PhotoFilePath" style="width: 200px; margin-top: 5%;" alt="#"/>
@@ -189,7 +189,7 @@
 																																								</div-->
 
 																				<div class="col-md-6 mb-3">
-																					<input type="file" id="file" class="mt-2" formcontrolname="image"/>
+																					<input type="file" id="file" class="mt-2" formControlName="image"/>
 																					<label for="file" id="photo">
 																						<i class="fa-solid fa-camera"></i>
 																						choisir une image

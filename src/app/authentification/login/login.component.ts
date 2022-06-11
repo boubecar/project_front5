@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   formLog!: FormGroup;
   isshow: boolean = true;
   ishiden: boolean = false
-  shown: boolean=false;
+  shown: boolean = false;
 
 
   //    @BlockUI('main-loader')
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
   //   }
 
   // }
-  constructor(private fb: FormBuilder, public userServie: UsersService, private route: Router) { 
+  constructor(private fb: FormBuilder, public userServie: UsersService, private route: Router) {
     this.shown = false;
 
   }
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
   }
   password() {
     this.shown = !this.shown;
-}
+  }
   @BlockUI('main-loader')
   blockUI!: NgBlockUI;
   public loginForm = this.fb.group({
@@ -79,6 +79,7 @@ export class LoginComponent implements OnInit {
       if (data.responseCode == 1) {
         localStorage.setItem(Constants.USER_KEY, JSON.stringify(data.dateSet));
         let user = data.dateSet as User;
+        console.log(user.id)
         if (user.roles.join(',') == "Admin")
           this.route.navigate(['users']);
         else {

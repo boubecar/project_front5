@@ -10,16 +10,18 @@ import { PoleComponent } from '../pole/pole.component';
   providedIn: 'root'
 })
 export class NormeServiceService {
+
   NormeList: any = []
+
   formCum = this.fb.group({
     normeId: ['00000000-0000-0000-0000-000000000000', Validators.required],
     designation: ['', Validators.required],
   });
- 
+
   backEndUrl: string = "https://localhost:44388/api/Normes";
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
-  
+
   postNorme(cumulative: Norme) {
     return this.http.post(this.backEndUrl + "/PostNormes", cumulative, { responseType: "text" })
   }

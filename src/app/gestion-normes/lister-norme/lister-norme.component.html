@@ -2,10 +2,11 @@
 	<ul class="navbar-nav" style="margin-left: 600px;">
 		<li class="nav-item">
 			<button type="button" class="btn btn-outline-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
-				<i class="fa-solid fa-plus" style="color: #0275d8;"></i> Ajouter 
+				<i class="fa-solid fa-plus" style="color: #0275d8;"></i>
+				Ajouter
 			</button>
-			</li>
-		
+		</li>
+
 
 	</ul>
 </nav>
@@ -17,7 +18,7 @@
 				<h5 class="modal-title" id="exampleModalLabel" style="color: rgb(42, 106, 243);margin-left: 20%;">Enregistrer Norme</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
-				</button> 
+				</button>
 			</div>
 			<div class="modal-body">
 				<div class="card">
@@ -30,20 +31,20 @@
 		</div>
 	</div>
 </div>
-<table class="table table-striped" style="width:70%;margin-left: 100px; margin-right: 400px;" >
+<table class="table table-striped" style="width:70%;margin-left: 100px; margin-right: 400px;">
 	<thead style="background-color: #CAF0F8">
 		<tr>
 			<!--<th (click)="sort('id')">
-				<div class="d-flex flex-row">
-					<input type="text" class="form-control" placeholder="Filter ID ">
-				</div> <i class="fa fa-sort"></i>
-
-				NormeId &nbsp;
-			</th>-->
+							<div class="d-flex flex-row">
+								<input type="text" class="form-control" placeholder="Filter ID ">
+							</div> <i class="fa fa-sort"></i>
+			
+							NormeId &nbsp;
+						</th>-->
 			<th>
 				<!--<div class="d-flex flex-row">
-					<input type="text" class="form-control" placeholder="Filter Name " name="designation" [(ngModel)]="designation" (ngModelChange)="Search()">
-				</div> <i class="fa fa-sort"></i> -->
+									<input type="text" class="form-control" placeholder="Filter Name " name="designation" [(ngModel)]="designation" (ngModelChange)="Search()">
+								</div> <i class="fa fa-sort"></i> -->
 				Name &nbsp;
 			</th>
 			<th style="padding-left: 450px;">Options</th>
@@ -54,18 +55,16 @@
 			<td>{{dataItem.designation}}</td>
 			<td style="padding-left: 420px;">
 
-				<button type="button" class="btn btn-xs"  class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)">
-					
-				</button>&nbsp;
-				<button type="button" class="fa-solid fa-trash-can btn btn-outline-danger btn-xs"  (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false" > 
-				</button> &nbsp;
+				<button type="button" class="btn btn-xs" class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)"></button>&nbsp;
+				<button type="button" class="fa-solid fa-trash-can btn btn-outline-danger btn-xs" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
+				&nbsp;
 				<button (click)="detnorme(dataItem)" type="button" class="btn btn-primary btn-xs" style="background-color: transparent; border-color:#73777B ">
-					<i class="fa-solid fa-circle-info"  style="color:#73777B "></i>
-				</button> 
+					<i class="fa-solid fa-circle-info" style="color:#73777B "></i>
+				</button>
 
  
 			</td>
 		</tr>
 	</tbody>
-	<pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+	<pagination-controls (pageChange)="p = $event" previouslabel="" nextlabel=""></pagination-controls>
 </table>

@@ -47,28 +47,29 @@ export class ReclamationComponent implements OnInit {
     this.noteService.GetAllNoteByLocal2(this.formCum.value.filialeId, this.formCum.value.filLocalid, this.formCum.value.date_notation).subscribe(data => {
 
       this.NoteList = data;
+      console.log("allnote", this.NoteList)
+
 
     });
-    console.log("allnote", this.NoteList)
 
 
 
   }
-  ReclamationList: Array<{ Id: string, userId: string, image: string, comment: string, noteDate: Date }> = [
-    { Id: "1", userId: "1", image: "", comment: "vous avez oubliez de ramasser la poubele", noteDate: new Date() },
-    { Id: "1", userId: "1", image: "", comment: "vous avez oubliez de ramasser la poubele", noteDate: new Date() },
-    { Id: "1", userId: "1", image: "", comment: "vous navez pas débarrassés de vieux posters", noteDate: new Date() },
-    { Id: "1", userId: "1", image: "", comment: "vous avez oubliez de ramasser la poubele", noteDate: new Date() },
-  ];
+  // ReclamationList: Array<{ Id: string, userId: string, image: string, comment: string, noteDate: Date }> = [
+  //   { Id: "1", userId: "1", image: "", comment: "vous avez oubliez de ramasser la poubele", noteDate: new Date() },
+  //   { Id: "1", userId: "1", image: "", comment: "vous avez oubliez de ramasser la poubele", noteDate: new Date() },
+  //   { Id: "1", userId: "1", image: "", comment: "vous navez pas débarrassés de vieux posters", noteDate: new Date() },
+  //   { Id: "1", userId: "1", image: "", comment: "vous avez oubliez de ramasser la poubele", noteDate: new Date() },
+  // ];
 
-  PlanDaction: Array<{ Id: string, userId: string, userName: string, image: string, plandescription: string, PlanDate: Date }> = [
-    { Id: "1", userId: "1", userName: "Safwen Mejed", image: "", plandescription: "Ranger le bureau ", PlanDate: new Date() },
-    { Id: "1", userId: "1", image: "", userName: "Lamjed Mohamed", plandescription: "débarrasser les vieux posters", PlanDate: new Date() },
-    { Id: "1", userId: "1", image: "", userName: "Sofiem Drifi", plandescription: "vous avez oubliez de ramasser la poubele", PlanDate: new Date() },
-    { Id: "1", userId: "1", userName: "Safwen Mejed", image: "", plandescription: "Ranger le bureau ", PlanDate: new Date() },
-    { Id: "1", userId: "1", image: "", userName: "Lamjed Mohamed", plandescription: "débarrasser les vieux posters", PlanDate: new Date() },
-    { Id: "1", userId: "1", image: "", userName: "Sofiem Drifi", plandescription: "vous avez oubliez de ramasser la poubele", PlanDate: new Date() },
-  ];
+  // PlanDaction: Array<{ Id: string, userId: string, userName: string, image: string, plandescription: string, PlanDate: Date }> = [
+  //   { Id: "1", userId: "1", userName: "Safwen Mejed", image: "", plandescription: "Ranger le bureau ", PlanDate: new Date() },
+  //   { Id: "1", userId: "1", image: "", userName: "Lamjed Mohamed", plandescription: "débarrasser les vieux posters", PlanDate: new Date() },
+  //   { Id: "1", userId: "1", image: "", userName: "Sofiem Drifi", plandescription: "vous avez oubliez de ramasser la poubele", PlanDate: new Date() },
+  //   { Id: "1", userId: "1", userName: "Safwen Mejed", image: "", plandescription: "Ranger le bureau ", PlanDate: new Date() },
+  //   { Id: "1", userId: "1", image: "", userName: "Lamjed Mohamed", plandescription: "débarrasser les vieux posters", PlanDate: new Date() },
+  //   { Id: "1", userId: "1", image: "", userName: "Sofiem Drifi", plandescription: "vous avez oubliez de ramasser la poubele", PlanDate: new Date() },
+  // ];
 
 
   constructor(public planService: PlanActionService, public normeService: NormeServiceService, public LocService: LocalService, public noteService: NoteService, private router: Router, private fb: FormBuilder, private datePipe: DatePipe, public filialeService: FilialeService) { }
@@ -89,10 +90,10 @@ export class ReclamationComponent implements OnInit {
 
   //   });
   // }
-  refrechplan() {
-    this.planService.GetAllplan_action().subscribe(data => {
+  refrechplan(note: any) {
+    this.planService.GetAllplanByNote(note.id).subscribe(data => {
       this.planList = data;
-      //console.log("ggg", this.NoteList)
+      console.log("ggg", this.planList[0])
 
     });
   }

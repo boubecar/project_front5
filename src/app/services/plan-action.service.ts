@@ -13,11 +13,12 @@ export class PlanActionService {
   }
   backEndUrl: string = "https://localhost:44388/api/plan_action";
   formCum = this.fb.group({
-    planid: ['00000000-0000-0000-0000-000000000000', Validators.required],
+    planId: ['00000000-0000-0000-0000-000000000000', Validators.required],
     notationid: ['00000000-0000-0000-0000-000000000000'],
     plandescription: [''],
     image: [''],
-    planDate: ['']
+    planDate: [''],
+    userid: ''
   });
   formCum2 = this.fb.group({
     id: ['00000000-0000-0000-0000-000000000000', Validators.required],
@@ -50,5 +51,8 @@ export class PlanActionService {
   }
   GetAllplanByNote(cumulative: any) {
     return this.http.get(this.backEndUrl + "/GetAllplan_actionNote?id=" + cumulative,)
+  }
+  updateplan(val: any) {
+    return this.http.put(this.backEndUrl + '/Putplan_action', val, { responseType: "text" });
   }
 }
