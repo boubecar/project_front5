@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Norme } from 'src/app/norme';
@@ -18,19 +18,28 @@ export class ListerNormeComponent implements OnInit {
   p: number = 1;
   key: string = 'id'
   reverse: boolean = false
+  @ViewChild('myModal') myModal: any;
 
-  /* NormeList: Array<{ normeId: string, designation: string }> = [
-     { normeId: "1", designation: "Nettoyer" },
-     { normeId: "3", designation: 'Ranger' },
-     { normeId: "3", designation: 'Etre rigoureux' },
-     { normeId: "4", designation: "Maintenir l'ordre" },
-     { normeId: "5", designation: "Débarrasser" },
-   ]*/
   constructor(public normeService: NormeServiceService, private fb: FormBuilder, private router: Router, public critereService: CritereService) { }
 
   ngOnInit(): void {
     this.refreshnormList();
   }
+
+  
+  public open ()
+  {
+  
+   this.normeService.formCum.enable();
+   this.normeService.formCum.reset({
+     normeId: '00000000-0000-0000-0000-000000000000',
+    designation: '',
+   });
+   this.myModal.nativeElement.className = 'modal fade show';
+  
+  }
+
+
   refreshnormList() {
     this.normeService.getListNormes().subscribe(data => {
       this.normeService.NormeList = data;
@@ -44,7 +53,7 @@ export class ListerNormeComponent implements OnInit {
 
     Swal.fire({
       title: 'Êtes vous sûrs?',
-      text: "Voulez vous supprimer ce pole!",
+      text: "Voulez vous supprimer cette norme !",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -56,7 +65,7 @@ export class ListerNormeComponent implements OnInit {
           //alert(data.toString());
           Swal.fire(
             'supprimé!',
-            'Le pole est supprimé avec succès .',
+            'La norme est supprimé avec succès .',
             'success'
           )
           this.refreshnormList();

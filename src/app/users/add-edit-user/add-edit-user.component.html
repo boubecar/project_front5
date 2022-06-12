@@ -84,12 +84,18 @@
 				<div class="row mb-3">
 					<label for="inputPassword" class="col-form-label" style="margin-left: -60px;">Role</label>
 					<div class="col-sm-2">
-						<div class="form-check" *ngFor="let role of roles;let index=index">
+						<select class="form-control" formControlName="filialeId">
+										<option *ngFor="let role of roles;let index=index" [value]="role.role">
+											{{role.role}}
+										</option>
+									</select>
+
+						<!-- <div class="form-check" *ngFor="let role of roles;let index=index">
 							<input class="form-control form-control-sm" class="form-control form-control-sm" style="margin-left: -60px; " type="checkbox" name="role" [checked]="role.isSelected" (change)="onRoleChange(role.role)" id="{{index}}">
 							<label class="col-form-label" for="{{index}}">
 								{{role.role}}
-							</label>
-						</div>
+							</label> 
+						</div> -->
 					</div>
 
 				</div>

@@ -28,34 +28,20 @@ export class AddEditComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-
     this.refreshPoleList()
-    //   this.refreshfilList();
-    // this.formCum = this.fb.group({
-    //   filialId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-    //   filialName: [''],
-    //   poleId: ['00000000-0000-0000-0000-000000000000'],
-    // });
   }
  
   
-  @ViewChild('closebutton') closebutton: any;
+  @ViewChild('myModal') myModal: any;
+
 
   public saveData() {
 
-
     if (this.filialeService.formCum.controls['filialId'].value == '00000000-0000-0000-0000-000000000000') {
       this.filService.postFiliale(this.filialeService.formCum.value).subscribe(res => {
-        this.filialeService.formCum.reset({
-          filialId: ['00000000-0000-0000-0000-000000000000', Validators.required],
-          filialName: [''],
-          poleId: ['00000000-0000-0000-0000-000000000000'],
-        }
-        )
         this.refreshfilList()
-        if (res == "Added done") {
-          // debugger
 
+        if (res == "Added done") {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -99,12 +85,10 @@ export class AddEditComponent implements OnInit {
             footer: '<a href="/filiale">Veuillez réessayer </a>'
           })
         }
-        //  this.cumulative={}
       })
-
+      this.myModal.nativeElement.className = 'modal fade show';
 
     }
-    this.closebutton.nativeElement.click();
 
     // alert(this.cumulative.designation);
   }

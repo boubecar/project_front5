@@ -53,7 +53,6 @@ export class FilialeComponent implements OnInit {
 
 
   }
-  @ViewChild('myModal') myModal: any;
 
   public open ()
  {
@@ -64,7 +63,6 @@ export class FilialeComponent implements OnInit {
     filialName: '',
     poleId: '00000000-0000-0000-0000-000000000000',
   });
-  this.myModal.nativeElement.className = 'modal fade show';
  
  
  }

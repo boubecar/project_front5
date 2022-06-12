@@ -16,48 +16,11 @@
 		
 					
 
-						<!--<div>
 						
-								<div class="row">
-									<label>Sélectionnez une filiale :</label>
-									<select class="form-control" formControlName="filialeId" (click)="refreshLocList()">
-										<option *ngFor="let fil of filList " [value]="fil.filialId">
-											{{fil.filialName}}
-										</option>
-									</select>
-									
-								</div>
-
-							
-						
-								<div class="">
-									sélectionnez un locale 
-									<select class="form-control" formControlName="filLocalid" *ngIf="isShown" (change)="onChangeCriterion()">
-
-										<option value="" disabled selected hidden>Local
-										</option>
-										<option *ngFor="let loc of LocalList " [value]="loc.locallId">
-											{{loc.localdescription}}
-										</option>
-									</select>
-
-
-
-							
-							</div>
-							
-								<div class="">
-									<label> une date :</label>
-									<input class="form-control" type="date" formControlName="date_notation" [value]="today | date:'dd-MM-yyyy'">
-								</div>
-
-
-						
-						</div>-->
 					
-				        <table class=" table table-responsive" style="margin-top: 170px;">
+				        <table class=" table table-responsive" >
 							<tr>
-									<td><label>&nbsp; Sélectionnez une filiale :</label> &nbsp;</td>
+									<td><label>&nbsp; Sélectionnez une filiale </label> &nbsp;</td>
 							<td>
 									<select class="form-control" formControlName="filialeId"
 (click)="refreshLocList()" (change)="refrechall()" >
@@ -68,7 +31,7 @@
 									
 								</td>
 								<td>
-									<label>&nbsp; &nbsp; Sélectionnez un locale : &nbsp;</label>
+									<label>&nbsp; &nbsp; Sélectionnez un locale  &nbsp;</label>
 								</td>
 								<td>
 									<select class="form-control" formControlName="filLocalid" *ngIf="isShown" 
@@ -86,7 +49,7 @@
 								</td>
 								<td>
 
-								<label>&nbsp; &nbsp; Sélectionnez une date : &nbsp;</label>
+								<label>&nbsp; &nbsp; Sélectionnez une date  &nbsp;</label>
 								</td>
 								<td  >
 									<input     class="form-control" type="date"   (change)="refrechall()"  formControlName="date_notation" [value]="today | date:'dd-MM-yyyy'">
@@ -104,7 +67,7 @@
 				</form>
 
 				
-				<div class="full inner_elements" style="margin-top: -2%;" 
+				<div class="full inner_elements" style="margin-top: -6%;"
 *ngIf="formCum.value.filialeId != '00000000-0000-0000-0000-000000000000' &&
       formCum.value.filLocalid != '00000000-0000-0000-0000-000000000000' &&
       formCum.value.date_notation != null">
@@ -215,7 +178,6 @@
  
 										</div>
 									</form>
- <pre>{{controlArray.value | json}}</pre>
 
 								</div>
 							</div>

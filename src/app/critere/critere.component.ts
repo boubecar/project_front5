@@ -12,46 +12,24 @@ import { NormeServiceService } from '../services/norme-service.service';
   styleUrls: ['./critere.component.css']
 })
 export class CritereComponent implements OnInit {
-  /* CritereList: Array<{ critereId: number, criterelabel: string, normes: string }> = [
-     { critereId: 1, criterelabel: "Nettoyer", normes: "" },
-     { critereId: 2, criterelabel: 'Degré d’engagement de la direction et d’implication du personnel pour les 5S.', normes: "" },
-     { critereId: 3, criterelabel: 'Etre rigoureux', normes: "" },
-     { critereId: 4, criterelabel: "Maintenir l'ordre", normes: "" },
-     { critereId: 5, criterelabel: "Débarrasser", normes: "" },
-   ];
- 
-  NormeList: Array<{ NormeId: number, designation: string }> = [
-    { NormeId: 1, designation: "Nettoyer" },
-    { NormeId: 2, designation: 'Ranger' },
-    { NormeId: 3, designation: 'Etre rigoureux' },
-    { NormeId: 4, designation: "Maintenir l'ordre" },
-    { NormeId: 5, designation: "Débarrasser" },
-  ];
-  */
+  
+  criterelabel: any
   NormeList: any = []
-
+  p: number = 1;
+  key: string = 'id'
+  reverse: boolean = false
   cumulative: Critere = {}
-  //CritereList: any = []
   idnorm: string = ''
-
-
-  //filterForm: FormGroup
-  //filterForm: FormGroup
-  //filterForm: FormGroup
-  //filterForm: FormGroup
   formCum!: FormGroup;
   constructor(private route: ActivatedRoute, private router: Router, public CritereService: CritereService, private service: NormeServiceService, private fb: FormBuilder) {
     this.route.params.subscribe(params => console.log(params));
-
   }
 
-  //public norme: Norme = new Norme();
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.idnorm = params['id'];
 
     })
-    //this.refreshcriList();
     this.refreshDepList();
     this.refreshcriList();
     this.formCum = this.fb.group({
@@ -62,6 +40,16 @@ export class CritereComponent implements OnInit {
 
     console.log("id", this.idnorm)
   }
+
+  Search() {
+    if (this.criterelabel == '') {
+      this.refreshcriList()
+    } else {
+      this.CritereService.CritereList = this.CritereService.CritereList.filter((res: { criterelabel: string; }) => {
+        return res.criterelabel.toLocaleLowerCase().match(this.criterelabel.toLocaleLowerCase());
+      })
+    }
+  }
   ChangeData(norme: Critere) {
 
     this.formCum.reset({
@@ -71,12 +59,22 @@ export class CritereComponent implements OnInit {
 
 
     });
-    this.refreshcriList();
-
-
   }
 
+  public open ()
+  {
+  
+   this.formCum.enable();
+   this.formCum.reset({
+    critereId: '00000000-0000-0000-0000-000000000000' ,
+    criterelabel: "",
+    normeId: this.idnorm
 
+
+  });
+  
+  
+  }
   public saveData() {
     
     if (!this.formCum.valid) {
@@ -85,16 +83,11 @@ export class CritereComponent implements OnInit {
 
     if (this.formCum.controls['critereId'].value == '00000000-0000-0000-0000-000000000000') {
 
-      console.log("post")
-      console.log(this.formCum.value);
+      //console.log("post")
+     // console.log(this.formCum.value);
       this.CritereService.postCritere(this.formCum.value).subscribe(res => {
-        this.formCum.reset({
-          critereId: '00000000-0000-0000-0000-000000000000' ,
-          criterelabel: "",
-          normeId: this.idnorm
-    
-    
-        });
+
+
         this.refreshcriList()
 
         if (res == "Added done") {
@@ -126,7 +119,8 @@ export class CritereComponent implements OnInit {
       console.log("put")
       console.log(this.formCum.value);
       this.CritereService.editCritere(this.formCum.value).subscribe(data => {
-        //alert(data.toString());
+        this.formCum.disable()
+
         this.refreshcriList();
 
         if (data == "Update Done")

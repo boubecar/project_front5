@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	<div class="sidebar_blog_2">
-		<h4>Polina
+		<h4>Poulina
 			{{user.roles.join(',')}}</h4>
 		<ul class="list-unstyled components">
 			<li class="active">
@@ -29,7 +29,7 @@
 				</a>
 				<ul class="collapse list-unstyled" id="dashboard">
 					<li>
-						<a routerlink="">>
+						<a routerLink="">>
 							<span>Admin Dashboard</span>
 						</a>
 					</li>
@@ -37,7 +37,7 @@
 				</ul>
 			</li>
 			<li>
-				<a routerlink="/rec">
+				<a routerLink="/rec">
 					<i class="fa fa-clock-o orange_color"></i>
 					<span>Plan d'action</span>
 				</a>
@@ -49,33 +49,28 @@
 				</a>
 				<ul class="collapse list-unstyled" id="element">
 					<li>
-						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerlink="/pole">>
+						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerLink="/pole">>
 							<span>Pole</span>
 						</a>
 					</li>
 					<li>
-						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerlink="/filiale">>
+						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerLink="/filiale">>
 							<span>Filiale</span>
 						</a>
 					</li>
 					<li>
-						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerlink="/loc">>
+						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerLink="/loc">>
 							<span>Local</span>
 						</a>
 					</li>
 					<li>
-						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerlink="/gnorme">>
+						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerLink="/gnorme">>
 							<span>Norme</span>
 						</a>
 					</li>
 				</ul>
 			</li>
-			<li>
-				<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerlink="/evaluation">
-					<i class="fa fa-table purple_color2"></i>
-					<span>Evaluation</span>
-				</a>
-			</li>
+			
 			<li>
 				<a href="#element1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
 					<i class="fa fa-table purple_color2"></i>
@@ -84,12 +79,13 @@
 				</a>
 				<ul class="collapse list-unstyled" id="element1">
 					<li>
-						<a routerlink="/evaluation">>
+						<a [class.disabled]="isUser" *ngIf="isUserlogin && !isUser" routerLink="/evaluation">
+							<i class="fa fa-table purple_color2"></i>
 							<span>Evaluation</span>
 						</a>
 					</li>
 					<li>
-						<a routerlink="/note">>
+						<a routerLink="/note">>
 							<span>notes</span>
 						</a>
 					</li>
@@ -99,13 +95,13 @@
 			<ul class="collapse list-unstyled">
 
 				<li>
-					<a routerlink="/evaluation">
+					<a routerLink="/evaluation">
 						<i class="fa fa-table purple_color2"></i>
 						<span>Evaluation</span>
 					</a>
 				</li>
 				<li>
-					<a routerlink="/note">
+					<a routerLink="/note">
 						<i class="fa fa-table purple_color2"></i>
 						<span>notes</span>
 					</a>
@@ -119,11 +115,11 @@
 					</span>
 				</a>
 				<ul class="collapse list-unstyled" id="apps">
-					<<<<<<<HEAD<li><arouterLink="/role">><span>roles</span></a></li><li><arouterLink="/users">><span>Utilisateurs</span></a></li>=======<li><a[class.disabled]="isUser"aria-current="page"*ngIf="isUserlogin&&!isUser"routerLink="/mail">><span>Email</span></a></li><li><a[class.disabled]="isUser"aria-current="page"*ngIf="isUserlogin&&!isUser"routerLink="/users">><span>Contact</span></a></li>>>>>>>> 4cd385f (version10)
+					<li><a routerLink="/role">><span>roles</span></a></li><li><a routerLink="/users">><span>Utilisateurs</span></a></li><li><a [class.disabled]="isUser"aria-current="page"*ngIf="isUserlogin&&!isUser"routerLink="/mail">><span>Email</span></a></li><li><a [class.disabled]="isUser"aria-current="page" *ngIf="isUserlogin&&!isUser"routerLink="/users">><span>Contact</span></a></li>
 				</ul>
 			</li>
 			<li>
-				<a [class.disabled]="isUser" aria-current="page" *ngIf="isUserlogin && !isUser" routerlink="/profile">
+				<a [class.disabled]="isUser" aria-current="page" *ngIf="isUserlogin && !isUser" routerLink="/profile">
 					<i class="fa fa-user" aria-hidden="true"></i>
 					<span>Profil</span>
 				</a>
@@ -143,7 +139,7 @@
 				</button>
 				<div class="logo_section">
 					<a href="index.html"><img class="img-responsive" src="assets/images/polinalogo.jpg" alt="#"/>
-						Polina Holding Group</a>
+						Poulina Holding Group</a>
 				</div>
 				<div class="right_topbar">
 					<div class="icon_info">
@@ -154,28 +150,17 @@
 									<span class="badge">2</span>
 								</a>
 							</li>
-							<li>
-								<a href="#">
-									<i class="fa fa-question-circle"></i>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<i class="fa fa-envelope-o"></i>
-									<span class="badge">3</span>
-								</a>
-							</li>
+							
 						</ul>
 						<ul class="user_profile_dd">
 							<li>
-								<a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="assets/images/layout_img/user_img.jpg" alt="#"/><span class="name_user">John David</span>
+								<a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="assets/images/layout_img/user_img.jpg" alt="#"/><span class="name_user"> {{user.fullName}}</span>
 								</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="profile.html">My Profile</a>
-									<a class="dropdown-item" href="settings.html">Settings</a>
+									<a class="dropdown-item" href="profile.html">Mon Profil</a>
 									<a class="dropdown-item" href="help.html">Help</a>
-									<a class="dropdown-item" routerlink="/login" (click)="onLogout()" href="#">
-										<span>Log Oute</span>
+									<a class="dropdown-item" routerLink="/login" (click)="onLogout()" href="#">
+										<span>Déconnecter</span>
 										<i class="fa fa-sign-out"></i>
 									</a>
 								</div>

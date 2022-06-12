@@ -2,7 +2,6 @@ import { Component, OnInit, QueryList } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Pole } from '../pole';
 import { PoleServiceService } from '../services/pole-service.service';
 
 @Component({
@@ -61,7 +60,6 @@ export class AddEditPoleComponent implements OnInit {
       console.log('post', this.service.formCum.value)
 
       this.service.postPole(this.service.formCum.value, this.image).subscribe(res => {
-        // alert(res.toString());
 
         if (res == "Added done") {
           // debugger

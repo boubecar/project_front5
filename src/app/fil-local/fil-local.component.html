@@ -37,7 +37,8 @@
 								<div class="card-body">
 									<form (ngSubmit)="saveData()" [formGroup]="formCum">
 										<div class="form-row">
-											<div class="input-group"><input type="hidden" formcontrolname="locallId"></div>
+											
+												<input type="hidden" formcontrolname="locallId">
 
 											<div class="">
 												<label style="margin-left: 15px;">Enter un local :</label>
@@ -82,7 +83,7 @@
 											</div>
 										</div>
 
-									</div>
+									
 									<input type="hidden" formcontrolname="Filialeid">
 
 									<button type="button" class="btn btn-primary float-right" type="submit">Enregistrer

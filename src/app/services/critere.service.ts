@@ -7,6 +7,7 @@ import { Critere } from '../critere';
   providedIn: 'root'
 })
 export class CritereService {
+  
   CritereList: any = []
   backEndUrl: string = "https://localhost:44388/api/criteres";
   constructor(private http: HttpClient, private fb: FormBuilder) {

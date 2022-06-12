@@ -25,20 +25,7 @@ export class NormesComponent implements OnInit {
 
 
   ModalTitle: string = "ajouter un nouveau norme";
-  /* cumulative: Norme = {}
-   listNormes: Norme[] = []
-   /*ActivateAddEditDepComp:boolean=false;
-   norme:any;
- 
-   PhotoFileName:string="";
-   PhotoFilePath:string="";
-   DepartmentIdFilter:string="";
-   DepartmentNameFilter:string="";
-   DepartmentListWithoutFilter:any=[];*/
-
-  /* ngOnInit(): void {
-     
-   }*/
+  
   nor: any;
   NormId: string = "";
   NormeName: string = "";

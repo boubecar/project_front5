@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Norme } from '../norme';
-import { Pole } from '../pole';
-import { PoleComponent } from '../pole/pole.component';
 
 @Injectable({
   providedIn: 'root'

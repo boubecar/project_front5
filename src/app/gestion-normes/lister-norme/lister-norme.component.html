@@ -1,17 +1,25 @@
 <nav class="navbar navbar-expand-sm" style="width:85%; margin-left: 72px; margin-top: 20px;margin-bottom: 2%;">
-	<ul class="navbar-nav" style="margin-left: 600px;">
+	<ul class="navbar-nav" style="margin-left: 380px;">
 		<li class="nav-item">
-			<button type="button" class="btn btn-outline-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
-				<i class="fa-solid fa-plus" style="color: #0275d8;"></i>
+			<input type="search" style=" width: 200px;margin-top: 5px;" class="form-control" placeholder="Filter Norme" name="designation" [(ngModel)]="designation" (ngModelChange)="Search()">&nbsp; 
+			
+			</li>
+			
+			<li class="nav-item">
+			<i style="font-size: large;margin-top: 9px; padding-left: 40%; padding-right: 40%;" class="fa-solid fa-magnifying-glass" (click)="Search()"></i>
+									
+				</li>&nbsp; &nbsp; &nbsp;
+		<li class="nav-item">
+			<button  type="button" class="fa fa-plus btn btn-outline-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false" (click)="open()">
+				
 				Ajouter
 			</button>
 		</li>
 
-
 	</ul>
 </nav>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div #myModal class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -31,20 +39,12 @@
 		</div>
 	</div>
 </div>
-<table class="table table-striped" style="width:70%;margin-left: 100px; margin-right: 400px;">
+<table class="table table-striped" style="width:65%;margin-left: 100px; margin-right: 400px;">
 	<thead style="background-color: #CAF0F8">
 		<tr>
-			<!--<th (click)="sort('id')">
-							<div class="d-flex flex-row">
-								<input type="text" class="form-control" placeholder="Filter ID ">
-							</div> <i class="fa fa-sort"></i>
 			
-							NormeId &nbsp;
-						</th>-->
 			<th>
-				<!--<div class="d-flex flex-row">
-									<input type="text" class="form-control" placeholder="Filter Name " name="designation" [(ngModel)]="designation" (ngModelChange)="Search()">
-								</div> <i class="fa fa-sort"></i> -->
+				
 				Name &nbsp;
 			</th>
 			<th style="padding-left: 450px;">Options</th>
@@ -58,13 +58,12 @@
 				<button type="button" class="btn btn-xs" class=" fa-solid fa-pen-to-square btn btn-outline-secondary mr-1" data-toggle="modal" data-target="#exampleModal" (click)="ChangeData(dataItem)"></button>&nbsp;
 				<button type="button" class="fa-solid fa-trash-can btn btn-outline-danger btn-xs" (click)="deleteClick(dataItem)" data-backdrop="static" data-keyboard="false"></button>
 				&nbsp;
-				<button (click)="detnorme(dataItem)" type="button" class="btn btn-primary btn-xs" style="background-color: transparent; border-color:#73777B ">
-					<i class="fa-solid fa-circle-info" style="color:#73777B "></i>
+				<button (click)="detnorme(dataItem)" type="button" class="btn btn-outline-warning btn-xs" >
+					<i class="fa-solid fa-circle-info" style="color:orange "></i>
 				</button>
-
- 
+								
 			</td>
 		</tr>
 	</tbody>
-	<pagination-controls (pageChange)="p = $event" previouslabel="" nextlabel=""></pagination-controls>
+	<pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
 </table>

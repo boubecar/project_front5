@@ -140,7 +140,7 @@ filList:any
   }
   Search() {
     if (this.poleName == '') {
-      this.ngOnInit()
+      this.refreshPoleList()
     } else {
       this.service.PoleList = this.service.PoleList.filter((res: { poleName: string; }) => {
         return res.poleName.toLocaleLowerCase().match(this.poleName.toLocaleLowerCase());

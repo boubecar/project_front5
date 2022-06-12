@@ -18,7 +18,6 @@ export class PoleServiceService {
     poleName: ['', Validators.required],
     image: []
   });
-  listNorme: Norme[] = []
   backEndUrl: string = "https://localhost:44388/api/Pole";
 
   postPole(cumulative: any, cumulative2: any) {
@@ -27,13 +26,8 @@ export class PoleServiceService {
   getPoleList(): Observable<any[]> {
     return this.http.get<any>(this.backEndUrl + '/GetAllPole');
   }
-  /*
-  addPole(val:any){
-    return this.http.post(this.APIUrl+'/PostPole',val);
-  }
-*/
   updatePole(val: any) {
-    return this.http.put(this.backEndUrl + '/PutPole', val);
+    return this.http.put(this.backEndUrl + '/PutPole', val, { responseType: "text" });
   }
   deletePole(val: any) {
     return this.http.delete(this.backEndUrl + '/DeletePole?SaisieCommentId=' + val, { responseType: "text" });

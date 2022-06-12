@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
 export class AddEditNormeComponent implements OnInit {
 
   cumulative: Norme[] = new Array()
-  // NormeList: any = []
   constructor(public normeService: NormeServiceService) { }
 
   ngOnInit(): void {
@@ -56,7 +55,7 @@ export class AddEditNormeComponent implements OnInit {
     else {
 
       this.normeService.editNorme(this.normeService.formCum.value).subscribe(res => {
-        //alert(res.toString())
+        this.normeService.formCum.disable()
         if (res == "Update Done") {
           // debugger
 

@@ -291,16 +291,6 @@ export class EvaluationComponent implements OnInit {
   }
 
 
-
-  // refreshcriList(e: any) {
-
-  //   this.isShown1 = true;
-  //   this.CritereService.getCritereByNorme(e.normeId).subscribe(data => {
-  //     this.CritereList = data;
-  //     console.log(this.CritereList)
-  //   });
-  // }
-
   refreshfilList() {
     this.filialeService.getFilialeList().subscribe(data => {
       this.filList = data;

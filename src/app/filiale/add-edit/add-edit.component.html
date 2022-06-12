@@ -1,14 +1,14 @@
 <form (ngSubmit)='saveData()' [formGroup]="filialeService.formCum" >
 
-	<pre>{{filialeService.formCum.value | json}}</pre>
+	<!-- <pre>{{filialeService.formCum.value | json}}</pre> -->
 	<input type="hidden" formcontrolname="filialeId" >
 	<div class="form-row">
 		<div class="col-md-6 mb-3">
 			<div class="input-group">
 					<input type="hidden" formControlName="filialId">
-					<label style="margin-left: 15px;" for="validationCustom01" >Enter le nom de filiale
+					<label style="margin-left: 120px;" for="validationCustom01" >Enter le nom de filiale
 					</label>
-					<input type="text" style="margin-left: 15px; width: 360px;" class="form-control form-control-sm" placeholder="Nom"   formControlName="filialName" id="validationCustom01" autocomplete="off" 
+					<input type="text" style="margin-left: 150px; width: 360px;" class="form-control form-control-sm" placeholder="Nom"   formControlName="filialName" id="validationCustom01" autocomplete="off" 
 					[ngClass]="
 												( filialeService.formCum.controls['filialName'].touched ||
 												filialeService.formCum.controls['filialName'].dirty) &&
@@ -21,14 +21,14 @@
 												: ''
 												"
 												>
-												<div style="margin-left: 6%;" class="invalid-feedback">le nom est obligatoire</div>
+												<div style="margin-left: 60%;" class="invalid-feedback">le nom est obligatoire</div>
 				</div>
 			<div class="input-group" >
 
-					<label style="margin-left: 15px;" for="validationCustom01" >
+					<label style="margin-left: 150px;" for="validationCustom01" >
 						Sélectionnez un pole
 					</label>
-					<select  style="margin-left: 15px; width: 560px;" class="form-control form-control-sm"
+					<select  style="margin-left: 150px; width: 560px;" class="form-control form-control-sm"
 					id="validationCustom01"  formControlName="poleId"
 					[ngClass]="
 												( filialeService.formCum.controls['poleId'].touched ||

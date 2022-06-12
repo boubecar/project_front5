@@ -14,7 +14,13 @@ import Swal from 'sweetalert2';
 })
 export class ListerComponent implements OnInit {
   filialName: any;
-  
+    LocalList: Array<{ filialeId: string, localdescription: string, image: string }> = [
+    { filialeId: "1", localdescription: "Zahra", image: "assets/images/mazraa.jpg" },
+    { filialeId: "1", localdescription: 'Mouroug ', image: "assets/images/download.jpg" },
+    { filialeId: "1", localdescription: ' Rades', image: "assets/images/alimentation-animale.png" },
+    { filialeId: "1", localdescription: "Tunis", image: "assets/images/alimentation-animale.png" },
+    { filialeId: "1", localdescription: "wardia", image: "assets/images/oasis.jpg" },
+  ];
   constructor(public filialeService: FilialeService, private userService: UserService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router, private localService: LocalService) {
   }
 
