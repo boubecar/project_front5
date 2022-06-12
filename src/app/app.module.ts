@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -48,6 +47,11 @@ import { GestionRoleComponent } from './gestion-role/gestion-role.component';
 import { GestionFilialeComponent } from './gestion-filiale/gestion-filiale.component';
 import { GestionfilialeComponent } from './gestionfiliale/gestionfiliale.component';
 import { ListeFilComponent } from './gestionfiliale/liste-fil/liste-fil.component';
+import { NgChartsModule } from 'ng2-charts';
+import { RoleGuardService } from './guardsRole/RoleGuardService.service';
+import { AuthService } from './services/AuthService';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { PlandactionUserComponent } from './espace_responsable/plandaction-user/plandaction-user.component';
 
 
 
@@ -91,6 +95,7 @@ import { ListeFilComponent } from './gestionfiliale/liste-fil/liste-fil.componen
     GestionFilialeComponent,
     GestionfilialeComponent,
     ListeFilComponent,
+    PlandactionUserComponent,
 
   ],
   imports: [
@@ -104,9 +109,8 @@ import { ListeFilComponent } from './gestionfiliale/liste-fil/liste-fil.componen
     NgChartsModule,
 
 
-
   ],
-  providers: [PoleServiceService, DatePipe, {
+  providers: [PoleServiceService, RoleGuardService, AuthService, JwtHelperService, DatePipe, {
     provide: ToastrService, useValue: ToastrService
 
   }],

@@ -1,0 +1,217 @@
+<div class="full_container">
+	<div
+		class="inner_container">
+		<!-- Sidebar  -->
+ 		<app-nav-user></app-nav-user>
+
+
+		<div class="midde_cont">
+<form
+				[formGroup]="formCum">
+
+
+				<!--	<div>
+									<div>
+										<div class="">
+											<select class="form-control" formControlName="filialeId" (click)="refreshLocList()"
+				 >
+												<option *ngFor="let fil of filList " [value]="fil.filialId" >
+													{{fil.filialName}}
+												</option>
+											</select>
+				
+				
+										</div>
+				
+									</div>
+									<div>
+										<div class="">
+											<select class="form-control" formControlName="filLocalid" *ngIf="isShown"  >
+				
+												<option value="" disabled selected hidden>Local
+												</option>
+												<option *ngFor="let loc of LocalList " [value]="loc.locallId">
+													{{loc.localdescription}}
+												</option>
+											</select>
+				
+				
+										</div>
+									</div>
+				
+								</div>-->
+				<table style="margin-top: 150px;">
+					<tr>
+						 
+						<td>
+							<label>&nbsp; Sélectionnez un locale : &nbsp;</label>
+						</td>
+						<td>
+							<select  class="form-control" formControlName="filLocalid"   >
+
+								<option value="" disabled selected hidden>Local
+								</option>
+								<option *ngFor="let loc of LocalList " [value]="loc.locallId">
+									{{loc.localdescription}}
+								</option>
+							</select>
+
+
+						</td>
+						<td>
+
+							<label>&nbsp; Sélectionnez une date : &nbsp;</label>
+						</td>
+						<td>
+							<input class="form-control" type="date" formControlName="date_notation" (change)="refrechNote()"        >
+						</td>
+					</tr>
+				</table>
+			</form>
+			<div class="row column4 graph">
+				
+					<div class="dash_blog">
+						<div class="dash_blog_inner">
+							<div class="dash_head">
+								<h3>
+									<span>
+										<i class="fa fa-calendar"></i>&nbsp; May</span>
+									<span class="plus_green_bt">
+										<a href="#">+</a>
+									</span>
+								</h3>
+							</div>
+							<div class="list_cont">
+								<p>Les reclamations envoyees</p>
+							</div>
+							<div class="task_list_main" *ngFor="let dataItem of NoteList">
+								<ul class="task_list" *ngIf="dataItem.comment !==''"  >
+
+									<li>
+										<a href="#">{{dataItem.comment}}</a><br><strong>{{dataItem.date_notation  | date:'dd MMM'}}</strong>
+                                
+									</li>
+<li>
+	<span class="badge badge-success" class="badge badge-success"    (click)="refrechplan(dataItem)" data-toggle="modal" data-target="#exampleModal"  >Palan d'action Recus</span>							 
+</li>
+								</ul>
+							
+<!--Model Detail-->
+				<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+					   <div class="modal-content">
+						  <div class="modal-header">
+							 <h5 class="modal-title" id="exampleModalLabel" style="padding-left:40% ;color: rgb(42, 106, 243);">Reclamation</h5>
+							 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							 </button>
+						  </div>
+						  <div class="modal-body">
+							 <div class="card">
+									<div style="margin-top: 1em;">
+
+
+	<div class="container">
+
+		<div class="col-md-5" style="margin-right:30px ; box-shadow: none;">
+			<div>
+				<div class="position-tl w-102 border-t-3 brc-primary-tp3 ml-n1px mt-n1px"></div>
+				<!-- the blue line on top -->
+				<div class="card-body pt-2 pb-1">
+					<div role="button" class="d-flex flex-wrap align-items-center my-2 bgc-secondary-l4 bgc-h-secondary-l3 radius-1 p-25 d-style">
+						<span class="mr-25 w-4 h-4 overflow-hidden text-center border-1 brc-secondary-m2 radius-round shadow-sm d-zoom-2"></span>
+
+						<span class="text-default-d3 text-90 text-600">
+                         
+						</span>
+<span class="text-default-d3 text-90 text-600">
+ 
+ 
+						</span>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div></div>
+							<div class="read_more">
+								<div class="center">
+									<a class="main_bt read_bt" href="#">Read More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				 
+
+     
+								<div class="card-body"></div>
+							 </div>
+						  </div>
+					   </div>
+					</div>
+				 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLabel"> 
+																	</h5>
+																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+
+																	</button>
+
+																</div>
+																<div class="modal-body">
+				<div class="col-md-12">
+					<div class="dash_blog">
+						<div class="dash_blog_inner">
+							<div class="dash_head">
+								<h3>
+									<span>
+										<i class="fa fa-comments-o"></i>
+										Plan d'action</span>
+									<span class="plus_green_bt">
+										<a href="#">+</a>
+									</span>
+								</h3>
+							</div>
+							<div class="list_cont">
+								<p>Plan d'action déposé</p>
+							</div>
+							<div class="msg_list_main" *ngFor="let dataItem of planList">
+								<ul class="msg_list" >
+									<li >
+										<span><img src="assets/images/layout_img/msg2.png" class="img-responsive" alt="#"/></span>
+										<span>
+											 
+											
+											<span class="time_ago">{{dataItem.planDate | date:'dd MMM'}}</span>
+										</span>
+									</li>
+<li>
+<p>{{dataItem.plandescription}}</p>
+</li>
+								</ul>
+							</div>
+							<div class="read_more">
+								<div class="center">
+									<a class="main_bt read_bt" href="#">Read More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

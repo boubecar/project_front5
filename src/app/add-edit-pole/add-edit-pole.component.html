@@ -22,7 +22,7 @@
     </div>
     <div class="ml-3 bd-highlight" style="width: 40%;" style="color: blue;">
         <img [src]="PhotoFilePath" height="200px;" width="200px;">
-        <input type="file" hidden id="file" class="mt-2" (change)="uploadPhoto($event)"/>
+        <input type="file" hidden id="file" class="mt-2" formControlName="image" />
         <label for="file"  > 
             <i  class="fa-solid fa-camera"></i>
             choisir une image

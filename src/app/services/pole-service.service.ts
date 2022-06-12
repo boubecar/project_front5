@@ -16,7 +16,7 @@ export class PoleServiceService {
   formCum = this.fb.group({
     poleId: ['00000000-0000-0000-0000-000000000000', Validators.required],
     poleName: ['', Validators.required],
-    image: []
+    image: ['']
   });
   backEndUrl: string = "https://localhost:44388/api/Pole";
 
